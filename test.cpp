@@ -17,20 +17,71 @@ It will generage the randNum based on CPUburst and IOburst
 
 using namespace std;
 
-vector<int> randvals;
-int ofs=0;
-int CPU_burst=10, IO_burst;
 
+vector<int> randvals;
+
+////Function////
 int myrandom(int burst, int &index) { 	
 	if (index==randvals.size()){index=1;}
 	index++;		
 	return 1 + (randvals[index] % burst);	
 }
+////Class////
+class schedule{
+public:
+	int timestamp; //start time
+	int PID; //id for this task
+	int Ts; //generated time
+	int Dur;
+	string curState;
+	string nextState;	
+	schedule(int t,int pid,int ts,int dur,string cur,string next);
+	~schedule();
+};
+schedule::schedule(int t,int pid,int ts,int dur,string cur,string next){
+	cout<<"constructor called"<<endl;
+	timestamp=t; PID=pid; Ts=ts; Dur=dur; curState=cur; nextState=next;}
+schedule::~schedule(){}
+
+class inputTask{
+public:
+	int AT; //arrivetime
+	int TC; //total cpu time
+	int CB; //cpu burst
+	int IO; //io burst
+	inputTask(int at, int tc, int cb, int io);
+	~inputTask();
+};
+inputTask::inputTask(int at, int tc, int cb, int io){AT=at;TC=tc;CB=cb;IO=io;}
+inputTask::~inputTask(){}
+
+vector<inputTask>tasks_v;
+int ofs=0, n1, n2, n3, n4;
+int CPU_burst=10, IO_burst;
 
 int main(int argc, char *argv[]){
-	ifstream fin ( argv[1] ); // processing the rand file
+	ifstream fin0 ( argv[1] ); // processing input file
+	if (!fin0.is_open()){
+		cout<<"Cannot open the file0"<<endl;}
+	else{
+		for (int i=0;!fin0.eof();i++){
+			while(fin0>>n1>>n2 >>n3 >>n4){
+				inputTask elem(n1, n2, n3, n4);
+				tasks_v.push_back(elem);
+			}
+		}
+	}
+	fin0.close();
+
+	// test task input
+	for (int i=0;i<tasks_v.size();i++){
+		cout<<tasks_v[i].AT<<" "<<tasks_v[i].TC<<" "<<tasks_v[i].CB<<" "<<tasks_v[i].IO<<" "<<endl;
+	}
+
+	// processing the rand file
+	ifstream fin ( argv[2] ); 
 	if (!fin.is_open()){
-		cout<<"Cannot open the file"<<endl;}
+		cout<<"Cannot open the file1"<<endl;}
 	else{
 		for (int i=0; !fin.eof();i++){
 			int temp;
@@ -38,9 +89,18 @@ int main(int argc, char *argv[]){
 			randvals.push_back(temp);
 		}
 	}
-
+	fin.close();
 	// test for the rand number generator
 	for (int i=0; i<10; i++){		
 		cout<<myrandom(CPU_burst, ofs)<<endl;
 	}
+	
+
+
+
+
+
+
+
+
 }
