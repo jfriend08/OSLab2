@@ -1,3 +1,8 @@
+/*
+Usage: ./test rfile
+It will generage the randNum based on CPUburst and IOburst
+*/
+
 #include <fstream>
 #include <iostream>
 #include <string>
@@ -14,7 +19,7 @@ using namespace std;
 
 vector<int> randvals;
 int ofs=0;
-int current_burst=10;
+int CPU_burst=10, IO_burst;
 
 int myrandom(int burst, int &index) { 	
 	if (index==randvals.size()){index=1;}
@@ -36,6 +41,6 @@ int main(int argc, char *argv[]){
 
 	// test for the rand number generator
 	for (int i=0; i<10; i++){		
-		cout<<myrandom(current_burst, ofs)<<endl;
+		cout<<myrandom(CPU_burst, ofs)<<endl;
 	}
 }
