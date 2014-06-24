@@ -6,25 +6,24 @@
      int
      main (int argc, char **argv)
      {
-       int aflag = 0;
-       int bflag = 0;
-       char *cvalue = NULL;
+       int vflag = 0;
+       int sflag = 0;
+       char *svalue = NULL;
        int index;
        int c;
      
        opterr = 0;
      
-       while ((c = getopt (argc, argv, "abc:")) != -1)
+       while ((c = getopt (argc, argv, "vs:")) != -1)
          switch (c)
            {
-           case 'a':
-             aflag = 1;
+           case 'v':
+             vflag = 1;
              break;
-           case 'b':
-             bflag = 1;
-             break;
-           case 'c':
-             cvalue = optarg;
+           
+           case 's':
+             sflag = 1;
+             svalue = optarg;
              break;
            case '?':
              if (optopt == 'c')
@@ -36,12 +35,13 @@
                         "Unknown option character `\\x%x'.\n",
                         optopt);
              return 1;
+           
            default:
              abort ();
            }
      
-       printf ("aflag = %d, bflag = %d, cvalue = %s\n",
-               aflag, bflag, cvalue);
+       printf ("vflag = %d, sflag = %d, svalue = %s\n",
+               vflag, sflag, svalue);
      
        for (index = optind; index < argc; index++)
          printf ("Non-option argument %s\n", argv[index]);

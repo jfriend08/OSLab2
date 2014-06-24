@@ -1,8 +1,8 @@
 /*
-Usage: ./test [-v] [-s<schedspec>] inputfile randfile
+Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	it will generage the randNum based on CPUburst and IOburst
 --	it will be able to detect -v or -s
---	add some function in schedule class, but need to check more detail usage
+--	do some test on switching states
 */
 
 #include <fstream>
@@ -19,6 +19,7 @@ Usage: ./test [-v] [-s<schedspec>] inputfile randfile
 #include <stdlib.h>
 #include <unistd.h>
 #include <ctype.h>
+#include <limits>
 
 using namespace std;
 
@@ -36,34 +37,44 @@ string statecode(int i){
   return statetr[i];
 }
 
+
 ////Class////
 class schedule{
 public:
-	int timestamp; //start time
+	int Ts; //time tp switch
 	int PID; //id for this task
-	int Ts; //generated time
+	int Tg; //time generate
 	int remain; //remaining time
 	int Cb;
 	int Ib;
 	string curState;
 	string nextState;	
-	schedule(int t,int pid,int ts, int remain,string cur,string next);
+	schedule(int ts,int pid,int tg, int remain,string cur,string next);
 	~schedule();
-	void Run2Block(int t, int ts);
-	void Block2Ready(int t, int ts);
-	void Ready2Run(int t, int ts, int cb);
-	void Run2Ready(int t, int ts);
+	void Run2Block(int ts, int tg, int ib);
+	void Block2Ready(int ts, int tg);
+	void Ready2Run(int ts, int tg, int cb);
+	void Run2Ready(int ts, int tg);
+	void print(){cout<<"timestamp: "<<Ts<<" PID: "<<PID<<" Tg: "<<Tg<<" remain: "<<remain<<" Cb: "<<Cb<<" Ib: "<<Ib<<" curState: "<<curState<<" nextState: "<<nextState<<endl;}
 };
-schedule::schedule(int t, int pid, int ts, int re, string cur, string next){
+schedule::schedule(int ts, int pid, int tg, int re, string cur, string next){
 	cout<<"constructor called"<<endl;
-	timestamp=t; PID=pid; Ts=ts; remain=re; curState=cur; nextState=next;}
+	Ts=ts; PID=pid; Tg=tg; remain=re; curState=cur; nextState=next;}
 
 schedule::~schedule(){}
 
-void schedule::Run2Block(int t, int ts){timestamp=t; Ts=ts; curState=statecode(0); nextState=statecode(1);	}
-void schedule::Block2Ready(int t, int ts){timestamp=t; Ts=ts; curState=statecode(1); nextState=statecode(2);	}
-void schedule::Ready2Run(int t, int ts, int cb){timestamp=t; Ts=ts; Cb=cb; curState=statecode(2); nextState=statecode(0);	}
-void schedule::Run2Ready(int t, int ts){timestamp=t; Ts=ts; curState=statecode(0); nextState=statecode(2);		//in output5_R5_t the nextState is called PREEMPT}
+void schedule::Run2Block(int ts, int tg, int ib){
+	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;curState=statecode(0); nextState=statecode(1);	
+}
+void schedule::Block2Ready(int ts, int tg){
+	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2);	
+}
+void schedule::Ready2Run(int ts, int tg, int cb){
+	Ts=ts; Tg=tg; Cb=cb; Ib=-1000; curState=statecode(2); nextState=statecode(0);	
+}
+void schedule::Run2Ready(int ts, int tg){
+	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2);		//in output5_R5_t the nextState is called PREEMPT
+}
 
 class inputTask{
 public:
@@ -71,22 +82,21 @@ public:
 	int TC; //total cpu time
 	int CB; //cpu burst
 	int IO; //io burst
-	inputTask(int at, int tc, int cb, int io){AT=at;TC=tc;CB=cb;IO=io;};
+	inputTask(int at, int tc, int cb, int io);
 	~inputTask();
 };
-// inputTask::inputTask (int at, int tc, int cb, int io){
-// 	AT=at;TC=tc;CB=cb;IO=io;
-// }
-// inputTask::~inputTask(){}
+inputTask::inputTask(int at, int tc, int cb, int io){AT=at;TC=tc;CB=cb;IO=io;}
+inputTask::~inputTask(){}
 
-vector<inputTask> tasks_v;
+vector<inputTask>tasks_v;
 int ofs=0, n1, n2, n3, n4;
-int CPU_burst=10, IO_burst;
-int c, vflag, sflag;
+int CPU_burst=10, IO_burst=10;
+int c, vflag, sflag, opterr=0;
 char *svalue=NULL;
 
 int main(int argc, char *argv[]){
 	while((c=getopt(argc,argv,"vs:")) !=-1){
+		cout<<c<<endl;
 		switch (c){
 			case 'v':
 				vflag=1;
@@ -100,7 +110,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 	cout<<"vflag="<<vflag<<" sflag="<<sflag<<" svalue="<<svalue<<endl;
-	
+
 	// processing input file
 	ifstream fin0 ( argv[argc-2] );
 	if (!fin0.is_open()){
@@ -134,14 +144,20 @@ int main(int argc, char *argv[]){
 	fin.close();
 
 	// test for the rand number generator
-	for (int i=0; i<10; i++){		
-		cout<<myrandom(CPU_burst, ofs)<<endl;
-	}
+	// for (int i=0; i<10; i++){		
+	// 	cout<<myrandom(CPU_burst, ofs)<<endl;
+	// }
 
 	cout<<"state: "<<statecode(0)<<" "<<statecode(1)<<" "<<statecode(2)<<endl;
-
-	// schedule t1(0, 0, 0, 100, statecode(2), statecode(3));
 	
+	schedule t1(0, 0, 0, 100, statecode(2), statecode(3));
+	t1.print();
+	t1.Ready2Run(t1.Ts, t1.Ts, myrandom(CPU_burst,ofs)); //(end, start, how long to run)
+	t1.print();
+	t1.Run2Block(t1.Ts+t1.Cb, t1.Ts, myrandom(IO_burst,ofs));
+	t1.print();
+	t1.Block2Ready(t1.Ts+t1.Ib, t1.Ts);
+	t1.print();
 
 
 
