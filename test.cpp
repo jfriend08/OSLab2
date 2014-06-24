@@ -30,22 +30,47 @@ int myrandom(int burst, int &index) {
 	return 1 + (randvals[index] % burst);	
 }
 
+string statecode(int i){
+  static const char* statetr[] = {"RUNNG","BLOCKED","READY"};
+  return statetr[i];
+}
+
 ////Class////
 class schedule{
 public:
 	int timestamp; //start time
 	int PID; //id for this task
 	int Ts; //generated time
-	int Dur;
+	int remain; //remaining time
+	int Cb;
+	int Ib;
 	string curState;
 	string nextState;	
-	schedule(int t,int pid,int ts,int dur,string cur,string next);
+	schedule(int t,int pid,int ts, int remain,string cur,string next);
 	~schedule();
+	void Run2Block(int t, int ts);
+	void Block2Ready(int t, int ts);
+	void Ready2Run(int t, int ts, int cb);
+	void Run2Ready(int t, int ts);
 };
-schedule::schedule(int t,int pid,int ts,int dur,string cur,string next){
+schedule::schedule(int t, int pid, int ts, int re, string cur, string next){
 	cout<<"constructor called"<<endl;
-	timestamp=t; PID=pid; Ts=ts; Dur=dur; curState=cur; nextState=next;}
+	timestamp=t; PID=pid; Ts=ts; remain=re; curState=cur; nextState=next;}
+
 schedule::~schedule(){}
+
+void schedule::Run2Block(int t, int ts){
+	timestamp=t; Ts=ts; curState=statecode(0); nextState=statecode(1);	
+}
+void schedule::Block2Ready(int t, int ts){
+	timestamp=t; Ts=ts; curState=statecode(1); nextState=statecode(2);	
+}
+void schedule::Ready2Run(int t, int ts, int cb){
+	timestamp=t; Ts=ts; Cb=cb; curState=statecode(2); nextState=statecode(0);	
+}
+void schedule::Run2Ready(int t, int ts){
+	timestamp=t; Ts=ts; curState=statecode(0); nextState=statecode(2);		//in output5_R5_t the nextState is called PREEMPT
+}
 
 class inputTask{
 public:
@@ -117,6 +142,8 @@ int main(int argc, char *argv[]){
 	for (int i=0; i<10; i++){		
 		cout<<myrandom(CPU_burst, ofs)<<endl;
 	}
+
+	cout<<"state: "<<statecode(0)<<" "<<statecode(1)<<" "<<statecode(2)<<endl;
 	
 
 
