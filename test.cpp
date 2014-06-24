@@ -1,6 +1,7 @@
 /*
-Usage: ./test rfile
-It will generage the randNum based on CPUburst and IOburst
+Usage: ./test [-v] [-s<schedspec>] inputfile randfile
+--	it will generage the randNum based on CPUburst and IOburst
+--	it will be able to detect -v or -s
 */
 
 #include <fstream>
@@ -13,10 +14,12 @@ It will generage the randNum based on CPUburst and IOburst
 #include <map> 
 #include <iomanip>
 #include <utility> 
+#include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <ctype.h>
 
 using namespace std;
-
 
 vector<int> randvals;
 
@@ -26,6 +29,7 @@ int myrandom(int burst, int &index) {
 	index++;		
 	return 1 + (randvals[index] % burst);	
 }
+
 ////Class////
 class schedule{
 public:
@@ -58,9 +62,27 @@ inputTask::~inputTask(){}
 vector<inputTask>tasks_v;
 int ofs=0, n1, n2, n3, n4;
 int CPU_burst=10, IO_burst;
+int c, vflag, sflag;
+char *svalue=NULL;
 
 int main(int argc, char *argv[]){
-	ifstream fin0 ( argv[1] ); // processing input file
+	while((c=getopt(argc,argv,"vs:")) !=-1){
+		switch (c){
+			case 'v':
+				vflag=1;
+				break;
+			case 's':
+				sflag=1;
+				svalue=optarg;
+				break;
+			default:
+				abort();
+		}
+	}
+	cout<<"vflag="<<vflag<<" sflag="<<sflag<<" svalue="<<svalue<<endl;
+	
+	// processing input file
+	ifstream fin0 ( argv[argc-2] );
 	if (!fin0.is_open()){
 		cout<<"Cannot open the file0"<<endl;}
 	else{
@@ -79,7 +101,7 @@ int main(int argc, char *argv[]){
 	}
 
 	// processing the rand file
-	ifstream fin ( argv[2] ); 
+	ifstream fin ( argv[argc-1] ); 
 	if (!fin.is_open()){
 		cout<<"Cannot open the file1"<<endl;}
 	else{
@@ -90,6 +112,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 	fin.close();
+
 	// test for the rand number generator
 	for (int i=0; i<10; i++){		
 		cout<<myrandom(CPU_burst, ofs)<<endl;
@@ -103,5 +126,5 @@ int main(int argc, char *argv[]){
 
 
 
-
+	return 0;
 }
