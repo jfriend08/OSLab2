@@ -3,7 +3,13 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	it will generage the randNum based on CPUburst and IOburst
 --	it will be able to detect -v or -s
 --	do some test on switching states
---	prepare priority queue for ready, run, and block states
+--	priority queue for ready, run, and block states
+--	create AllQ class, and many function in that class
+--	now AllQ will dynamic to find the next event of task from every queue, and then switch it
+
+Todo:
+--	need to add condition for cb vs remain when the task is almost done
+--	need add printDone when remain=0 for task (maybe add it to schedule)
 */
 
 #include <fstream>
@@ -26,6 +32,11 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 using namespace std;
 
 vector<int> randvals;
+int ofs=0, n1, n2, n3, n4;
+int CPU_burst=10, IO_burst=10, CPUtime=0;
+int c, vflag, sflag, opterr=0;
+char *svalue=NULL;
+
 
 ////Function////
 int myrandom(int burst, int &index) { 	
@@ -35,7 +46,7 @@ int myrandom(int burst, int &index) {
 }
 
 string statecode(int i){
-  static const char* statetr[] = {"RUNNG","BLOCKED","READY", "NA"};
+  static const char* statetr[] = {"RUNNG","BLOCK","READY", "NA"};
   return statetr[i];
 }
 
@@ -56,7 +67,7 @@ public:
 	string curState;
 	string nextState;	
 	schedule(int ts,int pid,int tg, int re, int cpub, int iob,string cur,string next){
-		cout<<"constructor called"<<endl;
+		// cout<<"constructor called"<<endl;
 		Ts=ts; PID=pid; Tg=tg; remain=re; CPUB=cpub; IOB=iob; curState=cur; nextState=next;
 	}
 	~schedule(){};
@@ -65,24 +76,37 @@ public:
 	void Ready2Run(int ts, int tg, int cb);
 	void Run2Ready(int ts, int tg);
 	void print(){cout<<"timestamp: "<<Ts<<" PID: "<<PID<<" Tg: "<<Tg<<" remain: "<<remain<<" CPUB: "<<CPUB<<" IOB: "<<IOB<<" Cb: "<<Cb<<" Ib: "<<Ib<<" curState: "<<curState<<" nextState: "<<nextState<<endl;}
+	void enterReadyP(int &cputime){
+		int dur=Ts-Tg;
+		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
+	}
+	void enterRunP(int &cputime){
+		int dur=Ts-Tg; 
+		// remain=remain-dur;
+		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
+	}
+	void enterBlockP(int &cputime){
+		int dur=Ts-Tg; 
+		// remain=remain-dur;
+		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
+	}
 };
-// schedule::schedule(int ts, int pid, int tg, int re, int ord, string cur, string next){
-// 	cout<<"constructor called"<<endl;
-// 	Ts=ts; PID=pid; Tg=tg; remain=re; order=ord; curState=cur; nextState=next;}
 
-// schedule::~schedule(){}
 
 void schedule::Run2Block(int ts, int tg, int ib){
-	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;remain=remain-(Ts-Tg);curState=statecode(0); nextState=statecode(1);	
+	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;remain=remain-(Ts-Tg);curState=statecode(0); nextState=statecode(1);CPUtime=Ts;	
 }
 void schedule::Block2Ready(int ts, int tg){
-	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;remain=remain-(Ts-Tg);curState=statecode(1); nextState=statecode(2);	
+	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2);CPUtime=Ts;
 }
 void schedule::Ready2Run(int ts, int tg, int cb){
-	Ts=ts; Tg=tg; Cb=cb; Ib=-1000; remain=remain-(Ts-Tg) ;curState=statecode(2); nextState=statecode(0);	
+	Ts=ts; Tg=tg; Cb=cb; Ib=-1000; remain=remain-(Ts-Tg) ;curState=statecode(2); nextState=statecode(0);CPUtime=Ts;
 }
 void schedule::Run2Ready(int ts, int tg){
-	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2);		//in output5_R5_t the nextState is called PREEMPT
+	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2);CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
 }
 
 class inputTask{
@@ -101,24 +125,73 @@ inputTask::~inputTask(){}
 class Compare {
     public:
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    {
-       if (t1.PID < t2.PID) return true;
-       if (t1.PID == t2.PID && t1.PID < t2.PID) return true;
-       if (t1.PID == t2.PID && t1.PID == t2.PID && t1.PID < t2.PID) return true;
-       return false;
+    { 
+    	if (t1.PID > t2.PID) return true;
+     	return false;
     }
 };
-priority_queue<schedule, vector<schedule>, Compare> tasksQ;
-priority_queue<schedule, vector<schedule>, Compare> readyQ;
+
+class AllQ{
+public:
+	priority_queue<schedule, vector<schedule>, Compare> tasksQ;
+	priority_queue<schedule, vector<schedule>, Compare> readyQ;
+	priority_queue<schedule, vector<schedule>, Compare> runQ;
+	priority_queue<schedule, vector<schedule>, Compare> blockQ;
+	string smallest(){
+		int s=10000; string Flag;
+		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){
+    		s=tasksQ.top().Ts;Flag="tasks"; 
+    	}
+		if ((readyQ.size()>0)&&(readyQ.top().Ts<s)){
+    		s=readyQ.top().Ts;Flag="ready"; 
+    	}
+    	if((runQ.size()>0)&&(runQ.top().Ts<s)){
+    		s=runQ.top().Ts;Flag="run"; 
+    	}
+    	if(((blockQ.size()>0))&&(blockQ.top().Ts<s)){
+    		s=blockQ.top().Ts;Flag="block"; 
+    	}
+    	return Flag;
+	}
+	void change(){
+		string tmpS=smallest();
+		if (tmpS=="tasks"){
+			schedule tmp=tasksQ.top();			
+			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);tasksQ.pop();} 
+			else{tasksQ.pop();}			
+		}
+		if (tmpS=="ready"){
+			schedule tmp=readyQ.top();
+			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(CPU_burst,ofs));
+			if (tmp.remain>0){tmp.enterRunP(CPUtime);runQ.push(tmp);readyQ.pop();}
+			else{readyQ.pop();}			
+		}
+		if (tmpS=="run"){
+			schedule tmp=runQ.top();
+			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(IO_burst,ofs));			
+			if (tmp.remain>0){tmp.enterBlockP(CPUtime);blockQ.push(tmp);runQ.pop();;}
+			else{runQ.pop();}
+		}
+		if (tmpS=="block"){
+			schedule tmp=blockQ.top();
+			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts);			
+			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);blockQ.pop();}
+			else{blockQ.pop();}			
+		}
+	}
+	bool stillRemain(){
+		if((tasksQ.size()>0)|(readyQ.size()>0)|(runQ.size()>0)|(blockQ.size()>0)) return true;
+		return false;
+	}
+
+};
+
 // vector<schedule> tasksQ;
 // vector<schedule> readyQ;
 
-int ofs=0, n1, n2, n3, n4;
-int CPU_burst=10, IO_burst=10;
-int c, vflag, sflag, opterr=0;
-char *svalue=NULL;
 
 
+AllQ q;
 int main(int argc, char *argv[]){
 	while((c=getopt(argc,argv,"vs:")) !=-1){
 		switch (c){
@@ -142,9 +215,8 @@ int main(int argc, char *argv[]){
 	else{
 		for (int i=0;!fin0.eof();i++){
 			while(fin0>>n1>>n2 >>n3 >>n4){
-				cout<<n1<<" "<<n2<<" "<<n3<<" "<<n4<<endl;
-				schedule t(n1,i,n1,n2,n3,n4,statecode(2),statecode(2));
-				tasksQ.push(t);
+				schedule t(n1,i,n1,n2,n3,n4,statecode(2),statecode(2));				
+				(q.tasksQ).push(t);
 				i++;
 			}
 		}
@@ -169,7 +241,6 @@ int main(int argc, char *argv[]){
 	// 	cout<<myrandom(CPU_burst, ofs)<<endl;
 	// }
 
-	cout<<"state: "<<statecode(0)<<" "<<statecode(1)<<" "<<statecode(2)<<endl;
 	
 	// schedule t1(0, 0, 0, 100, statecode(2), statecode(3));
 	// t1.print();
@@ -179,14 +250,29 @@ int main(int argc, char *argv[]){
 	// t1.print();
 	// t1.Block2Ready(t1.Ts+t1.Ib, t1.Ts);
 	// t1.print();
-	while(!tasksQ.empty()){
-		cout<<readyQ.size()<<endl;
-		schedule tmp=tasksQ.top();
-		tmp.print();
-		readyQ.push(tmp);
-		// cout<<tmp.Ts<<" "<<tmp.PID<<" "<<tmp.Tg<<endl;
-		tasksQ.pop();
+	
+	// cout<<tasksQ.size()<<endl;
+	// cout<<readyQ.size()<<endl;
+	// cout<<runQ.size()<<endl;
+	// cout<<blockQ.size()<<endl;
+
+
+	// while(!q.tasksQ.empty()){
+	// 	cout<<q.tasksQ.size()<<" "<<q.readyQ.size()<<endl;
+	// 	schedule tmp=q.tasksQ.top();
+	// 	// tmp.print();
+	// 	// tmp.enterReadyP(CPUtime);
+	// 	q.readyQ.push(tmp);
+	// 	q.tasksQ.pop();
+	// }
+
+	while(q.stillRemain()){
+		q.change();
+
 	}
+	cout<<q.tasksQ.size()<<" "<<q.readyQ.size()<<" "<<q.runQ.size()<<" "<<q.blockQ.size()<<endl;
+
+
 
 
 
