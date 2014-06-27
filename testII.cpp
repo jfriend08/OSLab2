@@ -6,10 +6,12 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	priority queue for ready, run, and block states
 --	create AllQ class, and many function in that class
 --	now AllQ will dynamic to find the next event of task from every queue, and then switch it
+--	cb vs remain when the task is almost done
+--	doneP; modify CPU burst and IO burst; modify index/ofs for randFunction
+--	now output is all the same as source except the last summary part
 
 Todo:
---	need to add condition for cb vs remain when the task is almost done
---	need add printDone when remain=0 for task (maybe add it to schedule)
+--	define child classs, so it can run diff scheduler
 */
 
 #include <fstream>
@@ -41,7 +43,8 @@ char *svalue=NULL;
 ////Function////
 int myrandom(int burst, int &index) { 	
 	if (index==randvals.size()){index=1;}
-	index++;		
+	index++;	
+	// cout<<index<<":"<<randvals[index]<<endl;	
 	return 1 + (randvals[index] % burst);	
 }
 
@@ -75,7 +78,7 @@ public:
 	void Block2Ready(int ts, int tg);
 	void Ready2Run(int ts, int tg, int cb);
 	void Run2Ready(int ts, int tg);
-	void print(){cout<<"timestamp: "<<Ts<<" PID: "<<PID<<" Tg: "<<Tg<<" remain: "<<remain<<" CPUB: "<<CPUB<<" IOB: "<<IOB<<" Cb: "<<Cb<<" Ib: "<<Ib<<" curState: "<<curState<<" nextState: "<<nextState<<endl;}
+	void print(){cout<<"timestamp: "<<Ts<<" PID: "<<PID<<" Tg: "<<Tg<<" remain: "<<remain<<" curState: "<<curState<<" nextState: "<<nextState<<endl;}
 	void enterReadyP(int &cputime){
 		int dur=Ts-Tg;
 		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
@@ -83,15 +86,19 @@ public:
 	}
 	void enterRunP(int &cputime){
 		int dur=Ts-Tg; 
-		// remain=remain-dur;
 		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
 	}
 	void enterBlockP(int &cputime){
 		int dur=Ts-Tg; 
-		// remain=remain-dur;
 		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
+	}
+	void doneP(int &cputime){
+		int dur=Ts-Tg; 
+		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+		cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
+		ofs=ofs-1;
 	}
 };
 
@@ -104,6 +111,7 @@ void schedule::Block2Ready(int ts, int tg){
 }
 void schedule::Ready2Run(int ts, int tg, int cb){
 	Ts=ts; Tg=tg; Cb=cb; Ib=-1000; remain=remain-(Ts-Tg) ;curState=statecode(2); nextState=statecode(0);CPUtime=Ts;
+	if(remain<cb){Cb=remain;}
 }
 void schedule::Run2Ready(int ts, int tg){
 	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2);CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
@@ -157,26 +165,26 @@ public:
 		string tmpS=smallest();
 		if (tmpS=="tasks"){
 			schedule tmp=tasksQ.top();			
-			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);tasksQ.pop();} 
-			else{tasksQ.pop();}			
+			if (tmp.remain>0){tmp.enterReadyP(tmp.Ts);readyQ.push(tmp);tasksQ.pop();} 
+			else{tmp.doneP(CPUtime);tasksQ.pop();}			
 		}
 		if (tmpS=="ready"){
 			schedule tmp=readyQ.top();
-			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(CPU_burst,ofs));
+			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
 			if (tmp.remain>0){tmp.enterRunP(CPUtime);runQ.push(tmp);readyQ.pop();}
-			else{readyQ.pop();}			
+			else{tmp.doneP(CPUtime);readyQ.pop();}			
 		}
 		if (tmpS=="run"){
 			schedule tmp=runQ.top();
-			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(IO_burst,ofs));			
+			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
 			if (tmp.remain>0){tmp.enterBlockP(CPUtime);blockQ.push(tmp);runQ.pop();;}
-			else{runQ.pop();}
+			else{tmp.doneP(CPUtime);runQ.pop();}
 		}
 		if (tmpS=="block"){
 			schedule tmp=blockQ.top();
 			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts);			
 			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);blockQ.pop();}
-			else{blockQ.pop();}			
+			else{tmp.doneP(CPUtime);blockQ.pop();}			
 		}
 	}
 	bool stillRemain(){
@@ -236,8 +244,8 @@ int main(int argc, char *argv[]){
 	}
 	fin.close();
 
-	// test for the rand number generator
-	// for (int i=0; i<10; i++){		
+	// // test for the rand number generator
+	// for (int i=0; i<randvals.size(); i++){		
 	// 	cout<<myrandom(CPU_burst, ofs)<<endl;
 	// }
 
