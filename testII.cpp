@@ -11,7 +11,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	now output is all the same as source except the last summary part
 --	able to print Per process information correctly; create Reporter map in report type to store those info
 --	all sotring is still in schedule class, and all switching is still in AllQ class
-
+--	able to print SUM. But aveIO might be wrong because you may have more than one tasks in IO?
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -67,6 +67,7 @@ public:
 	int Tt; //Turnaround time (Ft - At)
 	int It; //I/O time
 	int Cw; //CPU waiting time (time in ready state)
+	int cpuRun;
 };
 
 ////Class////
@@ -120,6 +121,7 @@ public:
 };
 void schedule::Run2Block(int ts, int tg, int ib){	
 	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;remain=remain-(Ts-Tg);curState=statecode(0); nextState=statecode(1);CPUtime=Ts;		
+	Reporter[PID].cpuRun=Reporter[PID].cpuRun+(Ts-tg);
 }
 void schedule::Block2Ready(int ts, int tg){
 	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2);CPUtime=Ts;
@@ -206,12 +208,30 @@ public:
 		return false;
 	}
 	void printReport(){
+		int FinishTime=0;
+		double aveCPU=0;
+		double aveIO=0;
+		double aveTt=0;
+		double aveCw=0;
+		double aveThrouput=0; // in 100 time units
+		double numTask=ReportQ.size();
 		while(!ReportQ.empty()){
 			schedule tmp=ReportQ.top();
 			printf("%04d: %4d %4d %4d %4d | %4d %4d %4d %4d\n", tmp.PID,tmp.Reporter[tmp.PID].At, tmp.Reporter[tmp.PID].Tc
-				, tmp.Reporter[tmp.PID].CPUB, tmp.Reporter[tmp.PID].IOB, tmp.Reporter[tmp.PID].Ft, tmp.Reporter[tmp.PID].Tt, tmp.Reporter[tmp.PID].It, tmp.Reporter[tmp.PID].Cw);
+				, tmp.Reporter[tmp.PID].CPUB, tmp.Reporter[tmp.PID].IOB, tmp.Reporter[tmp.PID].Ft, tmp.Reporter[tmp.PID].Tt, tmp.Reporter[tmp.PID].It, tmp.Reporter[tmp.PID].Cw);			
+			if (tmp.Reporter[tmp.PID].Ft>FinishTime){FinishTime=tmp.Reporter[tmp.PID].Ft;}
+			aveCPU=aveCPU+tmp.Reporter[tmp.PID].cpuRun;
+			aveIO=aveIO+tmp.Reporter[tmp.PID].It;
+			aveTt=aveTt+tmp.Reporter[tmp.PID].Tt;
+			aveCw=aveCw+tmp.Reporter[tmp.PID].Cw;
 			ReportQ.pop();
 		}
+		aveCPU=aveCPU/FinishTime*100;
+		aveIO=aveIO/FinishTime*100;
+		aveTt=aveTt/numTask;
+		aveCw=aveCw/numTask;
+		aveThrouput=numTask/FinishTime*100;
+		printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", FinishTime ,aveCPU, aveIO,aveTt, aveCw, aveThrouput);
 
 	}
 
@@ -299,7 +319,7 @@ int main(int argc, char *argv[]){
 		q.change();
 
 	}
-	cout<<q.tasksQ.size()<<" "<<q.readyQ.size()<<" "<<q.runQ.size()<<" "<<q.blockQ.size()<<" "<<q.ReportQ.size()<<endl;
+	// cout<<q.tasksQ.size()<<" "<<q.readyQ.size()<<" "<<q.runQ.size()<<" "<<q.blockQ.size()<<" "<<q.ReportQ.size()<<endl;
 
 	// for (int i=0;i<q.ReportQ.size();i++){
 	// 	schedule tmp=q.ReportQ.top();
