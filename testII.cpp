@@ -9,6 +9,9 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	cb vs remain when the task is almost done
 --	doneP; modify CPU burst and IO burst; modify index/ofs for randFunction
 --	now output is all the same as source except the last summary part
+--	able to print Per process information correctly; create Reporter map in report type to store those info
+--	all sotring is still in schedule class, and all switching is still in AllQ class
+
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -47,14 +50,24 @@ int myrandom(int burst, int &index) {
 	// cout<<index<<":"<<randvals[index]<<endl;	
 	return 1 + (randvals[index] % burst);	
 }
-
+////Function////
 string statecode(int i){
   static const char* statetr[] = {"RUNNG","BLOCK","READY", "NA"};
   return statetr[i];
 }
 
-
-
+////Class////
+class report{
+public:
+	int At; //Arrive time
+	int Tc; //Total CPU time
+	int CPUB; //CPU burst
+	int IOB; //IO burst
+	int Ft; //Finising time
+	int Tt; //Turnaround time (Ft - At)
+	int It; //I/O time
+	int Cw; //CPU waiting time (time in ready state)
+};
 
 ////Class////
 class schedule{
@@ -69,9 +82,11 @@ public:
 	int IOB;
 	string curState;
 	string nextState;	
+	map<int,report> Reporter;
 	schedule(int ts,int pid,int tg, int re, int cpub, int iob,string cur,string next){
-		// cout<<"constructor called"<<endl;
 		Ts=ts; PID=pid; Tg=tg; remain=re; CPUB=cpub; IOB=iob; curState=cur; nextState=next;
+		Reporter[PID].At=Ts; Reporter[PID].Tc=remain; Reporter[PID].CPUB=CPUB; Reporter[PID].IOB=IOB;
+		// cout<<PID<<" "<<Reporter[PID].At<<" "<<Reporter[PID].Tc<<" "<<Reporter[PID].CPUB<<" "<<Reporter[PID].IOB<<endl;
 	}
 	~schedule(){};
 	void Run2Block(int ts, int tg, int ib);
@@ -98,25 +113,28 @@ public:
 		int dur=Ts-Tg; 
 		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 		cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
+		Reporter[PID].Ft=Ts;
+		Reporter[PID].Tt=Ts-Reporter[PID].At;
 		ofs=ofs-1;
 	}
 };
-
-
-void schedule::Run2Block(int ts, int tg, int ib){
-	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;remain=remain-(Ts-Tg);curState=statecode(0); nextState=statecode(1);CPUtime=Ts;	
+void schedule::Run2Block(int ts, int tg, int ib){	
+	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;remain=remain-(Ts-Tg);curState=statecode(0); nextState=statecode(1);CPUtime=Ts;		
 }
 void schedule::Block2Ready(int ts, int tg){
 	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2);CPUtime=Ts;
+	Reporter[PID].It=Reporter[PID].It+(Ts-Tg);
 }
 void schedule::Ready2Run(int ts, int tg, int cb){
 	Ts=ts; Tg=tg; Cb=cb; Ib=-1000; remain=remain-(Ts-Tg) ;curState=statecode(2); nextState=statecode(0);CPUtime=Ts;
 	if(remain<cb){Cb=remain;}
+	Reporter[PID].Cw=Reporter[PID].Cw+(Ts-Tg);
 }
 void schedule::Run2Ready(int ts, int tg){
 	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2);CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
 }
 
+////Class////
 class inputTask{
 public:
 	int AT; //arrivetime
@@ -129,77 +147,80 @@ public:
 inputTask::inputTask(int at, int tc, int cb, int io){AT=at;TC=tc;CB=cb;IO=io;}
 inputTask::~inputTask(){}
 
-
+////Class////
 class Compare {
     public:
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { 
-    	if (t1.PID > t2.PID) return true;
-     	return false;
-    }
+    { if (t1.PID > t2.PID) return true;return false;}
 };
 
+class ReportCompare {
+    public:
+    bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID > t2.PID) return true;return false;}
+};
+
+////Class////
 class AllQ{
 public:
 	priority_queue<schedule, vector<schedule>, Compare> tasksQ;
 	priority_queue<schedule, vector<schedule>, Compare> readyQ;
 	priority_queue<schedule, vector<schedule>, Compare> runQ;
 	priority_queue<schedule, vector<schedule>, Compare> blockQ;
-	string smallest(){
+	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
+	string smallest(){  //this is the function to find the queue who have the next cloest element
 		int s=10000; string Flag;
-		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){
-    		s=tasksQ.top().Ts;Flag="tasks"; 
-    	}
-		if ((readyQ.size()>0)&&(readyQ.top().Ts<s)){
-    		s=readyQ.top().Ts;Flag="ready"; 
-    	}
-    	if((runQ.size()>0)&&(runQ.top().Ts<s)){
-    		s=runQ.top().Ts;Flag="run"; 
-    	}
-    	if(((blockQ.size()>0))&&(blockQ.top().Ts<s)){
-    		s=blockQ.top().Ts;Flag="block"; 
-    	}
+		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks"; }
+		if ((readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts;Flag="ready"; }
+    	if((runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts;Flag="run"; }
+    	if(((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block"; }
     	return Flag;
 	}
-	void change(){
+	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.
 		string tmpS=smallest();
 		if (tmpS=="tasks"){
 			schedule tmp=tasksQ.top();			
 			if (tmp.remain>0){tmp.enterReadyP(tmp.Ts);readyQ.push(tmp);tasksQ.pop();} 
-			else{tmp.doneP(CPUtime);tasksQ.pop();}			
-		}
+			else{tmp.doneP(CPUtime);ReportQ.push(tmp);tasksQ.pop();}			}
 		if (tmpS=="ready"){
 			schedule tmp=readyQ.top();
 			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
 			if (tmp.remain>0){tmp.enterRunP(CPUtime);runQ.push(tmp);readyQ.pop();}
-			else{tmp.doneP(CPUtime);readyQ.pop();}			
-		}
+			else{
+				tmp.doneP(CPUtime);ReportQ.push(tmp);readyQ.pop();}			}
 		if (tmpS=="run"){
 			schedule tmp=runQ.top();
 			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
 			if (tmp.remain>0){tmp.enterBlockP(CPUtime);blockQ.push(tmp);runQ.pop();;}
-			else{tmp.doneP(CPUtime);runQ.pop();}
-		}
+			else{
+				tmp.doneP(CPUtime);ReportQ.push(tmp);runQ.pop();}}
 		if (tmpS=="block"){
 			schedule tmp=blockQ.top();
 			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts);			
 			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);blockQ.pop();}
-			else{tmp.doneP(CPUtime);blockQ.pop();}			
-		}
+			else{
+				tmp.doneP(CPUtime);ReportQ.push(tmp);blockQ.pop();}			}
 	}
-	bool stillRemain(){
+	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false
 		if((tasksQ.size()>0)|(readyQ.size()>0)|(runQ.size()>0)|(blockQ.size()>0)) return true;
 		return false;
+	}
+	void printReport(){
+		while(!ReportQ.empty()){
+			schedule tmp=ReportQ.top();
+			printf("%04d: %4d %4d %4d %4d | %4d %4d %4d %4d\n", tmp.PID,tmp.Reporter[tmp.PID].At, tmp.Reporter[tmp.PID].Tc
+				, tmp.Reporter[tmp.PID].CPUB, tmp.Reporter[tmp.PID].IOB, tmp.Reporter[tmp.PID].Ft, tmp.Reporter[tmp.PID].Tt, tmp.Reporter[tmp.PID].It, tmp.Reporter[tmp.PID].Cw);
+			ReportQ.pop();
+		}
+
 	}
 
 };
 
-// vector<schedule> tasksQ;
-// vector<schedule> readyQ;
-
-
 
 AllQ q;
+
+
 int main(int argc, char *argv[]){
 	while((c=getopt(argc,argv,"vs:")) !=-1){
 		switch (c){
@@ -278,7 +299,14 @@ int main(int argc, char *argv[]){
 		q.change();
 
 	}
-	cout<<q.tasksQ.size()<<" "<<q.readyQ.size()<<" "<<q.runQ.size()<<" "<<q.blockQ.size()<<endl;
+	cout<<q.tasksQ.size()<<" "<<q.readyQ.size()<<" "<<q.runQ.size()<<" "<<q.blockQ.size()<<" "<<q.ReportQ.size()<<endl;
+
+	// for (int i=0;i<q.ReportQ.size();i++){
+	// 	schedule tmp=q.ReportQ.top();
+	// 	// cout<<tmp.Reporter[i].At<<endl;
+	// 	tmp.ReportQ.pop();
+	// }
+	q.printReport();
 
 
 
