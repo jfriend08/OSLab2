@@ -153,20 +153,34 @@ inputTask::~inputTask(){}
 ////Class////
 class Compare {
     public:
-    virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { if (t1.PID > t2.PID) return true;return false;}        };
-class LCFSCompare {
-    public:
-    virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { if (t1.PID > t2.PID) return true;return false;}        };
-class SJFCompare {
-    public:
-    virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { if (t1.PID > t2.PID) return true;return false;}        };
-class RRCompare {
-    public:
-    virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { if (t1.PID > t2.PID) return true;return false;}        };
+    // Compare(string scheduler);    
+    bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID > t2.PID) return true;return false;    	}
+    
+};
+class FCFScompare: public Compare{
+	public:	
+	virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID < t2.PID) return true;return false;}
+};
+class LCFScompare: public Compare{
+	public:	
+	LCFScompare(){}
+	bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID > t2.PID) return true;return false;}
+};
+class SJFcompare: public Compare{
+	public:
+	SJFcompare(){}
+	bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID > t2.PID) return true;return false;}
+};
+class RRcompare: public Compare{
+	public:
+	RRcompare(){}
+	bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID > t2.PID) return true;return false;}
+};
 
 ////Class////
 class ReportCompare {
@@ -175,16 +189,17 @@ class ReportCompare {
     { if (t1.PID > t2.PID) return true;return false;}
 };
 
+
 ////Class////
 class AllQ{	
 public:	
-	// AllQ(Compare sort){cout<<"sort function called"<<endl;}
 	priority_queue<schedule, vector<schedule>, Compare> tasksQ;
 	priority_queue<schedule, vector<schedule>, Compare> readyQ;
 	priority_queue<schedule, vector<schedule>, Compare> runQ;
 	priority_queue<schedule, vector<schedule>, Compare> blockQ;
 	
 	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
+	
 	string smallest(){  //this is the function to find the queue who have the next cloest element
 		int s=10000; string Flag;
 		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks"; }
@@ -219,6 +234,7 @@ public:
 				tmp.doneP(CPUtime);ReportQ.push(tmp);blockQ.pop();}			}
 	}
 	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false
+		cout<<tasksQ.size()<<endl;
 		if((tasksQ.size()>0)|(readyQ.size()>0)|(runQ.size()>0)|(blockQ.size()>0)) return true;
 		return false;
 	}
@@ -250,11 +266,92 @@ public:
 
 	}
 };
+class FCFSQ{
+	public:
+	priority_queue<schedule, vector<schedule>, FCFScompare> tasksQ;
+	priority_queue<schedule, vector<schedule>, FCFScompare> readyQ;
+	priority_queue<schedule, vector<schedule>, FCFScompare> runQ;
+	priority_queue<schedule, vector<schedule>, FCFScompare> blockQ;
+	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
+	string smallest(){  //this is the function to find the queue who have the next cloest element
+		int s=10000; string Flag;
+		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks"; }
+		if ((readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts;Flag="ready"; }
+    	if((runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts;Flag="run"; }
+    	if(((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block"; }
+    	return Flag;
+	}
+	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.
+		string tmpS=smallest();
+		if (tmpS=="tasks"){
+			schedule tmp=tasksQ.top();			
+			if (tmp.remain>0){tmp.enterReadyP(tmp.Ts);readyQ.push(tmp);tasksQ.pop();} 
+			else{tmp.doneP(CPUtime);ReportQ.push(tmp);tasksQ.pop();}			}
+		if (tmpS=="ready"){
+			schedule tmp=readyQ.top();
+			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
+			if (tmp.remain>0){tmp.enterRunP(CPUtime);runQ.push(tmp);readyQ.pop();}
+			else{
+				tmp.doneP(CPUtime);ReportQ.push(tmp);readyQ.pop();}			}
+		if (tmpS=="run"){
+			schedule tmp=runQ.top();
+			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
+			if (tmp.remain>0){tmp.enterBlockP(CPUtime);blockQ.push(tmp);runQ.pop();;}
+			else{
+				tmp.doneP(CPUtime);ReportQ.push(tmp);runQ.pop();}}
+		if (tmpS=="block"){
+			schedule tmp=blockQ.top();
+			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts);			
+			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);blockQ.pop();}
+			else{
+				tmp.doneP(CPUtime);ReportQ.push(tmp);blockQ.pop();}			}
+	}
+	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false		
+		if((tasksQ.size()>0)|(readyQ.size()>0)|(runQ.size()>0)|(blockQ.size()>0)) return true;
+		return false;
+	}
+	void printReport(){
+		int FinishTime=0;
+		double aveCPU=0;
+		double aveIO=0;
+		double aveTt=0;
+		double aveCw=0;
+		double aveThrouput=0; // in 100 time units
+		double numTask=ReportQ.size();
+		while(!ReportQ.empty()){
+			schedule tmp=ReportQ.top();
+			printf("%04d: %4d %4d %4d %4d | %4d %4d %4d %4d\n", tmp.PID,tmp.Reporter[tmp.PID].At, tmp.Reporter[tmp.PID].Tc
+				, tmp.Reporter[tmp.PID].CPUB, tmp.Reporter[tmp.PID].IOB, tmp.Reporter[tmp.PID].Ft, tmp.Reporter[tmp.PID].Tt, tmp.Reporter[tmp.PID].It, tmp.Reporter[tmp.PID].Cw);			
+			if (tmp.Reporter[tmp.PID].Ft>FinishTime){FinishTime=tmp.Reporter[tmp.PID].Ft;}
+			aveCPU=aveCPU+tmp.Reporter[tmp.PID].cpuRun;
+			aveIO=aveIO+tmp.Reporter[tmp.PID].It;
+			aveTt=aveTt+tmp.Reporter[tmp.PID].Tt;
+			aveCw=aveCw+tmp.Reporter[tmp.PID].Cw;
+			ReportQ.pop();
+		}
+		aveCPU=aveCPU/FinishTime*100;
+		aveIO=aveIO/FinishTime*100;
+		aveTt=aveTt/numTask;
+		aveCw=aveCw/numTask;
+		aveThrouput=numTask/FinishTime*100;
+		printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", FinishTime ,aveCPU, aveIO,aveTt, aveCw, aveThrouput);
+
+	}
+	
+};
+
+class LCFSQ:public AllQ{
+	public:
+	priority_queue<schedule, vector<schedule>, LCFScompare> tasksQ;
+	priority_queue<schedule, vector<schedule>, LCFScompare> readyQ;
+	priority_queue<schedule, vector<schedule>, LCFScompare> runQ;
+	priority_queue<schedule, vector<schedule>, LCFScompare> blockQ;
+};
 
 
-AllQ q;
 
 
+FCFSQ q;
 int main(int argc, char *argv[]){
 	while((c=getopt(argc,argv,"vs:")) !=-1){
 		switch (c){
@@ -271,26 +368,26 @@ int main(int argc, char *argv[]){
 	}
 	cout<<"vflag="<<vflag<<" sflag="<<sflag<<" svalue="<<svalue<<endl;
 	
+	// if (svalue=="F"){}
 	if (svalue[0]=='R'){
 		string tmp=svalue.substr(1,svalue.size());
 		istringstream buffer(tmp);
-		buffer >> RRval;		
+		buffer >> RRval;
+		// cout<<RRval<<" "<<RRval/1<<endl;
 	}
 	
 	if (svalue=="F"){
 		cout<<"hi F"<<endl;
 		AllQ q;
 	}	
-	if (svalue=="L"){
-		cout<<"hi F"<<endl;
-		AllQ q;
+	else if (svalue=="L"){
+		// cout<<"hi L"<<endl;
+		LCFSQ q;
 	}	
+	else{
+		AllQ q;
+	}
 	
-	// AllQ q(sort);
-
-
-	// if (svalue=="F"){FCFScompare sort; AllQ q(sort);}
-
 	// pass input file
 	ifstream fin0 ( argv[argc-2] );
 	if (!fin0.is_open()){
@@ -300,6 +397,7 @@ int main(int argc, char *argv[]){
 			while(fin0>>n1>>n2 >>n3 >>n4){
 				schedule t(n1,i,n1,n2,n3,n4,statecode(2),statecode(2));								
 				(q.tasksQ).push(t);
+				schedule tmp=q.tasksQ.top();				
 				i++;
 			}
 		}
@@ -348,6 +446,7 @@ int main(int argc, char *argv[]){
 	// 	q.readyQ.push(tmp);
 	// 	q.tasksQ.pop();
 	// }
+	
 
 	while(q.stillRemain()){
 		q.change();
