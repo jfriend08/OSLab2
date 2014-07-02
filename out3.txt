@@ -160,94 +160,94 @@ T(1:135): RUNNG -> BLOCK  ib=9 rem=30
 ==> 135 2 ts=113 RUNNG  dur=22
 T(2:135): READY -> RUNNG  cb=1 rem=1
 
+==> 136 2 ts=135 BLOCK  dur=1
+==> T(2): Done
+
+==> 136 0 ts=125 RUNNG  dur=11
+T(0:136): READY -> RUNNG  cb=8 rem=67
+
 ==> 144 1 ts=135 READY  dur=9
 T(1:144): BLOCK -> READY
 
-==> 144 2 ts=135 BLOCK  dur=9
-==> T(2): Done
+==> 144 0 ts=136 BLOCK  dur=8
+T(0:144): RUNNG -> BLOCK  ib=14 rem=59
 
-==> 144 0 ts=125 RUNNG  dur=19
-T(0:144): READY -> RUNNG  cb=8 rem=67
+==> 144 1 ts=144 RUNNG  dur=0
+T(1:144): READY -> RUNNG  cb=17 rem=30
 
-==> 152 0 ts=144 BLOCK  dur=8
-T(0:152): RUNNG -> BLOCK  ib=14 rem=59
+==> 158 0 ts=144 READY  dur=14
+T(0:158): BLOCK -> READY
 
-==> 152 1 ts=144 RUNNG  dur=8
-T(1:152): READY -> RUNNG  cb=17 rem=30
+==> 161 1 ts=144 BLOCK  dur=17
+T(1:161): RUNNG -> BLOCK  ib=2 rem=13
 
-==> 166 0 ts=152 READY  dur=14
-T(0:166): BLOCK -> READY
+==> 161 0 ts=158 RUNNG  dur=3
+T(0:161): READY -> RUNNG  cb=3 rem=59
 
-==> 169 1 ts=152 BLOCK  dur=17
-T(1:169): RUNNG -> BLOCK  ib=2 rem=13
+==> 163 1 ts=161 READY  dur=2
+T(1:163): BLOCK -> READY
 
-==> 169 0 ts=166 RUNNG  dur=3
-T(0:169): READY -> RUNNG  cb=3 rem=59
+==> 164 0 ts=161 BLOCK  dur=3
+T(0:164): RUNNG -> BLOCK  ib=10 rem=56
 
-==> 171 1 ts=169 READY  dur=2
-T(1:171): BLOCK -> READY
+==> 164 1 ts=163 RUNNG  dur=1
+T(1:164): READY -> RUNNG  cb=4 rem=13
 
-==> 172 0 ts=169 BLOCK  dur=3
-T(0:172): RUNNG -> BLOCK  ib=10 rem=56
+==> 168 1 ts=164 BLOCK  dur=4
+T(1:168): RUNNG -> BLOCK  ib=2 rem=9
 
-==> 172 1 ts=171 RUNNG  dur=1
-T(1:172): READY -> RUNNG  cb=4 rem=13
+==> 170 1 ts=168 READY  dur=2
+T(1:170): BLOCK -> READY
 
-==> 176 1 ts=172 BLOCK  dur=4
-T(1:176): RUNNG -> BLOCK  ib=2 rem=9
+==> 170 1 ts=170 RUNNG  dur=0
+T(1:170): READY -> RUNNG  cb=9 rem=9
 
-==> 178 1 ts=176 READY  dur=2
-T(1:178): BLOCK -> READY
+==> 174 0 ts=164 READY  dur=10
+T(0:174): BLOCK -> READY
 
-==> 178 1 ts=178 RUNNG  dur=0
-T(1:178): READY -> RUNNG  cb=9 rem=9
-
-==> 182 0 ts=172 READY  dur=10
-T(0:182): BLOCK -> READY
-
-==> 187 1 ts=178 BLOCK  dur=9
+==> 179 1 ts=170 BLOCK  dur=9
 ==> T(1): Done
 
-==> 187 0 ts=182 RUNNG  dur=5
-T(0:187): READY -> RUNNG  cb=5 rem=56
+==> 179 0 ts=174 RUNNG  dur=5
+T(0:179): READY -> RUNNG  cb=5 rem=56
 
-==> 192 0 ts=187 BLOCK  dur=5
-T(0:192): RUNNG -> BLOCK  ib=18 rem=51
+==> 184 0 ts=179 BLOCK  dur=5
+T(0:184): RUNNG -> BLOCK  ib=18 rem=51
 
-==> 210 0 ts=192 READY  dur=18
-T(0:210): BLOCK -> READY
+==> 202 0 ts=184 READY  dur=18
+T(0:202): BLOCK -> READY
 
-==> 210 0 ts=210 RUNNG  dur=0
-T(0:210): READY -> RUNNG  cb=19 rem=51
+==> 202 0 ts=202 RUNNG  dur=0
+T(0:202): READY -> RUNNG  cb=19 rem=51
 
-==> 229 0 ts=210 BLOCK  dur=19
-T(0:229): RUNNG -> BLOCK  ib=5 rem=32
+==> 221 0 ts=202 BLOCK  dur=19
+T(0:221): RUNNG -> BLOCK  ib=5 rem=32
 
-==> 234 0 ts=229 READY  dur=5
-T(0:234): BLOCK -> READY
+==> 226 0 ts=221 READY  dur=5
+T(0:226): BLOCK -> READY
 
-==> 234 0 ts=234 RUNNG  dur=0
-T(0:234): READY -> RUNNG  cb=16 rem=32
+==> 226 0 ts=226 RUNNG  dur=0
+T(0:226): READY -> RUNNG  cb=16 rem=32
 
-==> 250 0 ts=234 BLOCK  dur=16
-T(0:250): RUNNG -> BLOCK  ib=11 rem=16
+==> 242 0 ts=226 BLOCK  dur=16
+T(0:242): RUNNG -> BLOCK  ib=11 rem=16
 
-==> 261 0 ts=250 READY  dur=11
-T(0:261): BLOCK -> READY
+==> 253 0 ts=242 READY  dur=11
+T(0:253): BLOCK -> READY
 
-==> 261 0 ts=261 RUNNG  dur=0
-T(0:261): READY -> RUNNG  cb=14 rem=16
+==> 253 0 ts=253 RUNNG  dur=0
+T(0:253): READY -> RUNNG  cb=14 rem=16
 
-==> 275 0 ts=261 BLOCK  dur=14
-T(0:275): RUNNG -> BLOCK  ib=7 rem=2
+==> 267 0 ts=253 BLOCK  dur=14
+T(0:267): RUNNG -> BLOCK  ib=7 rem=2
 
-==> 282 0 ts=275 READY  dur=7
-T(0:282): BLOCK -> READY
+==> 274 0 ts=267 READY  dur=7
+T(0:274): BLOCK -> READY
 
-==> 282 0 ts=282 RUNNG  dur=0
-T(0:282): READY -> RUNNG  cb=2 rem=2
+==> 274 0 ts=274 RUNNG  dur=0
+T(0:274): READY -> RUNNG  cb=2 rem=2
 
-==> 284 0 ts=282 BLOCK  dur=2
+==> 276 0 ts=274 BLOCK  dur=2
 ==> T(0): Done
 
 ==> 1000 3 ts=1000 READY  dur=0
@@ -323,8 +323,8 @@ T(3:1045): READY -> RUNNG  cb=2 rem=2
 ==> T(3): Done
 
 FCFS
-0000:    1  100   20   20 |  284  283  105   78
-0001:    1  100   30   10 |  187  186   38   48
-0002:    1   30   10    5 |  144  143   16   89
-0003: 1000   30   10    5 | 1047   47   17    0
-SUM: 1047 25.60 14.52 164.75 53.75 0.382
+0000:    1  100   20   20 |  274  273  105   70
+0001:    1  100   30   10 |  170  169   38   40
+0002:    1   30   10    5 |  135  134   16   89
+0003: 1000   30   10    5 | 1045   45   17    0
+SUM: 1045 23.54 13.21 155.25 49.75 0.383

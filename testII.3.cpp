@@ -16,6 +16,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	now can specify the -v flag. I am adding vflag value into those print function, and only print it if vflag==1
 --	should probably calculat IOtime correct(?)
 --	able to process (c) issue: same nextEvenTime, but then find smallestTs
+--	able to process (a) issue: termination takes precedence over scheduling the next IO burst
 
 Todo:
 --	have issue for input3. Which queue should really consider the insert index?
@@ -143,6 +144,20 @@ public:
 		Reporter[PID].Ft=Ts;
 		Reporter[PID].Tt=Ts-Reporter[PID].At;
 	}
+	void earlyDoneP(int &cputime, int vflag){
+		int dur=remain; 
+		if (vflag==1){
+			cputime=Ts+remain;
+			cout<<"==> "<<Ts+remain<<" "<<PID<<" ts="<<Ts<<" BLOCK"<<"  "<<"dur="<<dur<<endl;
+			// cout<<"==> "<<Ts+remain<<" "<<PID<<" ts="<<Ts<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
+			
+		}
+		ofs=ofs-1;
+		Reporter[PID].Ft=Ts;
+		Reporter[PID].Tt=Ts-Reporter[PID].At;
+	}
+
 	void currentP(){
 		cout<<"Ts:"<<Ts<<" PID:"<<PID<<" Tg:"<<Tg<<" Remain:"<<remain<<" curState:"<<curState<<" nextState:"<<nextState<<" insertindex:"<<insertindex<<endl;
 	}
@@ -254,6 +269,18 @@ public:
     	if((run==1)&&(runQ.size()>0)&&(runQ.top().nextEventTime<s)){s=runQ.top().nextEventTime; Flag="run";} // Flag2=Flag;Flag="run"; }
     	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }    	
     	return Flag;
+	}
+	int smallest_val(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000;
+		int tas=1 ,rea=1, run=1, blo=1;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		string Flag;
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().nextEventTime<s)){
+		s=readyQ.top().nextEventTime; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if((run==1)&&(runQ.size()>0)&&(runQ.top().nextEventTime<s)){s=runQ.top().nextEventTime; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	return s;
 	}
 	string smallestTs(string exclude){  //this is the function to find the queue who have the next cloest element		
 		int s=10000;
@@ -429,40 +456,59 @@ public:
 		else if(blockQ.size()==0) {BlockEmptyTag=1;}
 	}
 
-	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.
-		
-		string tmpS=smallest("NA");	
-		string secondtmpS=smallest(tmpS);	
-		if ((runQ.size()>0)&&(tmpS=="ready")){tmpS=secondtmpS;}			
-		if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){
-			tmpS=smallestTs("");
-		}
-		
-		// cout<<"tmpS:"<<tmpS<<" secondtmpS:"<<secondtmpS<<endl;
-		// if (tmpS==secondtmpS){tmpS=smallestTs("");}
+	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.		
+		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue
+		int tmpS_val=smallest_val(""); // based on nextEventTime, return the smallest nextEventTime
 
-		if (tmpS=="tasks"){
-			schedule tmp=tasksQ.top();			
-			if (tmp.remain>0){tmp.enterReadyP(tmp.Ts, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);tasksQ.pop();} 
-			else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);tasksQ.pop();}			}
-		if (tmpS=="ready"){
-			schedule tmp=readyQ.top();
-			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
-			if (tmp.remain>0){tmp.enterRunP(CPUtime, vflag);tmp.insertindex=Qlastindex(runQ);runQ.push(tmp);readyQ.pop();}
-			else{
-				tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);readyQ.pop();}			}
-		if (tmpS=="run"){
+		string secondtmpS=smallest(tmpS);
+		// cout<<	"tmpS_val: "<<tmpS_val<<" tmpS:"<<tmpS<<" secondtmpS_val:"<<secondtmpS_val<<" secondtmpS:"<<secondtmpS_val<<endl;
+		if ((runQ.size()>0)&&(tmpS=="ready")){
+			tmpS_val=smallest_val(tmpS);
+			tmpS=secondtmpS;
+			// cout<<"second queue called:"<<tmpS<<endl;
+		}	// so make sure one one task in runQ
+		if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
+		// cout<<"tmpS_val:"<<tmpS_val<<endl;
+
+
+		if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
 			schedule tmp=runQ.top();
-			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
-			if (tmp.remain>0){tmp.enterBlockP(CPUtime, vflag);tmp.insertindex=Qlastindex(blockQ);blockQ.push(tmp);runQ.pop();;}
-			else{
-				tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);runQ.pop();}}
-		if (tmpS=="block"){
-			schedule tmp=blockQ.top();
-			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts, blockQ.size());			
-			if (tmp.remain>0){tmp.enterReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);blockQ.pop();}
-			else{
-				tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);blockQ.pop();}			}				
+			tmp.Run2Block(tmp.Ts+tmp.remain, tmp.Ts, myrandom(tmp.IOB,ofs));
+			// tmp.earlyDoneP(CPUtime, vflag);
+			tmp.doneP(CPUtime, vflag);
+			ReportQ.push(tmp);runQ.pop();
+		}
+		else{
+
+
+			if (tmpS=="tasks"){
+				schedule tmp=tasksQ.top();						
+				if (tmp.remain>0){tmp.enterReadyP(tmp.Ts, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);tasksQ.pop();} 
+				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);tasksQ.pop();}			}
+			if (tmpS=="ready"){
+				schedule tmp=readyQ.top();
+				tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
+				if (tmp.remain>0){tmp.enterRunP(CPUtime, vflag);tmp.insertindex=Qlastindex(runQ);runQ.push(tmp);readyQ.pop();}
+				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);readyQ.pop();}			}
+			if (tmpS=="run"){
+				schedule tmp=runQ.top();
+				tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
+				if (tmp.remain>0){tmp.enterBlockP(CPUtime, vflag);tmp.insertindex=Qlastindex(blockQ);blockQ.push(tmp);runQ.pop();;}
+				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);runQ.pop();}}
+			if (tmpS=="block"){
+				schedule tmp=blockQ.top();
+				tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts, blockQ.size());			
+				if (tmp.remain>0){tmp.enterReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);blockQ.pop();}
+				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);blockQ.pop();}			}			
+
+		}
+
+
+		
+			
+		
+	
+				
 	}
 
 	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false
@@ -496,19 +542,19 @@ public:
 		deque<int> q;		
 		if(tasksQ.size()>0){
 			schedule task=tasksQ.top();
-			cout<<"Task: topPID:"<<task.PID<<" task.Ts:"<<task.Ts<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
+			cout<<"Task: topPID:"<<task.PID<<" task.Ts:"<<task.Ts<<" task.remain:"<<task.remain<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
 		}			
 		if(readyQ.size()>0){
 			schedule ready=readyQ.top();
-			cout<<"Ready: topPID:"<<ready.PID<<" ready.Ts:"<<ready.Ts<<" ready.nextEventTime:"<<ready.nextEventTime<<" readysize:"<<readyQ.size()<<endl;
+			cout<<"Ready: topPID:"<<ready.PID<<" ready.Ts:"<<ready.Ts<<" ready.remain:"<<ready.remain<<" ready.nextEventTime:"<<ready.nextEventTime<<" readysize:"<<readyQ.size()<<endl;
 		}
 		if(runQ.size()>0){
 			schedule run=runQ.top();
-			cout<<"Run: topPID:"<<run.PID<<" run.Ts:"<<run.Ts<<" run.nextEventTime:"<<run.nextEventTime<<" runsize:"<<runQ.size()<<endl;
+			cout<<"Run: topPID:"<<run.PID<<" run.Ts:"<<run.Ts<<" run.remain:"<<run.remain<<" run.nextEventTime:"<<run.nextEventTime<<" runsize:"<<runQ.size()<<endl;
 		}
 		if(blockQ.size()>0){
 			schedule block=blockQ.top();
-			cout<<"Block: PID:"<<block.PID<<" block.Ts:"<<block.Ts<<" block.nextEventTime:"<<block.nextEventTime<<" blocksize:"<<blockQ.size()<<endl;
+			cout<<"Block: PID:"<<block.PID<<" block.Ts:"<<block.Ts<<" block.remain:"<<block.remain<<" block.nextEventTime:"<<block.nextEventTime<<" blocksize:"<<blockQ.size()<<endl;
 		}				
 		cout<<endl;
 	}
@@ -600,7 +646,7 @@ int main(int argc, char *argv[]){
 	// int test=0;
 	// while(test<10){
 	while(q.stillRemain()){
-		q.qReport();
+		// q.qReport();
 		q.change();
 		q.IOtimeCalculation();
 
