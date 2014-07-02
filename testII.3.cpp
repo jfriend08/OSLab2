@@ -15,6 +15,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	can specific recheduler, and change the priority queue according. But havent test its accuracy
 --	now can specify the -v flag. I am adding vflag value into those print function, and only print it if vflag==1
 --	should probably calculat IOtime correct(?)
+--	able to process (c) issue: same nextEvenTime, but then find smallestTs
 
 Todo:
 --	have issue for input3. Which queue should really consider the insert index?
@@ -109,7 +110,7 @@ public:
 	void enterReadyP(int &cputime, int vflag){
 		int dur=Ts-Tg;
 		if (vflag==1){
-			cout<<"1==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
 		}
@@ -118,7 +119,7 @@ public:
 	void enterRunP(int &cputime, int vflag){
 		int dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"2==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
 		}		
@@ -126,7 +127,7 @@ public:
 	void enterBlockP(int &cputime, int vflag){
 		int dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"3==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
 		}		
@@ -209,7 +210,7 @@ class ReportCompare {
 class NexteventCompare {
     public:
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { if (t1.nextEventTime < t2.nextEventTime) return true;return false;}
+    { if (t1.nextEventTime > t2.nextEventTime) return true;return false;}
 };
 
 
@@ -238,7 +239,7 @@ public:
 	priority_queue<schedule, vector<schedule>, TaskCompare> tasksQ;
 	priority_queue<schedule, vector<schedule>, Compare> readyQ;
 	priority_queue<schedule, vector<schedule>, Compare> runQ;
-	priority_queue<schedule, vector<schedule>, Compare> blockQ;
+	priority_queue<schedule, vector<schedule>, NexteventCompare> blockQ;
 	
 	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
 	
@@ -251,11 +252,55 @@ public:
 		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().nextEventTime<s)){
 		s=readyQ.top().nextEventTime; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
     	if((run==1)&&(runQ.size()>0)&&(runQ.top().nextEventTime<s)){s=runQ.top().nextEventTime; Flag="run";} // Flag2=Flag;Flag="run"; }
-    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }    	
     	return Flag;
 	}
+	string smallestTs(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000;
+		int tas=1 ,rea=1, run=1, blo=1;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		string Flag;
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if((run==1)&&(runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	return Flag;
+	}
+	int EqualNextEvent(string tmpS){	
+		int rea, run, blo;	
+		// int tasT=1 ,reaT=1, runT=1, bloT=1;
+		// if (tmpS=="tasks"){tasT=0;}if (tmpS=="ready"){reaT=0;}if (tmpS=="run"){runT=0;}if (tmpS=="block"){bloT=0;}
+		if (readyQ.size()>0){rea=readyQ.top().nextEventTime;}
+		if (runQ.size()>0){run=runQ.top().nextEventTime;}
+		if (blockQ.size()>0){blo=blockQ.top().nextEventTime;}
+		if(tmpS=="ready"){
+			if((rea==run)|(rea==blo)){return 1;}	
+			
+		}		
+		else if(tmpS=="run"){
+			if((run==rea)|(run==blo)){return 1;}
+		}
+		else if (tmpS=="blo"){
+			if((blo==rea)|(blo==run)){return 1;}
+		}		
+		return 0;
+	}
+
 	int findLongEvent(priority_queue<schedule, vector<schedule>, Compare> q){
 		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.nextEventTime>longest){
+				longest=t.nextEventTime;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+	int findLongEvent(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
 		int longest=-1;
 		qtmp=q;
 		while (!qtmp.empty()){
@@ -280,6 +325,19 @@ public:
 		}
 		return longest;
 	}
+	int findLongEventIb(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.nextEventTime>longest){
+				longest=t.Ib;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
 	int findLongIb(priority_queue<schedule, vector<schedule>, Compare> q){
 		priority_queue<schedule, vector<schedule>, Compare> qtmp;
 		int longest=-1;
@@ -293,6 +351,20 @@ public:
 		}
 		return longest;
 	}
+	int findLongIb(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.Ib>longest){
+				longest=t.Ib;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+
 	int findLongTs(priority_queue<schedule, vector<schedule>, Compare> q){
 		priority_queue<schedule, vector<schedule>, Compare> qtmp;
 		int longest=-1;
@@ -309,6 +381,17 @@ public:
 
 	int Qlastindex(priority_queue<schedule, vector<schedule>, Compare> q){
 		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int index=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			index=t.insertindex;
+			qtmp.pop();
+		}
+		return index+1;
+	}
+	int Qlastindex(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
 		int index=-1;
 		qtmp=q;
 		while (!qtmp.empty()){
@@ -347,10 +430,16 @@ public:
 	}
 
 	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.
+		
 		string tmpS=smallest("NA");	
-		if ((runQ.size()>0)&&(tmpS=="ready")){
-			tmpS=smallest(tmpS);
-		}			
+		string secondtmpS=smallest(tmpS);	
+		if ((runQ.size()>0)&&(tmpS=="ready")){tmpS=secondtmpS;}			
+		if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){
+			tmpS=smallestTs("");
+		}
+		
+		// cout<<"tmpS:"<<tmpS<<" secondtmpS:"<<secondtmpS<<endl;
+		// if (tmpS==secondtmpS){tmpS=smallestTs("");}
 
 		if (tmpS=="tasks"){
 			schedule tmp=tasksQ.top();			
