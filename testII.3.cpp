@@ -19,10 +19,12 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	able to process (a) issue: termination takes precedence over scheduling the next IO burst
 --	have issue for input3. Which queue should really consider the insert index? ==> only ready queue need to consider order
 --	figure out the logic when nextEvent is ready, but nextnextEvent have equal value, then choose the smallest Ts among these two queue except ready queue
+--	add some feature to deal with first and last line new line
 
 Todo:
 --	define child classs, so it can run diff scheduler
 --	IOtime still not correct
+--	delay scheduler issue
 */
 
 #include <fstream>
@@ -135,12 +137,12 @@ public:
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
 		}		
 	}
-	void doneP(int &cputime, int vflag){
+	void doneP(int &cputime, int vflag, int notfinish){
 		int dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-			cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
-			
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			
+			if(notfinish==1){cout<<"==> T("<<PID<<"): Done"<<endl<<endl;			}
+			else if (notfinish==0){cout<<"==> T("<<PID<<"): Done"<<endl;				}			
 		}
 		ofs=ofs-1;
 		Reporter[PID].Ft=Ts;
@@ -200,19 +202,7 @@ public:
 inputTask::inputTask(int at, int tc, int cb, int io){AT=at;TC=tc;CB=cb;IO=io;}
 inputTask::~inputTask(){}
 
-// ////Class////
-// class Compare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID > t2.PID) return true;return false;}        };
-// class LCFSCompare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID < t2.PID) return true;return false;}        };
-// class SJFCompare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID > t2.PID) return true;return false;}        };
+////Class////
 class TaskCompare {
     public:
     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
@@ -224,6 +214,7 @@ class ReportCompare {
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
     { if (t1.PID > t2.PID) return true;return false;}
 };
+////Class////
 class NexteventCompare {
     public:
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
@@ -232,7 +223,6 @@ class NexteventCompare {
 		return false;
     }
 };
-
 
 ////Class////
 class AllQ{	
@@ -255,7 +245,6 @@ public:
     		if(flag==1) return true; return false;    		
 		}            	
 	};
-
 	priority_queue<schedule, vector<schedule>, TaskCompare> tasksQ;
 	priority_queue<schedule, vector<schedule>, Compare> readyQ;
 	priority_queue<schedule, vector<schedule>, Compare> runQ;
@@ -431,6 +420,10 @@ public:
 		}
 		return index+1;
 	}
+	int othertasknotdone(){
+		int allTasks=tasksQ.size()+readyQ.size()+runQ.size()+blockQ.size();
+		if (allTasks>1) return 1; return 0;
+	}
 	
 	void IOtimeCalculation(){
 		if ((tmpIOruntime==0)&&(blockQ.size()>0)){
@@ -463,44 +456,39 @@ public:
 		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue
 		int tmpS_val=smallest_val(""); // based on nextEventTime, return the smallest nextEventTime
 		string secondtmpS=smallest(tmpS);
-		// cout<<"firstTs:"<<tmpS<<" eqalNextevent:"<<EqualNextEvent(tmpS)<<endl;		
 		if ((runQ.size()>0)&&(tmpS=="ready")){
 			tmpS_val=smallest_val(tmpS);
 			if((tmpS!="tasks")&&(EqualNextEvent(secondtmpS)==1)){tmpS=smallestTs("ready");}
 			else tmpS=secondtmpS;
 		}	// so make sure one one task in runQ
 		else if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
-		// cout<<"tmpS_val:"<<tmpS_val<<endl;
-
 
 		if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
 			schedule tmp=runQ.top();
 			tmp.Run2Block(tmp.Ts+tmp.remain, tmp.Ts, myrandom(tmp.IOB,ofs));
-			tmp.doneP(CPUtime, vflag);
+			tmp.doneP(CPUtime, vflag, othertasknotdone());
 			ReportQ.push(tmp);runQ.pop();
 		}
 		else{
-
-
 			if (tmpS=="tasks"){
 				schedule tmp=tasksQ.top();						
 				if (tmp.remain>0){tmp.enterReadyP(tmp.Ts, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);tasksQ.pop();} 
-				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);tasksQ.pop();}			}
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);tasksQ.pop();}			}
 			if (tmpS=="ready"){
 				schedule tmp=readyQ.top();
 				tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
 				if (tmp.remain>0){tmp.enterRunP(CPUtime, vflag);tmp.insertindex=Qlastindex(runQ);runQ.push(tmp);readyQ.pop();}
-				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);readyQ.pop();}			}
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);readyQ.pop();}			}
 			if (tmpS=="run"){
 				schedule tmp=runQ.top();
 				tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
 				if (tmp.remain>0){tmp.enterBlockP(CPUtime, vflag);tmp.insertindex=Qlastindex(blockQ);blockQ.push(tmp);runQ.pop();;}
-				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);runQ.pop();}}
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);runQ.pop();}}
 			if (tmpS=="block"){
 				schedule tmp=blockQ.top();
 				tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts, blockQ.size());			
 				if (tmp.remain>0){tmp.enterReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);blockQ.pop();}
-				else{tmp.doneP(CPUtime, vflag);ReportQ.push(tmp);blockQ.pop();}			}			
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);blockQ.pop();}			}			
 
 		}
 
@@ -646,8 +634,9 @@ int main(int argc, char *argv[]){
 	// }
 	// int test=0;
 	// while(test<10){
+	cout<<endl;
 	while(q.stillRemain()){
-		// q.qReport();
+		q.qReport();
 		q.change();
 		q.IOtimeCalculation();
 
