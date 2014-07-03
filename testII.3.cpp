@@ -21,6 +21,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	figure out the logic when nextEvent is ready, but nextnextEvent have equal value, then choose the smallest Ts among these two queue except ready queue
 --	add some feature to deal with first and last line new line
 --	LCFC done
+--	SJF done, if the remain is the same then sort by insertindex
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -51,7 +52,7 @@ vector<int> randvals;
 int ofs=0, n1, n2, n3, n4;
 int CPU_burst=10, IO_burst=10, CPUtime=0, BlockEmptyTag=1;
 double IOruntime=0,tmpIOruntime=0;
-int c, vflag, sflag, opterr=0, RRval=-1;
+int c, vflag, sflag, opterr=0, RRval=INT_MAX;
 string svalue,shedulFlag;
 
 
@@ -65,7 +66,7 @@ int myrandom(int burst, int &index) {
 }
 ////Function////
 string statecode(int i){
-  static const char* statetr[] = {"RUNNG","BLOCK","READY", "NA"};
+  static const char* statetr[] = {"RUNNG","BLOCK","READY", "PREEMPT"};
   return statetr[i];
 }
 
@@ -112,7 +113,7 @@ public:
 	void Run2Block(int ts, int tg, int ib);
 	void Block2Ready(int ts, int tg, int num);
 	void Ready2Run(int ts, int tg, int cb);
-	void Run2Ready(int ts, int tg);
+	void Run2Ready(int ts, int tg, int cb);
 	void print(){cout<<"timestamp: "<<Ts<<" PID: "<<PID<<" Tg: "<<Tg<<" remain: "<<remain<<" curState: "<<curState<<" nextState: "<<nextState<<endl;}
 	void enterReadyP(int &cputime, int vflag){
 		int dur=Ts-Tg;
@@ -171,24 +172,25 @@ public:
 void schedule::Run2Block(int ts, int tg, int ib){	
 	remain=remain-(ts-tg);
 	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
-	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;curState=statecode(0); nextState=statecode(1); nextEventTime=Ts+Ib;//CPUtime=Ts;		
+	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;curState=nextState; nextState=statecode(1); nextEventTime=Ts+Ib;//CPUtime=Ts;		
 	Reporter[PID].cpuRun=Reporter[PID].cpuRun+(Ts-tg);
 }
 void schedule::Block2Ready(int ts, int tg, int num){
 	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
-	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2); nextEventTime=Ts;//CPUtime=Ts;	
+	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=nextState; nextState=statecode(2); nextEventTime=Ts;//CPUtime=Ts;	
 	Reporter[PID].It=Reporter[PID].It+(Ts-Tg);
 }
 void schedule::Ready2Run(int ts, int tg, int cb){
 	remain=remain-(ts-tg);
 	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
-	Ts=ts; Tg=tg; Cb=cb; Ib=-1000;curState=statecode(2); nextState=statecode(0); nextEventTime=Ts+Cb;//CPUtime=Ts;
+	Ts=ts; Tg=tg; Cb=cb; Ib=-1000;curState=nextState; nextState=statecode(0); nextEventTime=Ts+Cb;//CPUtime=Ts;
 	if(remain<cb){Cb=remain;}
 	Reporter[PID].Cw=Reporter[PID].Cw+(Ts-Tg);
 }
-void schedule::Run2Ready(int ts, int tg){
+void schedule::Run2Ready(int ts, int tg, int cb){
+	remain=remain-(ts-tg);
 	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
-	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2); //CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
+	Ts=ts; Tg=tg; Cb=cb;Ib=-1000;curState=nextState; nextState=statecode(3); nextEventTime=Ts+Cb; //CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
 }
 
 ////Class////
@@ -502,6 +504,7 @@ public:
 	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.		
 		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue		
 		int tmpS_val=Flag_EventTime(tmpS);
+		int PREEMPT_Flag=0;
 		string secondtmpS=smallest(tmpS);
 		cout<<endl; // I know this is weired, but this really worked!! don't delet it!
 		///selection logic
@@ -516,6 +519,13 @@ public:
 			if (EqualNextEvent(tmpS)==1){tmpS=EqualNextEventFlag(tmpS);tmpS_val=smallest_val(tmpS);}
 		}
 		
+		tmpS_val=Flag_EventTime(tmpS);
+		cout<<"RRval:"<<RRval<<endl;
+		if(tmpS_val-CPUtime>RRval){
+			PREEMPT_Flag=1;
+			cout<<"PREEMPT_Flag:"<<PREEMPT_Flag<<endl;
+		}
+		
 		// if ((runQ.size()>0)&&(tmpS=="ready")){
 		// 	tmpS_val=smallest_val(tmpS);
 		// 	if((tmpS!="tasks")&&(EqualNextEvent(secondtmpS)==1)){tmpS=smallestTs("ready");}
@@ -525,7 +535,7 @@ public:
 		// cout<<"tmpS:"<<tmpS<<" tmpS_val:"<<tmpS_val<<endl;
 		
 		///switching logic
-		tmpS_val=Flag_EventTime(tmpS);
+		
 		if((runQ.size()>0)&&(tmpS_val-CPUtime>runQ.top().remain)){			
 		// if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
 			schedule tmp=runQ.top();
@@ -533,6 +543,14 @@ public:
 			tmp.doneP(CPUtime, vflag, othertasknotdone());
 			ReportQ.push(tmp);runQ.pop();
 		}
+		else if(PREEMPT_Flag==1){
+			cout<<"Run2Ready Start"<<endl;
+			schedule tmp=runQ.top();
+			tmp.Run2Ready(tmp.Ts+2, tmp.Ts, myrandom(tmp.CPUB,ofs));			
+			if (tmp.remain>0){tmp.enterReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);blockQ.pop();}
+			else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);blockQ.pop();}	
+		}
+
 		else{
 			if (tmpS=="tasks"){
 				schedule tmp=tasksQ.top();						
@@ -695,7 +713,7 @@ int main(int argc, char *argv[]){
 	// while(test<10){
 	
 	while(q.stillRemain()){
-		// q.qReport();
+		q.qReport();
 		q.change();
 		q.IOtimeCalculation();
 
