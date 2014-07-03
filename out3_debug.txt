@@ -1,0 +1,706 @@
+Task: topPID:0 task.Ts:1 task.nextEventTime:1 tasksize:4
+
+1==> 1 0 ts=1 READY  dur=0
+T(0:1): READY -> READY
+
+Task: topPID:1 task.Ts:1 task.nextEventTime:1 tasksize:3
+Ready: topPID:0 ready.Ts:1 ready.nextEventTime:1 readysize:1
+
+1==> 1 1 ts=1 READY  dur=0
+T(1:1): READY -> READY
+
+Task: topPID:2 task.Ts:1 task.nextEventTime:1 tasksize:2
+Ready: topPID:0 ready.Ts:1 ready.nextEventTime:1 readysize:2
+
+1==> 1 2 ts=1 READY  dur=0
+T(2:1): READY -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:1 ready.nextEventTime:1 readysize:3
+
+2==> 1 0 ts=1 RUNNG  dur=0
+T(0:1): READY -> RUNNG  cb=4 rem=100
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:1 ready.nextEventTime:1 readysize:2
+Run: topPID:0 run.Ts:1 run.nextEventTime:5 runsize:1
+
+3==> 5 0 ts=1 BLOCK  dur=4
+T(0:5): RUNNG -> BLOCK  ib=7 rem=96
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:1 ready.nextEventTime:1 readysize:2
+Block: PID:0 block.Ts:5 block.nextEventTime:12 blocksize:1
+
+2==> 5 1 ts=1 RUNNG  dur=4
+T(1:5): READY -> RUNNG  cb=28 rem=100
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:1 ready.nextEventTime:1 readysize:1
+Run: topPID:1 run.Ts:5 run.nextEventTime:33 runsize:1
+Block: PID:0 block.Ts:5 block.nextEventTime:12 blocksize:1
+
+1==> 12 0 ts=5 READY  dur=7
+T(0:12): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:1 ready.nextEventTime:1 readysize:2
+Run: topPID:1 run.Ts:5 run.nextEventTime:33 runsize:1
+
+3==> 33 1 ts=5 BLOCK  dur=28
+T(1:33): RUNNG -> BLOCK  ib=6 rem=72
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:1 ready.nextEventTime:1 readysize:2
+Block: PID:1 block.Ts:33 block.nextEventTime:39 blocksize:1
+
+2==> 33 2 ts=1 RUNNG  dur=32
+T(2:33): READY -> RUNNG  cb=4 rem=30
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:12 ready.nextEventTime:12 readysize:1
+Run: topPID:2 run.Ts:33 run.nextEventTime:37 runsize:1
+Block: PID:1 block.Ts:33 block.nextEventTime:39 blocksize:1
+
+3==> 37 2 ts=33 BLOCK  dur=4
+T(2:37): RUNNG -> BLOCK  ib=1 rem=26
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:12 ready.nextEventTime:12 readysize:1
+Block: PID:2 block.Ts:37 block.nextEventTime:38 blocksize:2
+
+2==> 37 0 ts=12 RUNNG  dur=25
+T(0:37): READY -> RUNNG  cb=7 rem=96
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:37 run.nextEventTime:44 runsize:1
+Block: PID:2 block.Ts:37 block.nextEventTime:38 blocksize:2
+
+1==> 38 2 ts=37 READY  dur=1
+T(2:38): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:38 ready.nextEventTime:38 readysize:1
+Run: topPID:0 run.Ts:37 run.nextEventTime:44 runsize:1
+Block: PID:1 block.Ts:33 block.nextEventTime:39 blocksize:1
+
+1==> 39 1 ts=33 READY  dur=6
+T(1:39): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:38 ready.nextEventTime:38 readysize:2
+Run: topPID:0 run.Ts:37 run.nextEventTime:44 runsize:1
+
+3==> 44 0 ts=37 BLOCK  dur=7
+T(0:44): RUNNG -> BLOCK  ib=13 rem=89
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:38 ready.nextEventTime:38 readysize:2
+Block: PID:0 block.Ts:44 block.nextEventTime:57 blocksize:1
+
+2==> 44 2 ts=38 RUNNG  dur=6
+T(2:44): READY -> RUNNG  cb=10 rem=26
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:39 ready.nextEventTime:39 readysize:1
+Run: topPID:2 run.Ts:44 run.nextEventTime:54 runsize:1
+Block: PID:0 block.Ts:44 block.nextEventTime:57 blocksize:1
+
+3==> 54 2 ts=44 BLOCK  dur=10
+T(2:54): RUNNG -> BLOCK  ib=2 rem=16
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:39 ready.nextEventTime:39 readysize:1
+Block: PID:2 block.Ts:54 block.nextEventTime:56 blocksize:2
+
+2==> 54 1 ts=39 RUNNG  dur=15
+T(1:54): READY -> RUNNG  cb=3 rem=72
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:1 run.Ts:54 run.nextEventTime:57 runsize:1
+Block: PID:2 block.Ts:54 block.nextEventTime:56 blocksize:2
+
+1==> 56 2 ts=54 READY  dur=2
+T(2:56): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:56 ready.nextEventTime:56 readysize:1
+Run: topPID:1 run.Ts:54 run.nextEventTime:57 runsize:1
+Block: PID:0 block.Ts:44 block.nextEventTime:57 blocksize:1
+
+3==> 57 1 ts=54 BLOCK  dur=3
+T(1:57): RUNNG -> BLOCK  ib=8 rem=69
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:56 ready.nextEventTime:56 readysize:1
+Block: PID:0 block.Ts:44 block.nextEventTime:57 blocksize:2
+
+2==> 57 2 ts=56 RUNNG  dur=1
+T(2:57): READY -> RUNNG  cb=1 rem=16
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:2 run.Ts:57 run.nextEventTime:58 runsize:1
+Block: PID:0 block.Ts:44 block.nextEventTime:57 blocksize:2
+
+1==> 57 0 ts=44 READY  dur=13
+T(0:57): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:57 ready.nextEventTime:57 readysize:1
+Run: topPID:2 run.Ts:57 run.nextEventTime:58 runsize:1
+Block: PID:1 block.Ts:57 block.nextEventTime:65 blocksize:1
+
+3==> 58 2 ts=57 BLOCK  dur=1
+T(2:58): RUNNG -> BLOCK  ib=5 rem=15
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:57 ready.nextEventTime:57 readysize:1
+Block: PID:2 block.Ts:58 block.nextEventTime:63 blocksize:2
+
+2==> 58 0 ts=57 RUNNG  dur=1
+T(0:58): READY -> RUNNG  cb=4 rem=89
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:58 run.nextEventTime:62 runsize:1
+Block: PID:2 block.Ts:58 block.nextEventTime:63 blocksize:2
+
+3==> 62 0 ts=58 BLOCK  dur=4
+T(0:62): RUNNG -> BLOCK  ib=7 rem=85
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:2 block.Ts:58 block.nextEventTime:63 blocksize:3
+
+1==> 63 2 ts=58 READY  dur=5
+T(2:63): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:63 ready.nextEventTime:63 readysize:1
+Block: PID:1 block.Ts:57 block.nextEventTime:65 blocksize:2
+
+2==> 63 2 ts=63 RUNNG  dur=0
+T(2:63): READY -> RUNNG  cb=1 rem=15
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:2 run.Ts:63 run.nextEventTime:64 runsize:1
+Block: PID:1 block.Ts:57 block.nextEventTime:65 blocksize:2
+
+3==> 64 2 ts=63 BLOCK  dur=1
+T(2:64): RUNNG -> BLOCK  ib=2 rem=14
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:1 block.Ts:57 block.nextEventTime:65 blocksize:3
+
+1==> 65 1 ts=57 READY  dur=8
+T(1:65): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:65 ready.nextEventTime:65 readysize:1
+Block: PID:2 block.Ts:64 block.nextEventTime:66 blocksize:2
+
+2==> 65 1 ts=65 RUNNG  dur=0
+T(1:65): READY -> RUNNG  cb=23 rem=69
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:1 run.Ts:65 run.nextEventTime:88 runsize:1
+Block: PID:2 block.Ts:64 block.nextEventTime:66 blocksize:2
+
+1==> 66 2 ts=64 READY  dur=2
+T(2:66): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:66 ready.nextEventTime:66 readysize:1
+Run: topPID:1 run.Ts:65 run.nextEventTime:88 runsize:1
+Block: PID:0 block.Ts:62 block.nextEventTime:69 blocksize:1
+
+1==> 69 0 ts=62 READY  dur=7
+T(0:69): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:66 ready.nextEventTime:66 readysize:2
+Run: topPID:1 run.Ts:65 run.nextEventTime:88 runsize:1
+
+3==> 88 1 ts=65 BLOCK  dur=23
+T(1:88): RUNNG -> BLOCK  ib=7 rem=46
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:66 ready.nextEventTime:66 readysize:2
+Block: PID:1 block.Ts:88 block.nextEventTime:95 blocksize:1
+
+2==> 88 2 ts=66 RUNNG  dur=22
+T(2:88): READY -> RUNNG  cb=2 rem=14
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:69 ready.nextEventTime:69 readysize:1
+Run: topPID:2 run.Ts:88 run.nextEventTime:90 runsize:1
+Block: PID:1 block.Ts:88 block.nextEventTime:95 blocksize:1
+
+3==> 90 2 ts=88 BLOCK  dur=2
+T(2:90): RUNNG -> BLOCK  ib=4 rem=12
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:69 ready.nextEventTime:69 readysize:1
+Block: PID:2 block.Ts:90 block.nextEventTime:94 blocksize:2
+
+2==> 90 0 ts=69 RUNNG  dur=21
+T(0:90): READY -> RUNNG  cb=8 rem=85
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:90 run.nextEventTime:98 runsize:1
+Block: PID:2 block.Ts:90 block.nextEventTime:94 blocksize:2
+
+1==> 94 2 ts=90 READY  dur=4
+T(2:94): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:94 ready.nextEventTime:94 readysize:1
+Run: topPID:0 run.Ts:90 run.nextEventTime:98 runsize:1
+Block: PID:1 block.Ts:88 block.nextEventTime:95 blocksize:1
+
+1==> 95 1 ts=88 READY  dur=7
+T(1:95): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:94 ready.nextEventTime:94 readysize:2
+Run: topPID:0 run.Ts:90 run.nextEventTime:98 runsize:1
+
+3==> 98 0 ts=90 BLOCK  dur=8
+T(0:98): RUNNG -> BLOCK  ib=10 rem=77
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:94 ready.nextEventTime:94 readysize:2
+Block: PID:0 block.Ts:98 block.nextEventTime:108 blocksize:1
+
+2==> 98 2 ts=94 RUNNG  dur=4
+T(2:98): READY -> RUNNG  cb=3 rem=12
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:95 ready.nextEventTime:95 readysize:1
+Run: topPID:2 run.Ts:98 run.nextEventTime:101 runsize:1
+Block: PID:0 block.Ts:98 block.nextEventTime:108 blocksize:1
+
+3==> 101 2 ts=98 BLOCK  dur=3
+T(2:101): RUNNG -> BLOCK  ib=1 rem=9
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:95 ready.nextEventTime:95 readysize:1
+Block: PID:2 block.Ts:101 block.nextEventTime:102 blocksize:2
+
+2==> 101 1 ts=95 RUNNG  dur=6
+T(1:101): READY -> RUNNG  cb=3 rem=46
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:1 run.Ts:101 run.nextEventTime:104 runsize:1
+Block: PID:2 block.Ts:101 block.nextEventTime:102 blocksize:2
+
+1==> 102 2 ts=101 READY  dur=1
+T(2:102): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:102 ready.nextEventTime:102 readysize:1
+Run: topPID:1 run.Ts:101 run.nextEventTime:104 runsize:1
+Block: PID:0 block.Ts:98 block.nextEventTime:108 blocksize:1
+
+3==> 104 1 ts=101 BLOCK  dur=3
+T(1:104): RUNNG -> BLOCK  ib=4 rem=43
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:102 ready.nextEventTime:102 readysize:1
+Block: PID:0 block.Ts:98 block.nextEventTime:108 blocksize:2
+
+2==> 104 2 ts=102 RUNNG  dur=2
+T(2:104): READY -> RUNNG  cb=8 rem=9
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:2 run.Ts:104 run.nextEventTime:112 runsize:1
+Block: PID:0 block.Ts:98 block.nextEventTime:108 blocksize:2
+
+1==> 108 0 ts=98 READY  dur=10
+T(0:108): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:108 ready.nextEventTime:108 readysize:1
+Run: topPID:2 run.Ts:104 run.nextEventTime:112 runsize:1
+Block: PID:1 block.Ts:104 block.nextEventTime:108 blocksize:1
+
+1==> 108 1 ts=104 READY  dur=4
+T(1:108): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:108 ready.nextEventTime:108 readysize:2
+Run: topPID:2 run.Ts:104 run.nextEventTime:112 runsize:1
+
+3==> 112 2 ts=104 BLOCK  dur=8
+T(2:112): RUNNG -> BLOCK  ib=1 rem=1
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:108 ready.nextEventTime:108 readysize:2
+Block: PID:2 block.Ts:112 block.nextEventTime:113 blocksize:1
+
+2==> 112 0 ts=108 RUNNG  dur=4
+T(0:112): READY -> RUNNG  cb=10 rem=77
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:108 ready.nextEventTime:108 readysize:1
+Run: topPID:0 run.Ts:112 run.nextEventTime:122 runsize:1
+Block: PID:2 block.Ts:112 block.nextEventTime:113 blocksize:1
+
+1==> 113 2 ts=112 READY  dur=1
+T(2:113): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:108 ready.nextEventTime:108 readysize:2
+Run: topPID:0 run.Ts:112 run.nextEventTime:122 runsize:1
+
+3==> 122 0 ts=112 BLOCK  dur=10
+T(0:122): RUNNG -> BLOCK  ib=3 rem=67
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:108 ready.nextEventTime:108 readysize:2
+Block: PID:0 block.Ts:122 block.nextEventTime:125 blocksize:1
+
+2==> 122 1 ts=108 RUNNG  dur=14
+T(1:122): READY -> RUNNG  cb=13 rem=43
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:113 ready.nextEventTime:113 readysize:1
+Run: topPID:1 run.Ts:122 run.nextEventTime:135 runsize:1
+Block: PID:0 block.Ts:122 block.nextEventTime:125 blocksize:1
+
+1==> 125 0 ts=122 READY  dur=3
+T(0:125): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:113 ready.nextEventTime:113 readysize:2
+Run: topPID:1 run.Ts:122 run.nextEventTime:135 runsize:1
+
+3==> 135 1 ts=122 BLOCK  dur=13
+T(1:135): RUNNG -> BLOCK  ib=9 rem=30
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:2 ready.Ts:113 ready.nextEventTime:113 readysize:2
+Block: PID:1 block.Ts:135 block.nextEventTime:144 blocksize:1
+
+2==> 135 2 ts=113 RUNNG  dur=22
+T(2:135): READY -> RUNNG  cb=1 rem=1
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:125 ready.nextEventTime:125 readysize:1
+Run: topPID:2 run.Ts:135 run.nextEventTime:145 runsize:1
+Block: PID:1 block.Ts:135 block.nextEventTime:144 blocksize:1
+
+1==> 144 1 ts=135 READY  dur=9
+T(1:144): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:125 ready.nextEventTime:125 readysize:2
+Run: topPID:2 run.Ts:135 run.nextEventTime:145 runsize:1
+
+==> 144 2 ts=135 BLOCK  dur=9
+==> T(2): Done
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:125 ready.nextEventTime:125 readysize:2
+
+2==> 144 0 ts=125 RUNNG  dur=19
+T(0:144): READY -> RUNNG  cb=8 rem=67
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:144 ready.nextEventTime:144 readysize:1
+Run: topPID:0 run.Ts:144 run.nextEventTime:152 runsize:1
+
+3==> 152 0 ts=144 BLOCK  dur=8
+T(0:152): RUNNG -> BLOCK  ib=14 rem=59
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:144 ready.nextEventTime:144 readysize:1
+Block: PID:0 block.Ts:152 block.nextEventTime:166 blocksize:1
+
+2==> 152 1 ts=144 RUNNG  dur=8
+T(1:152): READY -> RUNNG  cb=17 rem=30
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:1 run.Ts:152 run.nextEventTime:169 runsize:1
+Block: PID:0 block.Ts:152 block.nextEventTime:166 blocksize:1
+
+1==> 166 0 ts=152 READY  dur=14
+T(0:166): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:166 ready.nextEventTime:166 readysize:1
+Run: topPID:1 run.Ts:152 run.nextEventTime:169 runsize:1
+
+3==> 169 1 ts=152 BLOCK  dur=17
+T(1:169): RUNNG -> BLOCK  ib=2 rem=13
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:166 ready.nextEventTime:166 readysize:1
+Block: PID:1 block.Ts:169 block.nextEventTime:171 blocksize:1
+
+2==> 169 0 ts=166 RUNNG  dur=3
+T(0:169): READY -> RUNNG  cb=3 rem=59
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:169 run.nextEventTime:172 runsize:1
+Block: PID:1 block.Ts:169 block.nextEventTime:171 blocksize:1
+
+1==> 171 1 ts=169 READY  dur=2
+T(1:171): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:171 ready.nextEventTime:171 readysize:1
+Run: topPID:0 run.Ts:169 run.nextEventTime:172 runsize:1
+
+3==> 172 0 ts=169 BLOCK  dur=3
+T(0:172): RUNNG -> BLOCK  ib=10 rem=56
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:171 ready.nextEventTime:171 readysize:1
+Block: PID:0 block.Ts:172 block.nextEventTime:182 blocksize:1
+
+2==> 172 1 ts=171 RUNNG  dur=1
+T(1:172): READY -> RUNNG  cb=4 rem=13
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:1 run.Ts:172 run.nextEventTime:176 runsize:1
+Block: PID:0 block.Ts:172 block.nextEventTime:182 blocksize:1
+
+3==> 176 1 ts=172 BLOCK  dur=4
+T(1:176): RUNNG -> BLOCK  ib=2 rem=9
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:1 block.Ts:176 block.nextEventTime:178 blocksize:2
+
+1==> 178 1 ts=176 READY  dur=2
+T(1:178): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:1 ready.Ts:178 ready.nextEventTime:178 readysize:1
+Block: PID:0 block.Ts:172 block.nextEventTime:182 blocksize:1
+
+2==> 178 1 ts=178 RUNNG  dur=0
+T(1:178): READY -> RUNNG  cb=9 rem=9
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:1 run.Ts:178 run.nextEventTime:208 runsize:1
+Block: PID:0 block.Ts:172 block.nextEventTime:182 blocksize:1
+
+1==> 182 0 ts=172 READY  dur=10
+T(0:182): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:182 ready.nextEventTime:182 readysize:1
+Run: topPID:1 run.Ts:178 run.nextEventTime:208 runsize:1
+
+==> 187 1 ts=178 BLOCK  dur=9
+==> T(1): Done
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:182 ready.nextEventTime:182 readysize:1
+
+2==> 187 0 ts=182 RUNNG  dur=5
+T(0:187): READY -> RUNNG  cb=5 rem=56
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:187 run.nextEventTime:192 runsize:1
+
+3==> 192 0 ts=187 BLOCK  dur=5
+T(0:192): RUNNG -> BLOCK  ib=18 rem=51
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:0 block.Ts:192 block.nextEventTime:210 blocksize:1
+
+1==> 210 0 ts=192 READY  dur=18
+T(0:210): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:210 ready.nextEventTime:210 readysize:1
+
+2==> 210 0 ts=210 RUNNG  dur=0
+T(0:210): READY -> RUNNG  cb=19 rem=51
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:210 run.nextEventTime:229 runsize:1
+
+3==> 229 0 ts=210 BLOCK  dur=19
+T(0:229): RUNNG -> BLOCK  ib=5 rem=32
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:0 block.Ts:229 block.nextEventTime:234 blocksize:1
+
+1==> 234 0 ts=229 READY  dur=5
+T(0:234): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:234 ready.nextEventTime:234 readysize:1
+
+2==> 234 0 ts=234 RUNNG  dur=0
+T(0:234): READY -> RUNNG  cb=16 rem=32
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:234 run.nextEventTime:250 runsize:1
+
+3==> 250 0 ts=234 BLOCK  dur=16
+T(0:250): RUNNG -> BLOCK  ib=11 rem=16
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:0 block.Ts:250 block.nextEventTime:261 blocksize:1
+
+1==> 261 0 ts=250 READY  dur=11
+T(0:261): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:261 ready.nextEventTime:261 readysize:1
+
+2==> 261 0 ts=261 RUNNG  dur=0
+T(0:261): READY -> RUNNG  cb=14 rem=16
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:261 run.nextEventTime:275 runsize:1
+
+3==> 275 0 ts=261 BLOCK  dur=14
+T(0:275): RUNNG -> BLOCK  ib=7 rem=2
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Block: PID:0 block.Ts:275 block.nextEventTime:282 blocksize:1
+
+1==> 282 0 ts=275 READY  dur=7
+T(0:282): BLOCK -> READY
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Ready: topPID:0 ready.Ts:282 ready.nextEventTime:282 readysize:1
+
+2==> 282 0 ts=282 RUNNG  dur=0
+T(0:282): READY -> RUNNG  cb=2 rem=2
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+Run: topPID:0 run.Ts:282 run.nextEventTime:294 runsize:1
+
+==> 284 0 ts=282 BLOCK  dur=2
+==> T(0): Done
+
+Task: topPID:3 task.Ts:1000 task.nextEventTime:1000 tasksize:1
+
+1==> 1000 3 ts=1000 READY  dur=0
+T(3:1000): READY -> READY
+
+Ready: topPID:3 ready.Ts:1000 ready.nextEventTime:1000 readysize:1
+
+2==> 1000 3 ts=1000 RUNNG  dur=0
+T(3:1000): READY -> RUNNG  cb=1 rem=30
+
+Run: topPID:3 run.Ts:1000 run.nextEventTime:1001 runsize:1
+
+3==> 1001 3 ts=1000 BLOCK  dur=1
+T(3:1001): RUNNG -> BLOCK  ib=2 rem=29
+
+Block: PID:3 block.Ts:1001 block.nextEventTime:1003 blocksize:1
+
+1==> 1003 3 ts=1001 READY  dur=2
+T(3:1003): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1003 ready.nextEventTime:1003 readysize:1
+
+2==> 1003 3 ts=1003 RUNNG  dur=0
+T(3:1003): READY -> RUNNG  cb=4 rem=29
+
+Run: topPID:3 run.Ts:1003 run.nextEventTime:1007 runsize:1
+
+3==> 1007 3 ts=1003 BLOCK  dur=4
+T(3:1007): RUNNG -> BLOCK  ib=3 rem=25
+
+Block: PID:3 block.Ts:1007 block.nextEventTime:1010 blocksize:1
+
+1==> 1010 3 ts=1007 READY  dur=3
+T(3:1010): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1010 ready.nextEventTime:1010 readysize:1
+
+2==> 1010 3 ts=1010 RUNNG  dur=0
+T(3:1010): READY -> RUNNG  cb=1 rem=25
+
+Run: topPID:3 run.Ts:1010 run.nextEventTime:1011 runsize:1
+
+3==> 1011 3 ts=1010 BLOCK  dur=1
+T(3:1011): RUNNG -> BLOCK  ib=2 rem=24
+
+Block: PID:3 block.Ts:1011 block.nextEventTime:1013 blocksize:1
+
+1==> 1013 3 ts=1011 READY  dur=2
+T(3:1013): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1013 ready.nextEventTime:1013 readysize:1
+
+2==> 1013 3 ts=1013 RUNNG  dur=0
+T(3:1013): READY -> RUNNG  cb=2 rem=24
+
+Run: topPID:3 run.Ts:1013 run.nextEventTime:1015 runsize:1
+
+3==> 1015 3 ts=1013 BLOCK  dur=2
+T(3:1015): RUNNG -> BLOCK  ib=1 rem=22
+
+Block: PID:3 block.Ts:1015 block.nextEventTime:1016 blocksize:1
+
+1==> 1016 3 ts=1015 READY  dur=1
+T(3:1016): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1016 ready.nextEventTime:1016 readysize:1
+
+2==> 1016 3 ts=1016 RUNNG  dur=0
+T(3:1016): READY -> RUNNG  cb=6 rem=22
+
+Run: topPID:3 run.Ts:1016 run.nextEventTime:1022 runsize:1
+
+3==> 1022 3 ts=1016 BLOCK  dur=6
+T(3:1022): RUNNG -> BLOCK  ib=5 rem=16
+
+Block: PID:3 block.Ts:1022 block.nextEventTime:1027 blocksize:1
+
+1==> 1027 3 ts=1022 READY  dur=5
+T(3:1027): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1027 ready.nextEventTime:1027 readysize:1
+
+2==> 1027 3 ts=1027 RUNNG  dur=0
+T(3:1027): READY -> RUNNG  cb=8 rem=16
+
+Run: topPID:3 run.Ts:1027 run.nextEventTime:1035 runsize:1
+
+3==> 1035 3 ts=1027 BLOCK  dur=8
+T(3:1035): RUNNG -> BLOCK  ib=2 rem=8
+
+Block: PID:3 block.Ts:1035 block.nextEventTime:1037 blocksize:1
+
+1==> 1037 3 ts=1035 READY  dur=2
+T(3:1037): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1037 ready.nextEventTime:1037 readysize:1
+
+2==> 1037 3 ts=1037 RUNNG  dur=0
+T(3:1037): READY -> RUNNG  cb=6 rem=8
+
+Run: topPID:3 run.Ts:1037 run.nextEventTime:1043 runsize:1
+
+3==> 1043 3 ts=1037 BLOCK  dur=6
+T(3:1043): RUNNG -> BLOCK  ib=2 rem=2
+
+Block: PID:3 block.Ts:1043 block.nextEventTime:1045 blocksize:1
+
+1==> 1045 3 ts=1043 READY  dur=2
+T(3:1045): BLOCK -> READY
+
+Ready: topPID:3 ready.Ts:1045 ready.nextEventTime:1045 readysize:1
+
+2==> 1045 3 ts=1045 RUNNG  dur=0
+T(3:1045): READY -> RUNNG  cb=2 rem=2
+
+Run: topPID:3 run.Ts:1045 run.nextEventTime:1055 runsize:1
+
+==> 1047 3 ts=1045 BLOCK  dur=2
+==> T(3): Done
+
+FCFS
+0000:    1  100   20   20 |  284  283  105   78
+0001:    1  100   30   10 |  187  186   38   48
+0002:    1   30   10    5 |  144  143   16   89
+0003: 1000   30   10    5 | 1047   47   17    0
+SUM: 1047 25.60 14.52 164.75 53.75 0.382

@@ -12,9 +12,19 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	able to print Per process information correctly; create Reporter map in report type to store those info
 --	all sotring is still in schedule class, and all switching is still in AllQ class
 --	able to print SUM. But aveIO might be wrong because you may have more than one tasks in IO?
+--	can specific recheduler, and change the priority queue according. But havent test its accuracy
+--	now can specify the -v flag. I am adding vflag value into those print function, and only print it if vflag==1
+--	should probably calculat IOtime correct(?)
+--	able to process (c) issue: same nextEvenTime, but then find smallestTs
+--	able to process (a) issue: termination takes precedence over scheduling the next IO burst
+--	have issue for input3. Which queue should really consider the insert index? ==> only ready queue need to consider order
+--	figure out the logic when nextEvent is ready, but nextnextEvent have equal value, then choose the smallest Ts among these two queue except ready queue
+--	add some feature to deal with first and last line new line
 
 Todo:
 --	define child classs, so it can run diff scheduler
+--	IOtime still not correct
+--	delay scheduler issue
 */
 
 #include <fstream>
@@ -38,7 +48,8 @@ using namespace std;
 
 vector<int> randvals;
 int ofs=0, n1, n2, n3, n4;
-int CPU_burst=10, IO_burst=10, CPUtime=0;
+int CPU_burst=10, IO_burst=10, CPUtime=0, BlockEmptyTag=1;
+double IOruntime=0,tmpIOruntime=0;
 int c, vflag, sflag, opterr=0, RRval=-1;
 string svalue,shedulFlag;
 
@@ -71,6 +82,7 @@ public:
 	int cpuRun;
 };
 
+
 ////Class////
 class schedule{
 public:
@@ -85,57 +97,96 @@ public:
 	string curState;
 	string nextState;	
 	string scheduler;
+	int insertindex;
+	int nextEventTime;
 	map<int,report> Reporter;
+	schedule();
 	schedule(int ts,int pid,int tg, int re, int cpub, int iob,string cur,string next, string flag){
-		Ts=ts; PID=pid; Tg=tg; remain=re; CPUB=cpub; IOB=iob; curState=cur; nextState=next; scheduler=flag;
+		Ts=ts; PID=pid; Tg=tg; remain=re; CPUB=cpub; IOB=iob; curState=cur; nextState=next; scheduler=flag;nextEventTime=Ts;
 		Reporter[PID].At=Ts; Reporter[PID].Tc=remain; Reporter[PID].CPUB=CPUB; Reporter[PID].IOB=IOB;
 		// cout<<PID<<" "<<Reporter[PID].At<<" "<<Reporter[PID].Tc<<" "<<Reporter[PID].CPUB<<" "<<Reporter[PID].IOB<<endl;
 	}
 	~schedule(){};
 	void Run2Block(int ts, int tg, int ib);
-	void Block2Ready(int ts, int tg);
+	void Block2Ready(int ts, int tg, int num);
 	void Ready2Run(int ts, int tg, int cb);
 	void Run2Ready(int ts, int tg);
 	void print(){cout<<"timestamp: "<<Ts<<" PID: "<<PID<<" Tg: "<<Tg<<" remain: "<<remain<<" curState: "<<curState<<" nextState: "<<nextState<<endl;}
-	void enterReadyP(int &cputime){
+	void enterReadyP(int &cputime, int vflag){
 		int dur=Ts-Tg;
-		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
+		if (vflag==1){
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
+			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
+		}
+		
 	}
-	void enterRunP(int &cputime){
+	void enterRunP(int &cputime, int vflag){
 		int dur=Ts-Tg; 
-		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
+		if (vflag==1){
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
+			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
+		}		
 	}
-	void enterBlockP(int &cputime){
+	void enterBlockP(int &cputime, int vflag){
 		int dur=Ts-Tg; 
-		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-		cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
+		if (vflag==1){
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
+			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
+		}		
 	}
-	void doneP(int &cputime){
+	void doneP(int &cputime, int vflag, int notfinish){
 		int dur=Ts-Tg; 
-		cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-		cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
+		if (vflag==1){
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			
+			if(notfinish==1){cout<<"==> T("<<PID<<"): Done"<<endl<<endl;			}
+			else if (notfinish==0){cout<<"==> T("<<PID<<"): Done"<<endl;				}			
+		}
+		ofs=ofs-1;
 		Reporter[PID].Ft=Ts;
 		Reporter[PID].Tt=Ts-Reporter[PID].At;
+	}
+	void earlyDoneP(int &cputime, int vflag){
+		int dur=remain; 
+		if (vflag==1){
+			cputime=Ts+remain;
+			cout<<"==> "<<Ts+remain<<" "<<PID<<" ts="<<Ts<<" BLOCK"<<"  "<<"dur="<<dur<<endl;
+			// cout<<"==> "<<Ts+remain<<" "<<PID<<" ts="<<Ts<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
+			
+		}
 		ofs=ofs-1;
+		Reporter[PID].Ft=Ts;
+		Reporter[PID].Tt=Ts-Reporter[PID].At;
+	}
+
+	void currentP(){
+		cout<<"Ts:"<<Ts<<" PID:"<<PID<<" Tg:"<<Tg<<" Remain:"<<remain<<" curState:"<<curState<<" nextState:"<<nextState<<" insertindex:"<<insertindex<<endl;
 	}
 };
 void schedule::Run2Block(int ts, int tg, int ib){	
-	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;remain=remain-(Ts-Tg);curState=statecode(0); nextState=statecode(1);CPUtime=Ts;		
+	remain=remain-(ts-tg);
+	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
+	Ts=ts; Tg=tg; Cb=-1000;Ib=ib;curState=statecode(0); nextState=statecode(1); nextEventTime=Ts+Ib;//CPUtime=Ts;		
 	Reporter[PID].cpuRun=Reporter[PID].cpuRun+(Ts-tg);
 }
-void schedule::Block2Ready(int ts, int tg){
-	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2);CPUtime=Ts;
+void schedule::Block2Ready(int ts, int tg, int num){
+	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
+	Ts=ts; Tg=tg; Cb=-1000;Ib=-1000;curState=statecode(1); nextState=statecode(2); nextEventTime=Ts;//CPUtime=Ts;	
 	Reporter[PID].It=Reporter[PID].It+(Ts-Tg);
 }
 void schedule::Ready2Run(int ts, int tg, int cb){
-	Ts=ts; Tg=tg; Cb=cb; Ib=-1000; remain=remain-(Ts-Tg) ;curState=statecode(2); nextState=statecode(0);CPUtime=Ts;
+	remain=remain-(ts-tg);
+	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
+	Ts=ts; Tg=tg; Cb=cb; Ib=-1000;curState=statecode(2); nextState=statecode(0); nextEventTime=Ts+Cb;//CPUtime=Ts;
 	if(remain<cb){Cb=remain;}
 	Reporter[PID].Cw=Reporter[PID].Cw+(Ts-Tg);
 }
 void schedule::Run2Ready(int ts, int tg){
-	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2);CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
+	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
+	Ts=ts; Tg=tg; curState=statecode(0); nextState=statecode(2); //CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
 }
 
 ////Class////
@@ -151,29 +202,26 @@ public:
 inputTask::inputTask(int at, int tc, int cb, int io){AT=at;TC=tc;CB=cb;IO=io;}
 inputTask::~inputTask(){}
 
-// ////Class////
-// class Compare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID > t2.PID) return true;return false;}        };
-// class LCFSCompare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID < t2.PID) return true;return false;}        };
-// class SJFCompare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID > t2.PID) return true;return false;}        };
-// class RRCompare {
-//     public:
-//     virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-//     { if (t1.PID > t2.PID) return true;return false;}        };
+////Class////
+class TaskCompare {
+    public:
+    virtual bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { if (t1.PID > t2.PID) return true;return false;}        };
 
 ////Class////
 class ReportCompare {
     public:
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
     { if (t1.PID > t2.PID) return true;return false;}
+};
+////Class////
+class NexteventCompare {
+    public:
+    bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
+    { 	if (t1.nextEventTime > t2.nextEventTime) return true;
+		if ((t1.nextEventTime == t2.nextEventTime)&&(t1.Ts > t2.Ts))return true;
+		return false;
+    }
 };
 
 ////Class////
@@ -186,66 +234,280 @@ public:
     		// if ((t1.scheduler=="L")&&(t1.PID < t2.PID)) return true;return false;
     		int flag=0;
     		if (t1.scheduler=="F"){
-    			if (t1.PID > t2.PID) flag=1;    			    			
+    			if (t1.insertindex > t2.insertindex) flag=1;    			    			
     		}
     		else if (t1.scheduler=="L"){
-    			if (t1.PID < t2.PID) flag=1;
+    			if (t1.insertindex < t2.insertindex) flag=1;
+    		}
+    		if (t1.scheduler=="R"){
+    			if (t1.insertindex > t2.insertindex) flag=1;    			    			
     		}
     		if(flag==1) return true; return false;    		
 		}            	
 	};
-
-	priority_queue<schedule, vector<schedule>, Compare> tasksQ;
+	priority_queue<schedule, vector<schedule>, TaskCompare> tasksQ;
 	priority_queue<schedule, vector<schedule>, Compare> readyQ;
 	priority_queue<schedule, vector<schedule>, Compare> runQ;
-	priority_queue<schedule, vector<schedule>, Compare> blockQ;
+	priority_queue<schedule, vector<schedule>, NexteventCompare> blockQ;
 	
 	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
-	string smallest(){  //this is the function to find the queue who have the next cloest element
-		int s=10000; string Flag;
-		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks"; }
-		if ((readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts;Flag="ready"; }
-    	if((runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts;Flag="run"; }
-    	if(((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block"; }
+	
+	string smallest(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
+		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().nextEventTime<s)){
+		s=readyQ.top().nextEventTime; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if((run==1)&&(runQ.size()>0)&&(runQ.top().nextEventTime<s)){s=runQ.top().nextEventTime; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }    	
     	return Flag;
 	}
-	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.
-		string tmpS=smallest();
-		if (tmpS=="tasks"){
-			schedule tmp=tasksQ.top();			
-			if (tmp.remain>0){tmp.enterReadyP(tmp.Ts);readyQ.push(tmp);tasksQ.pop();} 
-			else{tmp.doneP(CPUtime);ReportQ.push(tmp);tasksQ.pop();}			}
-		if (tmpS=="ready"){
-			schedule tmp=readyQ.top();
-			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
-			if (tmp.remain>0){tmp.enterRunP(CPUtime);runQ.push(tmp);readyQ.pop();}
-			else{
-				tmp.doneP(CPUtime);ReportQ.push(tmp);readyQ.pop();}			}
-		if (tmpS=="run"){
-			schedule tmp=runQ.top();
-			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
-			if (tmp.remain>0){tmp.enterBlockP(CPUtime);blockQ.push(tmp);runQ.pop();;}
-			else{
-				tmp.doneP(CPUtime);ReportQ.push(tmp);runQ.pop();}}
-		if (tmpS=="block"){
-			schedule tmp=blockQ.top();
-			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts);			
-			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);blockQ.pop();}
-			else{
-				tmp.doneP(CPUtime);ReportQ.push(tmp);blockQ.pop();}			}
+	int smallest_val(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
+		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}		
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().nextEventTime<s)){
+		s=readyQ.top().nextEventTime; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if((run==1)&&(runQ.size()>0)&&(runQ.top().nextEventTime<s)){s=runQ.top().nextEventTime; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	return s;
 	}
+	string smallestTg(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
+		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}		
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Tg<s)){s=tasksQ.top().Tg;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().Tg<s)){s=readyQ.top().Tg; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if((run==1)&&(runQ.size()>0)&&(runQ.top().Tg<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Tg<s)){s=blockQ.top().Tg;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	return Flag;
+	}
+	string smallestTs(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
+		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if ((run==1)&&(runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if ((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	return Flag;
+	}
+	int EqualNextEvent(string tmpS){	
+		int rea, run, blo;			
+		if (readyQ.size()>0){rea=readyQ.top().nextEventTime;}
+		if (runQ.size()>0){run=runQ.top().nextEventTime;}
+		if (blockQ.size()>0){blo=blockQ.top().nextEventTime;}
+		if(tmpS=="ready"){if((rea==run)|(rea==blo)){return 1;}	}		
+		else if(tmpS=="run"){if((run==rea)|(run==blo)){return 1;}	}
+		else if (tmpS=="blo"){if((blo==rea)|(blo==run)){return 1;}	}		
+		return 0;
+	}
+
+	int findLongEvent(priority_queue<schedule, vector<schedule>, Compare> q){
+		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.nextEventTime>longest){
+				longest=t.nextEventTime;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+	int findLongEvent(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.nextEventTime>longest){
+				longest=t.nextEventTime;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+	int findLongEventIb(priority_queue<schedule, vector<schedule>, Compare> q){
+		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.nextEventTime>longest){
+				longest=t.Ib;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+	int findLongEventIb(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.nextEventTime>longest){
+				longest=t.Ib;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+	int findLongIb(priority_queue<schedule, vector<schedule>, Compare> q){
+		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.Ib>longest){
+				longest=t.Ib;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+	int findLongIb(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.Ib>longest){
+				longest=t.Ib;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+
+	int findLongTs(priority_queue<schedule, vector<schedule>, Compare> q){
+		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int longest=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			if (t.Ib>longest){
+				longest=t.Ts;
+			}
+			qtmp.pop();
+		}
+		return longest;
+	}
+
+	int Qlastindex(priority_queue<schedule, vector<schedule>, Compare> q){
+		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		int index=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			index=t.insertindex;
+			qtmp.pop();
+		}
+		return index+1;
+	}
+	int Qlastindex(priority_queue<schedule, vector<schedule>, NexteventCompare> q){
+		priority_queue<schedule, vector<schedule>, NexteventCompare> qtmp;
+		int index=-1;
+		qtmp=q;
+		while (!qtmp.empty()){
+			schedule t=qtmp.top();
+			index=t.insertindex;
+			qtmp.pop();
+		}
+		return index+1;
+	}
+	int othertasknotdone(){
+		int allTasks=tasksQ.size()+readyQ.size()+runQ.size()+blockQ.size();
+		if (allTasks>1) return 1; return 0;
+	}
+	
+	void IOtimeCalculation(){
+		if ((tmpIOruntime==0)&&(blockQ.size()>0)){
+			IOruntime=findLongIb(blockQ);			
+			tmpIOruntime=findLongEvent(blockQ);			
+		}
+		else if ((tmpIOruntime<CPUtime)&&(blockQ.size()>0)){						
+			if(BlockEmptyTag==1){
+				double longest=findLongEvent(blockQ);
+				double longest_Ib=findLongEventIb(blockQ);				
+				// cout<<">>>>>>>>1 longest:"<<longest<<" longest_Ib:"<<longest_Ib<<endl;
+				IOruntime=IOruntime+longest_Ib;
+				tmpIOruntime=longest;
+				// cout<<">>>>>>>>1 IOruntime:"<<IOruntime<<" tmpIOruntime:"<<tmpIOruntime<<endl;
+				BlockEmptyTag=0;
+			}
+			else if(BlockEmptyTag==0){
+				double longest=findLongEvent(blockQ);
+				// cout<<">>>>>>>>2 longest:"<<longest<<" tmpIOruntime:"<<tmpIOruntime<<endl;
+				IOruntime=IOruntime+(longest-tmpIOruntime);
+				tmpIOruntime=longest;
+				// cout<<">>>>>>>>2 IOruntime:"<<IOruntime<<" tmpIOruntime:"<<tmpIOruntime<<endl;
+				BlockEmptyTag=0;
+			}
+		}		
+		else if(blockQ.size()==0) {BlockEmptyTag=1;}
+	}
+
+	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.		
+		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue
+		int tmpS_val=smallest_val(""); // based on nextEventTime, return the smallest nextEventTime
+		string secondtmpS=smallest(tmpS);
+		if ((runQ.size()>0)&&(tmpS=="ready")){
+			tmpS_val=smallest_val(tmpS);
+			if((tmpS!="tasks")&&(EqualNextEvent(secondtmpS)==1)){tmpS=smallestTs("ready");}
+			else tmpS=secondtmpS;
+		}	// so make sure one one task in runQ
+		else if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
+
+		if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
+			schedule tmp=runQ.top();
+			tmp.Run2Block(tmp.Ts+tmp.remain, tmp.Ts, myrandom(tmp.IOB,ofs));
+			tmp.doneP(CPUtime, vflag, othertasknotdone());
+			ReportQ.push(tmp);runQ.pop();
+		}
+		else{
+			if (tmpS=="tasks"){
+				schedule tmp=tasksQ.top();						
+				if (tmp.remain>0){tmp.enterReadyP(tmp.Ts, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);tasksQ.pop();} 
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);tasksQ.pop();}			}
+			if (tmpS=="ready"){
+				schedule tmp=readyQ.top();
+				tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
+				if (tmp.remain>0){tmp.enterRunP(CPUtime, vflag);tmp.insertindex=Qlastindex(runQ);runQ.push(tmp);readyQ.pop();}
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);readyQ.pop();}			}
+			if (tmpS=="run"){
+				schedule tmp=runQ.top();
+				tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
+				if (tmp.remain>0){tmp.enterBlockP(CPUtime, vflag);tmp.insertindex=Qlastindex(blockQ);blockQ.push(tmp);runQ.pop();;}
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);runQ.pop();}}
+			if (tmpS=="block"){
+				schedule tmp=blockQ.top();
+				tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts, blockQ.size());			
+				if (tmp.remain>0){tmp.enterReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);blockQ.pop();}
+				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);blockQ.pop();}			}			
+
+		}
+
+
+		
+			
+		
+	
+				
+	}
+
 	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false
 		if((tasksQ.size()>0)|(readyQ.size()>0)|(runQ.size()>0)|(blockQ.size()>0)) return true;
 		return false;
 	}
+
 	void printReport(){
 		int FinishTime=0;
-		double aveCPU=0;
-		double aveIO=0;
-		double aveTt=0;
-		double aveCw=0;
-		double aveThrouput=0; // in 100 time units
-		double numTask=ReportQ.size();
+		double aveCPU=0,aveIO=0,aveTt=0,aveCw=0,aveThrouput=0,numTask=ReportQ.size();		
 		while(!ReportQ.empty()){
 			schedule tmp=ReportQ.top();
 			printf("%04d: %4d %4d %4d %4d | %4d %4d %4d %4d\n", tmp.PID,tmp.Reporter[tmp.PID].At, tmp.Reporter[tmp.PID].Tc
@@ -258,92 +520,37 @@ public:
 			ReportQ.pop();
 		}
 		aveCPU=aveCPU/FinishTime*100;
-		aveIO=aveIO/FinishTime*100;
+		// aveIO=aveIO/FinishTime*100;		
+		aveIO=(IOruntime/FinishTime)*100;		
 		aveTt=aveTt/numTask;
 		aveCw=aveCw/numTask;
 		aveThrouput=numTask/FinishTime*100;
-		printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", FinishTime ,aveCPU, aveIO,aveTt, aveCw, aveThrouput);
-
+		printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", FinishTime ,aveCPU, aveIO, aveTt, aveCw, aveThrouput);
+	}
+	void qReport(){
+		deque<int> q;		
+		if(tasksQ.size()>0){
+			schedule task=tasksQ.top();
+			cout<<"Task:PID:"<<task.PID<<" index:"<<task.insertindex<<" (Ts,Tg) "<<task.Ts<<","<<task.Tg<<" task.remain:"<<task.remain<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
+		}			
+		if(readyQ.size()>0){
+			schedule ready=readyQ.top();
+			cout<<"Ready:PID:"<<ready.PID<<" index:"<<ready.insertindex<<" (Ts,Tg) "<<ready.Ts<<","<<ready.Tg<<" ready.remain:"<<ready.remain<<" ready.nextEventTime:"<<ready.nextEventTime<<" readysize:"<<readyQ.size()<<endl;
+		}
+		if(runQ.size()>0){
+			schedule run=runQ.top();
+			cout<<"Run:PID:"<<run.PID<<" index:"<<run.insertindex<<" (Ts,Tg) "<<run.Ts<<","<<run.Tg<<" run.remain:"<<run.remain<<" run.nextEventTime:"<<run.nextEventTime<<" runsize:"<<runQ.size()<<endl;
+		}
+		if(blockQ.size()>0){
+			schedule block=blockQ.top();
+			cout<<"Block:PID:"<<block.PID<<" index:"<<block.insertindex<<" (Ts,Tg)"<<block.Ts<<","<<block.Tg<<" block.remain:"<<block.remain<<" block.nextEventTime:"<<block.nextEventTime<<" blocksize:"<<blockQ.size()<<endl;
+		}				
+		cout<<endl;
 	}
 };
 
-// class LCFSQ{	
-// public:	
-// 	LCFSQ(string flag1, string flag2);
-// 	priority_queue<schedule, vector<schedule>, LCFSCompare> tasksQ;
-// 	priority_queue<schedule, vector<schedule>, LCFSCompare> readyQ;
-// 	priority_queue<schedule, vector<schedule>, LCFSCompare> runQ;
-// 	priority_queue<schedule, vector<schedule>, LCFSCompare> blockQ;
-	
-// 	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
-// 	string smallest(){  //this is the function to find the queue who have the next cloest element
-// 		int s=10000; string Flag;
-// 		if ((tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks"; }
-// 		if ((readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts;Flag="ready"; }
-//     	if((runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts;Flag="run"; }
-//     	if(((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block"; }
-//     	return Flag;
-// 	}
-// 	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.
-// 		string tmpS=smallest();
-// 		if (tmpS=="tasks"){
-// 			schedule tmp=tasksQ.top();			
-// 			if (tmp.remain>0){tmp.enterReadyP(tmp.Ts);readyQ.push(tmp);tasksQ.pop();} 
-// 			else{tmp.doneP(CPUtime);ReportQ.push(tmp);tasksQ.pop();}			}
-// 		if (tmpS=="ready"){
-// 			schedule tmp=readyQ.top();
-// 			tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));
-// 			if (tmp.remain>0){tmp.enterRunP(CPUtime);runQ.push(tmp);readyQ.pop();}
-// 			else{
-// 				tmp.doneP(CPUtime);ReportQ.push(tmp);readyQ.pop();}			}
-// 		if (tmpS=="run"){
-// 			schedule tmp=runQ.top();
-// 			tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
-// 			if (tmp.remain>0){tmp.enterBlockP(CPUtime);blockQ.push(tmp);runQ.pop();;}
-// 			else{
-// 				tmp.doneP(CPUtime);ReportQ.push(tmp);runQ.pop();}}
-// 		if (tmpS=="block"){
-// 			schedule tmp=blockQ.top();
-// 			tmp.Block2Ready(tmp.Ts+tmp.Ib, tmp.Ts);			
-// 			if (tmp.remain>0){tmp.enterReadyP(CPUtime);readyQ.push(tmp);blockQ.pop();}
-// 			else{
-// 				tmp.doneP(CPUtime);ReportQ.push(tmp);blockQ.pop();}			}
-// 	}
-// 	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false
-// 		if((tasksQ.size()>0)|(readyQ.size()>0)|(runQ.size()>0)|(blockQ.size()>0)) return true;
-// 		return false;
-// 	}
-// 	void printReport(){
-// 		int FinishTime=0;
-// 		double aveCPU=0;
-// 		double aveIO=0;
-// 		double aveTt=0;
-// 		double aveCw=0;
-// 		double aveThrouput=0; // in 100 time units
-// 		double numTask=ReportQ.size();
-// 		while(!ReportQ.empty()){
-// 			schedule tmp=ReportQ.top();
-// 			printf("%04d: %4d %4d %4d %4d | %4d %4d %4d %4d\n", tmp.PID,tmp.Reporter[tmp.PID].At, tmp.Reporter[tmp.PID].Tc
-// 				, tmp.Reporter[tmp.PID].CPUB, tmp.Reporter[tmp.PID].IOB, tmp.Reporter[tmp.PID].Ft, tmp.Reporter[tmp.PID].Tt, tmp.Reporter[tmp.PID].It, tmp.Reporter[tmp.PID].Cw);			
-// 			if (tmp.Reporter[tmp.PID].Ft>FinishTime){FinishTime=tmp.Reporter[tmp.PID].Ft;}
-// 			aveCPU=aveCPU+tmp.Reporter[tmp.PID].cpuRun;
-// 			aveIO=aveIO+tmp.Reporter[tmp.PID].It;
-// 			aveTt=aveTt+tmp.Reporter[tmp.PID].Tt;
-// 			aveCw=aveCw+tmp.Reporter[tmp.PID].Cw;
-// 			ReportQ.pop();
-// 		}
-// 		aveCPU=aveCPU/FinishTime*100;
-// 		aveIO=aveIO/FinishTime*100;
-// 		aveTt=aveTt/numTask;
-// 		aveCw=aveCw/numTask;
-// 		aveThrouput=numTask/FinishTime*100;
-// 		printf("SUM: %d %.2lf %.2lf %.2lf %.2lf %.3lf\n", FinishTime ,aveCPU, aveIO,aveTt, aveCw, aveThrouput);
-
-// 	}
-// };
 
 AllQ q;
-// LCFSQ q;
 
 int main(int argc, char *argv[]){
 	while((c=getopt(argc,argv,"vs:")) !=-1){
@@ -359,28 +566,15 @@ int main(int argc, char *argv[]){
 				abort();
 		}
 	}
-	cout<<"vflag="<<vflag<<" sflag="<<sflag<<" svalue="<<svalue<<endl;
+	// cout<<"vflag="<<vflag<<" sflag="<<sflag<<" svalue="<<svalue<<endl;
 	
 	if (svalue[0]=='R'){
 		string tmp=svalue.substr(1,svalue.size());
 		istringstream buffer(tmp);
 		buffer >> RRval;		
+		svalue=svalue[0];
 	}
 	
-	if (svalue=="F"){
-		// AllQ q(svalue);
-	}	
-	else if (svalue=="L"){
-		
-	}	
-	else if (svalue=="S"){
-
-	}	
-	else {
-		// AllQ q;
-	}
-	
-
 	// pass input file
 	ifstream fin0 ( argv[argc-2] );
 	if (!fin0.is_open()){
@@ -438,9 +632,14 @@ int main(int argc, char *argv[]){
 	// 	q.readyQ.push(tmp);
 	// 	q.tasksQ.pop();
 	// }
-
+	// int test=0;
+	// while(test<10){
+	cout<<endl;
 	while(q.stillRemain()){
+		q.qReport();
 		q.change();
+		q.IOtimeCalculation();
+
 
 	}
 
@@ -451,6 +650,11 @@ int main(int argc, char *argv[]){
 	// 	// cout<<tmp.Reporter[i].At<<endl;
 	// 	tmp.ReportQ.pop();
 	// }
+
+	if (svalue=="F"){cout<<"FCFS"<<endl;}
+	else if(svalue=="F"){cout<<"LCFS"<<endl;}
+	else if (svalue=="S"){cout<<"SJF"<<endl;}
+	else if (svalue=="R"){cout<<"RR "<<RRval<<endl;}
 	q.printReport();
 
 
