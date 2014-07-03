@@ -17,10 +17,12 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	should probably calculat IOtime correct(?)
 --	able to process (c) issue: same nextEvenTime, but then find smallestTs
 --	able to process (a) issue: termination takes precedence over scheduling the next IO burst
+--	have issue for input3. Which queue should really consider the insert index? ==> only ready queue need to consider order
+--	figure out the logic when nextEvent is ready, but nextnextEvent have equal value, then choose the smallest Ts among these two queue except ready queue
 
 Todo:
---	have issue for input3. Which queue should really consider the insert index?
 --	define child classs, so it can run diff scheduler
+--	IOtime still not correct
 */
 
 #include <fstream>
@@ -225,7 +227,10 @@ class ReportCompare {
 class NexteventCompare {
     public:
     bool operator()(schedule& t1, schedule& t2) // Returns true if t1 is earlier than t2
-    { if (t1.nextEventTime > t2.nextEventTime) return true;return false;}
+    { 	if (t1.nextEventTime > t2.nextEventTime) return true;
+		if ((t1.nextEventTime == t2.nextEventTime)&&(t1.Ts > t2.Ts))return true;
+		return false;
+    }
 };
 
 
@@ -259,10 +264,9 @@ public:
 	priority_queue<schedule, vector<schedule>, ReportCompare> ReportQ;
 	
 	string smallest(string exclude){  //this is the function to find the queue who have the next cloest element		
-		int s=10000;
-		int tas=1 ,rea=1, run=1, blo=1;
-		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
 		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
 		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
 		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().nextEventTime<s)){
 		s=readyQ.top().nextEventTime; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
@@ -271,10 +275,9 @@ public:
     	return Flag;
 	}
 	int smallest_val(string exclude){  //this is the function to find the queue who have the next cloest element		
-		int s=10000;
-		int tas=1 ,rea=1, run=1, blo=1;
-		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
 		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}		
 		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
 		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().nextEventTime<s)){
 		s=readyQ.top().nextEventTime; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
@@ -282,34 +285,34 @@ public:
     	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().nextEventTime<s)){s=blockQ.top().nextEventTime;Flag="block";} // Flag2=Flag;Flag="block"; }    	
     	return s;
 	}
-	string smallestTs(string exclude){  //this is the function to find the queue who have the next cloest element		
-		int s=10000;
-		int tas=1 ,rea=1, run=1, blo=1;
-		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+	string smallestTg(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
 		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}		
+		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Tg<s)){s=tasksQ.top().Tg;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
+		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().Tg<s)){s=readyQ.top().Tg; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
+    	if((run==1)&&(runQ.size()>0)&&(runQ.top().Tg<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Tg<s)){s=blockQ.top().Tg;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	return Flag;
+	}
+	string smallestTs(string exclude){  //this is the function to find the queue who have the next cloest element		
+		int s=10000, tas=1 ,rea=1, run=1, blo=1;
+		string Flag;
+		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
 		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
 		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
-    	if((run==1)&&(runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
-    	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block";} // Flag2=Flag;Flag="block"; }    	
+    	if ((run==1)&&(runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
+    	if ((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block";} // Flag2=Flag;Flag="block"; }    	
     	return Flag;
 	}
 	int EqualNextEvent(string tmpS){	
-		int rea, run, blo;	
-		// int tasT=1 ,reaT=1, runT=1, bloT=1;
-		// if (tmpS=="tasks"){tasT=0;}if (tmpS=="ready"){reaT=0;}if (tmpS=="run"){runT=0;}if (tmpS=="block"){bloT=0;}
+		int rea, run, blo;			
 		if (readyQ.size()>0){rea=readyQ.top().nextEventTime;}
 		if (runQ.size()>0){run=runQ.top().nextEventTime;}
 		if (blockQ.size()>0){blo=blockQ.top().nextEventTime;}
-		if(tmpS=="ready"){
-			if((rea==run)|(rea==blo)){return 1;}	
-			
-		}		
-		else if(tmpS=="run"){
-			if((run==rea)|(run==blo)){return 1;}
-		}
-		else if (tmpS=="blo"){
-			if((blo==rea)|(blo==run)){return 1;}
-		}		
+		if(tmpS=="ready"){if((rea==run)|(rea==blo)){return 1;}	}		
+		else if(tmpS=="run"){if((run==rea)|(run==blo)){return 1;}	}
+		else if (tmpS=="blo"){if((blo==rea)|(blo==run)){return 1;}	}		
 		return 0;
 	}
 
@@ -459,22 +462,20 @@ public:
 	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.		
 		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue
 		int tmpS_val=smallest_val(""); // based on nextEventTime, return the smallest nextEventTime
-
 		string secondtmpS=smallest(tmpS);
-		// cout<<	"tmpS_val: "<<tmpS_val<<" tmpS:"<<tmpS<<" secondtmpS_val:"<<secondtmpS_val<<" secondtmpS:"<<secondtmpS_val<<endl;
+		// cout<<"firstTs:"<<tmpS<<" eqalNextevent:"<<EqualNextEvent(tmpS)<<endl;		
 		if ((runQ.size()>0)&&(tmpS=="ready")){
 			tmpS_val=smallest_val(tmpS);
-			tmpS=secondtmpS;
-			// cout<<"second queue called:"<<tmpS<<endl;
+			if((tmpS!="tasks")&&(EqualNextEvent(secondtmpS)==1)){tmpS=smallestTs("ready");}
+			else tmpS=secondtmpS;
 		}	// so make sure one one task in runQ
-		if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
+		else if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
 		// cout<<"tmpS_val:"<<tmpS_val<<endl;
 
 
 		if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
 			schedule tmp=runQ.top();
 			tmp.Run2Block(tmp.Ts+tmp.remain, tmp.Ts, myrandom(tmp.IOB,ofs));
-			// tmp.earlyDoneP(CPUtime, vflag);
 			tmp.doneP(CPUtime, vflag);
 			ReportQ.push(tmp);runQ.pop();
 		}
@@ -542,19 +543,19 @@ public:
 		deque<int> q;		
 		if(tasksQ.size()>0){
 			schedule task=tasksQ.top();
-			cout<<"Task: topPID:"<<task.PID<<" task.Ts:"<<task.Ts<<" task.remain:"<<task.remain<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
+			cout<<"Task:PID:"<<task.PID<<" index:"<<task.insertindex<<" (Ts,Tg) "<<task.Ts<<","<<task.Tg<<" task.remain:"<<task.remain<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
 		}			
 		if(readyQ.size()>0){
 			schedule ready=readyQ.top();
-			cout<<"Ready: topPID:"<<ready.PID<<" ready.Ts:"<<ready.Ts<<" ready.remain:"<<ready.remain<<" ready.nextEventTime:"<<ready.nextEventTime<<" readysize:"<<readyQ.size()<<endl;
+			cout<<"Ready:PID:"<<ready.PID<<" index:"<<ready.insertindex<<" (Ts,Tg) "<<ready.Ts<<","<<ready.Tg<<" ready.remain:"<<ready.remain<<" ready.nextEventTime:"<<ready.nextEventTime<<" readysize:"<<readyQ.size()<<endl;
 		}
 		if(runQ.size()>0){
 			schedule run=runQ.top();
-			cout<<"Run: topPID:"<<run.PID<<" run.Ts:"<<run.Ts<<" run.remain:"<<run.remain<<" run.nextEventTime:"<<run.nextEventTime<<" runsize:"<<runQ.size()<<endl;
+			cout<<"Run:PID:"<<run.PID<<" index:"<<run.insertindex<<" (Ts,Tg) "<<run.Ts<<","<<run.Tg<<" run.remain:"<<run.remain<<" run.nextEventTime:"<<run.nextEventTime<<" runsize:"<<runQ.size()<<endl;
 		}
 		if(blockQ.size()>0){
 			schedule block=blockQ.top();
-			cout<<"Block: PID:"<<block.PID<<" block.Ts:"<<block.Ts<<" block.remain:"<<block.remain<<" block.nextEventTime:"<<block.nextEventTime<<" blocksize:"<<blockQ.size()<<endl;
+			cout<<"Block:PID:"<<block.PID<<" index:"<<block.insertindex<<" (Ts,Tg)"<<block.Ts<<","<<block.Tg<<" block.remain:"<<block.remain<<" block.nextEventTime:"<<block.nextEventTime<<" blocksize:"<<blockQ.size()<<endl;
 		}				
 		cout<<endl;
 	}
