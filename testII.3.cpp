@@ -20,6 +20,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	have issue for input3. Which queue should really consider the insert index? ==> only ready queue need to consider order
 --	figure out the logic when nextEvent is ready, but nextnextEvent have equal value, then choose the smallest Ts among these two queue except ready queue
 --	add some feature to deal with first and last line new line
+--	LCFC done
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -104,6 +105,7 @@ public:
 	schedule(int ts,int pid,int tg, int re, int cpub, int iob,string cur,string next, string flag){
 		Ts=ts; PID=pid; Tg=tg; remain=re; CPUB=cpub; IOB=iob; curState=cur; nextState=next; scheduler=flag;nextEventTime=Ts;
 		Reporter[PID].At=Ts; Reporter[PID].Tc=remain; Reporter[PID].CPUB=CPUB; Reporter[PID].IOB=IOB;
+		insertindex=0;
 		// cout<<PID<<" "<<Reporter[PID].At<<" "<<Reporter[PID].Tc<<" "<<Reporter[PID].CPUB<<" "<<Reporter[PID].IOB<<endl;
 	}
 	~schedule(){};
@@ -116,7 +118,7 @@ public:
 		int dur=Ts-Tg;
 		if (vflag==1){
 			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
+			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
 		}
 		
@@ -125,7 +127,7 @@ public:
 		int dur=Ts-Tg; 
 		if (vflag==1){
 			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
+			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl<<endl;
 		}		
 	}
@@ -133,7 +135,7 @@ public:
 		int dur=Ts-Tg; 
 		if (vflag==1){
 			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
+			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
 		}		
 	}
@@ -141,7 +143,7 @@ public:
 		int dur=Ts-Tg; 
 		if (vflag==1){
 			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			
-			if(notfinish==1){cout<<"==> T("<<PID<<"): Done"<<endl<<endl;			}
+			if(notfinish==1){cout<<"==> T("<<PID<<"): Done"<<endl;			}
 			else if (notfinish==0){cout<<"==> T("<<PID<<"): Done"<<endl;				}			
 		}
 		ofs=ofs-1;
@@ -154,7 +156,7 @@ public:
 			cputime=Ts+remain;
 			cout<<"==> "<<Ts+remain<<" "<<PID<<" ts="<<Ts<<" BLOCK"<<"  "<<"dur="<<dur<<endl;
 			// cout<<"==> "<<Ts+remain<<" "<<PID<<" ts="<<Ts<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
-			cout<<"==> T("<<PID<<"): Done"<<endl<<endl;
+			cout<<"==> T("<<PID<<"): Done"<<endl;
 			
 		}
 		ofs=ofs-1;
@@ -230,14 +232,15 @@ public:
 	class Compare {
     public:
     	bool operator()(schedule& t1, schedule& t2){
-    		// if ((t1.scheduler=="F")&&(t1.PID > t2.PID)) return true;return false;
-    		// if ((t1.scheduler=="L")&&(t1.PID < t2.PID)) return true;return false;
     		int flag=0;
     		if (t1.scheduler=="F"){
     			if (t1.insertindex > t2.insertindex) flag=1;    			    			
     		}
     		else if (t1.scheduler=="L"){
     			if (t1.insertindex < t2.insertindex) flag=1;
+    		}
+    		if (t1.scheduler=="S"){
+    			if (t1.insertindex > t2.insertindex) flag=1;    			    			
     		}
     		if (t1.scheduler=="R"){
     			if (t1.insertindex > t2.insertindex) flag=1;    			    			
@@ -284,16 +287,31 @@ public:
     	if((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Tg<s)){s=blockQ.top().Tg;Flag="block";} // Flag2=Flag;Flag="block"; }    	
     	return Flag;
 	}
-	string smallestTs(string exclude){  //this is the function to find the queue who have the next cloest element		
+	string smallestTs(string exclude, string inc1="", string inc2=""){  //this is the function to find the queue who have the next cloest element		
 		int s=10000, tas=1 ,rea=1, run=1, blo=1;
 		string Flag;
-		if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}
+		if (inc1=="" && inc2==""){
+			if (exclude=="tasks"){tas=0;}if (exclude=="ready"){rea=0;}if (exclude=="run"){run=0;}if (exclude=="block"){blo=0;}			
+		}
+		else if(inc1!="" && inc2!="") {
+			tas=0 ,rea=0, run=0, blo=0;
+			if (inc1=="tasks"){tas=1;}if (inc1=="ready"){rea=1;}if (inc1=="run"){run=1;}if (inc1=="block"){blo=1;}
+			if (inc2=="tasks"){tas=1;}if (inc2=="ready"){rea=1;}if (inc2=="run"){run=1;}if (inc2=="block"){blo=1;}
+		}
 		if ((tas==1)&&(tasksQ.size()>0)&&(tasksQ.top().Ts<s)){s=tasksQ.top().Ts;Flag="tasks";   } // Flag2=Flag;Flag="tasks"; }
 		if ((rea==1)&&(readyQ.size()>0)&&(readyQ.top().Ts<s)){s=readyQ.top().Ts; Flag="ready";		} // Flag2=Flag;Flag="ready"; }
     	if ((run==1)&&(runQ.size()>0)&&(runQ.top().Ts<s)){s=runQ.top().Ts; Flag="run";} // Flag2=Flag;Flag="run"; }
-    	if ((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block";} // Flag2=Flag;Flag="block"; }    	
-    	return Flag;
+    	if ((blo==1)&&((blockQ.size()>0))&&(blockQ.top().Ts<s)){s=blockQ.top().Ts;Flag="block";} // Flag2=Flag;Flag="block"; }    	    		
+		return Flag;    	
 	}
+	int Flag_EventTime(string Flag){
+		if (Flag=="tasks"){return tasksQ.top().nextEventTime;		}
+		else if (Flag=="ready"){return readyQ.top().nextEventTime;		}
+		else if (Flag=="run"){ return runQ.top().nextEventTime;		}
+		else if (Flag =="block"){return blockQ.top().nextEventTime;		}
+		else return -1;
+	}
+
 	int EqualNextEvent(string tmpS){	
 		int rea, run, blo;			
 		if (readyQ.size()>0){rea=readyQ.top().nextEventTime;}
@@ -303,6 +321,17 @@ public:
 		else if(tmpS=="run"){if((run==rea)|(run==blo)){return 1;}	}
 		else if (tmpS=="blo"){if((blo==rea)|(blo==run)){return 1;}	}		
 		return 0;
+	}
+	string EqualNextEventFlag(string tmpS){	
+		int rea, run, blo;			
+		string Flag;
+		if (readyQ.size()>0){rea=readyQ.top().nextEventTime;}
+		if (runQ.size()>0){run=runQ.top().nextEventTime;}
+		if (blockQ.size()>0){blo=blockQ.top().nextEventTime;}
+		if(tmpS=="ready"){if(rea==run){Flag="run";}if(rea==blo){Flag="block";}	}		
+		else if(tmpS=="run"){if(run==rea){Flag="ready";}if(run==blo){Flag="block";}	}
+		else if (tmpS=="blo"){if(blo==rea){Flag="ready";}if(blo==run){Flag="run";}	}		
+		return Flag;
 	}
 
 	int findLongEvent(priority_queue<schedule, vector<schedule>, Compare> q){
@@ -404,7 +433,7 @@ public:
 		qtmp=q;
 		while (!qtmp.empty()){
 			schedule t=qtmp.top();
-			index=t.insertindex;
+			if (t.insertindex>index)index=t.insertindex;
 			qtmp.pop();
 		}
 		return index+1;
@@ -415,11 +444,28 @@ public:
 		qtmp=q;
 		while (!qtmp.empty()){
 			schedule t=qtmp.top();
-			index=t.insertindex;
+			if (t.insertindex>index)index=t.insertindex;
 			qtmp.pop();
 		}
 		return index+1;
 	}
+
+	void AllreadyP(priority_queue<schedule, vector<schedule>, Compare> q){
+		priority_queue<schedule, vector<schedule>, Compare> qtmp;
+		if (!q.empty()){
+			qtmp=q;
+			int i=1;
+			cout<<"readyQ elements:"<<endl;
+			while (!qtmp.empty()){
+				schedule t=qtmp.top();
+				cout<<i<<"th inreadyQ:"<<" PID:"<<t.PID<<" index:"<<t.insertindex<<" Ts,Tg:"<<t.Ts<<","<<t.Tg<<" nextEvenTime:"<<t.nextEventTime<<endl;
+				qtmp.pop();
+				i++;
+			}
+		}
+		else cout<<"readyQ empty"<<endl;
+	}
+
 	int othertasknotdone(){
 		int allTasks=tasksQ.size()+readyQ.size()+runQ.size()+blockQ.size();
 		if (allTasks>1) return 1; return 0;
@@ -453,17 +499,34 @@ public:
 	}
 
 	void change(){  // this is the function for state switching which remain>0, otherwise it will print done.		
-		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue
-		int tmpS_val=smallest_val(""); // based on nextEventTime, return the smallest nextEventTime
+		string tmpS=smallest("NA"); // based on nextEventTime, return the flag of the queue		
+		int tmpS_val=Flag_EventTime(tmpS);
 		string secondtmpS=smallest(tmpS);
-		if ((runQ.size()>0)&&(tmpS=="ready")){
-			tmpS_val=smallest_val(tmpS);
-			if((tmpS!="tasks")&&(EqualNextEvent(secondtmpS)==1)){tmpS=smallestTs("ready");}
-			else tmpS=secondtmpS;
-		}	// so make sure one one task in runQ
-		else if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
-
-		if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
+		cout<<endl; // I know this is weired, but this really worked!! don't delet it!
+		///selection logic
+		if ((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){
+			string tmp_tmpS=tmpS;
+			string equal_tmpS=EqualNextEventFlag(tmpS);
+			tmpS=smallestTs("",tmp_tmpS, equal_tmpS);  // there is equal next event time -> compare
+			if ((runQ.size()>0)&&(tmpS=="ready")){tmpS=tmp_tmpS;tmpS_val=smallest_val(tmpS);}
+		}
+		else if((runQ.size()>0)&&(tmpS=="ready")){
+			tmpS=smallest(tmpS);
+			if (EqualNextEvent(tmpS)==1){tmpS=EqualNextEventFlag(tmpS);tmpS_val=smallest_val(tmpS);}
+		}
+		
+		// if ((runQ.size()>0)&&(tmpS=="ready")){
+		// 	tmpS_val=smallest_val(tmpS);
+		// 	if((tmpS!="tasks")&&(EqualNextEvent(secondtmpS)==1)){tmpS=smallestTs("ready");}
+		// 	else tmpS=secondtmpS;
+		// }	// so make sure one one task in runQ
+		// else if((tmpS!="tasks")&&(EqualNextEvent(tmpS)==1)){tmpS=smallestTs("");} // if there is another equal smallest nextEvenTime, then find the smallest Ts among only the two
+		// cout<<"tmpS:"<<tmpS<<" tmpS_val:"<<tmpS_val<<endl;
+		
+		///switching logic
+		tmpS_val=Flag_EventTime(tmpS);
+		if((runQ.size()>0)&&(tmpS_val-CPUtime>runQ.top().remain)){			
+		// if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){			
 			schedule tmp=runQ.top();
 			tmp.Run2Block(tmp.Ts+tmp.remain, tmp.Ts, myrandom(tmp.IOB,ofs));
 			tmp.doneP(CPUtime, vflag, othertasknotdone());
@@ -490,14 +553,7 @@ public:
 				if (tmp.remain>0){tmp.enterReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);blockQ.pop();}
 				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);blockQ.pop();}			}			
 
-		}
-
-
-		
-			
-		
-	
-				
+		}				
 	}
 
 	bool stillRemain(){  // this is the function testing there are still element in all the queue, otherwise return false
@@ -529,6 +585,7 @@ public:
 	}
 	void qReport(){
 		deque<int> q;		
+		// cout<<"CPUtime:"<<CPUtime<<endl;
 		if(tasksQ.size()>0){
 			schedule task=tasksQ.top();
 			cout<<"Task:PID:"<<task.PID<<" index:"<<task.insertindex<<" (Ts,Tg) "<<task.Ts<<","<<task.Tg<<" task.remain:"<<task.remain<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
@@ -544,7 +601,8 @@ public:
 		if(blockQ.size()>0){
 			schedule block=blockQ.top();
 			cout<<"Block:PID:"<<block.PID<<" index:"<<block.insertindex<<" (Ts,Tg)"<<block.Ts<<","<<block.Tg<<" block.remain:"<<block.remain<<" block.nextEventTime:"<<block.nextEventTime<<" blocksize:"<<blockQ.size()<<endl;
-		}				
+		}
+		AllreadyP(readyQ);				
 		cout<<endl;
 	}
 };
@@ -634,9 +692,9 @@ int main(int argc, char *argv[]){
 	// }
 	// int test=0;
 	// while(test<10){
-	cout<<endl;
+	
 	while(q.stillRemain()){
-		q.qReport();
+		// q.qReport();
 		q.change();
 		q.IOtimeCalculation();
 
@@ -652,7 +710,7 @@ int main(int argc, char *argv[]){
 	// }
 
 	if (svalue=="F"){cout<<"FCFS"<<endl;}
-	else if(svalue=="F"){cout<<"LCFS"<<endl;}
+	else if(svalue=="L"){cout<<"LCFS"<<endl;}
 	else if (svalue=="S"){cout<<"SJF"<<endl;}
 	else if (svalue=="R"){cout<<"RR "<<RRval<<endl;}
 	q.printReport();

@@ -1,9 +1,11 @@
 
 ==> 1 0 ts=1 READY  dur=0
 T(0:1): READY -> READY
+   delay scheduler
 
 ==> 1 1 ts=1 READY  dur=0
 T(1:1): READY -> READY
+   delay scheduler
 
 ==> 1 2 ts=1 READY  dur=0
 T(2:1): READY -> READY
@@ -128,4 +130,4 @@ LCFS
 0000:    1   20   10   90 |  249  248  210   18
 0001:    1   20   10   90 |  134  133  108    5
 0002:    1   20   10   90 |  139  138  107   11
-SUM: 249 24.10 92.37 173.00 11.33 1.205
+SUM: 249 24.10 90.36 173.00 11.33 1.205

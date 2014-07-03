@@ -1,2035 +1,2513 @@
-Task:PID:0 index:1574722592 (Ts,Tg) 0,0 task.remain:200 task.nextEventTime:0 tasksize:4
 
-firstTs:tasks eqalNextevent:0
+CPUtime:0
+Task:PID:0 index:0 (Ts,Tg) 0,0 task.remain:200 task.nextEventTime:0 tasksize:4
+readyQ empty
+
 ==> 0 0 ts=0 READY  dur=0
 T(0:0): READY -> READY
 
-Task:PID:1 index:1574722592 (Ts,Tg) 40,40 task.remain:100 task.nextEventTime:40 tasksize:3
+CPUtime:0
+Task:PID:1 index:0 (Ts,Tg) 40,40 task.remain:100 task.nextEventTime:40 tasksize:3
 Ready:PID:0 index:0 (Ts,Tg) 0,0 ready.remain:200 ready.nextEventTime:0 readysize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:0,0 nextEvenTime:0
 
-firstTs:ready eqalNextevent:0
-equalNextEvent,nextsmallesTS:ready
 ==> 0 0 ts=0 RUNNG  dur=0
 T(0:0): READY -> RUNNG  cb=24 rem=200
 
-Task:PID:1 index:1574722592 (Ts,Tg) 40,40 task.remain:100 task.nextEventTime:40 tasksize:3
+CPUtime:0
+Task:PID:1 index:0 (Ts,Tg) 40,40 task.remain:100 task.nextEventTime:40 tasksize:3
 Run:PID:0 index:0 (Ts,Tg) 0,0 run.remain:200 run.nextEventTime:24 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
 ==> 24 0 ts=0 BLOCK  dur=24
 T(0:24): RUNNG -> BLOCK  ib=17 rem=176
 
-Task:PID:1 index:1574722592 (Ts,Tg) 40,40 task.remain:100 task.nextEventTime:40 tasksize:3
+CPUtime:24
+Task:PID:1 index:0 (Ts,Tg) 40,40 task.remain:100 task.nextEventTime:40 tasksize:3
 Block:PID:0 index:0 (Ts,Tg)24,0 block.remain:176 block.nextEventTime:41 blocksize:1
+readyQ empty
 
-firstTs:tasks eqalNextevent:0
 ==> 40 1 ts=40 READY  dur=0
 T(1:40): READY -> READY
 
-Task:PID:2 index:1574722592 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
+CPUtime:24
+Task:PID:2 index:0 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
 Ready:PID:1 index:0 (Ts,Tg) 40,40 ready.remain:100 ready.nextEventTime:40 readysize:1
 Block:PID:0 index:0 (Ts,Tg)24,0 block.remain:176 block.nextEventTime:41 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:40,40 nextEvenTime:40
 
-firstTs:ready eqalNextevent:0
 ==> 40 1 ts=40 RUNNG  dur=0
 T(1:40): READY -> RUNNG  cb=8 rem=100
 
-Task:PID:2 index:1574722592 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
+CPUtime:40
+Task:PID:2 index:0 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
 Run:PID:1 index:0 (Ts,Tg) 40,40 run.remain:100 run.nextEventTime:48 runsize:1
 Block:PID:0 index:0 (Ts,Tg)24,0 block.remain:176 block.nextEventTime:41 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
 ==> 41 0 ts=24 READY  dur=17
 T(0:41): BLOCK -> READY
 
-Task:PID:2 index:1574722592 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
+CPUtime:41
+Task:PID:2 index:0 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
 Ready:PID:0 index:0 (Ts,Tg) 41,24 ready.remain:176 ready.nextEventTime:41 readysize:1
 Run:PID:1 index:0 (Ts,Tg) 40,40 run.remain:100 run.nextEventTime:48 runsize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:41,24 nextEvenTime:41
 
-firstTs:ready eqalNextevent:0
 ==> 48 1 ts=40 BLOCK  dur=8
 T(1:48): RUNNG -> BLOCK  ib=36 rem=92
 
-Task:PID:2 index:1574722592 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
+CPUtime:48
+Task:PID:2 index:0 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
 Ready:PID:0 index:0 (Ts,Tg) 41,24 ready.remain:176 ready.nextEventTime:41 readysize:1
 Block:PID:1 index:0 (Ts,Tg)48,40 block.remain:92 block.nextEventTime:84 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:41,24 nextEvenTime:41
 
-firstTs:ready eqalNextevent:0
 ==> 48 0 ts=41 RUNNG  dur=7
 T(0:48): READY -> RUNNG  cb=34 rem=176
 
-Task:PID:2 index:1574722592 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
+CPUtime:48
+Task:PID:2 index:0 (Ts,Tg) 50,50 task.remain:20 task.nextEventTime:50 tasksize:2
 Run:PID:0 index:0 (Ts,Tg) 48,41 run.remain:176 run.nextEventTime:82 runsize:1
 Block:PID:1 index:0 (Ts,Tg)48,40 block.remain:92 block.nextEventTime:84 blocksize:1
+readyQ empty
 
-firstTs:tasks eqalNextevent:0
 ==> 50 2 ts=50 READY  dur=0
 T(2:50): READY -> READY
 
-Task:PID:3 index:1574722592 (Ts,Tg) 60,60 task.remain:200 task.nextEventTime:60 tasksize:1
+CPUtime:48
+Task:PID:3 index:0 (Ts,Tg) 60,60 task.remain:200 task.nextEventTime:60 tasksize:1
 Ready:PID:2 index:0 (Ts,Tg) 50,50 ready.remain:20 ready.nextEventTime:50 readysize:1
 Run:PID:0 index:0 (Ts,Tg) 48,41 run.remain:176 run.nextEventTime:82 runsize:1
 Block:PID:1 index:0 (Ts,Tg)48,40 block.remain:92 block.nextEventTime:84 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
 ==> 60 3 ts=60 READY  dur=0
 T(3:60): READY -> READY
 
-Ready:PID:2 index:0 (Ts,Tg) 50,50 ready.remain:20 ready.nextEventTime:50 readysize:2
+CPUtime:48
+Ready:PID:3 index:1 (Ts,Tg) 60,60 ready.remain:200 ready.nextEventTime:60 readysize:2
 Run:PID:0 index:0 (Ts,Tg) 48,41 run.remain:176 run.nextEventTime:82 runsize:1
 Block:PID:1 index:0 (Ts,Tg)48,40 block.remain:92 block.nextEventTime:84 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:1 Ts,Tg:60,60 nextEvenTime:60
+2th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
 ==> 82 0 ts=48 BLOCK  dur=34
 T(0:82): RUNNG -> BLOCK  ib=26 rem=142
 
-Ready:PID:2 index:0 (Ts,Tg) 50,50 ready.remain:20 ready.nextEventTime:50 readysize:2
+CPUtime:82
+Ready:PID:3 index:1 (Ts,Tg) 60,60 ready.remain:200 ready.nextEventTime:60 readysize:2
 Block:PID:1 index:0 (Ts,Tg)48,40 block.remain:92 block.nextEventTime:84 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:1 Ts,Tg:60,60 nextEvenTime:60
+2th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
-==> 82 2 ts=50 RUNNG  dur=32
-T(2:82): READY -> RUNNG  cb=7 rem=20
+==> 82 3 ts=60 RUNNG  dur=22
+T(3:82): READY -> RUNNG  cb=2 rem=200
 
-Ready:PID:3 index:1 (Ts,Tg) 60,60 ready.remain:200 ready.nextEventTime:60 readysize:1
-Run:PID:2 index:0 (Ts,Tg) 82,50 run.remain:20 run.nextEventTime:89 runsize:1
+CPUtime:82
+Ready:PID:2 index:0 (Ts,Tg) 50,50 ready.remain:20 ready.nextEventTime:50 readysize:1
+Run:PID:3 index:0 (Ts,Tg) 82,60 run.remain:200 run.nextEventTime:84 runsize:1
 Block:PID:1 index:0 (Ts,Tg)48,40 block.remain:92 block.nextEventTime:84 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
 ==> 84 1 ts=48 READY  dur=36
 T(1:84): BLOCK -> READY
 
-Ready:PID:3 index:1 (Ts,Tg) 60,60 ready.remain:200 ready.nextEventTime:60 readysize:2
-Run:PID:2 index:0 (Ts,Tg) 82,50 run.remain:20 run.nextEventTime:89 runsize:1
+CPUtime:84
+Ready:PID:1 index:1 (Ts,Tg) 84,48 ready.remain:92 ready.nextEventTime:84 readysize:2
+Run:PID:3 index:0 (Ts,Tg) 82,60 run.remain:200 run.nextEventTime:84 runsize:1
 Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:1 Ts,Tg:84,48 nextEvenTime:84
+2th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
-==> 89 2 ts=82 BLOCK  dur=7
-T(2:89): RUNNG -> BLOCK  ib=3 rem=13
+==> 84 3 ts=82 BLOCK  dur=2
+T(3:84): RUNNG -> BLOCK  ib=13 rem=198
 
-Ready:PID:3 index:1 (Ts,Tg) 60,60 ready.remain:200 ready.nextEventTime:60 readysize:2
-Block:PID:2 index:2 (Ts,Tg)89,82 block.remain:13 block.nextEventTime:92 blocksize:2
+CPUtime:84
+Ready:PID:1 index:1 (Ts,Tg) 84,48 ready.remain:92 ready.nextEventTime:84 readysize:2
+Block:PID:3 index:2 (Ts,Tg)84,82 block.remain:198 block.nextEventTime:97 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:1 Ts,Tg:84,48 nextEvenTime:84
+2th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
-==> 89 3 ts=60 RUNNG  dur=29
-T(3:89): READY -> RUNNG  cb=5 rem=200
+==> 84 1 ts=84 RUNNG  dur=0
+T(1:84): READY -> RUNNG  cb=10 rem=92
 
-Ready:PID:1 index:2 (Ts,Tg) 84,48 ready.remain:92 ready.nextEventTime:84 readysize:1
-Run:PID:3 index:0 (Ts,Tg) 89,60 run.remain:200 run.nextEventTime:94 runsize:1
-Block:PID:2 index:2 (Ts,Tg)89,82 block.remain:13 block.nextEventTime:92 blocksize:2
+CPUtime:84
+Ready:PID:2 index:0 (Ts,Tg) 50,50 ready.remain:20 ready.nextEventTime:50 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 84,84 run.remain:92 run.nextEventTime:94 runsize:1
+Block:PID:3 index:2 (Ts,Tg)84,82 block.remain:198 block.nextEventTime:97 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
-==> 92 2 ts=89 READY  dur=3
-T(2:92): BLOCK -> READY
+==> 94 1 ts=84 BLOCK  dur=10
+T(1:94): RUNNG -> BLOCK  ib=22 rem=82
 
-Ready:PID:1 index:2 (Ts,Tg) 84,48 ready.remain:92 ready.nextEventTime:84 readysize:2
-Run:PID:3 index:0 (Ts,Tg) 89,60 run.remain:200 run.nextEventTime:94 runsize:1
-Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:1
+CPUtime:94
+Ready:PID:2 index:0 (Ts,Tg) 50,50 ready.remain:20 ready.nextEventTime:50 readysize:1
+Block:PID:3 index:2 (Ts,Tg)84,82 block.remain:198 block.nextEventTime:97 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:50,50 nextEvenTime:50
 
-firstTs:ready eqalNextevent:0
-==> 94 3 ts=89 BLOCK  dur=5
-T(3:94): RUNNG -> BLOCK  ib=2 rem=195
+==> 94 2 ts=50 RUNNG  dur=44
+T(2:94): READY -> RUNNG  cb=3 rem=20
 
-Ready:PID:1 index:2 (Ts,Tg) 84,48 ready.remain:92 ready.nextEventTime:84 readysize:2
-Block:PID:3 index:2 (Ts,Tg)94,89 block.remain:195 block.nextEventTime:96 blocksize:2
+CPUtime:94
+Run:PID:2 index:0 (Ts,Tg) 94,50 run.remain:20 run.nextEventTime:97 runsize:1
+Block:PID:3 index:2 (Ts,Tg)84,82 block.remain:198 block.nextEventTime:97 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 94 1 ts=84 RUNNG  dur=10
-T(1:94): READY -> RUNNG  cb=3 rem=92
+==> 97 3 ts=84 READY  dur=13
+T(3:97): BLOCK -> READY
 
-Ready:PID:2 index:3 (Ts,Tg) 92,89 ready.remain:13 ready.nextEventTime:92 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 94,84 run.remain:92 run.nextEventTime:97 runsize:1
-Block:PID:3 index:2 (Ts,Tg)94,89 block.remain:195 block.nextEventTime:96 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 96 3 ts=94 READY  dur=2
-T(3:96): BLOCK -> READY
-
-Ready:PID:2 index:3 (Ts,Tg) 92,89 ready.remain:13 ready.nextEventTime:92 readysize:2
-Run:PID:1 index:0 (Ts,Tg) 94,84 run.remain:92 run.nextEventTime:97 runsize:1
-Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 97 1 ts=94 BLOCK  dur=3
-T(1:97): RUNNG -> BLOCK  ib=28 rem=89
-
-Ready:PID:2 index:3 (Ts,Tg) 92,89 ready.remain:13 ready.nextEventTime:92 readysize:2
+CPUtime:97
+Ready:PID:3 index:0 (Ts,Tg) 97,84 ready.remain:198 ready.nextEventTime:97 readysize:1
+Run:PID:2 index:0 (Ts,Tg) 94,50 run.remain:20 run.nextEventTime:97 runsize:1
 Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:97,84 nextEvenTime:97
 
-firstTs:ready eqalNextevent:0
-==> 97 2 ts=92 RUNNG  dur=5
-T(2:97): READY -> RUNNG  cb=1 rem=13
+==> 97 2 ts=94 BLOCK  dur=3
+T(2:97): RUNNG -> BLOCK  ib=8 rem=17
 
-Ready:PID:3 index:4 (Ts,Tg) 96,94 ready.remain:195 ready.nextEventTime:96 readysize:1
-Run:PID:2 index:0 (Ts,Tg) 97,92 run.remain:13 run.nextEventTime:98 runsize:1
-Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:2
+CPUtime:97
+Ready:PID:3 index:0 (Ts,Tg) 97,84 ready.remain:198 ready.nextEventTime:97 readysize:1
+Block:PID:2 index:4 (Ts,Tg)97,94 block.remain:17 block.nextEventTime:105 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:97,84 nextEvenTime:97
 
-firstTs:ready eqalNextevent:0
-==> 98 2 ts=97 BLOCK  dur=1
-T(2:98): RUNNG -> BLOCK  ib=10 rem=12
+==> 97 3 ts=97 RUNNG  dur=0
+T(3:97): READY -> RUNNG  cb=1 rem=198
 
-Ready:PID:3 index:4 (Ts,Tg) 96,94 ready.remain:195 ready.nextEventTime:96 readysize:1
+CPUtime:97
+Run:PID:3 index:0 (Ts,Tg) 97,97 run.remain:198 run.nextEventTime:98 runsize:1
+Block:PID:2 index:4 (Ts,Tg)97,94 block.remain:17 block.nextEventTime:105 blocksize:3
+readyQ empty
+
+==> 98 3 ts=97 BLOCK  dur=1
+T(3:98): RUNNG -> BLOCK  ib=20 rem=197
+
+CPUtime:98
+Block:PID:2 index:4 (Ts,Tg)97,94 block.remain:17 block.nextEventTime:105 blocksize:4
+readyQ empty
+
+==> 105 2 ts=97 READY  dur=8
+T(2:105): BLOCK -> READY
+
+CPUtime:105
+Ready:PID:2 index:0 (Ts,Tg) 105,97 ready.remain:17 ready.nextEventTime:105 readysize:1
 Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:105,97 nextEvenTime:105
 
-firstTs:ready eqalNextevent:0
-==> 98 3 ts=96 RUNNG  dur=2
-T(3:98): READY -> RUNNG  cb=4 rem=195
+==> 105 2 ts=105 RUNNG  dur=0
+T(2:105): READY -> RUNNG  cb=4 rem=17
 
-Run:PID:3 index:0 (Ts,Tg) 98,96 run.remain:195 run.nextEventTime:102 runsize:1
+CPUtime:105
+Run:PID:2 index:0 (Ts,Tg) 105,105 run.remain:17 run.nextEventTime:109 runsize:1
 Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:3
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 102 3 ts=98 BLOCK  dur=4
-T(3:102): RUNNG -> BLOCK  ib=7 rem=191
-
-Block:PID:0 index:1 (Ts,Tg)82,48 block.remain:142 block.nextEventTime:108 blocksize:4
-
-firstTs:block eqalNextevent:0
 ==> 108 0 ts=82 READY  dur=26
 T(0:108): BLOCK -> READY
 
+CPUtime:108
 Ready:PID:0 index:0 (Ts,Tg) 108,82 ready.remain:142 ready.nextEventTime:108 readysize:1
-Block:PID:2 index:3 (Ts,Tg)98,97 block.remain:12 block.nextEventTime:108 blocksize:3
+Run:PID:2 index:0 (Ts,Tg) 105,105 run.remain:17 run.nextEventTime:109 runsize:1
+Block:PID:1 index:3 (Ts,Tg)94,84 block.remain:82 block.nextEventTime:116 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:108,82 nextEvenTime:108
 
-firstTs:ready eqalNextevent:1
-equalNextEvent,nextsmallesTS:block
-==> 108 2 ts=98 READY  dur=10
-T(2:108): BLOCK -> READY
+==> 109 2 ts=105 BLOCK  dur=4
+T(2:109): RUNNG -> BLOCK  ib=7 rem=13
 
-Ready:PID:0 index:0 (Ts,Tg) 108,82 ready.remain:142 ready.nextEventTime:108 readysize:2
-Block:PID:3 index:3 (Ts,Tg)102,98 block.remain:191 block.nextEventTime:109 blocksize:2
+CPUtime:109
+Ready:PID:0 index:0 (Ts,Tg) 108,82 ready.remain:142 ready.nextEventTime:108 readysize:1
+Block:PID:1 index:3 (Ts,Tg)94,84 block.remain:82 block.nextEventTime:116 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:108,82 nextEvenTime:108
 
-firstTs:ready eqalNextevent:0
-==> 108 0 ts=108 RUNNG  dur=0
-T(0:108): READY -> RUNNG  cb=21 rem=142
+==> 109 0 ts=108 RUNNG  dur=1
+T(0:109): READY -> RUNNG  cb=21 rem=142
 
-Ready:PID:2 index:1 (Ts,Tg) 108,98 ready.remain:12 ready.nextEventTime:108 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 108,108 run.remain:142 run.nextEventTime:129 runsize:1
-Block:PID:3 index:3 (Ts,Tg)102,98 block.remain:191 block.nextEventTime:109 blocksize:2
+CPUtime:109
+Run:PID:0 index:0 (Ts,Tg) 109,108 run.remain:142 run.nextEventTime:130 runsize:1
+Block:PID:1 index:3 (Ts,Tg)94,84 block.remain:82 block.nextEventTime:116 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 109 3 ts=102 READY  dur=7
-T(3:109): BLOCK -> READY
+==> 116 1 ts=94 READY  dur=22
+T(1:116): BLOCK -> READY
 
-Ready:PID:2 index:1 (Ts,Tg) 108,98 ready.remain:12 ready.nextEventTime:108 readysize:2
-Run:PID:0 index:0 (Ts,Tg) 108,108 run.remain:142 run.nextEventTime:129 runsize:1
-Block:PID:1 index:2 (Ts,Tg)97,94 block.remain:89 block.nextEventTime:125 blocksize:1
+CPUtime:116
+Ready:PID:1 index:0 (Ts,Tg) 116,94 ready.remain:82 ready.nextEventTime:116 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 109,108 run.remain:142 run.nextEventTime:130 runsize:1
+Block:PID:2 index:6 (Ts,Tg)109,105 block.remain:13 block.nextEventTime:116 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 125 1 ts=97 READY  dur=28
-T(1:125): BLOCK -> READY
+==> 116 2 ts=109 READY  dur=7
+T(2:116): BLOCK -> READY
 
-Ready:PID:2 index:1 (Ts,Tg) 108,98 ready.remain:12 ready.nextEventTime:108 readysize:3
-Run:PID:0 index:0 (Ts,Tg) 108,108 run.remain:142 run.nextEventTime:129 runsize:1
+CPUtime:116
+Ready:PID:2 index:1 (Ts,Tg) 116,109 ready.remain:13 ready.nextEventTime:116 readysize:2
+Run:PID:0 index:0 (Ts,Tg) 109,108 run.remain:142 run.nextEventTime:130 runsize:1
+Block:PID:3 index:5 (Ts,Tg)98,97 block.remain:197 block.nextEventTime:118 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:2 index:1 Ts,Tg:116,109 nextEvenTime:116
+2th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 129 0 ts=108 BLOCK  dur=21
-T(0:129): RUNNG -> BLOCK  ib=37 rem=121
+==> 118 3 ts=98 READY  dur=20
+T(3:118): BLOCK -> READY
 
-Ready:PID:2 index:1 (Ts,Tg) 108,98 ready.remain:12 ready.nextEventTime:108 readysize:3
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:1
+CPUtime:118
+Ready:PID:3 index:2 (Ts,Tg) 118,98 ready.remain:197 ready.nextEventTime:118 readysize:3
+Run:PID:0 index:0 (Ts,Tg) 109,108 run.remain:142 run.nextEventTime:130 runsize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:2 Ts,Tg:118,98 nextEvenTime:118
+2th inreadyQ: PID:2 index:1 Ts,Tg:116,109 nextEvenTime:116
+3th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 129 2 ts=108 RUNNG  dur=21
-T(2:129): READY -> RUNNG  cb=3 rem=12
+==> 130 0 ts=109 BLOCK  dur=21
+T(0:130): RUNNG -> BLOCK  ib=37 rem=121
 
-Ready:PID:3 index:2 (Ts,Tg) 109,102 ready.remain:191 ready.nextEventTime:109 readysize:2
-Run:PID:2 index:0 (Ts,Tg) 129,108 run.remain:12 run.nextEventTime:132 runsize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:1
+CPUtime:130
+Ready:PID:3 index:2 (Ts,Tg) 118,98 ready.remain:197 ready.nextEventTime:118 readysize:3
+Block:PID:0 index:0 (Ts,Tg)130,109 block.remain:121 block.nextEventTime:167 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:2 Ts,Tg:118,98 nextEvenTime:118
+2th inreadyQ: PID:2 index:1 Ts,Tg:116,109 nextEvenTime:116
+3th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 132 2 ts=129 BLOCK  dur=3
-T(2:132): RUNNG -> BLOCK  ib=7 rem=9
+==> 130 3 ts=118 RUNNG  dur=12
+T(3:130): READY -> RUNNG  cb=3 rem=197
 
-Ready:PID:3 index:2 (Ts,Tg) 109,102 ready.remain:191 ready.nextEventTime:109 readysize:2
-Block:PID:2 index:1 (Ts,Tg)132,129 block.remain:9 block.nextEventTime:139 blocksize:2
+CPUtime:130
+Ready:PID:2 index:1 (Ts,Tg) 116,109 ready.remain:13 ready.nextEventTime:116 readysize:2
+Run:PID:3 index:0 (Ts,Tg) 130,118 run.remain:197 run.nextEventTime:133 runsize:1
+Block:PID:0 index:0 (Ts,Tg)130,109 block.remain:121 block.nextEventTime:167 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:2 index:1 Ts,Tg:116,109 nextEvenTime:116
+2th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 132 3 ts=109 RUNNG  dur=23
-T(3:132): READY -> RUNNG  cb=2 rem=191
+==> 133 3 ts=130 BLOCK  dur=3
+T(3:133): RUNNG -> BLOCK  ib=17 rem=194
 
-Ready:PID:1 index:3 (Ts,Tg) 125,97 ready.remain:89 ready.nextEventTime:125 readysize:1
-Run:PID:3 index:0 (Ts,Tg) 132,109 run.remain:191 run.nextEventTime:134 runsize:1
-Block:PID:2 index:1 (Ts,Tg)132,129 block.remain:9 block.nextEventTime:139 blocksize:2
+CPUtime:133
+Ready:PID:2 index:1 (Ts,Tg) 116,109 ready.remain:13 ready.nextEventTime:116 readysize:2
+Block:PID:3 index:1 (Ts,Tg)133,130 block.remain:194 block.nextEventTime:150 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:2 index:1 Ts,Tg:116,109 nextEvenTime:116
+2th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 134 3 ts=132 BLOCK  dur=2
-T(3:134): RUNNG -> BLOCK  ib=9 rem=189
+==> 133 2 ts=116 RUNNG  dur=17
+T(2:133): READY -> RUNNG  cb=2 rem=13
 
-Ready:PID:1 index:3 (Ts,Tg) 125,97 ready.remain:89 ready.nextEventTime:125 readysize:1
-Block:PID:2 index:1 (Ts,Tg)132,129 block.remain:9 block.nextEventTime:139 blocksize:3
+CPUtime:133
+Ready:PID:1 index:0 (Ts,Tg) 116,94 ready.remain:82 ready.nextEventTime:116 readysize:1
+Run:PID:2 index:0 (Ts,Tg) 133,116 run.remain:13 run.nextEventTime:135 runsize:1
+Block:PID:3 index:1 (Ts,Tg)133,130 block.remain:194 block.nextEventTime:150 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:ready eqalNextevent:0
-==> 134 1 ts=125 RUNNG  dur=9
-T(1:134): READY -> RUNNG  cb=8 rem=89
+==> 135 2 ts=133 BLOCK  dur=2
+T(2:135): RUNNG -> BLOCK  ib=9 rem=11
 
-Run:PID:1 index:0 (Ts,Tg) 134,125 run.remain:89 run.nextEventTime:142 runsize:1
-Block:PID:2 index:1 (Ts,Tg)132,129 block.remain:9 block.nextEventTime:139 blocksize:3
+CPUtime:135
+Ready:PID:1 index:0 (Ts,Tg) 116,94 ready.remain:82 ready.nextEventTime:116 readysize:1
+Block:PID:2 index:2 (Ts,Tg)135,133 block.remain:11 block.nextEventTime:144 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:116,94 nextEvenTime:116
 
-firstTs:block eqalNextevent:0
-==> 139 2 ts=132 READY  dur=7
-T(2:139): BLOCK -> READY
+==> 135 1 ts=116 RUNNG  dur=19
+T(1:135): READY -> RUNNG  cb=8 rem=82
 
-Ready:PID:2 index:0 (Ts,Tg) 139,132 ready.remain:9 ready.nextEventTime:139 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 134,125 run.remain:89 run.nextEventTime:142 runsize:1
-Block:PID:3 index:1 (Ts,Tg)134,132 block.remain:189 block.nextEventTime:143 blocksize:2
+CPUtime:135
+Run:PID:1 index:0 (Ts,Tg) 135,116 run.remain:82 run.nextEventTime:143 runsize:1
+Block:PID:2 index:2 (Ts,Tg)135,133 block.remain:11 block.nextEventTime:144 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 142 1 ts=134 BLOCK  dur=8
-T(1:142): RUNNG -> BLOCK  ib=30 rem=81
+==> 143 1 ts=135 BLOCK  dur=8
+T(1:143): RUNNG -> BLOCK  ib=30 rem=74
 
-Ready:PID:2 index:0 (Ts,Tg) 139,132 ready.remain:9 ready.nextEventTime:139 readysize:1
-Block:PID:3 index:1 (Ts,Tg)134,132 block.remain:189 block.nextEventTime:143 blocksize:3
+CPUtime:143
+Block:PID:2 index:2 (Ts,Tg)135,133 block.remain:11 block.nextEventTime:144 blocksize:4
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 142 2 ts=139 RUNNG  dur=3
-T(2:142): READY -> RUNNG  cb=3 rem=9
+==> 144 2 ts=135 READY  dur=9
+T(2:144): BLOCK -> READY
 
-Run:PID:2 index:0 (Ts,Tg) 142,139 run.remain:9 run.nextEventTime:145 runsize:1
-Block:PID:3 index:1 (Ts,Tg)134,132 block.remain:189 block.nextEventTime:143 blocksize:3
+CPUtime:144
+Ready:PID:2 index:0 (Ts,Tg) 144,135 ready.remain:11 ready.nextEventTime:144 readysize:1
+Block:PID:3 index:1 (Ts,Tg)133,130 block.remain:194 block.nextEventTime:150 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:144,135 nextEvenTime:144
 
-firstTs:block eqalNextevent:0
-==> 143 3 ts=134 READY  dur=9
-T(3:143): BLOCK -> READY
+==> 144 2 ts=144 RUNNG  dur=0
+T(2:144): READY -> RUNNG  cb=3 rem=11
 
-Ready:PID:3 index:0 (Ts,Tg) 143,134 ready.remain:189 ready.nextEventTime:143 readysize:1
-Run:PID:2 index:0 (Ts,Tg) 142,139 run.remain:9 run.nextEventTime:145 runsize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:144
+Run:PID:2 index:0 (Ts,Tg) 144,144 run.remain:11 run.nextEventTime:147 runsize:1
+Block:PID:3 index:1 (Ts,Tg)133,130 block.remain:194 block.nextEventTime:150 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 145 2 ts=142 BLOCK  dur=3
-T(2:145): RUNNG -> BLOCK  ib=1 rem=6
+==> 147 2 ts=144 BLOCK  dur=3
+T(2:147): RUNNG -> BLOCK  ib=1 rem=8
 
-Ready:PID:3 index:0 (Ts,Tg) 143,134 ready.remain:189 ready.nextEventTime:143 readysize:1
-Block:PID:2 index:2 (Ts,Tg)145,142 block.remain:6 block.nextEventTime:146 blocksize:3
+CPUtime:147
+Block:PID:2 index:4 (Ts,Tg)147,144 block.remain:8 block.nextEventTime:148 blocksize:4
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 145 3 ts=143 RUNNG  dur=2
-T(3:145): READY -> RUNNG  cb=3 rem=189
+==> 148 2 ts=147 READY  dur=1
+T(2:148): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 145,143 run.remain:189 run.nextEventTime:148 runsize:1
-Block:PID:2 index:2 (Ts,Tg)145,142 block.remain:6 block.nextEventTime:146 blocksize:3
+CPUtime:148
+Ready:PID:2 index:0 (Ts,Tg) 148,147 ready.remain:8 ready.nextEventTime:148 readysize:1
+Block:PID:3 index:1 (Ts,Tg)133,130 block.remain:194 block.nextEventTime:150 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:148,147 nextEvenTime:148
 
-firstTs:block eqalNextevent:0
-==> 146 2 ts=145 READY  dur=1
-T(2:146): BLOCK -> READY
+==> 148 2 ts=148 RUNNG  dur=0
+T(2:148): READY -> RUNNG  cb=3 rem=8
 
-Ready:PID:2 index:0 (Ts,Tg) 146,145 ready.remain:6 ready.nextEventTime:146 readysize:1
-Run:PID:3 index:0 (Ts,Tg) 145,143 run.remain:189 run.nextEventTime:148 runsize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:148
+Run:PID:2 index:0 (Ts,Tg) 148,148 run.remain:8 run.nextEventTime:151 runsize:1
+Block:PID:3 index:1 (Ts,Tg)133,130 block.remain:194 block.nextEventTime:150 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 148 3 ts=145 BLOCK  dur=3
-T(3:148): RUNNG -> BLOCK  ib=4 rem=186
+==> 150 3 ts=133 READY  dur=17
+T(3:150): BLOCK -> READY
 
-Ready:PID:2 index:0 (Ts,Tg) 146,145 ready.remain:6 ready.nextEventTime:146 readysize:1
-Block:PID:3 index:2 (Ts,Tg)148,145 block.remain:186 block.nextEventTime:152 blocksize:3
+CPUtime:150
+Ready:PID:3 index:0 (Ts,Tg) 150,133 ready.remain:194 ready.nextEventTime:150 readysize:1
+Run:PID:2 index:0 (Ts,Tg) 148,148 run.remain:8 run.nextEventTime:151 runsize:1
+Block:PID:0 index:0 (Ts,Tg)130,109 block.remain:121 block.nextEventTime:167 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:150,133 nextEvenTime:150
 
-firstTs:ready eqalNextevent:0
-==> 148 2 ts=146 RUNNG  dur=2
-T(2:148): READY -> RUNNG  cb=6 rem=6
+==> 151 2 ts=148 BLOCK  dur=3
+T(2:151): RUNNG -> BLOCK  ib=4 rem=5
 
-Run:PID:2 index:0 (Ts,Tg) 148,146 run.remain:6 run.nextEventTime:156 runsize:1
-Block:PID:3 index:2 (Ts,Tg)148,145 block.remain:186 block.nextEventTime:152 blocksize:3
+CPUtime:151
+Ready:PID:3 index:0 (Ts,Tg) 150,133 ready.remain:194 ready.nextEventTime:150 readysize:1
+Block:PID:2 index:4 (Ts,Tg)151,148 block.remain:5 block.nextEventTime:155 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:150,133 nextEvenTime:150
 
-firstTs:block eqalNextevent:0
-==> 152 3 ts=148 READY  dur=4
-T(3:152): BLOCK -> READY
+==> 151 3 ts=150 RUNNG  dur=1
+T(3:151): READY -> RUNNG  cb=3 rem=194
 
-Ready:PID:3 index:0 (Ts,Tg) 152,148 ready.remain:186 ready.nextEventTime:152 readysize:1
-Run:PID:2 index:0 (Ts,Tg) 148,146 run.remain:6 run.nextEventTime:156 runsize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:151
+Run:PID:3 index:0 (Ts,Tg) 151,150 run.remain:194 run.nextEventTime:154 runsize:1
+Block:PID:2 index:4 (Ts,Tg)151,148 block.remain:5 block.nextEventTime:155 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 154 2 ts=148 BLOCK  dur=6
+==> 154 3 ts=151 BLOCK  dur=3
+T(3:154): RUNNG -> BLOCK  ib=16 rem=191
+
+CPUtime:154
+Block:PID:2 index:4 (Ts,Tg)151,148 block.remain:5 block.nextEventTime:155 blocksize:4
+readyQ empty
+
+==> 155 2 ts=151 READY  dur=4
+T(2:155): BLOCK -> READY
+
+CPUtime:155
+Ready:PID:2 index:0 (Ts,Tg) 155,151 ready.remain:5 ready.nextEventTime:155 readysize:1
+Block:PID:0 index:0 (Ts,Tg)130,109 block.remain:121 block.nextEventTime:167 blocksize:3
+readyQ elements:
+1th inreadyQ: PID:2 index:0 Ts,Tg:155,151 nextEvenTime:155
+
+==> 155 2 ts=155 RUNNG  dur=0
+T(2:155): READY -> RUNNG  cb=5 rem=5
+
+CPUtime:155
+Run:PID:2 index:0 (Ts,Tg) 155,155 run.remain:5 run.nextEventTime:165 runsize:1
+Block:PID:0 index:0 (Ts,Tg)130,109 block.remain:121 block.nextEventTime:167 blocksize:3
+readyQ empty
+
+==> 160 2 ts=155 BLOCK  dur=5
 ==> T(2): Done
 
-Ready:PID:3 index:0 (Ts,Tg) 152,148 ready.remain:186 ready.nextEventTime:152 readysize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:160
+Block:PID:0 index:0 (Ts,Tg)130,109 block.remain:121 block.nextEventTime:167 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 154 3 ts=152 RUNNG  dur=2
-T(3:154): READY -> RUNNG  cb=1 rem=186
+==> 167 0 ts=130 READY  dur=37
+T(0:167): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 154,152 run.remain:186 run.nextEventTime:155 runsize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:167
+Ready:PID:0 index:0 (Ts,Tg) 167,130 ready.remain:121 ready.nextEventTime:167 readysize:1
+Block:PID:3 index:5 (Ts,Tg)154,151 block.remain:191 block.nextEventTime:170 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:167,130 nextEvenTime:167
 
-firstTs:run eqalNextevent:0
-==> 155 3 ts=154 BLOCK  dur=1
-T(3:155): RUNNG -> BLOCK  ib=10 rem=185
+==> 167 0 ts=167 RUNNG  dur=0
+T(0:167): READY -> RUNNG  cb=3 rem=121
 
-Block:PID:3 index:2 (Ts,Tg)155,154 block.remain:185 block.nextEventTime:165 blocksize:3
+CPUtime:167
+Run:PID:0 index:0 (Ts,Tg) 167,167 run.remain:121 run.nextEventTime:170 runsize:1
+Block:PID:3 index:5 (Ts,Tg)154,151 block.remain:191 block.nextEventTime:170 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 165 3 ts=155 READY  dur=10
-T(3:165): BLOCK -> READY
+==> 170 3 ts=154 READY  dur=16
+T(3:170): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 165,155 ready.remain:185 ready.nextEventTime:165 readysize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:170
+Ready:PID:3 index:0 (Ts,Tg) 170,154 ready.remain:191 ready.nextEventTime:170 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 167,167 run.remain:121 run.nextEventTime:170 runsize:1
+Block:PID:1 index:3 (Ts,Tg)143,135 block.remain:74 block.nextEventTime:173 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:170,154 nextEvenTime:170
 
-firstTs:ready eqalNextevent:0
-==> 165 3 ts=165 RUNNG  dur=0
-T(3:165): READY -> RUNNG  cb=3 rem=185
+==> 170 0 ts=167 BLOCK  dur=3
+T(0:170): RUNNG -> BLOCK  ib=73 rem=118
 
-Run:PID:3 index:0 (Ts,Tg) 165,165 run.remain:185 run.nextEventTime:168 runsize:1
-Block:PID:0 index:0 (Ts,Tg)129,108 block.remain:121 block.nextEventTime:166 blocksize:2
+CPUtime:170
+Ready:PID:3 index:0 (Ts,Tg) 170,154 ready.remain:191 ready.nextEventTime:170 readysize:1
+Block:PID:1 index:3 (Ts,Tg)143,135 block.remain:74 block.nextEventTime:173 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:170,154 nextEvenTime:170
 
-firstTs:block eqalNextevent:0
-==> 166 0 ts=129 READY  dur=37
-T(0:166): BLOCK -> READY
+==> 170 3 ts=170 RUNNG  dur=0
+T(3:170): READY -> RUNNG  cb=4 rem=191
 
-Ready:PID:0 index:0 (Ts,Tg) 166,129 ready.remain:121 ready.nextEventTime:166 readysize:1
-Run:PID:3 index:0 (Ts,Tg) 165,165 run.remain:185 run.nextEventTime:168 runsize:1
-Block:PID:1 index:1 (Ts,Tg)142,134 block.remain:81 block.nextEventTime:172 blocksize:1
+CPUtime:170
+Run:PID:3 index:0 (Ts,Tg) 170,170 run.remain:191 run.nextEventTime:174 runsize:1
+Block:PID:1 index:3 (Ts,Tg)143,135 block.remain:74 block.nextEventTime:173 blocksize:2
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 168 3 ts=165 BLOCK  dur=3
-T(3:168): RUNNG -> BLOCK  ib=3 rem=182
+==> 173 1 ts=143 READY  dur=30
+T(1:173): BLOCK -> READY
 
-Ready:PID:0 index:0 (Ts,Tg) 166,129 ready.remain:121 ready.nextEventTime:166 readysize:1
-Block:PID:3 index:2 (Ts,Tg)168,165 block.remain:182 block.nextEventTime:171 blocksize:2
+CPUtime:173
+Ready:PID:1 index:0 (Ts,Tg) 173,143 ready.remain:74 ready.nextEventTime:173 readysize:1
+Run:PID:3 index:0 (Ts,Tg) 170,170 run.remain:191 run.nextEventTime:174 runsize:1
+Block:PID:0 index:4 (Ts,Tg)170,167 block.remain:118 block.nextEventTime:243 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:173,143 nextEvenTime:173
 
-firstTs:ready eqalNextevent:0
-==> 168 0 ts=166 RUNNG  dur=2
-T(0:168): READY -> RUNNG  cb=19 rem=121
+==> 174 3 ts=170 BLOCK  dur=4
+T(3:174): RUNNG -> BLOCK  ib=10 rem=187
 
-Run:PID:0 index:0 (Ts,Tg) 168,166 run.remain:121 run.nextEventTime:187 runsize:1
-Block:PID:3 index:2 (Ts,Tg)168,165 block.remain:182 block.nextEventTime:171 blocksize:2
+CPUtime:174
+Ready:PID:1 index:0 (Ts,Tg) 173,143 ready.remain:74 ready.nextEventTime:173 readysize:1
+Block:PID:3 index:5 (Ts,Tg)174,170 block.remain:187 block.nextEventTime:184 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:173,143 nextEvenTime:173
 
-firstTs:block eqalNextevent:0
-==> 171 3 ts=168 READY  dur=3
-T(3:171): BLOCK -> READY
+==> 174 1 ts=173 RUNNG  dur=1
+T(1:174): READY -> RUNNG  cb=8 rem=74
 
-Ready:PID:3 index:0 (Ts,Tg) 171,168 ready.remain:182 ready.nextEventTime:171 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 168,166 run.remain:121 run.nextEventTime:187 runsize:1
-Block:PID:1 index:1 (Ts,Tg)142,134 block.remain:81 block.nextEventTime:172 blocksize:1
+CPUtime:174
+Run:PID:1 index:0 (Ts,Tg) 174,173 run.remain:74 run.nextEventTime:182 runsize:1
+Block:PID:3 index:5 (Ts,Tg)174,170 block.remain:187 block.nextEventTime:184 blocksize:2
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 172 1 ts=142 READY  dur=30
-T(1:172): BLOCK -> READY
+==> 182 1 ts=174 BLOCK  dur=8
+T(1:182): RUNNG -> BLOCK  ib=34 rem=66
 
-Ready:PID:3 index:0 (Ts,Tg) 171,168 ready.remain:182 ready.nextEventTime:171 readysize:2
-Run:PID:0 index:0 (Ts,Tg) 168,166 run.remain:121 run.nextEventTime:187 runsize:1
+CPUtime:182
+Block:PID:3 index:5 (Ts,Tg)174,170 block.remain:187 block.nextEventTime:184 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 187 0 ts=168 BLOCK  dur=19
-T(0:187): RUNNG -> BLOCK  ib=60 rem=102
+==> 184 3 ts=174 READY  dur=10
+T(3:184): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 171,168 ready.remain:182 ready.nextEventTime:171 readysize:2
-Block:PID:0 index:0 (Ts,Tg)187,168 block.remain:102 block.nextEventTime:247 blocksize:1
+CPUtime:184
+Ready:PID:3 index:0 (Ts,Tg) 184,174 ready.remain:187 ready.nextEventTime:184 readysize:1
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:184,174 nextEvenTime:184
 
-firstTs:ready eqalNextevent:0
-==> 187 3 ts=171 RUNNG  dur=16
-T(3:187): READY -> RUNNG  cb=3 rem=182
+==> 184 3 ts=184 RUNNG  dur=0
+T(3:184): READY -> RUNNG  cb=2 rem=187
 
-Ready:PID:1 index:1 (Ts,Tg) 172,142 ready.remain:81 ready.nextEventTime:172 readysize:1
-Run:PID:3 index:0 (Ts,Tg) 187,171 run.remain:182 run.nextEventTime:190 runsize:1
-Block:PID:0 index:0 (Ts,Tg)187,168 block.remain:102 block.nextEventTime:247 blocksize:1
+CPUtime:184
+Run:PID:3 index:0 (Ts,Tg) 184,184 run.remain:187 run.nextEventTime:186 runsize:1
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:2
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 190 3 ts=187 BLOCK  dur=3
-T(3:190): RUNNG -> BLOCK  ib=14 rem=179
+==> 186 3 ts=184 BLOCK  dur=2
+T(3:186): RUNNG -> BLOCK  ib=12 rem=185
 
-Ready:PID:1 index:1 (Ts,Tg) 172,142 ready.remain:81 ready.nextEventTime:172 readysize:1
-Block:PID:3 index:1 (Ts,Tg)190,187 block.remain:179 block.nextEventTime:204 blocksize:2
+CPUtime:186
+Block:PID:3 index:7 (Ts,Tg)186,184 block.remain:185 block.nextEventTime:198 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 190 1 ts=172 RUNNG  dur=18
-T(1:190): READY -> RUNNG  cb=7 rem=81
+==> 198 3 ts=186 READY  dur=12
+T(3:198): BLOCK -> READY
 
-Run:PID:1 index:0 (Ts,Tg) 190,172 run.remain:81 run.nextEventTime:197 runsize:1
-Block:PID:3 index:1 (Ts,Tg)190,187 block.remain:179 block.nextEventTime:204 blocksize:2
+CPUtime:198
+Ready:PID:3 index:0 (Ts,Tg) 198,186 ready.remain:185 ready.nextEventTime:198 readysize:1
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:198,186 nextEvenTime:198
 
-firstTs:run eqalNextevent:0
-==> 197 1 ts=190 BLOCK  dur=7
-T(1:197): RUNNG -> BLOCK  ib=12 rem=74
+==> 198 3 ts=198 RUNNG  dur=0
+T(3:198): READY -> RUNNG  cb=3 rem=185
 
-Block:PID:3 index:1 (Ts,Tg)190,187 block.remain:179 block.nextEventTime:204 blocksize:3
+CPUtime:198
+Run:PID:3 index:0 (Ts,Tg) 198,198 run.remain:185 run.nextEventTime:201 runsize:1
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 204 3 ts=190 READY  dur=14
-T(3:204): BLOCK -> READY
+==> 201 3 ts=198 BLOCK  dur=3
+T(3:201): RUNNG -> BLOCK  ib=10 rem=182
 
-Ready:PID:3 index:0 (Ts,Tg) 204,190 ready.remain:179 ready.nextEventTime:204 readysize:1
-Block:PID:1 index:1 (Ts,Tg)197,190 block.remain:74 block.nextEventTime:209 blocksize:2
+CPUtime:201
+Block:PID:3 index:7 (Ts,Tg)201,198 block.remain:182 block.nextEventTime:211 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 204 3 ts=204 RUNNG  dur=0
-T(3:204): READY -> RUNNG  cb=3 rem=179
+==> 211 3 ts=201 READY  dur=10
+T(3:211): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 204,204 run.remain:179 run.nextEventTime:207 runsize:1
-Block:PID:1 index:1 (Ts,Tg)197,190 block.remain:74 block.nextEventTime:209 blocksize:2
+CPUtime:211
+Ready:PID:3 index:0 (Ts,Tg) 211,201 ready.remain:182 ready.nextEventTime:211 readysize:1
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:211,201 nextEvenTime:211
 
-firstTs:run eqalNextevent:0
-==> 207 3 ts=204 BLOCK  dur=3
-T(3:207): RUNNG -> BLOCK  ib=10 rem=176
+==> 211 3 ts=211 RUNNG  dur=0
+T(3:211): READY -> RUNNG  cb=4 rem=182
 
-Block:PID:1 index:1 (Ts,Tg)197,190 block.remain:74 block.nextEventTime:209 blocksize:3
+CPUtime:211
+Run:PID:3 index:0 (Ts,Tg) 211,211 run.remain:182 run.nextEventTime:215 runsize:1
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 209 1 ts=197 READY  dur=12
-T(1:209): BLOCK -> READY
+==> 215 3 ts=211 BLOCK  dur=4
+T(3:215): RUNNG -> BLOCK  ib=2 rem=178
 
-Ready:PID:1 index:0 (Ts,Tg) 209,197 ready.remain:74 ready.nextEventTime:209 readysize:1
-Block:PID:3 index:1 (Ts,Tg)207,204 block.remain:176 block.nextEventTime:217 blocksize:2
+CPUtime:215
+Block:PID:1 index:6 (Ts,Tg)182,174 block.remain:66 block.nextEventTime:216 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 209 1 ts=209 RUNNG  dur=0
-T(1:209): READY -> RUNNG  cb=4 rem=74
+==> 216 1 ts=182 READY  dur=34
+T(1:216): BLOCK -> READY
 
-Run:PID:1 index:0 (Ts,Tg) 209,209 run.remain:74 run.nextEventTime:213 runsize:1
-Block:PID:3 index:1 (Ts,Tg)207,204 block.remain:176 block.nextEventTime:217 blocksize:2
+CPUtime:216
+Ready:PID:1 index:0 (Ts,Tg) 216,182 ready.remain:66 ready.nextEventTime:216 readysize:1
+Block:PID:3 index:7 (Ts,Tg)215,211 block.remain:178 block.nextEventTime:217 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:216,182 nextEvenTime:216
 
-firstTs:run eqalNextevent:0
-==> 213 1 ts=209 BLOCK  dur=4
-T(1:213): RUNNG -> BLOCK  ib=22 rem=70
+==> 216 1 ts=216 RUNNG  dur=0
+T(1:216): READY -> RUNNG  cb=10 rem=66
 
-Block:PID:3 index:1 (Ts,Tg)207,204 block.remain:176 block.nextEventTime:217 blocksize:3
+CPUtime:216
+Run:PID:1 index:0 (Ts,Tg) 216,216 run.remain:66 run.nextEventTime:226 runsize:1
+Block:PID:3 index:7 (Ts,Tg)215,211 block.remain:178 block.nextEventTime:217 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 217 3 ts=207 READY  dur=10
+==> 217 3 ts=215 READY  dur=2
 T(3:217): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 217,207 ready.remain:176 ready.nextEventTime:217 readysize:1
-Block:PID:1 index:1 (Ts,Tg)213,209 block.remain:70 block.nextEventTime:235 blocksize:2
+CPUtime:217
+Ready:PID:3 index:0 (Ts,Tg) 217,215 ready.remain:178 ready.nextEventTime:217 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 216,216 run.remain:66 run.nextEventTime:226 runsize:1
+Block:PID:0 index:4 (Ts,Tg)170,167 block.remain:118 block.nextEventTime:243 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:217,215 nextEvenTime:217
+
+==> 226 1 ts=216 BLOCK  dur=10
+T(1:226): RUNNG -> BLOCK  ib=25 rem=56
+
+CPUtime:226
+Ready:PID:3 index:0 (Ts,Tg) 217,215 ready.remain:178 ready.nextEventTime:217 readysize:1
+Block:PID:0 index:4 (Ts,Tg)170,167 block.remain:118 block.nextEventTime:243 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:217,215 nextEvenTime:217
+
+==> 226 3 ts=217 RUNNG  dur=9
+T(3:226): READY -> RUNNG  cb=3 rem=178
+
+CPUtime:226
+Run:PID:3 index:0 (Ts,Tg) 226,217 run.remain:178 run.nextEventTime:229 runsize:1
+Block:PID:0 index:4 (Ts,Tg)170,167 block.remain:118 block.nextEventTime:243 blocksize:2
+readyQ empty
+
+==> 229 3 ts=226 BLOCK  dur=3
+T(3:229): RUNNG -> BLOCK  ib=19 rem=175
+
+CPUtime:229
+Block:PID:0 index:4 (Ts,Tg)170,167 block.remain:118 block.nextEventTime:243 blocksize:3
+readyQ empty
+
+==> 243 0 ts=170 READY  dur=73
+T(0:243): BLOCK -> READY
+
+CPUtime:243
+Ready:PID:0 index:0 (Ts,Tg) 243,170 ready.remain:118 ready.nextEventTime:243 readysize:1
+Block:PID:3 index:6 (Ts,Tg)229,226 block.remain:175 block.nextEventTime:248 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:243,170 nextEvenTime:243
+
+==> 243 0 ts=243 RUNNG  dur=0
+T(0:243): READY -> RUNNG  cb=5 rem=118
+
+CPUtime:243
+Run:PID:0 index:0 (Ts,Tg) 243,243 run.remain:118 run.nextEventTime:248 runsize:1
+Block:PID:3 index:6 (Ts,Tg)229,226 block.remain:175 block.nextEventTime:248 blocksize:2
+readyQ empty
+
+==> 248 3 ts=229 READY  dur=19
+T(3:248): BLOCK -> READY
+
+CPUtime:248
+Ready:PID:3 index:0 (Ts,Tg) 248,229 ready.remain:175 ready.nextEventTime:248 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 243,243 run.remain:118 run.nextEventTime:248 runsize:1
+Block:PID:1 index:5 (Ts,Tg)226,216 block.remain:56 block.nextEventTime:251 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:248,229 nextEvenTime:248
+
+==> 248 0 ts=243 BLOCK  dur=5
+T(0:248): RUNNG -> BLOCK  ib=66 rem=113
+
+CPUtime:248
+Ready:PID:3 index:0 (Ts,Tg) 248,229 ready.remain:175 ready.nextEventTime:248 readysize:1
+Block:PID:1 index:5 (Ts,Tg)226,216 block.remain:56 block.nextEventTime:251 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:248,229 nextEvenTime:248
+
+==> 248 3 ts=248 RUNNG  dur=0
+T(3:248): READY -> RUNNG  cb=1 rem=175
+
+CPUtime:248
+Run:PID:3 index:0 (Ts,Tg) 248,248 run.remain:175 run.nextEventTime:249 runsize:1
+Block:PID:1 index:5 (Ts,Tg)226,216 block.remain:56 block.nextEventTime:251 blocksize:2
+readyQ empty
+
+==> 249 3 ts=248 BLOCK  dur=1
+T(3:249): RUNNG -> BLOCK  ib=14 rem=174
+
+CPUtime:249
+Block:PID:1 index:5 (Ts,Tg)226,216 block.remain:56 block.nextEventTime:251 blocksize:3
+readyQ empty
+
+==> 251 1 ts=226 READY  dur=25
+T(1:251): BLOCK -> READY
+
+CPUtime:251
+Ready:PID:1 index:0 (Ts,Tg) 251,226 ready.remain:56 ready.nextEventTime:251 readysize:1
+Block:PID:3 index:7 (Ts,Tg)249,248 block.remain:174 block.nextEventTime:263 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:251,226 nextEvenTime:251
+
+==> 251 1 ts=251 RUNNG  dur=0
+T(1:251): READY -> RUNNG  cb=7 rem=56
+
+CPUtime:251
+Run:PID:1 index:0 (Ts,Tg) 251,251 run.remain:56 run.nextEventTime:258 runsize:1
+Block:PID:3 index:7 (Ts,Tg)249,248 block.remain:174 block.nextEventTime:263 blocksize:2
+readyQ empty
+
+==> 258 1 ts=251 BLOCK  dur=7
+T(1:258): RUNNG -> BLOCK  ib=12 rem=49
+
+CPUtime:258
+Block:PID:3 index:7 (Ts,Tg)249,248 block.remain:174 block.nextEventTime:263 blocksize:3
+readyQ empty
+
+==> 263 3 ts=249 READY  dur=14
+T(3:263): BLOCK -> READY
 
-firstTs:ready eqalNextevent:0
-==> 217 3 ts=217 RUNNG  dur=0
-T(3:217): READY -> RUNNG  cb=5 rem=176
+CPUtime:263
+Ready:PID:3 index:0 (Ts,Tg) 263,249 ready.remain:174 ready.nextEventTime:263 readysize:1
+Block:PID:1 index:8 (Ts,Tg)258,251 block.remain:49 block.nextEventTime:270 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:263,249 nextEvenTime:263
+
+==> 263 3 ts=263 RUNNG  dur=0
+T(3:263): READY -> RUNNG  cb=1 rem=174
+
+CPUtime:263
+Run:PID:3 index:0 (Ts,Tg) 263,263 run.remain:174 run.nextEventTime:264 runsize:1
+Block:PID:1 index:8 (Ts,Tg)258,251 block.remain:49 block.nextEventTime:270 blocksize:2
+readyQ empty
+
+==> 264 3 ts=263 BLOCK  dur=1
+T(3:264): RUNNG -> BLOCK  ib=17 rem=173
+
+CPUtime:264
+Block:PID:1 index:8 (Ts,Tg)258,251 block.remain:49 block.nextEventTime:270 blocksize:3
+readyQ empty
+
+==> 270 1 ts=258 READY  dur=12
+T(1:270): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 217,217 run.remain:176 run.nextEventTime:222 runsize:1
-Block:PID:1 index:1 (Ts,Tg)213,209 block.remain:70 block.nextEventTime:235 blocksize:2
+CPUtime:270
+Ready:PID:1 index:0 (Ts,Tg) 270,258 ready.remain:49 ready.nextEventTime:270 readysize:1
+Block:PID:3 index:9 (Ts,Tg)264,263 block.remain:173 block.nextEventTime:281 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:270,258 nextEvenTime:270
+
+==> 270 1 ts=270 RUNNG  dur=0
+T(1:270): READY -> RUNNG  cb=4 rem=49
+
+CPUtime:270
+Run:PID:1 index:0 (Ts,Tg) 270,270 run.remain:49 run.nextEventTime:274 runsize:1
+Block:PID:3 index:9 (Ts,Tg)264,263 block.remain:173 block.nextEventTime:281 blocksize:2
+readyQ empty
+
+==> 274 1 ts=270 BLOCK  dur=4
+T(1:274): RUNNG -> BLOCK  ib=23 rem=45
+
+CPUtime:274
+Block:PID:3 index:9 (Ts,Tg)264,263 block.remain:173 block.nextEventTime:281 blocksize:3
+readyQ empty
+
+==> 281 3 ts=264 READY  dur=17
+T(3:281): BLOCK -> READY
 
-firstTs:run eqalNextevent:0
-==> 222 3 ts=217 BLOCK  dur=5
-T(3:222): RUNNG -> BLOCK  ib=5 rem=171
-
-Block:PID:3 index:1 (Ts,Tg)222,217 block.remain:171 block.nextEventTime:227 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 227 3 ts=222 READY  dur=5
-T(3:227): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 227,222 ready.remain:171 ready.nextEventTime:227 readysize:1
-Block:PID:1 index:1 (Ts,Tg)213,209 block.remain:70 block.nextEventTime:235 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 227 3 ts=227 RUNNG  dur=0
-T(3:227): READY -> RUNNG  cb=3 rem=171
-
-Run:PID:3 index:0 (Ts,Tg) 227,227 run.remain:171 run.nextEventTime:230 runsize:1
-Block:PID:1 index:1 (Ts,Tg)213,209 block.remain:70 block.nextEventTime:235 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 230 3 ts=227 BLOCK  dur=3
-T(3:230): RUNNG -> BLOCK  ib=19 rem=168
-
-Block:PID:1 index:1 (Ts,Tg)213,209 block.remain:70 block.nextEventTime:235 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 235 1 ts=213 READY  dur=22
-T(1:235): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 235,213 ready.remain:70 ready.nextEventTime:235 readysize:1
-Block:PID:0 index:0 (Ts,Tg)187,168 block.remain:102 block.nextEventTime:247 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 235 1 ts=235 RUNNG  dur=0
-T(1:235): READY -> RUNNG  cb=5 rem=70
-
-Run:PID:1 index:0 (Ts,Tg) 235,235 run.remain:70 run.nextEventTime:240 runsize:1
-Block:PID:0 index:0 (Ts,Tg)187,168 block.remain:102 block.nextEventTime:247 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 240 1 ts=235 BLOCK  dur=5
-T(1:240): RUNNG -> BLOCK  ib=36 rem=65
-
-Block:PID:0 index:0 (Ts,Tg)187,168 block.remain:102 block.nextEventTime:247 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 247 0 ts=187 READY  dur=60
-T(0:247): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 247,187 ready.remain:102 ready.nextEventTime:247 readysize:1
-Block:PID:3 index:1 (Ts,Tg)230,227 block.remain:168 block.nextEventTime:249 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 247 0 ts=247 RUNNG  dur=0
-T(0:247): READY -> RUNNG  cb=11 rem=102
-
-Run:PID:0 index:0 (Ts,Tg) 247,247 run.remain:102 run.nextEventTime:258 runsize:1
-Block:PID:3 index:1 (Ts,Tg)230,227 block.remain:168 block.nextEventTime:249 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 249 3 ts=230 READY  dur=19
-T(3:249): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 249,230 ready.remain:168 ready.nextEventTime:249 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 247,247 run.remain:102 run.nextEventTime:258 runsize:1
-Block:PID:1 index:2 (Ts,Tg)240,235 block.remain:65 block.nextEventTime:276 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 258 0 ts=247 BLOCK  dur=11
-T(0:258): RUNNG -> BLOCK  ib=84 rem=91
-
-Ready:PID:3 index:0 (Ts,Tg) 249,230 ready.remain:168 ready.nextEventTime:249 readysize:1
-Block:PID:1 index:2 (Ts,Tg)240,235 block.remain:65 block.nextEventTime:276 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 258 3 ts=249 RUNNG  dur=9
-T(3:258): READY -> RUNNG  cb=2 rem=168
-
-Run:PID:3 index:0 (Ts,Tg) 258,249 run.remain:168 run.nextEventTime:260 runsize:1
-Block:PID:1 index:2 (Ts,Tg)240,235 block.remain:65 block.nextEventTime:276 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 260 3 ts=258 BLOCK  dur=2
-T(3:260): RUNNG -> BLOCK  ib=12 rem=166
-
-Block:PID:3 index:4 (Ts,Tg)260,258 block.remain:166 block.nextEventTime:272 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 272 3 ts=260 READY  dur=12
-T(3:272): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 272,260 ready.remain:166 ready.nextEventTime:272 readysize:1
-Block:PID:1 index:2 (Ts,Tg)240,235 block.remain:65 block.nextEventTime:276 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 272 3 ts=272 RUNNG  dur=0
-T(3:272): READY -> RUNNG  cb=1 rem=166
-
-Run:PID:3 index:0 (Ts,Tg) 272,272 run.remain:166 run.nextEventTime:273 runsize:1
-Block:PID:1 index:2 (Ts,Tg)240,235 block.remain:65 block.nextEventTime:276 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 273 3 ts=272 BLOCK  dur=1
-T(3:273): RUNNG -> BLOCK  ib=17 rem=165
-
-Block:PID:1 index:2 (Ts,Tg)240,235 block.remain:65 block.nextEventTime:276 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 276 1 ts=240 READY  dur=36
-T(1:276): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 276,240 ready.remain:65 ready.nextEventTime:276 readysize:1
-Block:PID:3 index:4 (Ts,Tg)273,272 block.remain:165 block.nextEventTime:290 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 276 1 ts=276 RUNNG  dur=0
-T(1:276): READY -> RUNNG  cb=4 rem=65
-
-Run:PID:1 index:0 (Ts,Tg) 276,276 run.remain:65 run.nextEventTime:280 runsize:1
-Block:PID:3 index:4 (Ts,Tg)273,272 block.remain:165 block.nextEventTime:290 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 280 1 ts=276 BLOCK  dur=4
-T(1:280): RUNNG -> BLOCK  ib=23 rem=61
-
-Block:PID:3 index:4 (Ts,Tg)273,272 block.remain:165 block.nextEventTime:290 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 290 3 ts=273 READY  dur=17
-T(3:290): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 290,273 ready.remain:165 ready.nextEventTime:290 readysize:1
-Block:PID:1 index:4 (Ts,Tg)280,276 block.remain:61 block.nextEventTime:303 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 290 3 ts=290 RUNNG  dur=0
-T(3:290): READY -> RUNNG  cb=1 rem=165
-
-Run:PID:3 index:0 (Ts,Tg) 290,290 run.remain:165 run.nextEventTime:291 runsize:1
-Block:PID:1 index:4 (Ts,Tg)280,276 block.remain:61 block.nextEventTime:303 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 291 3 ts=290 BLOCK  dur=1
-T(3:291): RUNNG -> BLOCK  ib=17 rem=164
-
-Block:PID:1 index:4 (Ts,Tg)280,276 block.remain:61 block.nextEventTime:303 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 303 1 ts=280 READY  dur=23
-T(1:303): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 303,280 ready.remain:61 ready.nextEventTime:303 readysize:1
-Block:PID:3 index:4 (Ts,Tg)291,290 block.remain:164 block.nextEventTime:308 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 303 1 ts=303 RUNNG  dur=0
-T(1:303): READY -> RUNNG  cb=2 rem=61
-
-Run:PID:1 index:0 (Ts,Tg) 303,303 run.remain:61 run.nextEventTime:305 runsize:1
-Block:PID:3 index:4 (Ts,Tg)291,290 block.remain:164 block.nextEventTime:308 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 305 1 ts=303 BLOCK  dur=2
-T(1:305): RUNNG -> BLOCK  ib=26 rem=59
-
-Block:PID:3 index:4 (Ts,Tg)291,290 block.remain:164 block.nextEventTime:308 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 308 3 ts=291 READY  dur=17
-T(3:308): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 308,291 ready.remain:164 ready.nextEventTime:308 readysize:1
-Block:PID:1 index:4 (Ts,Tg)305,303 block.remain:59 block.nextEventTime:331 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 308 3 ts=308 RUNNG  dur=0
-T(3:308): READY -> RUNNG  cb=1 rem=164
-
-Run:PID:3 index:0 (Ts,Tg) 308,308 run.remain:164 run.nextEventTime:309 runsize:1
-Block:PID:1 index:4 (Ts,Tg)305,303 block.remain:59 block.nextEventTime:331 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 309 3 ts=308 BLOCK  dur=1
-T(3:309): RUNNG -> BLOCK  ib=5 rem=163
-
-Block:PID:3 index:4 (Ts,Tg)309,308 block.remain:163 block.nextEventTime:314 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 314 3 ts=309 READY  dur=5
-T(3:314): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 314,309 ready.remain:163 ready.nextEventTime:314 readysize:1
-Block:PID:1 index:4 (Ts,Tg)305,303 block.remain:59 block.nextEventTime:331 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 314 3 ts=314 RUNNG  dur=0
-T(3:314): READY -> RUNNG  cb=3 rem=163
-
-Run:PID:3 index:0 (Ts,Tg) 314,314 run.remain:163 run.nextEventTime:317 runsize:1
-Block:PID:1 index:4 (Ts,Tg)305,303 block.remain:59 block.nextEventTime:331 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 317 3 ts=314 BLOCK  dur=3
-T(3:317): RUNNG -> BLOCK  ib=17 rem=160
-
-Block:PID:1 index:4 (Ts,Tg)305,303 block.remain:59 block.nextEventTime:331 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 331 1 ts=305 READY  dur=26
-T(1:331): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 331,305 ready.remain:59 ready.nextEventTime:331 readysize:1
-Block:PID:3 index:4 (Ts,Tg)317,314 block.remain:160 block.nextEventTime:334 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 331 1 ts=331 RUNNG  dur=0
-T(1:331): READY -> RUNNG  cb=6 rem=59
-
-Run:PID:1 index:0 (Ts,Tg) 331,331 run.remain:59 run.nextEventTime:337 runsize:1
-Block:PID:3 index:4 (Ts,Tg)317,314 block.remain:160 block.nextEventTime:334 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 334 3 ts=317 READY  dur=17
-T(3:334): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 334,317 ready.remain:160 ready.nextEventTime:334 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 331,331 run.remain:59 run.nextEventTime:337 runsize:1
-Block:PID:0 index:3 (Ts,Tg)258,247 block.remain:91 block.nextEventTime:342 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 337 1 ts=331 BLOCK  dur=6
-T(1:337): RUNNG -> BLOCK  ib=7 rem=53
-
-Ready:PID:3 index:0 (Ts,Tg) 334,317 ready.remain:160 ready.nextEventTime:334 readysize:1
-Block:PID:0 index:3 (Ts,Tg)258,247 block.remain:91 block.nextEventTime:342 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 337 3 ts=334 RUNNG  dur=3
-T(3:337): READY -> RUNNG  cb=5 rem=160
-
-Run:PID:3 index:0 (Ts,Tg) 337,334 run.remain:160 run.nextEventTime:342 runsize:1
-Block:PID:0 index:3 (Ts,Tg)258,247 block.remain:91 block.nextEventTime:342 blocksize:2
-
-firstTs:run eqalNextevent:1
-equalNextEvent,nextsmallesTS:block
-==> 342 0 ts=258 READY  dur=84
-T(0:342): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 342,258 ready.remain:91 ready.nextEventTime:342 readysize:1
-Run:PID:3 index:0 (Ts,Tg) 337,334 run.remain:160 run.nextEventTime:342 runsize:1
-Block:PID:1 index:4 (Ts,Tg)337,331 block.remain:53 block.nextEventTime:344 blocksize:1
-
-firstTs:ready eqalNextevent:1
-InCPU equalNextEvent,nextsmallesTS:run
-==> 342 3 ts=337 BLOCK  dur=5
-T(3:342): RUNNG -> BLOCK  ib=14 rem=155
-
-Ready:PID:0 index:0 (Ts,Tg) 342,258 ready.remain:91 ready.nextEventTime:342 readysize:1
-Block:PID:1 index:4 (Ts,Tg)337,331 block.remain:53 block.nextEventTime:344 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 342 0 ts=342 RUNNG  dur=0
-T(0:342): READY -> RUNNG  cb=18 rem=91
-
-Run:PID:0 index:0 (Ts,Tg) 342,342 run.remain:91 run.nextEventTime:360 runsize:1
-Block:PID:1 index:4 (Ts,Tg)337,331 block.remain:53 block.nextEventTime:344 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 344 1 ts=337 READY  dur=7
-T(1:344): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 344,337 ready.remain:53 ready.nextEventTime:344 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 342,342 run.remain:91 run.nextEventTime:360 runsize:1
-Block:PID:3 index:5 (Ts,Tg)342,337 block.remain:155 block.nextEventTime:356 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 356 3 ts=342 READY  dur=14
-T(3:356): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 344,337 ready.remain:53 ready.nextEventTime:344 readysize:2
-Run:PID:0 index:0 (Ts,Tg) 342,342 run.remain:91 run.nextEventTime:360 runsize:1
-
-firstTs:ready eqalNextevent:0
-==> 360 0 ts=342 BLOCK  dur=18
-T(0:360): RUNNG -> BLOCK  ib=55 rem=73
-
-Ready:PID:1 index:0 (Ts,Tg) 344,337 ready.remain:53 ready.nextEventTime:344 readysize:2
-Block:PID:0 index:0 (Ts,Tg)360,342 block.remain:73 block.nextEventTime:415 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 360 1 ts=344 RUNNG  dur=16
-T(1:360): READY -> RUNNG  cb=6 rem=53
-
-Ready:PID:3 index:1 (Ts,Tg) 356,342 ready.remain:155 ready.nextEventTime:356 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 360,344 run.remain:53 run.nextEventTime:366 runsize:1
-Block:PID:0 index:0 (Ts,Tg)360,342 block.remain:73 block.nextEventTime:415 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 366 1 ts=360 BLOCK  dur=6
-T(1:366): RUNNG -> BLOCK  ib=23 rem=47
-
-Ready:PID:3 index:1 (Ts,Tg) 356,342 ready.remain:155 ready.nextEventTime:356 readysize:1
-Block:PID:1 index:1 (Ts,Tg)366,360 block.remain:47 block.nextEventTime:389 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 366 3 ts=356 RUNNG  dur=10
-T(3:366): READY -> RUNNG  cb=1 rem=155
-
-Run:PID:3 index:0 (Ts,Tg) 366,356 run.remain:155 run.nextEventTime:367 runsize:1
-Block:PID:1 index:1 (Ts,Tg)366,360 block.remain:47 block.nextEventTime:389 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 367 3 ts=366 BLOCK  dur=1
-T(3:367): RUNNG -> BLOCK  ib=15 rem=154
-
-Block:PID:3 index:1 (Ts,Tg)367,366 block.remain:154 block.nextEventTime:382 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 382 3 ts=367 READY  dur=15
-T(3:382): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 382,367 ready.remain:154 ready.nextEventTime:382 readysize:1
-Block:PID:1 index:1 (Ts,Tg)366,360 block.remain:47 block.nextEventTime:389 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 382 3 ts=382 RUNNG  dur=0
-T(3:382): READY -> RUNNG  cb=3 rem=154
-
-Run:PID:3 index:0 (Ts,Tg) 382,382 run.remain:154 run.nextEventTime:385 runsize:1
-Block:PID:1 index:1 (Ts,Tg)366,360 block.remain:47 block.nextEventTime:389 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 385 3 ts=382 BLOCK  dur=3
-T(3:385): RUNNG -> BLOCK  ib=15 rem=151
-
-Block:PID:1 index:1 (Ts,Tg)366,360 block.remain:47 block.nextEventTime:389 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 389 1 ts=366 READY  dur=23
-T(1:389): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 389,366 ready.remain:47 ready.nextEventTime:389 readysize:1
-Block:PID:3 index:1 (Ts,Tg)385,382 block.remain:151 block.nextEventTime:400 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 389 1 ts=389 RUNNG  dur=0
-T(1:389): READY -> RUNNG  cb=5 rem=47
-
-Run:PID:1 index:0 (Ts,Tg) 389,389 run.remain:47 run.nextEventTime:394 runsize:1
-Block:PID:3 index:1 (Ts,Tg)385,382 block.remain:151 block.nextEventTime:400 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 394 1 ts=389 BLOCK  dur=5
-T(1:394): RUNNG -> BLOCK  ib=4 rem=42
-
-Block:PID:1 index:1 (Ts,Tg)394,389 block.remain:42 block.nextEventTime:398 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 398 1 ts=394 READY  dur=4
-T(1:398): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 398,394 ready.remain:42 ready.nextEventTime:398 readysize:1
-Block:PID:3 index:1 (Ts,Tg)385,382 block.remain:151 block.nextEventTime:400 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 398 1 ts=398 RUNNG  dur=0
-T(1:398): READY -> RUNNG  cb=1 rem=42
-
-Run:PID:1 index:0 (Ts,Tg) 398,398 run.remain:42 run.nextEventTime:399 runsize:1
-Block:PID:3 index:1 (Ts,Tg)385,382 block.remain:151 block.nextEventTime:400 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 399 1 ts=398 BLOCK  dur=1
-T(1:399): RUNNG -> BLOCK  ib=8 rem=41
-
-Block:PID:3 index:1 (Ts,Tg)385,382 block.remain:151 block.nextEventTime:400 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 400 3 ts=385 READY  dur=15
-T(3:400): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 400,385 ready.remain:151 ready.nextEventTime:400 readysize:1
-Block:PID:1 index:1 (Ts,Tg)399,398 block.remain:41 block.nextEventTime:407 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 400 3 ts=400 RUNNG  dur=0
-T(3:400): READY -> RUNNG  cb=4 rem=151
-
-Run:PID:3 index:0 (Ts,Tg) 400,400 run.remain:151 run.nextEventTime:404 runsize:1
-Block:PID:1 index:1 (Ts,Tg)399,398 block.remain:41 block.nextEventTime:407 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 404 3 ts=400 BLOCK  dur=4
-T(3:404): RUNNG -> BLOCK  ib=17 rem=147
-
-Block:PID:1 index:1 (Ts,Tg)399,398 block.remain:41 block.nextEventTime:407 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 407 1 ts=399 READY  dur=8
-T(1:407): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 407,399 ready.remain:41 ready.nextEventTime:407 readysize:1
-Block:PID:0 index:0 (Ts,Tg)360,342 block.remain:73 block.nextEventTime:415 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 407 1 ts=407 RUNNG  dur=0
-T(1:407): READY -> RUNNG  cb=9 rem=41
-
-Run:PID:1 index:0 (Ts,Tg) 407,407 run.remain:41 run.nextEventTime:416 runsize:1
-Block:PID:0 index:0 (Ts,Tg)360,342 block.remain:73 block.nextEventTime:415 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 415 0 ts=360 READY  dur=55
-T(0:415): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 415,360 ready.remain:73 ready.nextEventTime:415 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 407,407 run.remain:41 run.nextEventTime:416 runsize:1
-Block:PID:3 index:1 (Ts,Tg)404,400 block.remain:147 block.nextEventTime:421 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 416 1 ts=407 BLOCK  dur=9
-T(1:416): RUNNG -> BLOCK  ib=29 rem=32
-
-Ready:PID:0 index:0 (Ts,Tg) 415,360 ready.remain:73 ready.nextEventTime:415 readysize:1
-Block:PID:3 index:1 (Ts,Tg)404,400 block.remain:147 block.nextEventTime:421 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 416 0 ts=415 RUNNG  dur=1
-T(0:416): READY -> RUNNG  cb=25 rem=73
-
-Run:PID:0 index:0 (Ts,Tg) 416,415 run.remain:73 run.nextEventTime:441 runsize:1
-Block:PID:3 index:1 (Ts,Tg)404,400 block.remain:147 block.nextEventTime:421 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 421 3 ts=404 READY  dur=17
-T(3:421): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 421,404 ready.remain:147 ready.nextEventTime:421 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 416,415 run.remain:73 run.nextEventTime:441 runsize:1
-Block:PID:1 index:2 (Ts,Tg)416,407 block.remain:32 block.nextEventTime:445 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 441 0 ts=416 BLOCK  dur=25
-T(0:441): RUNNG -> BLOCK  ib=34 rem=48
-
-Ready:PID:3 index:0 (Ts,Tg) 421,404 ready.remain:147 ready.nextEventTime:421 readysize:1
-Block:PID:1 index:2 (Ts,Tg)416,407 block.remain:32 block.nextEventTime:445 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 441 3 ts=421 RUNNG  dur=20
-T(3:441): READY -> RUNNG  cb=2 rem=147
-
-Run:PID:3 index:0 (Ts,Tg) 441,421 run.remain:147 run.nextEventTime:443 runsize:1
-Block:PID:1 index:2 (Ts,Tg)416,407 block.remain:32 block.nextEventTime:445 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 443 3 ts=441 BLOCK  dur=2
-T(3:443): RUNNG -> BLOCK  ib=15 rem=145
-
-Block:PID:1 index:2 (Ts,Tg)416,407 block.remain:32 block.nextEventTime:445 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 445 1 ts=416 READY  dur=29
-T(1:445): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 445,416 ready.remain:32 ready.nextEventTime:445 readysize:1
-Block:PID:3 index:4 (Ts,Tg)443,441 block.remain:145 block.nextEventTime:458 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 445 1 ts=445 RUNNG  dur=0
-T(1:445): READY -> RUNNG  cb=10 rem=32
-
-Run:PID:1 index:0 (Ts,Tg) 445,445 run.remain:32 run.nextEventTime:455 runsize:1
-Block:PID:3 index:4 (Ts,Tg)443,441 block.remain:145 block.nextEventTime:458 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 455 1 ts=445 BLOCK  dur=10
-T(1:455): RUNNG -> BLOCK  ib=13 rem=22
-
-Block:PID:3 index:4 (Ts,Tg)443,441 block.remain:145 block.nextEventTime:458 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 458 3 ts=443 READY  dur=15
-T(3:458): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 458,443 ready.remain:145 ready.nextEventTime:458 readysize:1
-Block:PID:1 index:4 (Ts,Tg)455,445 block.remain:22 block.nextEventTime:468 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 458 3 ts=458 RUNNG  dur=0
-T(3:458): READY -> RUNNG  cb=1 rem=145
-
-Run:PID:3 index:0 (Ts,Tg) 458,458 run.remain:145 run.nextEventTime:459 runsize:1
-Block:PID:1 index:4 (Ts,Tg)455,445 block.remain:22 block.nextEventTime:468 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 459 3 ts=458 BLOCK  dur=1
-T(3:459): RUNNG -> BLOCK  ib=17 rem=144
-
-Block:PID:1 index:4 (Ts,Tg)455,445 block.remain:22 block.nextEventTime:468 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 468 1 ts=455 READY  dur=13
-T(1:468): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 468,455 ready.remain:22 ready.nextEventTime:468 readysize:1
-Block:PID:0 index:3 (Ts,Tg)441,416 block.remain:48 block.nextEventTime:475 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 468 1 ts=468 RUNNG  dur=0
-T(1:468): READY -> RUNNG  cb=9 rem=22
-
-Run:PID:1 index:0 (Ts,Tg) 468,468 run.remain:22 run.nextEventTime:477 runsize:1
-Block:PID:0 index:3 (Ts,Tg)441,416 block.remain:48 block.nextEventTime:475 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 475 0 ts=441 READY  dur=34
-T(0:475): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 475,441 ready.remain:48 ready.nextEventTime:475 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 468,468 run.remain:22 run.nextEventTime:477 runsize:1
-Block:PID:3 index:4 (Ts,Tg)459,458 block.remain:144 block.nextEventTime:476 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 476 3 ts=459 READY  dur=17
-T(3:476): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 475,441 ready.remain:48 ready.nextEventTime:475 readysize:2
-Run:PID:1 index:0 (Ts,Tg) 468,468 run.remain:22 run.nextEventTime:477 runsize:1
-
-firstTs:ready eqalNextevent:0
-==> 477 1 ts=468 BLOCK  dur=9
-T(1:477): RUNNG -> BLOCK  ib=20 rem=13
-
-Ready:PID:0 index:0 (Ts,Tg) 475,441 ready.remain:48 ready.nextEventTime:475 readysize:2
-Block:PID:1 index:0 (Ts,Tg)477,468 block.remain:13 block.nextEventTime:497 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 477 0 ts=475 RUNNG  dur=2
-T(0:477): READY -> RUNNG  cb=13 rem=48
-
-Ready:PID:3 index:1 (Ts,Tg) 476,459 ready.remain:144 ready.nextEventTime:476 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 477,475 run.remain:48 run.nextEventTime:490 runsize:1
-Block:PID:1 index:0 (Ts,Tg)477,468 block.remain:13 block.nextEventTime:497 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 490 0 ts=477 BLOCK  dur=13
-T(0:490): RUNNG -> BLOCK  ib=17 rem=35
-
-Ready:PID:3 index:1 (Ts,Tg) 476,459 ready.remain:144 ready.nextEventTime:476 readysize:1
-Block:PID:1 index:0 (Ts,Tg)477,468 block.remain:13 block.nextEventTime:497 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 490 3 ts=476 RUNNG  dur=14
-T(3:490): READY -> RUNNG  cb=2 rem=144
-
-Run:PID:3 index:0 (Ts,Tg) 490,476 run.remain:144 run.nextEventTime:492 runsize:1
-Block:PID:1 index:0 (Ts,Tg)477,468 block.remain:13 block.nextEventTime:497 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 492 3 ts=490 BLOCK  dur=2
-T(3:492): RUNNG -> BLOCK  ib=15 rem=142
-
-Block:PID:1 index:0 (Ts,Tg)477,468 block.remain:13 block.nextEventTime:497 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 497 1 ts=477 READY  dur=20
-T(1:497): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 497,477 ready.remain:13 ready.nextEventTime:497 readysize:1
-Block:PID:0 index:1 (Ts,Tg)490,477 block.remain:35 block.nextEventTime:507 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 497 1 ts=497 RUNNG  dur=0
-T(1:497): READY -> RUNNG  cb=10 rem=13
-
-Run:PID:1 index:0 (Ts,Tg) 497,497 run.remain:13 run.nextEventTime:507 runsize:1
-Block:PID:0 index:1 (Ts,Tg)490,477 block.remain:35 block.nextEventTime:507 blocksize:2
-
-firstTs:run eqalNextevent:1
-equalNextEvent,nextsmallesTS:block
-==> 507 0 ts=490 READY  dur=17
-T(0:507): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 507,490 ready.remain:35 ready.nextEventTime:507 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 497,497 run.remain:13 run.nextEventTime:507 runsize:1
-Block:PID:3 index:2 (Ts,Tg)492,490 block.remain:142 block.nextEventTime:507 blocksize:1
-
-firstTs:ready eqalNextevent:1
-InCPU equalNextEvent,nextsmallesTS:block
-==> 507 3 ts=492 READY  dur=15
-T(3:507): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 507,490 ready.remain:35 ready.nextEventTime:507 readysize:2
-Run:PID:1 index:0 (Ts,Tg) 497,497 run.remain:13 run.nextEventTime:507 runsize:1
-
-firstTs:ready eqalNextevent:1
-InCPU equalNextEvent,nextsmallesTS:run
-==> 507 1 ts=497 BLOCK  dur=10
-T(1:507): RUNNG -> BLOCK  ib=36 rem=3
-
-Ready:PID:0 index:0 (Ts,Tg) 507,490 ready.remain:35 ready.nextEventTime:507 readysize:2
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 507 0 ts=507 RUNNG  dur=0
-T(0:507): READY -> RUNNG  cb=11 rem=35
-
-Ready:PID:3 index:1 (Ts,Tg) 507,492 ready.remain:142 ready.nextEventTime:507 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 507,507 run.remain:35 run.nextEventTime:518 runsize:1
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 518 0 ts=507 BLOCK  dur=11
-T(0:518): RUNNG -> BLOCK  ib=75 rem=24
-
-Ready:PID:3 index:1 (Ts,Tg) 507,492 ready.remain:142 ready.nextEventTime:507 readysize:1
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 518 3 ts=507 RUNNG  dur=11
-T(3:518): READY -> RUNNG  cb=4 rem=142
-
-Run:PID:3 index:0 (Ts,Tg) 518,507 run.remain:142 run.nextEventTime:522 runsize:1
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 522 3 ts=518 BLOCK  dur=4
-T(3:522): RUNNG -> BLOCK  ib=8 rem=138
-
-Block:PID:3 index:2 (Ts,Tg)522,518 block.remain:138 block.nextEventTime:530 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 530 3 ts=522 READY  dur=8
-T(3:530): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 530,522 ready.remain:138 ready.nextEventTime:530 readysize:1
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 530 3 ts=530 RUNNG  dur=0
-T(3:530): READY -> RUNNG  cb=2 rem=138
-
-Run:PID:3 index:0 (Ts,Tg) 530,530 run.remain:138 run.nextEventTime:532 runsize:1
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 532 3 ts=530 BLOCK  dur=2
-T(3:532): RUNNG -> BLOCK  ib=18 rem=136
-
-Block:PID:1 index:0 (Ts,Tg)507,497 block.remain:3 block.nextEventTime:543 blocksize:3
-
-firstTs:block eqalNextevent:0
-==> 543 1 ts=507 READY  dur=36
-T(1:543): BLOCK -> READY
-
-Ready:PID:1 index:0 (Ts,Tg) 543,507 ready.remain:3 ready.nextEventTime:543 readysize:1
-Block:PID:3 index:2 (Ts,Tg)532,530 block.remain:136 block.nextEventTime:550 blocksize:2
-
-firstTs:ready eqalNextevent:0
-==> 543 1 ts=543 RUNNG  dur=0
-T(1:543): READY -> RUNNG  cb=3 rem=3
-
-Run:PID:1 index:0 (Ts,Tg) 543,543 run.remain:3 run.nextEventTime:546 runsize:1
-Block:PID:3 index:2 (Ts,Tg)532,530 block.remain:136 block.nextEventTime:550 blocksize:2
-
-firstTs:run eqalNextevent:0
-==> 546 1 ts=543 BLOCK  dur=3
-==> T(1): Done
-
-Block:PID:3 index:2 (Ts,Tg)532,530 block.remain:136 block.nextEventTime:550 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 550 3 ts=532 READY  dur=18
-T(3:550): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 550,532 ready.remain:136 ready.nextEventTime:550 readysize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 550 3 ts=550 RUNNG  dur=0
-T(3:550): READY -> RUNNG  cb=3 rem=136
-
-Run:PID:3 index:0 (Ts,Tg) 550,550 run.remain:136 run.nextEventTime:553 runsize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:run eqalNextevent:0
-==> 553 3 ts=550 BLOCK  dur=3
-T(3:553): RUNNG -> BLOCK  ib=13 rem=133
-
-Block:PID:3 index:2 (Ts,Tg)553,550 block.remain:133 block.nextEventTime:566 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 566 3 ts=553 READY  dur=13
-T(3:566): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 566,553 ready.remain:133 ready.nextEventTime:566 readysize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 566 3 ts=566 RUNNG  dur=0
-T(3:566): READY -> RUNNG  cb=3 rem=133
-
-Run:PID:3 index:0 (Ts,Tg) 566,566 run.remain:133 run.nextEventTime:569 runsize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:run eqalNextevent:0
-==> 569 3 ts=566 BLOCK  dur=3
-T(3:569): RUNNG -> BLOCK  ib=17 rem=130
-
-Block:PID:3 index:2 (Ts,Tg)569,566 block.remain:130 block.nextEventTime:586 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 586 3 ts=569 READY  dur=17
-T(3:586): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 586,569 ready.remain:130 ready.nextEventTime:586 readysize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 586 3 ts=586 RUNNG  dur=0
-T(3:586): READY -> RUNNG  cb=2 rem=130
-
-Run:PID:3 index:0 (Ts,Tg) 586,586 run.remain:130 run.nextEventTime:588 runsize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:run eqalNextevent:0
-==> 588 3 ts=586 BLOCK  dur=2
-T(3:588): RUNNG -> BLOCK  ib=1 rem=128
-
-Block:PID:3 index:2 (Ts,Tg)588,586 block.remain:128 block.nextEventTime:589 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 589 3 ts=588 READY  dur=1
-T(3:589): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 589,588 ready.remain:128 ready.nextEventTime:589 readysize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:ready eqalNextevent:0
-==> 589 3 ts=589 RUNNG  dur=0
-T(3:589): READY -> RUNNG  cb=2 rem=128
-
-Run:PID:3 index:0 (Ts,Tg) 589,589 run.remain:128 run.nextEventTime:591 runsize:1
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:1
-
-firstTs:run eqalNextevent:0
-==> 591 3 ts=589 BLOCK  dur=2
-T(3:591): RUNNG -> BLOCK  ib=2 rem=126
-
-Block:PID:0 index:1 (Ts,Tg)518,507 block.remain:24 block.nextEventTime:593 blocksize:2
-
-firstTs:block eqalNextevent:0
-==> 593 0 ts=518 READY  dur=75
-T(0:593): BLOCK -> READY
-
-Ready:PID:0 index:0 (Ts,Tg) 593,518 ready.remain:24 ready.nextEventTime:593 readysize:1
-Block:PID:3 index:2 (Ts,Tg)591,589 block.remain:126 block.nextEventTime:593 blocksize:1
-
-firstTs:ready eqalNextevent:1
-equalNextEvent,nextsmallesTS:block
-==> 593 3 ts=591 READY  dur=2
+CPUtime:281
+Ready:PID:3 index:0 (Ts,Tg) 281,264 ready.remain:173 ready.nextEventTime:281 readysize:1
+Block:PID:1 index:10 (Ts,Tg)274,270 block.remain:45 block.nextEventTime:297 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:281,264 nextEvenTime:281
+
+==> 281 3 ts=281 RUNNG  dur=0
+T(3:281): READY -> RUNNG  cb=1 rem=173
+
+CPUtime:281
+Run:PID:3 index:0 (Ts,Tg) 281,281 run.remain:173 run.nextEventTime:282 runsize:1
+Block:PID:1 index:10 (Ts,Tg)274,270 block.remain:45 block.nextEventTime:297 blocksize:2
+readyQ empty
+
+==> 282 3 ts=281 BLOCK  dur=1
+T(3:282): RUNNG -> BLOCK  ib=17 rem=172
+
+CPUtime:282
+Block:PID:1 index:10 (Ts,Tg)274,270 block.remain:45 block.nextEventTime:297 blocksize:3
+readyQ empty
+
+==> 297 1 ts=274 READY  dur=23
+T(1:297): BLOCK -> READY
+
+CPUtime:297
+Ready:PID:1 index:0 (Ts,Tg) 297,274 ready.remain:45 ready.nextEventTime:297 readysize:1
+Block:PID:3 index:11 (Ts,Tg)282,281 block.remain:172 block.nextEventTime:299 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:297,274 nextEvenTime:297
+
+==> 297 1 ts=297 RUNNG  dur=0
+T(1:297): READY -> RUNNG  cb=2 rem=45
+
+CPUtime:297
+Run:PID:1 index:0 (Ts,Tg) 297,297 run.remain:45 run.nextEventTime:299 runsize:1
+Block:PID:3 index:11 (Ts,Tg)282,281 block.remain:172 block.nextEventTime:299 blocksize:2
+readyQ empty
+
+==> 299 3 ts=282 READY  dur=17
+T(3:299): BLOCK -> READY
+
+CPUtime:299
+Ready:PID:3 index:0 (Ts,Tg) 299,282 ready.remain:172 ready.nextEventTime:299 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 297,297 run.remain:45 run.nextEventTime:299 runsize:1
+Block:PID:0 index:6 (Ts,Tg)248,243 block.remain:113 block.nextEventTime:314 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:299,282 nextEvenTime:299
+
+==> 299 1 ts=297 BLOCK  dur=2
+T(1:299): RUNNG -> BLOCK  ib=26 rem=43
+
+CPUtime:299
+Ready:PID:3 index:0 (Ts,Tg) 299,282 ready.remain:172 ready.nextEventTime:299 readysize:1
+Block:PID:0 index:6 (Ts,Tg)248,243 block.remain:113 block.nextEventTime:314 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:299,282 nextEvenTime:299
+
+==> 299 3 ts=299 RUNNG  dur=0
+T(3:299): READY -> RUNNG  cb=1 rem=172
+
+CPUtime:299
+Run:PID:3 index:0 (Ts,Tg) 299,299 run.remain:172 run.nextEventTime:300 runsize:1
+Block:PID:0 index:6 (Ts,Tg)248,243 block.remain:113 block.nextEventTime:314 blocksize:2
+readyQ empty
+
+==> 300 3 ts=299 BLOCK  dur=1
+T(3:300): RUNNG -> BLOCK  ib=5 rem=171
+
+CPUtime:300
+Block:PID:3 index:8 (Ts,Tg)300,299 block.remain:171 block.nextEventTime:305 blocksize:3
+readyQ empty
+
+==> 305 3 ts=300 READY  dur=5
+T(3:305): BLOCK -> READY
+
+CPUtime:305
+Ready:PID:3 index:0 (Ts,Tg) 305,300 ready.remain:171 ready.nextEventTime:305 readysize:1
+Block:PID:0 index:6 (Ts,Tg)248,243 block.remain:113 block.nextEventTime:314 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:305,300 nextEvenTime:305
+
+==> 305 3 ts=305 RUNNG  dur=0
+T(3:305): READY -> RUNNG  cb=3 rem=171
+
+CPUtime:305
+Run:PID:3 index:0 (Ts,Tg) 305,305 run.remain:171 run.nextEventTime:308 runsize:1
+Block:PID:0 index:6 (Ts,Tg)248,243 block.remain:113 block.nextEventTime:314 blocksize:2
+readyQ empty
+
+==> 308 3 ts=305 BLOCK  dur=3
+T(3:308): RUNNG -> BLOCK  ib=17 rem=168
+
+CPUtime:308
+Block:PID:0 index:6 (Ts,Tg)248,243 block.remain:113 block.nextEventTime:314 blocksize:3
+readyQ empty
+
+==> 314 0 ts=248 READY  dur=66
+T(0:314): BLOCK -> READY
+
+CPUtime:314
+Ready:PID:0 index:0 (Ts,Tg) 314,248 ready.remain:113 ready.nextEventTime:314 readysize:1
+Block:PID:1 index:7 (Ts,Tg)299,297 block.remain:43 block.nextEventTime:325 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:314,248 nextEvenTime:314
+
+==> 314 0 ts=314 RUNNG  dur=0
+T(0:314): READY -> RUNNG  cb=26 rem=113
+
+CPUtime:314
+Run:PID:0 index:0 (Ts,Tg) 314,314 run.remain:113 run.nextEventTime:340 runsize:1
+Block:PID:1 index:7 (Ts,Tg)299,297 block.remain:43 block.nextEventTime:325 blocksize:2
+readyQ empty
+
+==> 325 1 ts=299 READY  dur=26
+T(1:325): BLOCK -> READY
+
+CPUtime:325
+Ready:PID:1 index:0 (Ts,Tg) 325,299 ready.remain:43 ready.nextEventTime:325 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 314,314 run.remain:113 run.nextEventTime:340 runsize:1
+Block:PID:3 index:8 (Ts,Tg)308,305 block.remain:168 block.nextEventTime:325 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:325,299 nextEvenTime:325
+
+==> 325 3 ts=308 READY  dur=17
+T(3:325): BLOCK -> READY
+
+CPUtime:325
+Ready:PID:3 index:1 (Ts,Tg) 325,308 ready.remain:168 ready.nextEventTime:325 readysize:2
+Run:PID:0 index:0 (Ts,Tg) 314,314 run.remain:113 run.nextEventTime:340 runsize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:1 Ts,Tg:325,308 nextEvenTime:325
+2th inreadyQ: PID:1 index:0 Ts,Tg:325,299 nextEvenTime:325
+
+==> 340 0 ts=314 BLOCK  dur=26
+T(0:340): RUNNG -> BLOCK  ib=17 rem=87
+
+CPUtime:340
+Ready:PID:3 index:1 (Ts,Tg) 325,308 ready.remain:168 ready.nextEventTime:325 readysize:2
+Block:PID:0 index:0 (Ts,Tg)340,314 block.remain:87 block.nextEventTime:357 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:1 Ts,Tg:325,308 nextEvenTime:325
+2th inreadyQ: PID:1 index:0 Ts,Tg:325,299 nextEvenTime:325
+
+==> 340 3 ts=325 RUNNG  dur=15
+T(3:340): READY -> RUNNG  cb=5 rem=168
+
+CPUtime:340
+Ready:PID:1 index:0 (Ts,Tg) 325,299 ready.remain:43 ready.nextEventTime:325 readysize:1
+Run:PID:3 index:0 (Ts,Tg) 340,325 run.remain:168 run.nextEventTime:345 runsize:1
+Block:PID:0 index:0 (Ts,Tg)340,314 block.remain:87 block.nextEventTime:357 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:325,299 nextEvenTime:325
+
+==> 345 3 ts=340 BLOCK  dur=5
+T(3:345): RUNNG -> BLOCK  ib=14 rem=163
+
+CPUtime:345
+Ready:PID:1 index:0 (Ts,Tg) 325,299 ready.remain:43 ready.nextEventTime:325 readysize:1
+Block:PID:0 index:0 (Ts,Tg)340,314 block.remain:87 block.nextEventTime:357 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:325,299 nextEvenTime:325
+
+==> 345 1 ts=325 RUNNG  dur=20
+T(1:345): READY -> RUNNG  cb=8 rem=43
+
+CPUtime:345
+Run:PID:1 index:0 (Ts,Tg) 345,325 run.remain:43 run.nextEventTime:353 runsize:1
+Block:PID:0 index:0 (Ts,Tg)340,314 block.remain:87 block.nextEventTime:357 blocksize:2
+readyQ empty
+
+==> 353 1 ts=345 BLOCK  dur=8
+T(1:353): RUNNG -> BLOCK  ib=5 rem=35
+
+CPUtime:353
+Block:PID:0 index:0 (Ts,Tg)340,314 block.remain:87 block.nextEventTime:357 blocksize:3
+readyQ empty
+
+==> 357 0 ts=340 READY  dur=17
+T(0:357): BLOCK -> READY
+
+CPUtime:357
+Ready:PID:0 index:0 (Ts,Tg) 357,340 ready.remain:87 ready.nextEventTime:357 readysize:1
+Block:PID:1 index:2 (Ts,Tg)353,345 block.remain:35 block.nextEventTime:358 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:357,340 nextEvenTime:357
+
+==> 357 0 ts=357 RUNNG  dur=0
+T(0:357): READY -> RUNNG  cb=16 rem=87
+
+CPUtime:357
+Run:PID:0 index:0 (Ts,Tg) 357,357 run.remain:87 run.nextEventTime:373 runsize:1
+Block:PID:1 index:2 (Ts,Tg)353,345 block.remain:35 block.nextEventTime:358 blocksize:2
+readyQ empty
+
+==> 358 1 ts=353 READY  dur=5
+T(1:358): BLOCK -> READY
+
+CPUtime:358
+Ready:PID:1 index:0 (Ts,Tg) 358,353 ready.remain:35 ready.nextEventTime:358 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 357,357 run.remain:87 run.nextEventTime:373 runsize:1
+Block:PID:3 index:1 (Ts,Tg)345,340 block.remain:163 block.nextEventTime:359 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:358,353 nextEvenTime:358
+
+==> 359 3 ts=345 READY  dur=14
+T(3:359): BLOCK -> READY
+
+CPUtime:359
+Ready:PID:3 index:1 (Ts,Tg) 359,345 ready.remain:163 ready.nextEventTime:359 readysize:2
+Run:PID:0 index:0 (Ts,Tg) 357,357 run.remain:87 run.nextEventTime:373 runsize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:1 Ts,Tg:359,345 nextEvenTime:359
+2th inreadyQ: PID:1 index:0 Ts,Tg:358,353 nextEvenTime:358
+
+==> 373 0 ts=357 BLOCK  dur=16
+T(0:373): RUNNG -> BLOCK  ib=73 rem=71
+
+CPUtime:373
+Ready:PID:3 index:1 (Ts,Tg) 359,345 ready.remain:163 ready.nextEventTime:359 readysize:2
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:1 Ts,Tg:359,345 nextEvenTime:359
+2th inreadyQ: PID:1 index:0 Ts,Tg:358,353 nextEvenTime:358
+
+==> 373 3 ts=359 RUNNG  dur=14
+T(3:373): READY -> RUNNG  cb=1 rem=163
+
+CPUtime:373
+Ready:PID:1 index:0 (Ts,Tg) 358,353 ready.remain:35 ready.nextEventTime:358 readysize:1
+Run:PID:3 index:0 (Ts,Tg) 373,359 run.remain:163 run.nextEventTime:374 runsize:1
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:358,353 nextEvenTime:358
+
+==> 374 3 ts=373 BLOCK  dur=1
+T(3:374): RUNNG -> BLOCK  ib=15 rem=162
+
+CPUtime:374
+Ready:PID:1 index:0 (Ts,Tg) 358,353 ready.remain:35 ready.nextEventTime:358 readysize:1
+Block:PID:3 index:1 (Ts,Tg)374,373 block.remain:162 block.nextEventTime:389 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:358,353 nextEvenTime:358
+
+==> 374 1 ts=358 RUNNG  dur=16
+T(1:374): READY -> RUNNG  cb=8 rem=35
+
+CPUtime:374
+Run:PID:1 index:0 (Ts,Tg) 374,358 run.remain:35 run.nextEventTime:382 runsize:1
+Block:PID:3 index:1 (Ts,Tg)374,373 block.remain:162 block.nextEventTime:389 blocksize:2
+readyQ empty
+
+==> 382 1 ts=374 BLOCK  dur=8
+T(1:382): RUNNG -> BLOCK  ib=35 rem=27
+
+CPUtime:382
+Block:PID:3 index:1 (Ts,Tg)374,373 block.remain:162 block.nextEventTime:389 blocksize:3
+readyQ empty
+
+==> 389 3 ts=374 READY  dur=15
+T(3:389): BLOCK -> READY
+
+CPUtime:389
+Ready:PID:3 index:0 (Ts,Tg) 389,374 ready.remain:162 ready.nextEventTime:389 readysize:1
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:389,374 nextEvenTime:389
+
+==> 389 3 ts=389 RUNNG  dur=0
+T(3:389): READY -> RUNNG  cb=5 rem=162
+
+CPUtime:389
+Run:PID:3 index:0 (Ts,Tg) 389,389 run.remain:162 run.nextEventTime:394 runsize:1
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:2
+readyQ empty
+
+==> 394 3 ts=389 BLOCK  dur=5
+T(3:394): RUNNG -> BLOCK  ib=4 rem=157
+
+CPUtime:394
+Block:PID:3 index:3 (Ts,Tg)394,389 block.remain:157 block.nextEventTime:398 blocksize:3
+readyQ empty
+
+==> 398 3 ts=394 READY  dur=4
+T(3:398): BLOCK -> READY
+
+CPUtime:398
+Ready:PID:3 index:0 (Ts,Tg) 398,394 ready.remain:157 ready.nextEventTime:398 readysize:1
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:398,394 nextEvenTime:398
+
+==> 398 3 ts=398 RUNNG  dur=0
+T(3:398): READY -> RUNNG  cb=1 rem=157
+
+CPUtime:398
+Run:PID:3 index:0 (Ts,Tg) 398,398 run.remain:157 run.nextEventTime:399 runsize:1
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:2
+readyQ empty
+
+==> 399 3 ts=398 BLOCK  dur=1
+T(3:399): RUNNG -> BLOCK  ib=8 rem=156
+
+CPUtime:399
+Block:PID:3 index:3 (Ts,Tg)399,398 block.remain:156 block.nextEventTime:407 blocksize:3
+readyQ empty
+
+==> 407 3 ts=399 READY  dur=8
+T(3:407): BLOCK -> READY
+
+CPUtime:407
+Ready:PID:3 index:0 (Ts,Tg) 407,399 ready.remain:156 ready.nextEventTime:407 readysize:1
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:407,399 nextEvenTime:407
+
+==> 407 3 ts=407 RUNNG  dur=0
+T(3:407): READY -> RUNNG  cb=4 rem=156
+
+CPUtime:407
+Run:PID:3 index:0 (Ts,Tg) 407,407 run.remain:156 run.nextEventTime:411 runsize:1
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:2
+readyQ empty
+
+==> 411 3 ts=407 BLOCK  dur=4
+T(3:411): RUNNG -> BLOCK  ib=17 rem=152
+
+CPUtime:411
+Block:PID:1 index:2 (Ts,Tg)382,374 block.remain:27 block.nextEventTime:417 blocksize:3
+readyQ empty
+
+==> 417 1 ts=382 READY  dur=35
+T(1:417): BLOCK -> READY
+
+CPUtime:417
+Ready:PID:1 index:0 (Ts,Tg) 417,382 ready.remain:27 ready.nextEventTime:417 readysize:1
+Block:PID:3 index:3 (Ts,Tg)411,407 block.remain:152 block.nextEventTime:428 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:417,382 nextEvenTime:417
+
+==> 417 1 ts=417 RUNNG  dur=0
+T(1:417): READY -> RUNNG  cb=9 rem=27
+
+CPUtime:417
+Run:PID:1 index:0 (Ts,Tg) 417,417 run.remain:27 run.nextEventTime:426 runsize:1
+Block:PID:3 index:3 (Ts,Tg)411,407 block.remain:152 block.nextEventTime:428 blocksize:2
+readyQ empty
+
+==> 426 1 ts=417 BLOCK  dur=9
+T(1:426): RUNNG -> BLOCK  ib=29 rem=18
+
+CPUtime:426
+Block:PID:3 index:3 (Ts,Tg)411,407 block.remain:152 block.nextEventTime:428 blocksize:3
+readyQ empty
+
+==> 428 3 ts=411 READY  dur=17
+T(3:428): BLOCK -> READY
+
+CPUtime:428
+Ready:PID:3 index:0 (Ts,Tg) 428,411 ready.remain:152 ready.nextEventTime:428 readysize:1
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:428,411 nextEvenTime:428
+
+==> 428 3 ts=428 RUNNG  dur=0
+T(3:428): READY -> RUNNG  cb=5 rem=152
+
+CPUtime:428
+Run:PID:3 index:0 (Ts,Tg) 428,428 run.remain:152 run.nextEventTime:433 runsize:1
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:2
+readyQ empty
+
+==> 433 3 ts=428 BLOCK  dur=5
+T(3:433): RUNNG -> BLOCK  ib=4 rem=147
+
+CPUtime:433
+Block:PID:3 index:5 (Ts,Tg)433,428 block.remain:147 block.nextEventTime:437 blocksize:3
+readyQ empty
+
+==> 437 3 ts=433 READY  dur=4
+T(3:437): BLOCK -> READY
+
+CPUtime:437
+Ready:PID:3 index:0 (Ts,Tg) 437,433 ready.remain:147 ready.nextEventTime:437 readysize:1
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:437,433 nextEvenTime:437
+
+==> 437 3 ts=437 RUNNG  dur=0
+T(3:437): READY -> RUNNG  cb=2 rem=147
+
+CPUtime:437
+Run:PID:3 index:0 (Ts,Tg) 437,437 run.remain:147 run.nextEventTime:439 runsize:1
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:2
+readyQ empty
+
+==> 439 3 ts=437 BLOCK  dur=2
+T(3:439): RUNNG -> BLOCK  ib=15 rem=145
+
+CPUtime:439
+Block:PID:0 index:0 (Ts,Tg)373,357 block.remain:71 block.nextEventTime:446 blocksize:3
+readyQ empty
+
+==> 446 0 ts=373 READY  dur=73
+T(0:446): BLOCK -> READY
+
+CPUtime:446
+Ready:PID:0 index:0 (Ts,Tg) 446,373 ready.remain:71 ready.nextEventTime:446 readysize:1
+Block:PID:3 index:5 (Ts,Tg)439,437 block.remain:145 block.nextEventTime:454 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:446,373 nextEvenTime:446
+
+==> 446 0 ts=446 RUNNG  dur=0
+T(0:446): READY -> RUNNG  cb=40 rem=71
+
+CPUtime:446
+Run:PID:0 index:0 (Ts,Tg) 446,446 run.remain:71 run.nextEventTime:486 runsize:1
+Block:PID:3 index:5 (Ts,Tg)439,437 block.remain:145 block.nextEventTime:454 blocksize:2
+readyQ empty
+
+==> 454 3 ts=439 READY  dur=15
+T(3:454): BLOCK -> READY
+
+CPUtime:454
+Ready:PID:3 index:0 (Ts,Tg) 454,439 ready.remain:145 ready.nextEventTime:454 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 446,446 run.remain:71 run.nextEventTime:486 runsize:1
+Block:PID:1 index:4 (Ts,Tg)426,417 block.remain:18 block.nextEventTime:455 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:454,439 nextEvenTime:454
+
+==> 455 1 ts=426 READY  dur=29
+T(1:455): BLOCK -> READY
+
+CPUtime:455
+Ready:PID:1 index:1 (Ts,Tg) 455,426 ready.remain:18 ready.nextEventTime:455 readysize:2
+Run:PID:0 index:0 (Ts,Tg) 446,446 run.remain:71 run.nextEventTime:486 runsize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:1 Ts,Tg:455,426 nextEvenTime:455
+2th inreadyQ: PID:3 index:0 Ts,Tg:454,439 nextEvenTime:454
+
+==> 486 0 ts=446 BLOCK  dur=40
+T(0:486): RUNNG -> BLOCK  ib=43 rem=31
+
+CPUtime:486
+Ready:PID:1 index:1 (Ts,Tg) 455,426 ready.remain:18 ready.nextEventTime:455 readysize:2
+Block:PID:0 index:0 (Ts,Tg)486,446 block.remain:31 block.nextEventTime:529 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:1 index:1 Ts,Tg:455,426 nextEvenTime:455
+2th inreadyQ: PID:3 index:0 Ts,Tg:454,439 nextEvenTime:454
+
+==> 486 1 ts=455 RUNNG  dur=31
+T(1:486): READY -> RUNNG  cb=1 rem=18
+
+CPUtime:486
+Ready:PID:3 index:0 (Ts,Tg) 454,439 ready.remain:145 ready.nextEventTime:454 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 486,455 run.remain:18 run.nextEventTime:487 runsize:1
+Block:PID:0 index:0 (Ts,Tg)486,446 block.remain:31 block.nextEventTime:529 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:454,439 nextEvenTime:454
+
+==> 487 1 ts=486 BLOCK  dur=1
+T(1:487): RUNNG -> BLOCK  ib=37 rem=17
+
+CPUtime:487
+Ready:PID:3 index:0 (Ts,Tg) 454,439 ready.remain:145 ready.nextEventTime:454 readysize:1
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:454,439 nextEvenTime:454
+
+==> 487 3 ts=454 RUNNG  dur=33
+T(3:487): READY -> RUNNG  cb=4 rem=145
+
+CPUtime:487
+Run:PID:3 index:0 (Ts,Tg) 487,454 run.remain:145 run.nextEventTime:491 runsize:1
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:2
+readyQ empty
+
+==> 491 3 ts=487 BLOCK  dur=4
+T(3:491): RUNNG -> BLOCK  ib=20 rem=141
+
+CPUtime:491
+Block:PID:3 index:2 (Ts,Tg)491,487 block.remain:141 block.nextEventTime:511 blocksize:3
+readyQ empty
+
+==> 511 3 ts=491 READY  dur=20
+T(3:511): BLOCK -> READY
+
+CPUtime:511
+Ready:PID:3 index:0 (Ts,Tg) 511,491 ready.remain:141 ready.nextEventTime:511 readysize:1
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:511,491 nextEvenTime:511
+
+==> 511 3 ts=511 RUNNG  dur=0
+T(3:511): READY -> RUNNG  cb=3 rem=141
+
+CPUtime:511
+Run:PID:3 index:0 (Ts,Tg) 511,511 run.remain:141 run.nextEventTime:514 runsize:1
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:2
+readyQ empty
+
+==> 514 3 ts=511 BLOCK  dur=3
+T(3:514): RUNNG -> BLOCK  ib=7 rem=138
+
+CPUtime:514
+Block:PID:3 index:2 (Ts,Tg)514,511 block.remain:138 block.nextEventTime:521 blocksize:3
+readyQ empty
+
+==> 521 3 ts=514 READY  dur=7
+T(3:521): BLOCK -> READY
+
+CPUtime:521
+Ready:PID:3 index:0 (Ts,Tg) 521,514 ready.remain:138 ready.nextEventTime:521 readysize:1
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:521,514 nextEvenTime:521
+
+==> 521 3 ts=521 RUNNG  dur=0
+T(3:521): READY -> RUNNG  cb=2 rem=138
+
+CPUtime:521
+Run:PID:3 index:0 (Ts,Tg) 521,521 run.remain:138 run.nextEventTime:523 runsize:1
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:2
+readyQ empty
+
+==> 523 3 ts=521 BLOCK  dur=2
+T(3:523): RUNNG -> BLOCK  ib=15 rem=136
+
+CPUtime:523
+Block:PID:1 index:1 (Ts,Tg)487,486 block.remain:17 block.nextEventTime:524 blocksize:3
+readyQ empty
+
+==> 524 1 ts=487 READY  dur=37
+T(1:524): BLOCK -> READY
+
+CPUtime:524
+Ready:PID:1 index:0 (Ts,Tg) 524,487 ready.remain:17 ready.nextEventTime:524 readysize:1
+Block:PID:0 index:0 (Ts,Tg)486,446 block.remain:31 block.nextEventTime:529 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:524,487 nextEvenTime:524
+
+==> 524 1 ts=524 RUNNG  dur=0
+T(1:524): READY -> RUNNG  cb=10 rem=17
+
+CPUtime:524
+Run:PID:1 index:0 (Ts,Tg) 524,524 run.remain:17 run.nextEventTime:534 runsize:1
+Block:PID:0 index:0 (Ts,Tg)486,446 block.remain:31 block.nextEventTime:529 blocksize:2
+readyQ empty
+
+==> 529 0 ts=486 READY  dur=43
+T(0:529): BLOCK -> READY
+
+CPUtime:529
+Ready:PID:0 index:0 (Ts,Tg) 529,486 ready.remain:31 ready.nextEventTime:529 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 524,524 run.remain:17 run.nextEventTime:534 runsize:1
+Block:PID:3 index:2 (Ts,Tg)523,521 block.remain:136 block.nextEventTime:538 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:529,486 nextEvenTime:529
+
+==> 534 1 ts=524 BLOCK  dur=10
+T(1:534): RUNNG -> BLOCK  ib=36 rem=7
+
+CPUtime:534
+Ready:PID:0 index:0 (Ts,Tg) 529,486 ready.remain:31 ready.nextEventTime:529 readysize:1
+Block:PID:3 index:2 (Ts,Tg)523,521 block.remain:136 block.nextEventTime:538 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:529,486 nextEvenTime:529
+
+==> 534 0 ts=529 RUNNG  dur=5
+T(0:534): READY -> RUNNG  cb=11 rem=31
+
+CPUtime:534
+Run:PID:0 index:0 (Ts,Tg) 534,529 run.remain:31 run.nextEventTime:545 runsize:1
+Block:PID:3 index:2 (Ts,Tg)523,521 block.remain:136 block.nextEventTime:538 blocksize:2
+readyQ empty
+
+==> 538 3 ts=523 READY  dur=15
+T(3:538): BLOCK -> READY
+
+CPUtime:538
+Ready:PID:3 index:0 (Ts,Tg) 538,523 ready.remain:136 ready.nextEventTime:538 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 534,529 run.remain:31 run.nextEventTime:545 runsize:1
+Block:PID:1 index:3 (Ts,Tg)534,524 block.remain:7 block.nextEventTime:570 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:538,523 nextEvenTime:538
+
+==> 545 0 ts=534 BLOCK  dur=11
+T(0:545): RUNNG -> BLOCK  ib=75 rem=20
+
+CPUtime:545
+Ready:PID:3 index:0 (Ts,Tg) 538,523 ready.remain:136 ready.nextEventTime:538 readysize:1
+Block:PID:1 index:3 (Ts,Tg)534,524 block.remain:7 block.nextEventTime:570 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:538,523 nextEvenTime:538
+
+==> 545 3 ts=538 RUNNG  dur=7
+T(3:545): READY -> RUNNG  cb=4 rem=136
+
+CPUtime:545
+Run:PID:3 index:0 (Ts,Tg) 545,538 run.remain:136 run.nextEventTime:549 runsize:1
+Block:PID:1 index:3 (Ts,Tg)534,524 block.remain:7 block.nextEventTime:570 blocksize:2
+readyQ empty
+
+==> 549 3 ts=545 BLOCK  dur=4
+T(3:549): RUNNG -> BLOCK  ib=8 rem=132
+
+CPUtime:549
+Block:PID:3 index:5 (Ts,Tg)549,545 block.remain:132 block.nextEventTime:557 blocksize:3
+readyQ empty
+
+==> 557 3 ts=549 READY  dur=8
+T(3:557): BLOCK -> READY
+
+CPUtime:557
+Ready:PID:3 index:0 (Ts,Tg) 557,549 ready.remain:132 ready.nextEventTime:557 readysize:1
+Block:PID:1 index:3 (Ts,Tg)534,524 block.remain:7 block.nextEventTime:570 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:557,549 nextEvenTime:557
+
+==> 557 3 ts=557 RUNNG  dur=0
+T(3:557): READY -> RUNNG  cb=2 rem=132
+
+CPUtime:557
+Run:PID:3 index:0 (Ts,Tg) 557,557 run.remain:132 run.nextEventTime:559 runsize:1
+Block:PID:1 index:3 (Ts,Tg)534,524 block.remain:7 block.nextEventTime:570 blocksize:2
+readyQ empty
+
+==> 559 3 ts=557 BLOCK  dur=2
+T(3:559): RUNNG -> BLOCK  ib=18 rem=130
+
+CPUtime:559
+Block:PID:1 index:3 (Ts,Tg)534,524 block.remain:7 block.nextEventTime:570 blocksize:3
+readyQ empty
+
+==> 570 1 ts=534 READY  dur=36
+T(1:570): BLOCK -> READY
+
+CPUtime:570
+Ready:PID:1 index:0 (Ts,Tg) 570,534 ready.remain:7 ready.nextEventTime:570 readysize:1
+Block:PID:3 index:5 (Ts,Tg)559,557 block.remain:130 block.nextEventTime:577 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:570,534 nextEvenTime:570
+
+==> 570 1 ts=570 RUNNG  dur=0
+T(1:570): READY -> RUNNG  cb=3 rem=7
+
+CPUtime:570
+Run:PID:1 index:0 (Ts,Tg) 570,570 run.remain:7 run.nextEventTime:573 runsize:1
+Block:PID:3 index:5 (Ts,Tg)559,557 block.remain:130 block.nextEventTime:577 blocksize:2
+readyQ empty
+
+==> 573 1 ts=570 BLOCK  dur=3
+T(1:573): RUNNG -> BLOCK  ib=38 rem=4
+
+CPUtime:573
+Block:PID:3 index:5 (Ts,Tg)559,557 block.remain:130 block.nextEventTime:577 blocksize:3
+readyQ empty
+
+==> 577 3 ts=559 READY  dur=18
+T(3:577): BLOCK -> READY
+
+CPUtime:577
+Ready:PID:3 index:0 (Ts,Tg) 577,559 ready.remain:130 ready.nextEventTime:577 readysize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:577,559 nextEvenTime:577
+
+==> 577 3 ts=577 RUNNG  dur=0
+T(3:577): READY -> RUNNG  cb=3 rem=130
+
+CPUtime:577
+Run:PID:3 index:0 (Ts,Tg) 577,577 run.remain:130 run.nextEventTime:580 runsize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ empty
+
+==> 580 3 ts=577 BLOCK  dur=3
+T(3:580): RUNNG -> BLOCK  ib=13 rem=127
+
+CPUtime:580
+Block:PID:3 index:7 (Ts,Tg)580,577 block.remain:127 block.nextEventTime:593 blocksize:3
+readyQ empty
+
+==> 593 3 ts=580 READY  dur=13
 T(3:593): BLOCK -> READY
 
-Ready:PID:0 index:0 (Ts,Tg) 593,518 ready.remain:24 ready.nextEventTime:593 readysize:2
+CPUtime:593
+Ready:PID:3 index:0 (Ts,Tg) 593,580 ready.remain:127 ready.nextEventTime:593 readysize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:593,580 nextEvenTime:593
 
-firstTs:ready eqalNextevent:0
-==> 593 0 ts=593 RUNNG  dur=0
-T(0:593): READY -> RUNNG  cb=24 rem=24
+==> 593 3 ts=593 RUNNG  dur=0
+T(3:593): READY -> RUNNG  cb=2 rem=127
 
-Ready:PID:3 index:1 (Ts,Tg) 593,591 ready.remain:126 ready.nextEventTime:593 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 593,593 run.remain:24 run.nextEventTime:619 runsize:1
+CPUtime:593
+Run:PID:3 index:0 (Ts,Tg) 593,593 run.remain:127 run.nextEventTime:595 runsize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 617 0 ts=593 BLOCK  dur=24
-==> T(0): Done
+==> 595 3 ts=593 BLOCK  dur=2
+T(3:595): RUNNG -> BLOCK  ib=2 rem=125
 
-Ready:PID:3 index:1 (Ts,Tg) 593,591 ready.remain:126 ready.nextEventTime:593 readysize:1
+CPUtime:595
+Block:PID:3 index:7 (Ts,Tg)595,593 block.remain:125 block.nextEventTime:597 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 617 3 ts=593 RUNNG  dur=24
-T(3:617): READY -> RUNNG  cb=5 rem=126
+==> 597 3 ts=595 READY  dur=2
+T(3:597): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 617,593 run.remain:126 run.nextEventTime:622 runsize:1
+CPUtime:597
+Ready:PID:3 index:0 (Ts,Tg) 597,595 ready.remain:125 ready.nextEventTime:597 readysize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:597,595 nextEvenTime:597
 
-firstTs:run eqalNextevent:0
-==> 622 3 ts=617 BLOCK  dur=5
-T(3:622): RUNNG -> BLOCK  ib=5 rem=121
+==> 597 3 ts=597 RUNNG  dur=0
+T(3:597): READY -> RUNNG  cb=1 rem=125
 
-Block:PID:3 index:0 (Ts,Tg)622,617 block.remain:121 block.nextEventTime:627 blocksize:1
+CPUtime:597
+Run:PID:3 index:0 (Ts,Tg) 597,597 run.remain:125 run.nextEventTime:598 runsize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 627 3 ts=622 READY  dur=5
-T(3:627): BLOCK -> READY
+==> 598 3 ts=597 BLOCK  dur=1
+T(3:598): RUNNG -> BLOCK  ib=7 rem=124
 
-Ready:PID:3 index:0 (Ts,Tg) 627,622 ready.remain:121 ready.nextEventTime:627 readysize:1
+CPUtime:598
+Block:PID:3 index:7 (Ts,Tg)598,597 block.remain:124 block.nextEventTime:605 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 627 3 ts=627 RUNNG  dur=0
-T(3:627): READY -> RUNNG  cb=5 rem=121
+==> 605 3 ts=598 READY  dur=7
+T(3:605): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 627,627 run.remain:121 run.nextEventTime:632 runsize:1
+CPUtime:605
+Ready:PID:3 index:0 (Ts,Tg) 605,598 ready.remain:124 ready.nextEventTime:605 readysize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:605,598 nextEvenTime:605
 
-firstTs:run eqalNextevent:0
-==> 632 3 ts=627 BLOCK  dur=5
-T(3:632): RUNNG -> BLOCK  ib=1 rem=116
+==> 605 3 ts=605 RUNNG  dur=0
+T(3:605): READY -> RUNNG  cb=2 rem=124
 
-Block:PID:3 index:0 (Ts,Tg)632,627 block.remain:116 block.nextEventTime:633 blocksize:1
+CPUtime:605
+Run:PID:3 index:0 (Ts,Tg) 605,605 run.remain:124 run.nextEventTime:607 runsize:1
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 633 3 ts=632 READY  dur=1
-T(3:633): BLOCK -> READY
+==> 607 3 ts=605 BLOCK  dur=2
+T(3:607): RUNNG -> BLOCK  ib=6 rem=122
 
-Ready:PID:3 index:0 (Ts,Tg) 633,632 ready.remain:116 ready.nextEventTime:633 readysize:1
+CPUtime:607
+Block:PID:1 index:6 (Ts,Tg)573,570 block.remain:4 block.nextEventTime:611 blocksize:3
+readyQ empty
 
-firstTs:ready eqalNextevent:0
-==> 633 3 ts=633 RUNNG  dur=0
-T(3:633): READY -> RUNNG  cb=5 rem=116
+==> 611 1 ts=573 READY  dur=38
+T(1:611): BLOCK -> READY
 
-Run:PID:3 index:0 (Ts,Tg) 633,633 run.remain:116 run.nextEventTime:638 runsize:1
+CPUtime:611
+Ready:PID:1 index:0 (Ts,Tg) 611,573 ready.remain:4 ready.nextEventTime:611 readysize:1
+Block:PID:3 index:7 (Ts,Tg)607,605 block.remain:122 block.nextEventTime:613 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:1 index:0 Ts,Tg:611,573 nextEvenTime:611
 
-firstTs:run eqalNextevent:0
-==> 638 3 ts=633 BLOCK  dur=5
-T(3:638): RUNNG -> BLOCK  ib=12 rem=111
+==> 611 1 ts=611 RUNNG  dur=0
+T(1:611): READY -> RUNNG  cb=4 rem=4
 
-Block:PID:3 index:0 (Ts,Tg)638,633 block.remain:111 block.nextEventTime:650 blocksize:1
+CPUtime:611
+Run:PID:1 index:0 (Ts,Tg) 611,611 run.remain:4 run.nextEventTime:621 runsize:1
+Block:PID:3 index:7 (Ts,Tg)607,605 block.remain:122 block.nextEventTime:613 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 650 3 ts=638 READY  dur=12
-T(3:650): BLOCK -> READY
+==> 613 3 ts=607 READY  dur=6
+T(3:613): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 650,638 ready.remain:111 ready.nextEventTime:650 readysize:1
+CPUtime:613
+Ready:PID:3 index:0 (Ts,Tg) 613,607 ready.remain:122 ready.nextEventTime:613 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 611,611 run.remain:4 run.nextEventTime:621 runsize:1
+Block:PID:0 index:4 (Ts,Tg)545,534 block.remain:20 block.nextEventTime:620 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:613,607 nextEvenTime:613
 
-firstTs:ready eqalNextevent:0
-==> 650 3 ts=650 RUNNG  dur=0
-T(3:650): READY -> RUNNG  cb=3 rem=111
+==> 615 1 ts=611 BLOCK  dur=4
+==> T(1): Done
 
-Run:PID:3 index:0 (Ts,Tg) 650,650 run.remain:111 run.nextEventTime:653 runsize:1
+CPUtime:615
+Ready:PID:3 index:0 (Ts,Tg) 613,607 ready.remain:122 ready.nextEventTime:613 readysize:1
+Block:PID:0 index:4 (Ts,Tg)545,534 block.remain:20 block.nextEventTime:620 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:613,607 nextEvenTime:613
 
-firstTs:run eqalNextevent:0
-==> 653 3 ts=650 BLOCK  dur=3
-T(3:653): RUNNG -> BLOCK  ib=18 rem=108
+==> 615 3 ts=613 RUNNG  dur=2
+T(3:615): READY -> RUNNG  cb=5 rem=122
 
-Block:PID:3 index:0 (Ts,Tg)653,650 block.remain:108 block.nextEventTime:671 blocksize:1
+CPUtime:615
+Run:PID:3 index:0 (Ts,Tg) 615,613 run.remain:122 run.nextEventTime:620 runsize:1
+Block:PID:0 index:4 (Ts,Tg)545,534 block.remain:20 block.nextEventTime:620 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 671 3 ts=653 READY  dur=18
-T(3:671): BLOCK -> READY
+==> 620 0 ts=545 READY  dur=75
+T(0:620): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 671,653 ready.remain:108 ready.nextEventTime:671 readysize:1
+CPUtime:620
+Ready:PID:0 index:0 (Ts,Tg) 620,545 ready.remain:20 ready.nextEventTime:620 readysize:1
+Run:PID:3 index:0 (Ts,Tg) 615,613 run.remain:122 run.nextEventTime:620 runsize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:620,545 nextEvenTime:620
 
-firstTs:ready eqalNextevent:0
-==> 671 3 ts=671 RUNNG  dur=0
-T(3:671): READY -> RUNNG  cb=2 rem=108
+==> 620 3 ts=615 BLOCK  dur=5
+T(3:620): RUNNG -> BLOCK  ib=20 rem=117
 
-Run:PID:3 index:0 (Ts,Tg) 671,671 run.remain:108 run.nextEventTime:673 runsize:1
+CPUtime:620
+Ready:PID:0 index:0 (Ts,Tg) 620,545 ready.remain:20 ready.nextEventTime:620 readysize:1
+Block:PID:3 index:0 (Ts,Tg)620,615 block.remain:117 block.nextEventTime:640 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:620,545 nextEvenTime:620
 
-firstTs:run eqalNextevent:0
-==> 673 3 ts=671 BLOCK  dur=2
-T(3:673): RUNNG -> BLOCK  ib=2 rem=106
+==> 620 0 ts=620 RUNNG  dur=0
+T(0:620): READY -> RUNNG  cb=1 rem=20
 
-Block:PID:3 index:0 (Ts,Tg)673,671 block.remain:106 block.nextEventTime:675 blocksize:1
+CPUtime:620
+Run:PID:0 index:0 (Ts,Tg) 620,620 run.remain:20 run.nextEventTime:621 runsize:1
+Block:PID:3 index:0 (Ts,Tg)620,615 block.remain:117 block.nextEventTime:640 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 675 3 ts=673 READY  dur=2
+==> 621 0 ts=620 BLOCK  dur=1
+T(0:621): RUNNG -> BLOCK  ib=70 rem=19
+
+CPUtime:621
+Block:PID:3 index:0 (Ts,Tg)620,615 block.remain:117 block.nextEventTime:640 blocksize:2
+readyQ empty
+
+==> 640 3 ts=620 READY  dur=20
+T(3:640): BLOCK -> READY
+
+CPUtime:640
+Ready:PID:3 index:0 (Ts,Tg) 640,620 ready.remain:117 ready.nextEventTime:640 readysize:1
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:640,620 nextEvenTime:640
+
+==> 640 3 ts=640 RUNNG  dur=0
+T(3:640): READY -> RUNNG  cb=2 rem=117
+
+CPUtime:640
+Run:PID:3 index:0 (Ts,Tg) 640,640 run.remain:117 run.nextEventTime:642 runsize:1
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:1
+readyQ empty
+
+==> 642 3 ts=640 BLOCK  dur=2
+T(3:642): RUNNG -> BLOCK  ib=18 rem=115
+
+CPUtime:642
+Block:PID:3 index:2 (Ts,Tg)642,640 block.remain:115 block.nextEventTime:660 blocksize:2
+readyQ empty
+
+==> 660 3 ts=642 READY  dur=18
+T(3:660): BLOCK -> READY
+
+CPUtime:660
+Ready:PID:3 index:0 (Ts,Tg) 660,642 ready.remain:115 ready.nextEventTime:660 readysize:1
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:660,642 nextEvenTime:660
+
+==> 660 3 ts=660 RUNNG  dur=0
+T(3:660): READY -> RUNNG  cb=3 rem=115
+
+CPUtime:660
+Run:PID:3 index:0 (Ts,Tg) 660,660 run.remain:115 run.nextEventTime:663 runsize:1
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:1
+readyQ empty
+
+==> 663 3 ts=660 BLOCK  dur=3
+T(3:663): RUNNG -> BLOCK  ib=12 rem=112
+
+CPUtime:663
+Block:PID:3 index:2 (Ts,Tg)663,660 block.remain:112 block.nextEventTime:675 blocksize:2
+readyQ empty
+
+==> 675 3 ts=663 READY  dur=12
 T(3:675): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 675,673 ready.remain:106 ready.nextEventTime:675 readysize:1
+CPUtime:675
+Ready:PID:3 index:0 (Ts,Tg) 675,663 ready.remain:112 ready.nextEventTime:675 readysize:1
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:675,663 nextEvenTime:675
 
-firstTs:ready eqalNextevent:0
 ==> 675 3 ts=675 RUNNG  dur=0
-T(3:675): READY -> RUNNG  cb=1 rem=106
+T(3:675): READY -> RUNNG  cb=2 rem=112
 
-Run:PID:3 index:0 (Ts,Tg) 675,675 run.remain:106 run.nextEventTime:676 runsize:1
+CPUtime:675
+Run:PID:3 index:0 (Ts,Tg) 675,675 run.remain:112 run.nextEventTime:677 runsize:1
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 676 3 ts=675 BLOCK  dur=1
-T(3:676): RUNNG -> BLOCK  ib=10 rem=105
+==> 677 3 ts=675 BLOCK  dur=2
+T(3:677): RUNNG -> BLOCK  ib=16 rem=110
 
-Block:PID:3 index:0 (Ts,Tg)676,675 block.remain:105 block.nextEventTime:686 blocksize:1
+CPUtime:677
+Block:PID:0 index:1 (Ts,Tg)621,620 block.remain:19 block.nextEventTime:691 blocksize:2
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 686 3 ts=676 READY  dur=10
-T(3:686): BLOCK -> READY
+==> 691 0 ts=621 READY  dur=70
+T(0:691): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 686,676 ready.remain:105 ready.nextEventTime:686 readysize:1
+CPUtime:691
+Ready:PID:0 index:0 (Ts,Tg) 691,621 ready.remain:19 ready.nextEventTime:691 readysize:1
+Block:PID:3 index:2 (Ts,Tg)677,675 block.remain:110 block.nextEventTime:693 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:0 index:0 Ts,Tg:691,621 nextEvenTime:691
 
-firstTs:ready eqalNextevent:0
-==> 686 3 ts=686 RUNNG  dur=0
-T(3:686): READY -> RUNNG  cb=3 rem=105
+==> 691 0 ts=691 RUNNG  dur=0
+T(0:691): READY -> RUNNG  cb=19 rem=19
 
-Run:PID:3 index:0 (Ts,Tg) 686,686 run.remain:105 run.nextEventTime:689 runsize:1
+CPUtime:691
+Run:PID:0 index:0 (Ts,Tg) 691,691 run.remain:19 run.nextEventTime:721 runsize:1
+Block:PID:3 index:2 (Ts,Tg)677,675 block.remain:110 block.nextEventTime:693 blocksize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 689 3 ts=686 BLOCK  dur=3
-T(3:689): RUNNG -> BLOCK  ib=8 rem=102
+==> 693 3 ts=677 READY  dur=16
+T(3:693): BLOCK -> READY
 
-Block:PID:3 index:0 (Ts,Tg)689,686 block.remain:102 block.nextEventTime:697 blocksize:1
+CPUtime:693
+Ready:PID:3 index:0 (Ts,Tg) 693,677 ready.remain:110 ready.nextEventTime:693 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 691,691 run.remain:19 run.nextEventTime:721 runsize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:693,677 nextEvenTime:693
 
-firstTs:block eqalNextevent:0
-==> 697 3 ts=689 READY  dur=8
-T(3:697): BLOCK -> READY
+==> 710 0 ts=691 BLOCK  dur=19
+==> T(0): Done
 
-Ready:PID:3 index:0 (Ts,Tg) 697,689 ready.remain:102 ready.nextEventTime:697 readysize:1
+CPUtime:710
+Ready:PID:3 index:0 (Ts,Tg) 693,677 ready.remain:110 ready.nextEventTime:693 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:693,677 nextEvenTime:693
 
-firstTs:ready eqalNextevent:0
-==> 697 3 ts=697 RUNNG  dur=0
-T(3:697): READY -> RUNNG  cb=2 rem=102
+==> 710 3 ts=693 RUNNG  dur=17
+T(3:710): READY -> RUNNG  cb=3 rem=110
 
-Run:PID:3 index:0 (Ts,Tg) 697,697 run.remain:102 run.nextEventTime:699 runsize:1
+CPUtime:710
+Run:PID:3 index:0 (Ts,Tg) 710,693 run.remain:110 run.nextEventTime:713 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 699 3 ts=697 BLOCK  dur=2
-T(3:699): RUNNG -> BLOCK  ib=18 rem=100
+==> 713 3 ts=710 BLOCK  dur=3
+T(3:713): RUNNG -> BLOCK  ib=8 rem=107
 
-Block:PID:3 index:0 (Ts,Tg)699,697 block.remain:100 block.nextEventTime:717 blocksize:1
+CPUtime:713
+Block:PID:3 index:0 (Ts,Tg)713,710 block.remain:107 block.nextEventTime:721 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 717 3 ts=699 READY  dur=18
-T(3:717): BLOCK -> READY
+==> 721 3 ts=713 READY  dur=8
+T(3:721): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 717,699 ready.remain:100 ready.nextEventTime:717 readysize:1
+CPUtime:721
+Ready:PID:3 index:0 (Ts,Tg) 721,713 ready.remain:107 ready.nextEventTime:721 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:721,713 nextEvenTime:721
 
-firstTs:ready eqalNextevent:0
-==> 717 3 ts=717 RUNNG  dur=0
-T(3:717): READY -> RUNNG  cb=4 rem=100
+==> 721 3 ts=721 RUNNG  dur=0
+T(3:721): READY -> RUNNG  cb=2 rem=107
 
-Run:PID:3 index:0 (Ts,Tg) 717,717 run.remain:100 run.nextEventTime:721 runsize:1
+CPUtime:721
+Run:PID:3 index:0 (Ts,Tg) 721,721 run.remain:107 run.nextEventTime:723 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 721 3 ts=717 BLOCK  dur=4
-T(3:721): RUNNG -> BLOCK  ib=7 rem=96
+==> 723 3 ts=721 BLOCK  dur=2
+T(3:723): RUNNG -> BLOCK  ib=18 rem=105
 
-Block:PID:3 index:0 (Ts,Tg)721,717 block.remain:96 block.nextEventTime:728 blocksize:1
+CPUtime:723
+Block:PID:3 index:0 (Ts,Tg)723,721 block.remain:105 block.nextEventTime:741 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 728 3 ts=721 READY  dur=7
-T(3:728): BLOCK -> READY
+==> 741 3 ts=723 READY  dur=18
+T(3:741): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 728,721 ready.remain:96 ready.nextEventTime:728 readysize:1
+CPUtime:741
+Ready:PID:3 index:0 (Ts,Tg) 741,723 ready.remain:105 ready.nextEventTime:741 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:741,723 nextEvenTime:741
 
-firstTs:ready eqalNextevent:0
-==> 728 3 ts=728 RUNNG  dur=0
-T(3:728): READY -> RUNNG  cb=1 rem=96
+==> 741 3 ts=741 RUNNG  dur=0
+T(3:741): READY -> RUNNG  cb=4 rem=105
 
-Run:PID:3 index:0 (Ts,Tg) 728,728 run.remain:96 run.nextEventTime:729 runsize:1
+CPUtime:741
+Run:PID:3 index:0 (Ts,Tg) 741,741 run.remain:105 run.nextEventTime:745 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 729 3 ts=728 BLOCK  dur=1
-T(3:729): RUNNG -> BLOCK  ib=7 rem=95
+==> 745 3 ts=741 BLOCK  dur=4
+T(3:745): RUNNG -> BLOCK  ib=7 rem=101
 
-Block:PID:3 index:0 (Ts,Tg)729,728 block.remain:95 block.nextEventTime:736 blocksize:1
+CPUtime:745
+Block:PID:3 index:0 (Ts,Tg)745,741 block.remain:101 block.nextEventTime:752 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 736 3 ts=729 READY  dur=7
-T(3:736): BLOCK -> READY
+==> 752 3 ts=745 READY  dur=7
+T(3:752): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 736,729 ready.remain:95 ready.nextEventTime:736 readysize:1
+CPUtime:752
+Ready:PID:3 index:0 (Ts,Tg) 752,745 ready.remain:101 ready.nextEventTime:752 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:752,745 nextEvenTime:752
 
-firstTs:ready eqalNextevent:0
-==> 736 3 ts=736 RUNNG  dur=0
-T(3:736): READY -> RUNNG  cb=4 rem=95
+==> 752 3 ts=752 RUNNG  dur=0
+T(3:752): READY -> RUNNG  cb=1 rem=101
 
-Run:PID:3 index:0 (Ts,Tg) 736,736 run.remain:95 run.nextEventTime:740 runsize:1
+CPUtime:752
+Run:PID:3 index:0 (Ts,Tg) 752,752 run.remain:101 run.nextEventTime:753 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 740 3 ts=736 BLOCK  dur=4
-T(3:740): RUNNG -> BLOCK  ib=20 rem=91
+==> 753 3 ts=752 BLOCK  dur=1
+T(3:753): RUNNG -> BLOCK  ib=7 rem=100
 
-Block:PID:3 index:0 (Ts,Tg)740,736 block.remain:91 block.nextEventTime:760 blocksize:1
+CPUtime:753
+Block:PID:3 index:0 (Ts,Tg)753,752 block.remain:100 block.nextEventTime:760 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 760 3 ts=740 READY  dur=20
+==> 760 3 ts=753 READY  dur=7
 T(3:760): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 760,740 ready.remain:91 ready.nextEventTime:760 readysize:1
+CPUtime:760
+Ready:PID:3 index:0 (Ts,Tg) 760,753 ready.remain:100 ready.nextEventTime:760 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:760,753 nextEvenTime:760
 
-firstTs:ready eqalNextevent:0
 ==> 760 3 ts=760 RUNNG  dur=0
-T(3:760): READY -> RUNNG  cb=5 rem=91
+T(3:760): READY -> RUNNG  cb=4 rem=100
 
-Run:PID:3 index:0 (Ts,Tg) 760,760 run.remain:91 run.nextEventTime:765 runsize:1
+CPUtime:760
+Run:PID:3 index:0 (Ts,Tg) 760,760 run.remain:100 run.nextEventTime:764 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 765 3 ts=760 BLOCK  dur=5
-T(3:765): RUNNG -> BLOCK  ib=9 rem=86
+==> 764 3 ts=760 BLOCK  dur=4
+T(3:764): RUNNG -> BLOCK  ib=20 rem=96
 
-Block:PID:3 index:0 (Ts,Tg)765,760 block.remain:86 block.nextEventTime:774 blocksize:1
+CPUtime:764
+Block:PID:3 index:0 (Ts,Tg)764,760 block.remain:96 block.nextEventTime:784 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 774 3 ts=765 READY  dur=9
-T(3:774): BLOCK -> READY
+==> 784 3 ts=764 READY  dur=20
+T(3:784): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 774,765 ready.remain:86 ready.nextEventTime:774 readysize:1
+CPUtime:784
+Ready:PID:3 index:0 (Ts,Tg) 784,764 ready.remain:96 ready.nextEventTime:784 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:784,764 nextEvenTime:784
 
-firstTs:ready eqalNextevent:0
-==> 774 3 ts=774 RUNNG  dur=0
-T(3:774): READY -> RUNNG  cb=2 rem=86
+==> 784 3 ts=784 RUNNG  dur=0
+T(3:784): READY -> RUNNG  cb=5 rem=96
 
-Run:PID:3 index:0 (Ts,Tg) 774,774 run.remain:86 run.nextEventTime:776 runsize:1
+CPUtime:784
+Run:PID:3 index:0 (Ts,Tg) 784,784 run.remain:96 run.nextEventTime:789 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 776 3 ts=774 BLOCK  dur=2
-T(3:776): RUNNG -> BLOCK  ib=13 rem=84
+==> 789 3 ts=784 BLOCK  dur=5
+T(3:789): RUNNG -> BLOCK  ib=9 rem=91
 
-Block:PID:3 index:0 (Ts,Tg)776,774 block.remain:84 block.nextEventTime:789 blocksize:1
+CPUtime:789
+Block:PID:3 index:0 (Ts,Tg)789,784 block.remain:91 block.nextEventTime:798 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 789 3 ts=776 READY  dur=13
-T(3:789): BLOCK -> READY
-
-Ready:PID:3 index:0 (Ts,Tg) 789,776 ready.remain:84 ready.nextEventTime:789 readysize:1
-
-firstTs:ready eqalNextevent:0
-==> 789 3 ts=789 RUNNG  dur=0
-T(3:789): READY -> RUNNG  cb=5 rem=84
-
-Run:PID:3 index:0 (Ts,Tg) 789,789 run.remain:84 run.nextEventTime:794 runsize:1
-
-firstTs:run eqalNextevent:0
-==> 794 3 ts=789 BLOCK  dur=5
-T(3:794): RUNNG -> BLOCK  ib=4 rem=79
-
-Block:PID:3 index:0 (Ts,Tg)794,789 block.remain:79 block.nextEventTime:798 blocksize:1
-
-firstTs:block eqalNextevent:0
-==> 798 3 ts=794 READY  dur=4
+==> 798 3 ts=789 READY  dur=9
 T(3:798): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 798,794 ready.remain:79 ready.nextEventTime:798 readysize:1
+CPUtime:798
+Ready:PID:3 index:0 (Ts,Tg) 798,789 ready.remain:91 ready.nextEventTime:798 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:798,789 nextEvenTime:798
 
-firstTs:ready eqalNextevent:0
 ==> 798 3 ts=798 RUNNG  dur=0
-T(3:798): READY -> RUNNG  cb=5 rem=79
+T(3:798): READY -> RUNNG  cb=2 rem=91
 
-Run:PID:3 index:0 (Ts,Tg) 798,798 run.remain:79 run.nextEventTime:803 runsize:1
+CPUtime:798
+Run:PID:3 index:0 (Ts,Tg) 798,798 run.remain:91 run.nextEventTime:800 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 803 3 ts=798 BLOCK  dur=5
-T(3:803): RUNNG -> BLOCK  ib=11 rem=74
+==> 800 3 ts=798 BLOCK  dur=2
+T(3:800): RUNNG -> BLOCK  ib=13 rem=89
 
-Block:PID:3 index:0 (Ts,Tg)803,798 block.remain:74 block.nextEventTime:814 blocksize:1
+CPUtime:800
+Block:PID:3 index:0 (Ts,Tg)800,798 block.remain:89 block.nextEventTime:813 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 814 3 ts=803 READY  dur=11
-T(3:814): BLOCK -> READY
+==> 813 3 ts=800 READY  dur=13
+T(3:813): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 814,803 ready.remain:74 ready.nextEventTime:814 readysize:1
+CPUtime:813
+Ready:PID:3 index:0 (Ts,Tg) 813,800 ready.remain:89 ready.nextEventTime:813 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:813,800 nextEvenTime:813
 
-firstTs:ready eqalNextevent:0
-==> 814 3 ts=814 RUNNG  dur=0
-T(3:814): READY -> RUNNG  cb=4 rem=74
+==> 813 3 ts=813 RUNNG  dur=0
+T(3:813): READY -> RUNNG  cb=5 rem=89
 
-Run:PID:3 index:0 (Ts,Tg) 814,814 run.remain:74 run.nextEventTime:818 runsize:1
+CPUtime:813
+Run:PID:3 index:0 (Ts,Tg) 813,813 run.remain:89 run.nextEventTime:818 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 818 3 ts=814 BLOCK  dur=4
-T(3:818): RUNNG -> BLOCK  ib=9 rem=70
+==> 818 3 ts=813 BLOCK  dur=5
+T(3:818): RUNNG -> BLOCK  ib=4 rem=84
 
-Block:PID:3 index:0 (Ts,Tg)818,814 block.remain:70 block.nextEventTime:827 blocksize:1
+CPUtime:818
+Block:PID:3 index:0 (Ts,Tg)818,813 block.remain:84 block.nextEventTime:822 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 827 3 ts=818 READY  dur=9
-T(3:827): BLOCK -> READY
+==> 822 3 ts=818 READY  dur=4
+T(3:822): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 827,818 ready.remain:70 ready.nextEventTime:827 readysize:1
+CPUtime:822
+Ready:PID:3 index:0 (Ts,Tg) 822,818 ready.remain:84 ready.nextEventTime:822 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:822,818 nextEvenTime:822
 
-firstTs:ready eqalNextevent:0
-==> 827 3 ts=827 RUNNG  dur=0
-T(3:827): READY -> RUNNG  cb=1 rem=70
+==> 822 3 ts=822 RUNNG  dur=0
+T(3:822): READY -> RUNNG  cb=5 rem=84
 
-Run:PID:3 index:0 (Ts,Tg) 827,827 run.remain:70 run.nextEventTime:828 runsize:1
+CPUtime:822
+Run:PID:3 index:0 (Ts,Tg) 822,822 run.remain:84 run.nextEventTime:827 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 828 3 ts=827 BLOCK  dur=1
-T(3:828): RUNNG -> BLOCK  ib=1 rem=69
+==> 827 3 ts=822 BLOCK  dur=5
+T(3:827): RUNNG -> BLOCK  ib=11 rem=79
 
-Block:PID:3 index:0 (Ts,Tg)828,827 block.remain:69 block.nextEventTime:829 blocksize:1
+CPUtime:827
+Block:PID:3 index:0 (Ts,Tg)827,822 block.remain:79 block.nextEventTime:838 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 829 3 ts=828 READY  dur=1
-T(3:829): BLOCK -> READY
+==> 838 3 ts=827 READY  dur=11
+T(3:838): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 829,828 ready.remain:69 ready.nextEventTime:829 readysize:1
+CPUtime:838
+Ready:PID:3 index:0 (Ts,Tg) 838,827 ready.remain:79 ready.nextEventTime:838 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:838,827 nextEvenTime:838
 
-firstTs:ready eqalNextevent:0
-==> 829 3 ts=829 RUNNG  dur=0
-T(3:829): READY -> RUNNG  cb=5 rem=69
+==> 838 3 ts=838 RUNNG  dur=0
+T(3:838): READY -> RUNNG  cb=4 rem=79
 
-Run:PID:3 index:0 (Ts,Tg) 829,829 run.remain:69 run.nextEventTime:834 runsize:1
+CPUtime:838
+Run:PID:3 index:0 (Ts,Tg) 838,838 run.remain:79 run.nextEventTime:842 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 834 3 ts=829 BLOCK  dur=5
-T(3:834): RUNNG -> BLOCK  ib=17 rem=64
+==> 842 3 ts=838 BLOCK  dur=4
+T(3:842): RUNNG -> BLOCK  ib=9 rem=75
 
-Block:PID:3 index:0 (Ts,Tg)834,829 block.remain:64 block.nextEventTime:851 blocksize:1
+CPUtime:842
+Block:PID:3 index:0 (Ts,Tg)842,838 block.remain:75 block.nextEventTime:851 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 851 3 ts=834 READY  dur=17
+==> 851 3 ts=842 READY  dur=9
 T(3:851): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 851,834 ready.remain:64 ready.nextEventTime:851 readysize:1
+CPUtime:851
+Ready:PID:3 index:0 (Ts,Tg) 851,842 ready.remain:75 ready.nextEventTime:851 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:851,842 nextEvenTime:851
 
-firstTs:ready eqalNextevent:0
 ==> 851 3 ts=851 RUNNG  dur=0
-T(3:851): READY -> RUNNG  cb=4 rem=64
+T(3:851): READY -> RUNNG  cb=1 rem=75
 
-Run:PID:3 index:0 (Ts,Tg) 851,851 run.remain:64 run.nextEventTime:855 runsize:1
+CPUtime:851
+Run:PID:3 index:0 (Ts,Tg) 851,851 run.remain:75 run.nextEventTime:852 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 855 3 ts=851 BLOCK  dur=4
-T(3:855): RUNNG -> BLOCK  ib=19 rem=60
+==> 852 3 ts=851 BLOCK  dur=1
+T(3:852): RUNNG -> BLOCK  ib=1 rem=74
 
-Block:PID:3 index:0 (Ts,Tg)855,851 block.remain:60 block.nextEventTime:874 blocksize:1
+CPUtime:852
+Block:PID:3 index:0 (Ts,Tg)852,851 block.remain:74 block.nextEventTime:853 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 874 3 ts=855 READY  dur=19
-T(3:874): BLOCK -> READY
+==> 853 3 ts=852 READY  dur=1
+T(3:853): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 874,855 ready.remain:60 ready.nextEventTime:874 readysize:1
+CPUtime:853
+Ready:PID:3 index:0 (Ts,Tg) 853,852 ready.remain:74 ready.nextEventTime:853 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:853,852 nextEvenTime:853
 
-firstTs:ready eqalNextevent:0
-==> 874 3 ts=874 RUNNG  dur=0
-T(3:874): READY -> RUNNG  cb=1 rem=60
+==> 853 3 ts=853 RUNNG  dur=0
+T(3:853): READY -> RUNNG  cb=5 rem=74
 
-Run:PID:3 index:0 (Ts,Tg) 874,874 run.remain:60 run.nextEventTime:875 runsize:1
+CPUtime:853
+Run:PID:3 index:0 (Ts,Tg) 853,853 run.remain:74 run.nextEventTime:858 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 875 3 ts=874 BLOCK  dur=1
-T(3:875): RUNNG -> BLOCK  ib=7 rem=59
+==> 858 3 ts=853 BLOCK  dur=5
+T(3:858): RUNNG -> BLOCK  ib=17 rem=69
 
-Block:PID:3 index:0 (Ts,Tg)875,874 block.remain:59 block.nextEventTime:882 blocksize:1
+CPUtime:858
+Block:PID:3 index:0 (Ts,Tg)858,853 block.remain:69 block.nextEventTime:875 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 882 3 ts=875 READY  dur=7
-T(3:882): BLOCK -> READY
+==> 875 3 ts=858 READY  dur=17
+T(3:875): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 882,875 ready.remain:59 ready.nextEventTime:882 readysize:1
+CPUtime:875
+Ready:PID:3 index:0 (Ts,Tg) 875,858 ready.remain:69 ready.nextEventTime:875 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:875,858 nextEvenTime:875
 
-firstTs:ready eqalNextevent:0
-==> 882 3 ts=882 RUNNG  dur=0
-T(3:882): READY -> RUNNG  cb=2 rem=59
+==> 875 3 ts=875 RUNNG  dur=0
+T(3:875): READY -> RUNNG  cb=4 rem=69
 
-Run:PID:3 index:0 (Ts,Tg) 882,882 run.remain:59 run.nextEventTime:884 runsize:1
+CPUtime:875
+Run:PID:3 index:0 (Ts,Tg) 875,875 run.remain:69 run.nextEventTime:879 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 884 3 ts=882 BLOCK  dur=2
-T(3:884): RUNNG -> BLOCK  ib=2 rem=57
+==> 879 3 ts=875 BLOCK  dur=4
+T(3:879): RUNNG -> BLOCK  ib=19 rem=65
 
-Block:PID:3 index:0 (Ts,Tg)884,882 block.remain:57 block.nextEventTime:886 blocksize:1
+CPUtime:879
+Block:PID:3 index:0 (Ts,Tg)879,875 block.remain:65 block.nextEventTime:898 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 886 3 ts=884 READY  dur=2
-T(3:886): BLOCK -> READY
+==> 898 3 ts=879 READY  dur=19
+T(3:898): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 886,884 ready.remain:57 ready.nextEventTime:886 readysize:1
+CPUtime:898
+Ready:PID:3 index:0 (Ts,Tg) 898,879 ready.remain:65 ready.nextEventTime:898 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:898,879 nextEvenTime:898
 
-firstTs:ready eqalNextevent:0
-==> 886 3 ts=886 RUNNG  dur=0
-T(3:886): READY -> RUNNG  cb=1 rem=57
+==> 898 3 ts=898 RUNNG  dur=0
+T(3:898): READY -> RUNNG  cb=1 rem=65
 
-Run:PID:3 index:0 (Ts,Tg) 886,886 run.remain:57 run.nextEventTime:887 runsize:1
+CPUtime:898
+Run:PID:3 index:0 (Ts,Tg) 898,898 run.remain:65 run.nextEventTime:899 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 887 3 ts=886 BLOCK  dur=1
-T(3:887): RUNNG -> BLOCK  ib=20 rem=56
+==> 899 3 ts=898 BLOCK  dur=1
+T(3:899): RUNNG -> BLOCK  ib=7 rem=64
 
-Block:PID:3 index:0 (Ts,Tg)887,886 block.remain:56 block.nextEventTime:907 blocksize:1
+CPUtime:899
+Block:PID:3 index:0 (Ts,Tg)899,898 block.remain:64 block.nextEventTime:906 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 907 3 ts=887 READY  dur=20
-T(3:907): BLOCK -> READY
+==> 906 3 ts=899 READY  dur=7
+T(3:906): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 907,887 ready.remain:56 ready.nextEventTime:907 readysize:1
+CPUtime:906
+Ready:PID:3 index:0 (Ts,Tg) 906,899 ready.remain:64 ready.nextEventTime:906 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:906,899 nextEvenTime:906
 
-firstTs:ready eqalNextevent:0
-==> 907 3 ts=907 RUNNG  dur=0
-T(3:907): READY -> RUNNG  cb=4 rem=56
+==> 906 3 ts=906 RUNNG  dur=0
+T(3:906): READY -> RUNNG  cb=2 rem=64
 
-Run:PID:3 index:0 (Ts,Tg) 907,907 run.remain:56 run.nextEventTime:911 runsize:1
+CPUtime:906
+Run:PID:3 index:0 (Ts,Tg) 906,906 run.remain:64 run.nextEventTime:908 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 911 3 ts=907 BLOCK  dur=4
-T(3:911): RUNNG -> BLOCK  ib=5 rem=52
+==> 908 3 ts=906 BLOCK  dur=2
+T(3:908): RUNNG -> BLOCK  ib=2 rem=62
 
-Block:PID:3 index:0 (Ts,Tg)911,907 block.remain:52 block.nextEventTime:916 blocksize:1
+CPUtime:908
+Block:PID:3 index:0 (Ts,Tg)908,906 block.remain:62 block.nextEventTime:910 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 916 3 ts=911 READY  dur=5
-T(3:916): BLOCK -> READY
+==> 910 3 ts=908 READY  dur=2
+T(3:910): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 916,911 ready.remain:52 ready.nextEventTime:916 readysize:1
+CPUtime:910
+Ready:PID:3 index:0 (Ts,Tg) 910,908 ready.remain:62 ready.nextEventTime:910 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:910,908 nextEvenTime:910
 
-firstTs:ready eqalNextevent:0
-==> 916 3 ts=916 RUNNG  dur=0
-T(3:916): READY -> RUNNG  cb=4 rem=52
+==> 910 3 ts=910 RUNNG  dur=0
+T(3:910): READY -> RUNNG  cb=1 rem=62
 
-Run:PID:3 index:0 (Ts,Tg) 916,916 run.remain:52 run.nextEventTime:920 runsize:1
+CPUtime:910
+Run:PID:3 index:0 (Ts,Tg) 910,910 run.remain:62 run.nextEventTime:911 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 920 3 ts=916 BLOCK  dur=4
-T(3:920): RUNNG -> BLOCK  ib=2 rem=48
+==> 911 3 ts=910 BLOCK  dur=1
+T(3:911): RUNNG -> BLOCK  ib=20 rem=61
 
-Block:PID:3 index:0 (Ts,Tg)920,916 block.remain:48 block.nextEventTime:922 blocksize:1
+CPUtime:911
+Block:PID:3 index:0 (Ts,Tg)911,910 block.remain:61 block.nextEventTime:931 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 922 3 ts=920 READY  dur=2
-T(3:922): BLOCK -> READY
+==> 931 3 ts=911 READY  dur=20
+T(3:931): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 922,920 ready.remain:48 ready.nextEventTime:922 readysize:1
+CPUtime:931
+Ready:PID:3 index:0 (Ts,Tg) 931,911 ready.remain:61 ready.nextEventTime:931 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:931,911 nextEvenTime:931
 
-firstTs:ready eqalNextevent:0
-==> 922 3 ts=922 RUNNG  dur=0
-T(3:922): READY -> RUNNG  cb=1 rem=48
+==> 931 3 ts=931 RUNNG  dur=0
+T(3:931): READY -> RUNNG  cb=4 rem=61
 
-Run:PID:3 index:0 (Ts,Tg) 922,922 run.remain:48 run.nextEventTime:923 runsize:1
+CPUtime:931
+Run:PID:3 index:0 (Ts,Tg) 931,931 run.remain:61 run.nextEventTime:935 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 923 3 ts=922 BLOCK  dur=1
-T(3:923): RUNNG -> BLOCK  ib=14 rem=47
+==> 935 3 ts=931 BLOCK  dur=4
+T(3:935): RUNNG -> BLOCK  ib=5 rem=57
 
-Block:PID:3 index:0 (Ts,Tg)923,922 block.remain:47 block.nextEventTime:937 blocksize:1
+CPUtime:935
+Block:PID:3 index:0 (Ts,Tg)935,931 block.remain:57 block.nextEventTime:940 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 937 3 ts=923 READY  dur=14
-T(3:937): BLOCK -> READY
+==> 940 3 ts=935 READY  dur=5
+T(3:940): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 937,923 ready.remain:47 ready.nextEventTime:937 readysize:1
+CPUtime:940
+Ready:PID:3 index:0 (Ts,Tg) 940,935 ready.remain:57 ready.nextEventTime:940 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:940,935 nextEvenTime:940
 
-firstTs:ready eqalNextevent:0
-==> 937 3 ts=937 RUNNG  dur=0
-T(3:937): READY -> RUNNG  cb=1 rem=47
+==> 940 3 ts=940 RUNNG  dur=0
+T(3:940): READY -> RUNNG  cb=4 rem=57
 
-Run:PID:3 index:0 (Ts,Tg) 937,937 run.remain:47 run.nextEventTime:938 runsize:1
+CPUtime:940
+Run:PID:3 index:0 (Ts,Tg) 940,940 run.remain:57 run.nextEventTime:944 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 938 3 ts=937 BLOCK  dur=1
-T(3:938): RUNNG -> BLOCK  ib=15 rem=46
+==> 944 3 ts=940 BLOCK  dur=4
+T(3:944): RUNNG -> BLOCK  ib=2 rem=53
 
-Block:PID:3 index:0 (Ts,Tg)938,937 block.remain:46 block.nextEventTime:953 blocksize:1
+CPUtime:944
+Block:PID:3 index:0 (Ts,Tg)944,940 block.remain:53 block.nextEventTime:946 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 953 3 ts=938 READY  dur=15
-T(3:953): BLOCK -> READY
+==> 946 3 ts=944 READY  dur=2
+T(3:946): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 953,938 ready.remain:46 ready.nextEventTime:953 readysize:1
+CPUtime:946
+Ready:PID:3 index:0 (Ts,Tg) 946,944 ready.remain:53 ready.nextEventTime:946 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:946,944 nextEvenTime:946
 
-firstTs:ready eqalNextevent:0
-==> 953 3 ts=953 RUNNG  dur=0
-T(3:953): READY -> RUNNG  cb=5 rem=46
+==> 946 3 ts=946 RUNNG  dur=0
+T(3:946): READY -> RUNNG  cb=1 rem=53
 
-Run:PID:3 index:0 (Ts,Tg) 953,953 run.remain:46 run.nextEventTime:958 runsize:1
+CPUtime:946
+Run:PID:3 index:0 (Ts,Tg) 946,946 run.remain:53 run.nextEventTime:947 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 958 3 ts=953 BLOCK  dur=5
-T(3:958): RUNNG -> BLOCK  ib=5 rem=41
+==> 947 3 ts=946 BLOCK  dur=1
+T(3:947): RUNNG -> BLOCK  ib=14 rem=52
 
-Block:PID:3 index:0 (Ts,Tg)958,953 block.remain:41 block.nextEventTime:963 blocksize:1
+CPUtime:947
+Block:PID:3 index:0 (Ts,Tg)947,946 block.remain:52 block.nextEventTime:961 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 963 3 ts=958 READY  dur=5
-T(3:963): BLOCK -> READY
+==> 961 3 ts=947 READY  dur=14
+T(3:961): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 963,958 ready.remain:41 ready.nextEventTime:963 readysize:1
+CPUtime:961
+Ready:PID:3 index:0 (Ts,Tg) 961,947 ready.remain:52 ready.nextEventTime:961 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:961,947 nextEvenTime:961
 
-firstTs:ready eqalNextevent:0
-==> 963 3 ts=963 RUNNG  dur=0
-T(3:963): READY -> RUNNG  cb=5 rem=41
+==> 961 3 ts=961 RUNNG  dur=0
+T(3:961): READY -> RUNNG  cb=1 rem=52
 
-Run:PID:3 index:0 (Ts,Tg) 963,963 run.remain:41 run.nextEventTime:968 runsize:1
+CPUtime:961
+Run:PID:3 index:0 (Ts,Tg) 961,961 run.remain:52 run.nextEventTime:962 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 968 3 ts=963 BLOCK  dur=5
-T(3:968): RUNNG -> BLOCK  ib=8 rem=36
+==> 962 3 ts=961 BLOCK  dur=1
+T(3:962): RUNNG -> BLOCK  ib=15 rem=51
 
-Block:PID:3 index:0 (Ts,Tg)968,963 block.remain:36 block.nextEventTime:976 blocksize:1
+CPUtime:962
+Block:PID:3 index:0 (Ts,Tg)962,961 block.remain:51 block.nextEventTime:977 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 976 3 ts=968 READY  dur=8
-T(3:976): BLOCK -> READY
+==> 977 3 ts=962 READY  dur=15
+T(3:977): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 976,968 ready.remain:36 ready.nextEventTime:976 readysize:1
+CPUtime:977
+Ready:PID:3 index:0 (Ts,Tg) 977,962 ready.remain:51 ready.nextEventTime:977 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:977,962 nextEvenTime:977
 
-firstTs:ready eqalNextevent:0
-==> 976 3 ts=976 RUNNG  dur=0
-T(3:976): READY -> RUNNG  cb=2 rem=36
+==> 977 3 ts=977 RUNNG  dur=0
+T(3:977): READY -> RUNNG  cb=5 rem=51
 
-Run:PID:3 index:0 (Ts,Tg) 976,976 run.remain:36 run.nextEventTime:978 runsize:1
+CPUtime:977
+Run:PID:3 index:0 (Ts,Tg) 977,977 run.remain:51 run.nextEventTime:982 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 978 3 ts=976 BLOCK  dur=2
-T(3:978): RUNNG -> BLOCK  ib=4 rem=34
+==> 982 3 ts=977 BLOCK  dur=5
+T(3:982): RUNNG -> BLOCK  ib=5 rem=46
 
-Block:PID:3 index:0 (Ts,Tg)978,976 block.remain:34 block.nextEventTime:982 blocksize:1
+CPUtime:982
+Block:PID:3 index:0 (Ts,Tg)982,977 block.remain:46 block.nextEventTime:987 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 982 3 ts=978 READY  dur=4
-T(3:982): BLOCK -> READY
+==> 987 3 ts=982 READY  dur=5
+T(3:987): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 982,978 ready.remain:34 ready.nextEventTime:982 readysize:1
+CPUtime:987
+Ready:PID:3 index:0 (Ts,Tg) 987,982 ready.remain:46 ready.nextEventTime:987 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:987,982 nextEvenTime:987
 
-firstTs:ready eqalNextevent:0
-==> 982 3 ts=982 RUNNG  dur=0
-T(3:982): READY -> RUNNG  cb=2 rem=34
+==> 987 3 ts=987 RUNNG  dur=0
+T(3:987): READY -> RUNNG  cb=5 rem=46
 
-Run:PID:3 index:0 (Ts,Tg) 982,982 run.remain:34 run.nextEventTime:984 runsize:1
+CPUtime:987
+Run:PID:3 index:0 (Ts,Tg) 987,987 run.remain:46 run.nextEventTime:992 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 984 3 ts=982 BLOCK  dur=2
-T(3:984): RUNNG -> BLOCK  ib=8 rem=32
+==> 992 3 ts=987 BLOCK  dur=5
+T(3:992): RUNNG -> BLOCK  ib=8 rem=41
 
-Block:PID:3 index:0 (Ts,Tg)984,982 block.remain:32 block.nextEventTime:992 blocksize:1
+CPUtime:992
+Block:PID:3 index:0 (Ts,Tg)992,987 block.remain:41 block.nextEventTime:1000 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 992 3 ts=984 READY  dur=8
-T(3:992): BLOCK -> READY
+==> 1000 3 ts=992 READY  dur=8
+T(3:1000): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 992,984 ready.remain:32 ready.nextEventTime:992 readysize:1
+CPUtime:1000
+Ready:PID:3 index:0 (Ts,Tg) 1000,992 ready.remain:41 ready.nextEventTime:1000 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1000,992 nextEvenTime:1000
 
-firstTs:ready eqalNextevent:0
-==> 992 3 ts=992 RUNNG  dur=0
-T(3:992): READY -> RUNNG  cb=1 rem=32
+==> 1000 3 ts=1000 RUNNG  dur=0
+T(3:1000): READY -> RUNNG  cb=2 rem=41
 
-Run:PID:3 index:0 (Ts,Tg) 992,992 run.remain:32 run.nextEventTime:993 runsize:1
+CPUtime:1000
+Run:PID:3 index:0 (Ts,Tg) 1000,1000 run.remain:41 run.nextEventTime:1002 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 993 3 ts=992 BLOCK  dur=1
-T(3:993): RUNNG -> BLOCK  ib=20 rem=31
+==> 1002 3 ts=1000 BLOCK  dur=2
+T(3:1002): RUNNG -> BLOCK  ib=4 rem=39
 
-Block:PID:3 index:0 (Ts,Tg)993,992 block.remain:31 block.nextEventTime:1013 blocksize:1
+CPUtime:1002
+Block:PID:3 index:0 (Ts,Tg)1002,1000 block.remain:39 block.nextEventTime:1006 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1013 3 ts=993 READY  dur=20
-T(3:1013): BLOCK -> READY
+==> 1006 3 ts=1002 READY  dur=4
+T(3:1006): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1013,993 ready.remain:31 ready.nextEventTime:1013 readysize:1
+CPUtime:1006
+Ready:PID:3 index:0 (Ts,Tg) 1006,1002 ready.remain:39 ready.nextEventTime:1006 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1006,1002 nextEvenTime:1006
 
-firstTs:ready eqalNextevent:0
-==> 1013 3 ts=1013 RUNNG  dur=0
-T(3:1013): READY -> RUNNG  cb=2 rem=31
+==> 1006 3 ts=1006 RUNNG  dur=0
+T(3:1006): READY -> RUNNG  cb=2 rem=39
 
-Run:PID:3 index:0 (Ts,Tg) 1013,1013 run.remain:31 run.nextEventTime:1015 runsize:1
+CPUtime:1006
+Run:PID:3 index:0 (Ts,Tg) 1006,1006 run.remain:39 run.nextEventTime:1008 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1015 3 ts=1013 BLOCK  dur=2
-T(3:1015): RUNNG -> BLOCK  ib=13 rem=29
+==> 1008 3 ts=1006 BLOCK  dur=2
+T(3:1008): RUNNG -> BLOCK  ib=8 rem=37
 
-Block:PID:3 index:0 (Ts,Tg)1015,1013 block.remain:29 block.nextEventTime:1028 blocksize:1
+CPUtime:1008
+Block:PID:3 index:0 (Ts,Tg)1008,1006 block.remain:37 block.nextEventTime:1016 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1028 3 ts=1015 READY  dur=13
-T(3:1028): BLOCK -> READY
+==> 1016 3 ts=1008 READY  dur=8
+T(3:1016): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1028,1015 ready.remain:29 ready.nextEventTime:1028 readysize:1
+CPUtime:1016
+Ready:PID:3 index:0 (Ts,Tg) 1016,1008 ready.remain:37 ready.nextEventTime:1016 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1016,1008 nextEvenTime:1016
 
-firstTs:ready eqalNextevent:0
-==> 1028 3 ts=1028 RUNNG  dur=0
-T(3:1028): READY -> RUNNG  cb=2 rem=29
+==> 1016 3 ts=1016 RUNNG  dur=0
+T(3:1016): READY -> RUNNG  cb=1 rem=37
 
-Run:PID:3 index:0 (Ts,Tg) 1028,1028 run.remain:29 run.nextEventTime:1030 runsize:1
+CPUtime:1016
+Run:PID:3 index:0 (Ts,Tg) 1016,1016 run.remain:37 run.nextEventTime:1017 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1030 3 ts=1028 BLOCK  dur=2
-T(3:1030): RUNNG -> BLOCK  ib=18 rem=27
+==> 1017 3 ts=1016 BLOCK  dur=1
+T(3:1017): RUNNG -> BLOCK  ib=20 rem=36
 
-Block:PID:3 index:0 (Ts,Tg)1030,1028 block.remain:27 block.nextEventTime:1048 blocksize:1
+CPUtime:1017
+Block:PID:3 index:0 (Ts,Tg)1017,1016 block.remain:36 block.nextEventTime:1037 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1048 3 ts=1030 READY  dur=18
-T(3:1048): BLOCK -> READY
+==> 1037 3 ts=1017 READY  dur=20
+T(3:1037): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1048,1030 ready.remain:27 ready.nextEventTime:1048 readysize:1
+CPUtime:1037
+Ready:PID:3 index:0 (Ts,Tg) 1037,1017 ready.remain:36 ready.nextEventTime:1037 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1037,1017 nextEvenTime:1037
 
-firstTs:ready eqalNextevent:0
-==> 1048 3 ts=1048 RUNNG  dur=0
-T(3:1048): READY -> RUNNG  cb=4 rem=27
+==> 1037 3 ts=1037 RUNNG  dur=0
+T(3:1037): READY -> RUNNG  cb=2 rem=36
 
-Run:PID:3 index:0 (Ts,Tg) 1048,1048 run.remain:27 run.nextEventTime:1052 runsize:1
+CPUtime:1037
+Run:PID:3 index:0 (Ts,Tg) 1037,1037 run.remain:36 run.nextEventTime:1039 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1052 3 ts=1048 BLOCK  dur=4
-T(3:1052): RUNNG -> BLOCK  ib=16 rem=23
+==> 1039 3 ts=1037 BLOCK  dur=2
+T(3:1039): RUNNG -> BLOCK  ib=13 rem=34
 
-Block:PID:3 index:0 (Ts,Tg)1052,1048 block.remain:23 block.nextEventTime:1068 blocksize:1
+CPUtime:1039
+Block:PID:3 index:0 (Ts,Tg)1039,1037 block.remain:34 block.nextEventTime:1052 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1068 3 ts=1052 READY  dur=16
-T(3:1068): BLOCK -> READY
+==> 1052 3 ts=1039 READY  dur=13
+T(3:1052): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1068,1052 ready.remain:23 ready.nextEventTime:1068 readysize:1
+CPUtime:1052
+Ready:PID:3 index:0 (Ts,Tg) 1052,1039 ready.remain:34 ready.nextEventTime:1052 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1052,1039 nextEvenTime:1052
 
-firstTs:ready eqalNextevent:0
-==> 1068 3 ts=1068 RUNNG  dur=0
-T(3:1068): READY -> RUNNG  cb=3 rem=23
+==> 1052 3 ts=1052 RUNNG  dur=0
+T(3:1052): READY -> RUNNG  cb=2 rem=34
 
-Run:PID:3 index:0 (Ts,Tg) 1068,1068 run.remain:23 run.nextEventTime:1071 runsize:1
+CPUtime:1052
+Run:PID:3 index:0 (Ts,Tg) 1052,1052 run.remain:34 run.nextEventTime:1054 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1071 3 ts=1068 BLOCK  dur=3
-T(3:1071): RUNNG -> BLOCK  ib=15 rem=20
+==> 1054 3 ts=1052 BLOCK  dur=2
+T(3:1054): RUNNG -> BLOCK  ib=18 rem=32
 
-Block:PID:3 index:0 (Ts,Tg)1071,1068 block.remain:20 block.nextEventTime:1086 blocksize:1
+CPUtime:1054
+Block:PID:3 index:0 (Ts,Tg)1054,1052 block.remain:32 block.nextEventTime:1072 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1086 3 ts=1071 READY  dur=15
-T(3:1086): BLOCK -> READY
+==> 1072 3 ts=1054 READY  dur=18
+T(3:1072): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1086,1071 ready.remain:20 ready.nextEventTime:1086 readysize:1
+CPUtime:1072
+Ready:PID:3 index:0 (Ts,Tg) 1072,1054 ready.remain:32 ready.nextEventTime:1072 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1072,1054 nextEvenTime:1072
 
-firstTs:ready eqalNextevent:0
-==> 1086 3 ts=1086 RUNNG  dur=0
-T(3:1086): READY -> RUNNG  cb=2 rem=20
+==> 1072 3 ts=1072 RUNNG  dur=0
+T(3:1072): READY -> RUNNG  cb=4 rem=32
 
-Run:PID:3 index:0 (Ts,Tg) 1086,1086 run.remain:20 run.nextEventTime:1088 runsize:1
+CPUtime:1072
+Run:PID:3 index:0 (Ts,Tg) 1072,1072 run.remain:32 run.nextEventTime:1076 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1088 3 ts=1086 BLOCK  dur=2
-T(3:1088): RUNNG -> BLOCK  ib=19 rem=18
+==> 1076 3 ts=1072 BLOCK  dur=4
+T(3:1076): RUNNG -> BLOCK  ib=16 rem=28
 
-Block:PID:3 index:0 (Ts,Tg)1088,1086 block.remain:18 block.nextEventTime:1107 blocksize:1
+CPUtime:1076
+Block:PID:3 index:0 (Ts,Tg)1076,1072 block.remain:28 block.nextEventTime:1092 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1107 3 ts=1088 READY  dur=19
-T(3:1107): BLOCK -> READY
+==> 1092 3 ts=1076 READY  dur=16
+T(3:1092): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1107,1088 ready.remain:18 ready.nextEventTime:1107 readysize:1
+CPUtime:1092
+Ready:PID:3 index:0 (Ts,Tg) 1092,1076 ready.remain:28 ready.nextEventTime:1092 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1092,1076 nextEvenTime:1092
 
-firstTs:ready eqalNextevent:0
-==> 1107 3 ts=1107 RUNNG  dur=0
-T(3:1107): READY -> RUNNG  cb=1 rem=18
+==> 1092 3 ts=1092 RUNNG  dur=0
+T(3:1092): READY -> RUNNG  cb=3 rem=28
 
-Run:PID:3 index:0 (Ts,Tg) 1107,1107 run.remain:18 run.nextEventTime:1108 runsize:1
+CPUtime:1092
+Run:PID:3 index:0 (Ts,Tg) 1092,1092 run.remain:28 run.nextEventTime:1095 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1108 3 ts=1107 BLOCK  dur=1
-T(3:1108): RUNNG -> BLOCK  ib=10 rem=17
+==> 1095 3 ts=1092 BLOCK  dur=3
+T(3:1095): RUNNG -> BLOCK  ib=15 rem=25
 
-Block:PID:3 index:0 (Ts,Tg)1108,1107 block.remain:17 block.nextEventTime:1118 blocksize:1
+CPUtime:1095
+Block:PID:3 index:0 (Ts,Tg)1095,1092 block.remain:25 block.nextEventTime:1110 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1118 3 ts=1108 READY  dur=10
-T(3:1118): BLOCK -> READY
+==> 1110 3 ts=1095 READY  dur=15
+T(3:1110): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1118,1108 ready.remain:17 ready.nextEventTime:1118 readysize:1
+CPUtime:1110
+Ready:PID:3 index:0 (Ts,Tg) 1110,1095 ready.remain:25 ready.nextEventTime:1110 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1110,1095 nextEvenTime:1110
 
-firstTs:ready eqalNextevent:0
-==> 1118 3 ts=1118 RUNNG  dur=0
-T(3:1118): READY -> RUNNG  cb=3 rem=17
+==> 1110 3 ts=1110 RUNNG  dur=0
+T(3:1110): READY -> RUNNG  cb=2 rem=25
 
-Run:PID:3 index:0 (Ts,Tg) 1118,1118 run.remain:17 run.nextEventTime:1121 runsize:1
+CPUtime:1110
+Run:PID:3 index:0 (Ts,Tg) 1110,1110 run.remain:25 run.nextEventTime:1112 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1121 3 ts=1118 BLOCK  dur=3
-T(3:1121): RUNNG -> BLOCK  ib=16 rem=14
+==> 1112 3 ts=1110 BLOCK  dur=2
+T(3:1112): RUNNG -> BLOCK  ib=19 rem=23
 
-Block:PID:3 index:0 (Ts,Tg)1121,1118 block.remain:14 block.nextEventTime:1137 blocksize:1
+CPUtime:1112
+Block:PID:3 index:0 (Ts,Tg)1112,1110 block.remain:23 block.nextEventTime:1131 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1137 3 ts=1121 READY  dur=16
-T(3:1137): BLOCK -> READY
+==> 1131 3 ts=1112 READY  dur=19
+T(3:1131): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1137,1121 ready.remain:14 ready.nextEventTime:1137 readysize:1
+CPUtime:1131
+Ready:PID:3 index:0 (Ts,Tg) 1131,1112 ready.remain:23 ready.nextEventTime:1131 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1131,1112 nextEvenTime:1131
 
-firstTs:ready eqalNextevent:0
-==> 1137 3 ts=1137 RUNNG  dur=0
-T(3:1137): READY -> RUNNG  cb=4 rem=14
+==> 1131 3 ts=1131 RUNNG  dur=0
+T(3:1131): READY -> RUNNG  cb=1 rem=23
 
-Run:PID:3 index:0 (Ts,Tg) 1137,1137 run.remain:14 run.nextEventTime:1141 runsize:1
+CPUtime:1131
+Run:PID:3 index:0 (Ts,Tg) 1131,1131 run.remain:23 run.nextEventTime:1132 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1141 3 ts=1137 BLOCK  dur=4
-T(3:1141): RUNNG -> BLOCK  ib=19 rem=10
+==> 1132 3 ts=1131 BLOCK  dur=1
+T(3:1132): RUNNG -> BLOCK  ib=10 rem=22
 
-Block:PID:3 index:0 (Ts,Tg)1141,1137 block.remain:10 block.nextEventTime:1160 blocksize:1
+CPUtime:1132
+Block:PID:3 index:0 (Ts,Tg)1132,1131 block.remain:22 block.nextEventTime:1142 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1160 3 ts=1141 READY  dur=19
-T(3:1160): BLOCK -> READY
+==> 1142 3 ts=1132 READY  dur=10
+T(3:1142): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1160,1141 ready.remain:10 ready.nextEventTime:1160 readysize:1
+CPUtime:1142
+Ready:PID:3 index:0 (Ts,Tg) 1142,1132 ready.remain:22 ready.nextEventTime:1142 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1142,1132 nextEvenTime:1142
 
-firstTs:ready eqalNextevent:0
-==> 1160 3 ts=1160 RUNNG  dur=0
-T(3:1160): READY -> RUNNG  cb=4 rem=10
+==> 1142 3 ts=1142 RUNNG  dur=0
+T(3:1142): READY -> RUNNG  cb=3 rem=22
 
-Run:PID:3 index:0 (Ts,Tg) 1160,1160 run.remain:10 run.nextEventTime:1164 runsize:1
+CPUtime:1142
+Run:PID:3 index:0 (Ts,Tg) 1142,1142 run.remain:22 run.nextEventTime:1145 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1164 3 ts=1160 BLOCK  dur=4
-T(3:1164): RUNNG -> BLOCK  ib=4 rem=6
+==> 1145 3 ts=1142 BLOCK  dur=3
+T(3:1145): RUNNG -> BLOCK  ib=16 rem=19
 
-Block:PID:3 index:0 (Ts,Tg)1164,1160 block.remain:6 block.nextEventTime:1168 blocksize:1
+CPUtime:1145
+Block:PID:3 index:0 (Ts,Tg)1145,1142 block.remain:19 block.nextEventTime:1161 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1168 3 ts=1164 READY  dur=4
-T(3:1168): BLOCK -> READY
+==> 1161 3 ts=1145 READY  dur=16
+T(3:1161): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1168,1164 ready.remain:6 ready.nextEventTime:1168 readysize:1
+CPUtime:1161
+Ready:PID:3 index:0 (Ts,Tg) 1161,1145 ready.remain:19 ready.nextEventTime:1161 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1161,1145 nextEvenTime:1161
 
-firstTs:ready eqalNextevent:0
-==> 1168 3 ts=1168 RUNNG  dur=0
-T(3:1168): READY -> RUNNG  cb=2 rem=6
+==> 1161 3 ts=1161 RUNNG  dur=0
+T(3:1161): READY -> RUNNG  cb=4 rem=19
 
-Run:PID:3 index:0 (Ts,Tg) 1168,1168 run.remain:6 run.nextEventTime:1170 runsize:1
+CPUtime:1161
+Run:PID:3 index:0 (Ts,Tg) 1161,1161 run.remain:19 run.nextEventTime:1165 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1170 3 ts=1168 BLOCK  dur=2
-T(3:1170): RUNNG -> BLOCK  ib=9 rem=4
+==> 1165 3 ts=1161 BLOCK  dur=4
+T(3:1165): RUNNG -> BLOCK  ib=19 rem=15
 
-Block:PID:3 index:0 (Ts,Tg)1170,1168 block.remain:4 block.nextEventTime:1179 blocksize:1
+CPUtime:1165
+Block:PID:3 index:0 (Ts,Tg)1165,1161 block.remain:15 block.nextEventTime:1184 blocksize:1
+readyQ empty
 
-firstTs:block eqalNextevent:0
-==> 1179 3 ts=1170 READY  dur=9
-T(3:1179): BLOCK -> READY
+==> 1184 3 ts=1165 READY  dur=19
+T(3:1184): BLOCK -> READY
 
-Ready:PID:3 index:0 (Ts,Tg) 1179,1170 ready.remain:4 ready.nextEventTime:1179 readysize:1
+CPUtime:1184
+Ready:PID:3 index:0 (Ts,Tg) 1184,1165 ready.remain:15 ready.nextEventTime:1184 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1184,1165 nextEvenTime:1184
 
-firstTs:ready eqalNextevent:0
-==> 1179 3 ts=1179 RUNNG  dur=0
-T(3:1179): READY -> RUNNG  cb=4 rem=4
+==> 1184 3 ts=1184 RUNNG  dur=0
+T(3:1184): READY -> RUNNG  cb=4 rem=15
 
-Run:PID:3 index:0 (Ts,Tg) 1179,1179 run.remain:4 run.nextEventTime:1184 runsize:1
+CPUtime:1184
+Run:PID:3 index:0 (Ts,Tg) 1184,1184 run.remain:15 run.nextEventTime:1188 runsize:1
+readyQ empty
 
-firstTs:run eqalNextevent:0
-==> 1183 3 ts=1179 BLOCK  dur=4
+==> 1188 3 ts=1184 BLOCK  dur=4
+T(3:1188): RUNNG -> BLOCK  ib=4 rem=11
+
+CPUtime:1188
+Block:PID:3 index:0 (Ts,Tg)1188,1184 block.remain:11 block.nextEventTime:1192 blocksize:1
+readyQ empty
+
+==> 1192 3 ts=1188 READY  dur=4
+T(3:1192): BLOCK -> READY
+
+CPUtime:1192
+Ready:PID:3 index:0 (Ts,Tg) 1192,1188 ready.remain:11 ready.nextEventTime:1192 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1192,1188 nextEvenTime:1192
+
+==> 1192 3 ts=1192 RUNNG  dur=0
+T(3:1192): READY -> RUNNG  cb=2 rem=11
+
+CPUtime:1192
+Run:PID:3 index:0 (Ts,Tg) 1192,1192 run.remain:11 run.nextEventTime:1194 runsize:1
+readyQ empty
+
+==> 1194 3 ts=1192 BLOCK  dur=2
+T(3:1194): RUNNG -> BLOCK  ib=9 rem=9
+
+CPUtime:1194
+Block:PID:3 index:0 (Ts,Tg)1194,1192 block.remain:9 block.nextEventTime:1203 blocksize:1
+readyQ empty
+
+==> 1203 3 ts=1194 READY  dur=9
+T(3:1203): BLOCK -> READY
+
+CPUtime:1203
+Ready:PID:3 index:0 (Ts,Tg) 1203,1194 ready.remain:9 ready.nextEventTime:1203 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1203,1194 nextEvenTime:1203
+
+==> 1203 3 ts=1203 RUNNG  dur=0
+T(3:1203): READY -> RUNNG  cb=5 rem=9
+
+CPUtime:1203
+Run:PID:3 index:0 (Ts,Tg) 1203,1203 run.remain:9 run.nextEventTime:1208 runsize:1
+readyQ empty
+
+==> 1208 3 ts=1203 BLOCK  dur=5
+T(3:1208): RUNNG -> BLOCK  ib=17 rem=4
+
+CPUtime:1208
+Block:PID:3 index:0 (Ts,Tg)1208,1203 block.remain:4 block.nextEventTime:1225 blocksize:1
+readyQ empty
+
+==> 1225 3 ts=1208 READY  dur=17
+T(3:1225): BLOCK -> READY
+
+CPUtime:1225
+Ready:PID:3 index:0 (Ts,Tg) 1225,1208 ready.remain:4 ready.nextEventTime:1225 readysize:1
+readyQ elements:
+1th inreadyQ: PID:3 index:0 Ts,Tg:1225,1208 nextEvenTime:1225
+
+==> 1225 3 ts=1225 RUNNG  dur=0
+T(3:1225): READY -> RUNNG  cb=4 rem=4
+
+CPUtime:1225
+Run:PID:3 index:0 (Ts,Tg) 1225,1225 run.remain:4 run.nextEventTime:1230 runsize:1
+readyQ empty
+
+==> 1229 3 ts=1225 BLOCK  dur=4
 ==> T(3): Done
-
-FCFS
-0000:    0  200   40   90 |  617  617  405   12
-0001:   40  100   10   40 |  546  506  353   53
-0002:   50   20   10   10 |  154  104   21   63
-0003:   60  200    5   20 | 1183 1123  758  165
-SUM: 1183 43.96 81.66 587.50 73.25 0.338
+LCFS
+0000:    0  200   40   90 |  710  710  497   13
+0001:   40  100   10   40 |  615  575  388   87
+0002:   50   20   10   10 |  160  110   29   61
+0003:   60  200    5   20 | 1229 1169  837  132
+SUM: 1229 42.31 80.88 641.00 73.25 0.325
