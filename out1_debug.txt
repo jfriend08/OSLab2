@@ -3,6 +3,7 @@ CPUtime:0
 Task:PID:0 index:0 (Ts,Tg) 1,1 task.remain:20 task.nextEventTime:1 tasksize:3
 readyQ empty
 
+
 ==> 1 0 ts=1 READY  dur=0
 T(0:1): READY -> READY
 
@@ -10,326 +11,373 @@ CPUtime:0
 Task:PID:1 index:0 (Ts,Tg) 1,1 task.remain:20 task.nextEventTime:1 tasksize:2
 Ready:PID:0 index:0 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:1
 readyQ elements:
-1th inreadyQ: PID:0 index:0 Ts,Tg:1,1 nextEvenTime:1
+1th inreadyQ: PID:0 index:0 remain:20 Ts,Tg:1,1 nextEvenTime:1
+
 
 ==> 1 1 ts=1 READY  dur=0
 T(1:1): READY -> READY
 
 CPUtime:0
 Task:PID:2 index:0 (Ts,Tg) 1,1 task.remain:20 task.nextEventTime:1 tasksize:1
-Ready:PID:1 index:1 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:2
+Ready:PID:0 index:0 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:2
 readyQ elements:
-1th inreadyQ: PID:1 index:1 Ts,Tg:1,1 nextEvenTime:1
-2th inreadyQ: PID:0 index:0 Ts,Tg:1,1 nextEvenTime:1
+1th inreadyQ: PID:0 index:0 remain:20 Ts,Tg:1,1 nextEvenTime:1
+2th inreadyQ: PID:1 index:1 remain:20 Ts,Tg:1,1 nextEvenTime:1
+
 
 ==> 1 2 ts=1 READY  dur=0
 T(2:1): READY -> READY
 
 CPUtime:0
-Ready:PID:2 index:2 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:3
+Ready:PID:0 index:0 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:3
 readyQ elements:
-1th inreadyQ: PID:2 index:2 Ts,Tg:1,1 nextEvenTime:1
-2th inreadyQ: PID:1 index:1 Ts,Tg:1,1 nextEvenTime:1
-3th inreadyQ: PID:0 index:0 Ts,Tg:1,1 nextEvenTime:1
+1th inreadyQ: PID:0 index:0 remain:20 Ts,Tg:1,1 nextEvenTime:1
+2th inreadyQ: PID:1 index:1 remain:20 Ts,Tg:1,1 nextEvenTime:1
+3th inreadyQ: PID:2 index:2 remain:20 Ts,Tg:1,1 nextEvenTime:1
 
-==> 1 2 ts=1 RUNNG  dur=0
-T(2:1): READY -> RUNNG  cb=4 rem=20
+
+==> 1 0 ts=1 RUNNG  dur=0
+T(0:1): READY -> RUNNG  cb=4 rem=20
 
 CPUtime:1
 Ready:PID:1 index:1 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:2
-Run:PID:2 index:0 (Ts,Tg) 1,1 run.remain:20 run.nextEventTime:5 runsize:1
+Run:PID:0 index:0 (Ts,Tg) 1,1 run.remain:20 run.nextEventTime:5 runsize:1
 readyQ elements:
-1th inreadyQ: PID:1 index:1 Ts,Tg:1,1 nextEvenTime:1
-2th inreadyQ: PID:0 index:0 Ts,Tg:1,1 nextEvenTime:1
+1th inreadyQ: PID:1 index:1 remain:20 Ts,Tg:1,1 nextEvenTime:1
+2th inreadyQ: PID:2 index:2 remain:20 Ts,Tg:1,1 nextEvenTime:1
 
-==> 1 1 ts=1 RUNNG  dur=0
-T(1:1): READY -> RUNNG  cb=7 rem=20
 
-CPUtime:1
-Ready:PID:0 index:0 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:1
-Run:PID:1 index:1 (Ts,Tg) 1,1 run.remain:20 run.nextEventTime:8 runsize:2
+==> 5 0 ts=1 BLOCK  dur=4
+T(0:5): RUNNG -> BLOCK  ib=17 rem=16
+
+CPUtime:5
+Ready:PID:1 index:1 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:2
+Block:PID:0 index:0 (Ts,Tg)5,1 block.remain:16 block.nextEventTime:22 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:0 index:0 Ts,Tg:1,1 nextEvenTime:1
+1th inreadyQ: PID:1 index:1 remain:20 Ts,Tg:1,1 nextEvenTime:1
+2th inreadyQ: PID:2 index:2 remain:20 Ts,Tg:1,1 nextEvenTime:1
 
-==> 1 0 ts=1 RUNNG  dur=0
-T(0:1): READY -> RUNNG  cb=8 rem=20
 
-CPUtime:1
-Run:PID:0 index:2 (Ts,Tg) 1,1 run.remain:20 run.nextEventTime:9 runsize:3
+==> 5 1 ts=1 RUNNG  dur=4
+T(1:5): READY -> RUNNG  cb=8 rem=20
+
+CPUtime:5
+Ready:PID:2 index:2 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 5,1 run.remain:20 run.nextEventTime:13 runsize:1
+Block:PID:0 index:0 (Ts,Tg)5,1 block.remain:16 block.nextEventTime:22 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:2 index:2 remain:20 Ts,Tg:1,1 nextEvenTime:1
+
+
+==> 13 1 ts=5 BLOCK  dur=8
+T(1:13): RUNNG -> BLOCK  ib=26 rem=12
+
+CPUtime:13
+Ready:PID:2 index:2 (Ts,Tg) 1,1 ready.remain:20 ready.nextEventTime:1 readysize:1
+Block:PID:0 index:0 (Ts,Tg)5,1 block.remain:16 block.nextEventTime:22 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:2 index:2 remain:20 Ts,Tg:1,1 nextEvenTime:1
+
+
+==> 13 2 ts=1 RUNNG  dur=12
+T(2:13): READY -> RUNNG  cb=4 rem=20
+
+CPUtime:13
+Run:PID:2 index:0 (Ts,Tg) 13,1 run.remain:20 run.nextEventTime:17 runsize:1
+Block:PID:0 index:0 (Ts,Tg)5,1 block.remain:16 block.nextEventTime:22 blocksize:2
 readyQ empty
 
-==> 9 0 ts=1 BLOCK  dur=8
-T(0:9): RUNNG -> BLOCK  ib=26 rem=12
 
-CPUtime:9
-Run:PID:1 index:1 (Ts,Tg) 1,1 run.remain:20 run.nextEventTime:8 runsize:2
-Block:PID:0 index:0 (Ts,Tg)9,1 block.remain:12 block.nextEventTime:35 blocksize:1
+==> 17 2 ts=13 BLOCK  dur=4
+T(2:17): RUNNG -> BLOCK  ib=26 rem=16
+
+CPUtime:17
+Block:PID:0 index:0 (Ts,Tg)5,1 block.remain:16 block.nextEventTime:22 blocksize:3
 readyQ empty
 
-==> 9 1 ts=1 BLOCK  dur=8
-T(1:9): RUNNG -> BLOCK  ib=24 rem=13
 
-CPUtime:9
-Run:PID:2 index:0 (Ts,Tg) 1,1 run.remain:20 run.nextEventTime:5 runsize:1
-Block:PID:1 index:1 (Ts,Tg)9,1 block.remain:13 block.nextEventTime:33 blocksize:2
+==> 22 0 ts=5 READY  dur=17
+T(0:22): BLOCK -> READY
+
+CPUtime:22
+Ready:PID:0 index:0 (Ts,Tg) 22,5 ready.remain:16 ready.nextEventTime:22 readysize:1
+Block:PID:1 index:1 (Ts,Tg)13,5 block.remain:12 block.nextEventTime:39 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 remain:16 Ts,Tg:22,5 nextEvenTime:22
+
+
+==> 22 0 ts=22 RUNNG  dur=0
+T(0:22): READY -> RUNNG  cb=7 rem=16
+
+CPUtime:22
+Run:PID:0 index:0 (Ts,Tg) 22,22 run.remain:16 run.nextEventTime:29 runsize:1
+Block:PID:1 index:1 (Ts,Tg)13,5 block.remain:12 block.nextEventTime:39 blocksize:2
 readyQ empty
 
-==> 9 2 ts=1 BLOCK  dur=8
-T(2:9): RUNNG -> BLOCK  ib=26 rem=16
 
-CPUtime:9
-Block:PID:1 index:1 (Ts,Tg)9,1 block.remain:13 block.nextEventTime:33 blocksize:3
+==> 29 0 ts=22 BLOCK  dur=7
+T(0:29): RUNNG -> BLOCK  ib=13 rem=9
+
+CPUtime:29
+Block:PID:1 index:1 (Ts,Tg)13,5 block.remain:12 block.nextEventTime:39 blocksize:3
 readyQ empty
 
-==> 33 1 ts=9 READY  dur=24
-T(1:33): BLOCK -> READY
 
-CPUtime:33
-Ready:PID:1 index:0 (Ts,Tg) 33,9 ready.remain:13 ready.nextEventTime:33 readysize:1
-Block:PID:2 index:2 (Ts,Tg)9,1 block.remain:16 block.nextEventTime:35 blocksize:2
+==> 39 1 ts=13 READY  dur=26
+T(1:39): BLOCK -> READY
+
+CPUtime:39
+Ready:PID:1 index:0 (Ts,Tg) 39,13 ready.remain:12 ready.nextEventTime:39 readysize:1
+Block:PID:0 index:3 (Ts,Tg)29,22 block.remain:9 block.nextEventTime:42 blocksize:2
 readyQ elements:
-1th inreadyQ: PID:1 index:0 Ts,Tg:33,9 nextEvenTime:33
+1th inreadyQ: PID:1 index:0 remain:12 Ts,Tg:39,13 nextEvenTime:39
 
-==> 33 1 ts=33 RUNNG  dur=0
-T(1:33): READY -> RUNNG  cb=7 rem=13
 
-CPUtime:33
-Run:PID:1 index:0 (Ts,Tg) 33,33 run.remain:13 run.nextEventTime:40 runsize:1
-Block:PID:2 index:2 (Ts,Tg)9,1 block.remain:16 block.nextEventTime:35 blocksize:2
+==> 39 1 ts=39 RUNNG  dur=0
+T(1:39): READY -> RUNNG  cb=10 rem=12
+
+CPUtime:39
+Run:PID:1 index:0 (Ts,Tg) 39,39 run.remain:12 run.nextEventTime:49 runsize:1
+Block:PID:0 index:3 (Ts,Tg)29,22 block.remain:9 block.nextEventTime:42 blocksize:2
 readyQ empty
 
-==> 35 2 ts=9 READY  dur=26
-T(2:35): BLOCK -> READY
 
-CPUtime:35
-Ready:PID:2 index:0 (Ts,Tg) 35,9 ready.remain:16 ready.nextEventTime:35 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 33,33 run.remain:13 run.nextEventTime:40 runsize:1
-Block:PID:0 index:0 (Ts,Tg)9,1 block.remain:12 block.nextEventTime:35 blocksize:1
+==> 42 0 ts=29 READY  dur=13
+T(0:42): BLOCK -> READY
+
+CPUtime:42
+Ready:PID:0 index:0 (Ts,Tg) 42,29 ready.remain:9 ready.nextEventTime:42 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 39,39 run.remain:12 run.nextEventTime:49 runsize:1
+Block:PID:2 index:2 (Ts,Tg)17,13 block.remain:16 block.nextEventTime:43 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:35,9 nextEvenTime:35
+1th inreadyQ: PID:0 index:0 remain:9 Ts,Tg:42,29 nextEvenTime:42
 
-==> 35 0 ts=9 READY  dur=26
-T(0:35): BLOCK -> READY
 
-CPUtime:35
-Ready:PID:0 index:1 (Ts,Tg) 35,9 ready.remain:12 ready.nextEventTime:35 readysize:2
-Run:PID:1 index:0 (Ts,Tg) 33,33 run.remain:13 run.nextEventTime:40 runsize:1
+==> 43 2 ts=17 READY  dur=26
+T(2:43): BLOCK -> READY
+
+CPUtime:43
+Ready:PID:0 index:0 (Ts,Tg) 42,29 ready.remain:9 ready.nextEventTime:42 readysize:2
+Run:PID:1 index:0 (Ts,Tg) 39,39 run.remain:12 run.nextEventTime:49 runsize:1
 readyQ elements:
-1th inreadyQ: PID:0 index:1 Ts,Tg:35,9 nextEvenTime:35
-2th inreadyQ: PID:2 index:0 Ts,Tg:35,9 nextEvenTime:35
+1th inreadyQ: PID:0 index:0 remain:9 Ts,Tg:42,29 nextEvenTime:42
+2th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
 
-==> 40 1 ts=33 BLOCK  dur=7
-T(1:40): RUNNG -> BLOCK  ib=13 rem=6
 
-CPUtime:40
-Ready:PID:0 index:1 (Ts,Tg) 35,9 ready.remain:12 ready.nextEventTime:35 readysize:2
-Block:PID:1 index:0 (Ts,Tg)40,33 block.remain:6 block.nextEventTime:53 blocksize:1
+==> 49 1 ts=39 BLOCK  dur=10
+T(1:49): RUNNG -> BLOCK  ib=2 rem=2
+
+CPUtime:49
+Ready:PID:0 index:0 (Ts,Tg) 42,29 ready.remain:9 ready.nextEventTime:42 readysize:2
+Block:PID:1 index:0 (Ts,Tg)49,39 block.remain:2 block.nextEventTime:51 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:0 index:1 Ts,Tg:35,9 nextEvenTime:35
-2th inreadyQ: PID:2 index:0 Ts,Tg:35,9 nextEvenTime:35
+1th inreadyQ: PID:0 index:0 remain:9 Ts,Tg:42,29 nextEvenTime:42
+2th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
 
-==> 40 0 ts=35 RUNNG  dur=5
-T(0:40): READY -> RUNNG  cb=10 rem=12
 
-CPUtime:40
-Ready:PID:2 index:0 (Ts,Tg) 35,9 ready.remain:16 ready.nextEventTime:35 readysize:1
-Run:PID:0 index:0 (Ts,Tg) 40,35 run.remain:12 run.nextEventTime:50 runsize:1
-Block:PID:1 index:0 (Ts,Tg)40,33 block.remain:6 block.nextEventTime:53 blocksize:1
+==> 49 0 ts=42 RUNNG  dur=7
+T(0:49): READY -> RUNNG  cb=3 rem=9
+
+CPUtime:49
+Ready:PID:2 index:1 (Ts,Tg) 43,17 ready.remain:16 ready.nextEventTime:43 readysize:1
+Run:PID:0 index:0 (Ts,Tg) 49,42 run.remain:9 run.nextEventTime:52 runsize:1
+Block:PID:1 index:0 (Ts,Tg)49,39 block.remain:2 block.nextEventTime:51 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:35,9 nextEvenTime:35
+1th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
 
-==> 50 0 ts=40 BLOCK  dur=10
-T(0:50): RUNNG -> BLOCK  ib=2 rem=2
 
-CPUtime:50
-Ready:PID:2 index:0 (Ts,Tg) 35,9 ready.remain:16 ready.nextEventTime:35 readysize:1
-Block:PID:0 index:1 (Ts,Tg)50,40 block.remain:2 block.nextEventTime:52 blocksize:2
+==> 51 1 ts=49 READY  dur=2
+T(1:51): BLOCK -> READY
+
+CPUtime:51
+Ready:PID:1 index:2 (Ts,Tg) 51,49 ready.remain:2 ready.nextEventTime:51 readysize:2
+Run:PID:0 index:0 (Ts,Tg) 49,42 run.remain:9 run.nextEventTime:52 runsize:1
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:35,9 nextEvenTime:35
+1th inreadyQ: PID:1 index:2 remain:2 Ts,Tg:51,49 nextEvenTime:51
+2th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
 
-==> 50 2 ts=35 RUNNG  dur=15
-T(2:50): READY -> RUNNG  cb=3 rem=16
 
-CPUtime:50
-Run:PID:2 index:0 (Ts,Tg) 50,35 run.remain:16 run.nextEventTime:53 runsize:1
-Block:PID:0 index:1 (Ts,Tg)50,40 block.remain:2 block.nextEventTime:52 blocksize:2
-readyQ empty
-
-==> 52 0 ts=50 READY  dur=2
-T(0:52): BLOCK -> READY
+==> 52 0 ts=49 BLOCK  dur=3
+T(0:52): RUNNG -> BLOCK  ib=68 rem=6
 
 CPUtime:52
-Ready:PID:0 index:0 (Ts,Tg) 52,50 ready.remain:2 ready.nextEventTime:52 readysize:1
-Run:PID:2 index:0 (Ts,Tg) 50,35 run.remain:16 run.nextEventTime:53 runsize:1
-Block:PID:1 index:0 (Ts,Tg)40,33 block.remain:6 block.nextEventTime:53 blocksize:1
+Ready:PID:1 index:2 (Ts,Tg) 51,49 ready.remain:2 ready.nextEventTime:51 readysize:2
+Block:PID:0 index:0 (Ts,Tg)52,49 block.remain:6 block.nextEventTime:120 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:0 index:0 Ts,Tg:52,50 nextEvenTime:52
+1th inreadyQ: PID:1 index:2 remain:2 Ts,Tg:51,49 nextEvenTime:51
+2th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
 
-==> 53 1 ts=40 READY  dur=13
-T(1:53): BLOCK -> READY
+
+==> 52 1 ts=51 RUNNG  dur=1
+T(1:52): READY -> RUNNG  cb=1 rem=2
+
+CPUtime:52
+Ready:PID:2 index:1 (Ts,Tg) 43,17 ready.remain:16 ready.nextEventTime:43 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 52,51 run.remain:2 run.nextEventTime:53 runsize:1
+Block:PID:0 index:0 (Ts,Tg)52,49 block.remain:6 block.nextEventTime:120 blocksize:1
+readyQ elements:
+1th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
+
+
+==> 53 1 ts=52 BLOCK  dur=1
+T(1:53): RUNNG -> BLOCK  ib=80 rem=1
 
 CPUtime:53
-Ready:PID:1 index:1 (Ts,Tg) 53,40 ready.remain:6 ready.nextEventTime:53 readysize:2
-Run:PID:2 index:0 (Ts,Tg) 50,35 run.remain:16 run.nextEventTime:53 runsize:1
+Ready:PID:2 index:1 (Ts,Tg) 43,17 ready.remain:16 ready.nextEventTime:43 readysize:1
+Block:PID:0 index:0 (Ts,Tg)52,49 block.remain:6 block.nextEventTime:120 blocksize:2
 readyQ elements:
-1th inreadyQ: PID:1 index:1 Ts,Tg:53,40 nextEvenTime:53
-2th inreadyQ: PID:0 index:0 Ts,Tg:52,50 nextEvenTime:52
+1th inreadyQ: PID:2 index:1 remain:16 Ts,Tg:43,17 nextEvenTime:43
 
-==> 53 2 ts=50 BLOCK  dur=3
-T(2:53): RUNNG -> BLOCK  ib=68 rem=13
+
+==> 53 2 ts=43 RUNNG  dur=10
+T(2:53): READY -> RUNNG  cb=4 rem=16
 
 CPUtime:53
-Ready:PID:1 index:1 (Ts,Tg) 53,40 ready.remain:6 ready.nextEventTime:53 readysize:2
-Block:PID:2 index:0 (Ts,Tg)53,50 block.remain:13 block.nextEventTime:121 blocksize:1
-readyQ elements:
-1th inreadyQ: PID:1 index:1 Ts,Tg:53,40 nextEvenTime:53
-2th inreadyQ: PID:0 index:0 Ts,Tg:52,50 nextEvenTime:52
-
-==> 53 1 ts=53 RUNNG  dur=0
-T(1:53): READY -> RUNNG  cb=1 rem=6
-
-CPUtime:53
-Ready:PID:0 index:0 (Ts,Tg) 52,50 ready.remain:2 ready.nextEventTime:52 readysize:1
-Run:PID:1 index:0 (Ts,Tg) 53,53 run.remain:6 run.nextEventTime:54 runsize:1
-Block:PID:2 index:0 (Ts,Tg)53,50 block.remain:13 block.nextEventTime:121 blocksize:1
-readyQ elements:
-1th inreadyQ: PID:0 index:0 Ts,Tg:52,50 nextEvenTime:52
-
-==> 54 1 ts=53 BLOCK  dur=1
-T(1:54): RUNNG -> BLOCK  ib=80 rem=5
-
-CPUtime:54
-Ready:PID:0 index:0 (Ts,Tg) 52,50 ready.remain:2 ready.nextEventTime:52 readysize:1
-Block:PID:2 index:0 (Ts,Tg)53,50 block.remain:13 block.nextEventTime:121 blocksize:2
-readyQ elements:
-1th inreadyQ: PID:0 index:0 Ts,Tg:52,50 nextEvenTime:52
-
-==> 54 0 ts=52 RUNNG  dur=2
-T(0:54): READY -> RUNNG  cb=2 rem=2
-
-CPUtime:54
-Run:PID:0 index:0 (Ts,Tg) 54,52 run.remain:2 run.nextEventTime:58 runsize:1
-Block:PID:2 index:0 (Ts,Tg)53,50 block.remain:13 block.nextEventTime:121 blocksize:2
+Run:PID:2 index:0 (Ts,Tg) 53,43 run.remain:16 run.nextEventTime:57 runsize:1
+Block:PID:0 index:0 (Ts,Tg)52,49 block.remain:6 block.nextEventTime:120 blocksize:2
 readyQ empty
 
-==> 56 0 ts=54 BLOCK  dur=2
-==> T(0): Done
 
-CPUtime:56
-Block:PID:2 index:0 (Ts,Tg)53,50 block.remain:13 block.nextEventTime:121 blocksize:2
+==> 57 2 ts=53 BLOCK  dur=4
+T(2:57): RUNNG -> BLOCK  ib=77 rem=12
+
+CPUtime:57
+Block:PID:0 index:0 (Ts,Tg)52,49 block.remain:6 block.nextEventTime:120 blocksize:3
 readyQ empty
 
-==> 121 2 ts=53 READY  dur=68
-T(2:121): BLOCK -> READY
+
+==> 120 0 ts=52 READY  dur=68
+T(0:120): BLOCK -> READY
+
+CPUtime:120
+Ready:PID:0 index:0 (Ts,Tg) 120,52 ready.remain:6 ready.nextEventTime:120 readysize:1
+Block:PID:1 index:1 (Ts,Tg)53,52 block.remain:1 block.nextEventTime:133 blocksize:2
+readyQ elements:
+1th inreadyQ: PID:0 index:0 remain:6 Ts,Tg:120,52 nextEvenTime:120
+
+
+==> 120 0 ts=120 RUNNG  dur=0
+T(0:120): READY -> RUNNG  cb=1 rem=6
+
+CPUtime:120
+Run:PID:0 index:0 (Ts,Tg) 120,120 run.remain:6 run.nextEventTime:121 runsize:1
+Block:PID:1 index:1 (Ts,Tg)53,52 block.remain:1 block.nextEventTime:133 blocksize:2
+readyQ empty
+
+
+==> 121 0 ts=120 BLOCK  dur=1
+T(0:121): RUNNG -> BLOCK  ib=37 rem=5
 
 CPUtime:121
-Ready:PID:2 index:0 (Ts,Tg) 121,53 ready.remain:13 ready.nextEventTime:121 readysize:1
-Block:PID:1 index:1 (Ts,Tg)54,53 block.remain:5 block.nextEventTime:134 blocksize:1
+Block:PID:1 index:1 (Ts,Tg)53,52 block.remain:1 block.nextEventTime:133 blocksize:3
+readyQ empty
+
+
+==> 133 1 ts=53 READY  dur=80
+T(1:133): BLOCK -> READY
+
+CPUtime:133
+Ready:PID:1 index:0 (Ts,Tg) 133,53 ready.remain:1 ready.nextEventTime:133 readysize:1
+Block:PID:2 index:2 (Ts,Tg)57,53 block.remain:12 block.nextEventTime:134 blocksize:2
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:121,53 nextEvenTime:121
+1th inreadyQ: PID:1 index:0 remain:1 Ts,Tg:133,53 nextEvenTime:133
 
-==> 121 2 ts=121 RUNNG  dur=0
-T(2:121): READY -> RUNNG  cb=7 rem=13
 
-CPUtime:121
-Run:PID:2 index:0 (Ts,Tg) 121,121 run.remain:13 run.nextEventTime:128 runsize:1
-Block:PID:1 index:1 (Ts,Tg)54,53 block.remain:5 block.nextEventTime:134 blocksize:1
+==> 133 1 ts=133 RUNNG  dur=0
+T(1:133): READY -> RUNNG  cb=1 rem=1
+
+CPUtime:133
+Run:PID:1 index:0 (Ts,Tg) 133,133 run.remain:1 run.nextEventTime:136 runsize:1
+Block:PID:2 index:2 (Ts,Tg)57,53 block.remain:12 block.nextEventTime:134 blocksize:2
 readyQ empty
 
-==> 128 2 ts=121 BLOCK  dur=7
-T(2:128): RUNNG -> BLOCK  ib=61 rem=6
 
-CPUtime:128
-Block:PID:1 index:1 (Ts,Tg)54,53 block.remain:5 block.nextEventTime:134 blocksize:2
-readyQ empty
-
-==> 134 1 ts=54 READY  dur=80
-T(1:134): BLOCK -> READY
+==> 134 2 ts=57 READY  dur=77
+T(2:134): BLOCK -> READY
 
 CPUtime:134
-Ready:PID:1 index:0 (Ts,Tg) 134,54 ready.remain:5 ready.nextEventTime:134 readysize:1
-Block:PID:2 index:2 (Ts,Tg)128,121 block.remain:6 block.nextEventTime:189 blocksize:1
+Ready:PID:2 index:0 (Ts,Tg) 134,57 ready.remain:12 ready.nextEventTime:134 readysize:1
+Run:PID:1 index:0 (Ts,Tg) 133,133 run.remain:1 run.nextEventTime:136 runsize:1
+Block:PID:0 index:3 (Ts,Tg)121,120 block.remain:5 block.nextEventTime:158 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:1 index:0 Ts,Tg:134,54 nextEvenTime:134
+1th inreadyQ: PID:2 index:0 remain:12 Ts,Tg:134,57 nextEvenTime:134
 
-==> 134 1 ts=134 RUNNG  dur=0
-T(1:134): READY -> RUNNG  cb=5 rem=5
 
-CPUtime:134
-Run:PID:1 index:0 (Ts,Tg) 134,134 run.remain:5 run.nextEventTime:141 runsize:1
-Block:PID:2 index:2 (Ts,Tg)128,121 block.remain:6 block.nextEventTime:189 blocksize:1
-readyQ empty
-
-==> 139 1 ts=134 BLOCK  dur=5
+==> 134 1 ts=133 BLOCK  dur=1
 ==> T(1): Done
 
-CPUtime:139
-Block:PID:2 index:2 (Ts,Tg)128,121 block.remain:6 block.nextEventTime:189 blocksize:1
-readyQ empty
-
-==> 189 2 ts=128 READY  dur=61
-T(2:189): BLOCK -> READY
-
-CPUtime:189
-Ready:PID:2 index:0 (Ts,Tg) 189,128 ready.remain:6 ready.nextEventTime:189 readysize:1
+CPUtime:134
+Ready:PID:2 index:0 (Ts,Tg) 134,57 ready.remain:12 ready.nextEventTime:134 readysize:1
+Block:PID:0 index:3 (Ts,Tg)121,120 block.remain:5 block.nextEventTime:158 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:189,128 nextEvenTime:189
+1th inreadyQ: PID:2 index:0 remain:12 Ts,Tg:134,57 nextEvenTime:134
 
-==> 189 2 ts=189 RUNNG  dur=0
-T(2:189): READY -> RUNNG  cb=3 rem=6
 
-CPUtime:189
-Run:PID:2 index:0 (Ts,Tg) 189,189 run.remain:6 run.nextEventTime:192 runsize:1
+==> 134 2 ts=134 RUNNG  dur=0
+T(2:134): READY -> RUNNG  cb=7 rem=12
+
+CPUtime:134
+Run:PID:2 index:0 (Ts,Tg) 134,134 run.remain:12 run.nextEventTime:141 runsize:1
+Block:PID:0 index:3 (Ts,Tg)121,120 block.remain:5 block.nextEventTime:158 blocksize:1
 readyQ empty
 
-==> 192 2 ts=189 BLOCK  dur=3
-T(2:192): RUNNG -> BLOCK  ib=47 rem=3
 
-CPUtime:192
-Block:PID:2 index:0 (Ts,Tg)192,189 block.remain:3 block.nextEventTime:239 blocksize:1
+==> 141 2 ts=134 BLOCK  dur=7
+T(2:141): RUNNG -> BLOCK  ib=72 rem=5
+
+CPUtime:141
+Block:PID:0 index:3 (Ts,Tg)121,120 block.remain:5 block.nextEventTime:158 blocksize:2
 readyQ empty
 
-==> 239 2 ts=192 READY  dur=47
-T(2:239): BLOCK -> READY
 
-CPUtime:239
-Ready:PID:2 index:0 (Ts,Tg) 239,192 ready.remain:3 ready.nextEventTime:239 readysize:1
+==> 158 0 ts=121 READY  dur=37
+T(0:158): BLOCK -> READY
+
+CPUtime:158
+Ready:PID:0 index:0 (Ts,Tg) 158,121 ready.remain:5 ready.nextEventTime:158 readysize:1
+Block:PID:2 index:4 (Ts,Tg)141,134 block.remain:5 block.nextEventTime:213 blocksize:1
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:239,192 nextEvenTime:239
+1th inreadyQ: PID:0 index:0 remain:5 Ts,Tg:158,121 nextEvenTime:158
 
-==> 239 2 ts=239 RUNNG  dur=0
-T(2:239): READY -> RUNNG  cb=2 rem=3
 
-CPUtime:239
-Run:PID:2 index:0 (Ts,Tg) 239,239 run.remain:3 run.nextEventTime:241 runsize:1
+==> 158 0 ts=158 RUNNG  dur=0
+T(0:158): READY -> RUNNG  cb=5 rem=5
+
+CPUtime:158
+Run:PID:0 index:0 (Ts,Tg) 158,158 run.remain:5 run.nextEventTime:167 runsize:1
+Block:PID:2 index:4 (Ts,Tg)141,134 block.remain:5 block.nextEventTime:213 blocksize:1
 readyQ empty
 
-==> 241 2 ts=239 BLOCK  dur=2
-T(2:241): RUNNG -> BLOCK  ib=9 rem=1
 
-CPUtime:241
-Block:PID:2 index:0 (Ts,Tg)241,239 block.remain:1 block.nextEventTime:250 blocksize:1
+==> 163 0 ts=158 BLOCK  dur=5
+==> T(0): Done
+
+CPUtime:163
+Block:PID:2 index:4 (Ts,Tg)141,134 block.remain:5 block.nextEventTime:213 blocksize:1
 readyQ empty
 
-==> 250 2 ts=241 READY  dur=9
-T(2:250): BLOCK -> READY
 
-CPUtime:250
-Ready:PID:2 index:0 (Ts,Tg) 250,241 ready.remain:1 ready.nextEventTime:250 readysize:1
+==> 213 2 ts=141 READY  dur=72
+T(2:213): BLOCK -> READY
+
+CPUtime:213
+Ready:PID:2 index:0 (Ts,Tg) 213,141 ready.remain:5 ready.nextEventTime:213 readysize:1
 readyQ elements:
-1th inreadyQ: PID:2 index:0 Ts,Tg:250,241 nextEvenTime:250
+1th inreadyQ: PID:2 index:0 remain:5 Ts,Tg:213,141 nextEvenTime:213
 
-==> 250 2 ts=250 RUNNG  dur=0
-T(2:250): READY -> RUNNG  cb=1 rem=1
 
-CPUtime:250
-Run:PID:2 index:0 (Ts,Tg) 250,250 run.remain:1 run.nextEventTime:258 runsize:1
+==> 213 2 ts=213 RUNNG  dur=0
+T(2:213): READY -> RUNNG  cb=5 rem=5
+
+CPUtime:213
+Run:PID:2 index:0 (Ts,Tg) 213,213 run.remain:5 run.nextEventTime:221 runsize:1
 readyQ empty
 
-==> 251 2 ts=250 BLOCK  dur=1
+
+==> 218 2 ts=213 BLOCK  dur=5
 ==> T(2): Done
-LCFS
-0000:    1   20   10   90 |   56   55   28    7
-0001:    1   20   10   90 |  139  138  117    0
-0002:    1   20   10   90 |  251  250  211   15
-SUM: 251 25.90 91.63 147.67 7.33 1.195
+SJF
+0000:    1   20   10   90 |  163  162  135    7
+0001:    1   20   10   90 |  134  133  108    5
+0002:    1   20   10   90 |  218  217  175   22
+SUM: 218 27.52 94.50 170.67 11.33 1.376

@@ -1,9 +1,11 @@
 
 ==> 1 0 ts=1 READY  dur=0
 T(0:1): READY -> READY
+   delay scheduler
 
 ==> 1 1 ts=1 READY  dur=0
 T(1:1): READY -> READY
+   delay scheduler
 
 ==> 1 2 ts=1 READY  dur=0
 T(2:1): READY -> READY
@@ -119,4 +121,4 @@ SJF
 0000:    1   20   10   90 |  163  162  135    7
 0001:    1   20   10   90 |  134  133  108    5
 0002:    1   20   10   90 |  218  217  175   22
-SUM: 218 27.52 94.50 170.67 11.33 1.376
+SUM: 218 27.52 92.20 170.67 11.33 1.376

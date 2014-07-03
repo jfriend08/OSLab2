@@ -240,7 +240,8 @@ public:
     			if (t1.insertindex < t2.insertindex) flag=1;
     		}
     		if (t1.scheduler=="S"){
-    			if (t1.insertindex > t2.insertindex) flag=1;    			    			
+    			if (t1.remain > t2.remain) flag=1;    			    			
+    			else if ((t1.remain == t2.remain)&&(t1.insertindex > t2.insertindex)) flag=1;    			    			
     		}
     		if (t1.scheduler=="R"){
     			if (t1.insertindex > t2.insertindex) flag=1;    			    			
@@ -458,7 +459,7 @@ public:
 			cout<<"readyQ elements:"<<endl;
 			while (!qtmp.empty()){
 				schedule t=qtmp.top();
-				cout<<i<<"th inreadyQ:"<<" PID:"<<t.PID<<" index:"<<t.insertindex<<" Ts,Tg:"<<t.Ts<<","<<t.Tg<<" nextEvenTime:"<<t.nextEventTime<<endl;
+				cout<<i<<"th inreadyQ:"<<" PID:"<<t.PID<<" index:"<<t.insertindex<<" remain:"<<t.remain<<" Ts,Tg:"<<t.Ts<<","<<t.Tg<<" nextEvenTime:"<<t.nextEventTime<<endl;
 				qtmp.pop();
 				i++;
 			}
@@ -585,7 +586,7 @@ public:
 	}
 	void qReport(){
 		deque<int> q;		
-		// cout<<"CPUtime:"<<CPUtime<<endl;
+		cout<<"\n"<<"CPUtime:"<<CPUtime<<endl;
 		if(tasksQ.size()>0){
 			schedule task=tasksQ.top();
 			cout<<"Task:PID:"<<task.PID<<" index:"<<task.insertindex<<" (Ts,Tg) "<<task.Ts<<","<<task.Tg<<" task.remain:"<<task.remain<<" task.nextEventTime:"<<task.nextEventTime<<" tasksize:"<<tasksQ.size()<<endl;
