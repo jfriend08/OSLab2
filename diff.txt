@@ -2,25 +2,240 @@
 <    delay scheduler
 8d6
 <    delay scheduler
-925,931c923
+796c794
+< ==> 319 0 ts=317 BLOCK  dur=2
+---
+> ==> 319 0 ts=317 PREEMPT  dur=2
+803c801
+< T(3:1000): READY -> RUNNG  cb=5 rem=30
+---
+> T(3:1000): READY -> RUNNG  cb=9 rem=30
+806c804
+< T(3:1002): RUNNG -> READY  cb=3 rem=28
+---
+> T(3:1002): RUNNG -> READY  cb=7 rem=28
+809c807
+< T(3:1002): READY -> RUNNG  cb=3 rem=28
+---
+> T(3:1002): READY -> RUNNG  cb=7 rem=28
+812c810
+< T(3:1004): RUNNG -> READY  cb=1 rem=26
+---
+> T(3:1004): RUNNG -> READY  cb=5 rem=26
+815c813
+< T(3:1004): READY -> RUNNG  cb=1 rem=26
+---
+> T(3:1004): READY -> RUNNG  cb=5 rem=26
+817,821c815,816
+< ==> 1005 3 ts=1004 BLOCK  dur=1
+< T(3:1005): RUNNG -> BLOCK  ib=1 rem=25
+< 
+< ==> 1006 3 ts=1005 READY  dur=1
+< T(3:1006): BLOCK -> READY
+---
+> ==> 1006 3 ts=1004 PREEMPT  dur=2
+> T(3:1006): RUNNG -> READY  cb=3 rem=24
+824,827c819
+< T(3:1006): READY -> RUNNG  cb=1 rem=25
+< 
+< ==> 1007 3 ts=1006 BLOCK  dur=1
+< T(3:1007): RUNNG -> BLOCK  ib=4 rem=24
+---
+> T(3:1006): READY -> RUNNG  cb=3 rem=24
+829,830c821,822
+< ==> 1011 3 ts=1007 READY  dur=4
+< T(3:1011): BLOCK -> READY
+---
+> ==> 1008 3 ts=1006 PREEMPT  dur=2
+> T(3:1008): RUNNG -> READY  cb=1 rem=22
+832,833c824,825
+< ==> 1011 3 ts=1011 RUNNG  dur=0
+< T(3:1011): READY -> RUNNG  cb=7 rem=24
+---
+> ==> 1008 3 ts=1008 RUNNG  dur=0
+> T(3:1008): READY -> RUNNG  cb=1 rem=22
+835,836c827,828
+< ==> 1013 3 ts=1011 PREEMPT  dur=2
+< T(3:1013): RUNNG -> READY  cb=5 rem=22
+---
+> ==> 1009 3 ts=1008 BLOCK  dur=1
+> T(3:1009): RUNNG -> BLOCK  ib=5 rem=21
+838,839c830,831
+< ==> 1013 3 ts=1013 RUNNG  dur=0
+< T(3:1013): READY -> RUNNG  cb=5 rem=22
+---
+> ==> 1014 3 ts=1009 READY  dur=5
+> T(3:1014): BLOCK -> READY
+841,842c833,834
+< ==> 1015 3 ts=1013 PREEMPT  dur=2
+< T(3:1015): RUNNG -> READY  cb=3 rem=20
+---
+> ==> 1014 3 ts=1014 RUNNG  dur=0
+> T(3:1014): READY -> RUNNG  cb=6 rem=21
+844,845c836,837
+< ==> 1015 3 ts=1015 RUNNG  dur=0
+< T(3:1015): READY -> RUNNG  cb=3 rem=20
+---
+> ==> 1016 3 ts=1014 PREEMPT  dur=2
+> T(3:1016): RUNNG -> READY  cb=4 rem=19
+847,848c839,840
+< ==> 1017 3 ts=1015 PREEMPT  dur=2
+< T(3:1017): RUNNG -> READY  cb=1 rem=18
+---
+> ==> 1016 3 ts=1016 RUNNG  dur=0
+> T(3:1016): READY -> RUNNG  cb=4 rem=19
+850,851c842,843
+< ==> 1017 3 ts=1017 RUNNG  dur=0
+< T(3:1017): READY -> RUNNG  cb=1 rem=18
+---
+> ==> 1018 3 ts=1016 PREEMPT  dur=2
+> T(3:1018): RUNNG -> READY  cb=2 rem=17
+853,854c845,846
+< ==> 1018 3 ts=1017 BLOCK  dur=1
+< T(3:1018): RUNNG -> BLOCK  ib=2 rem=17
+---
+> ==> 1018 3 ts=1018 RUNNG  dur=0
+> T(3:1018): READY -> RUNNG  cb=2 rem=17
+856,857c848,849
+< ==> 1020 3 ts=1018 READY  dur=2
+< T(3:1020): BLOCK -> READY
+---
+> ==> 1020 3 ts=1018 BLOCK  dur=2
+> T(3:1020): RUNNG -> BLOCK  ib=1 rem=15
+859,860c851,852
+< ==> 1020 3 ts=1020 RUNNG  dur=0
+< T(3:1020): READY -> RUNNG  cb=1 rem=17
+---
+> ==> 1021 3 ts=1020 READY  dur=1
+> T(3:1021): BLOCK -> READY
+862,863c854,855
+< ==> 1021 3 ts=1020 BLOCK  dur=1
+< T(3:1021): RUNNG -> BLOCK  ib=2 rem=16
+---
+> ==> 1021 3 ts=1021 RUNNG  dur=0
+> T(3:1021): READY -> RUNNG  cb=4 rem=15
+865,866c857,858
+< ==> 1023 3 ts=1021 READY  dur=2
+< T(3:1023): BLOCK -> READY
+---
+> ==> 1023 3 ts=1021 PREEMPT  dur=2
+> T(3:1023): RUNNG -> READY  cb=2 rem=13
+869c861,864
+< T(3:1023): READY -> RUNNG  cb=4 rem=16
+---
+> T(3:1023): READY -> RUNNG  cb=2 rem=13
+> 
+> ==> 1025 3 ts=1023 BLOCK  dur=2
+> T(3:1025): RUNNG -> BLOCK  ib=2 rem=11
+871,872c866,867
+< ==> 1025 3 ts=1023 PREEMPT  dur=2
+< T(3:1025): RUNNG -> READY  cb=2 rem=14
+---
+> ==> 1027 3 ts=1025 READY  dur=2
+> T(3:1027): BLOCK -> READY
+874,875c869,870
+< ==> 1025 3 ts=1025 RUNNG  dur=0
+< T(3:1025): READY -> RUNNG  cb=2 rem=14
+---
+> ==> 1027 3 ts=1027 RUNNG  dur=0
+> T(3:1027): READY -> RUNNG  cb=2 rem=11
+877,878c872,873
+< ==> 1027 3 ts=1025 BLOCK  dur=2
+< T(3:1027): RUNNG -> BLOCK  ib=3 rem=12
+---
+> ==> 1029 3 ts=1027 BLOCK  dur=2
+> T(3:1029): RUNNG -> BLOCK  ib=1 rem=9
+880c875
+< ==> 1030 3 ts=1027 READY  dur=3
+---
+> ==> 1030 3 ts=1029 READY  dur=1
+884c879
+< T(3:1030): READY -> RUNNG  cb=1 rem=12
+---
+> T(3:1030): READY -> RUNNG  cb=7 rem=9
+886,887c881,882
+< ==> 1031 3 ts=1030 BLOCK  dur=1
+< T(3:1031): RUNNG -> BLOCK  ib=2 rem=11
+---
+> ==> 1032 3 ts=1030 PREEMPT  dur=2
+> T(3:1032): RUNNG -> READY  cb=5 rem=7
+889,890c884,885
+< ==> 1033 3 ts=1031 READY  dur=2
+< T(3:1033): BLOCK -> READY
+---
+> ==> 1032 3 ts=1032 RUNNG  dur=0
+> T(3:1032): READY -> RUNNG  cb=5 rem=7
+892,893c887,888
+< ==> 1033 3 ts=1033 RUNNG  dur=0
+< T(3:1033): READY -> RUNNG  cb=2 rem=11
+---
+> ==> 1034 3 ts=1032 PREEMPT  dur=2
+> T(3:1034): RUNNG -> READY  cb=3 rem=5
+895,896c890,891
+< ==> 1035 3 ts=1033 BLOCK  dur=2
+< T(3:1035): RUNNG -> BLOCK  ib=1 rem=9
+---
+> ==> 1034 3 ts=1034 RUNNG  dur=0
+> T(3:1034): READY -> RUNNG  cb=3 rem=5
+898,899c893,894
+< ==> 1036 3 ts=1035 READY  dur=1
+< T(3:1036): BLOCK -> READY
+---
+> ==> 1036 3 ts=1034 PREEMPT  dur=2
+> T(3:1036): RUNNG -> READY  cb=1 rem=3
+902,920c897
+< T(3:1036): READY -> RUNNG  cb=6 rem=9
+< 
+< ==> 1038 3 ts=1036 PREEMPT  dur=2
+< T(3:1038): RUNNG -> READY  cb=4 rem=7
+< 
+< ==> 1038 3 ts=1038 RUNNG  dur=0
+< T(3:1038): READY -> RUNNG  cb=4 rem=7
+< 
+< ==> 1040 3 ts=1038 PREEMPT  dur=2
+< T(3:1040): RUNNG -> READY  cb=2 rem=5
+< 
+< ==> 1040 3 ts=1040 RUNNG  dur=0
+< T(3:1040): READY -> RUNNG  cb=2 rem=5
+< 
+< ==> 1042 3 ts=1040 BLOCK  dur=2
+< T(3:1042): RUNNG -> BLOCK  ib=5 rem=3
+< 
+< ==> 1047 3 ts=1042 READY  dur=5
+< T(3:1047): BLOCK -> READY
+---
+> T(3:1036): READY -> RUNNG  cb=1 rem=3
+922,923c899,900
+< ==> 1047 3 ts=1047 RUNNG  dur=0
+< T(3:1047): READY -> RUNNG  cb=3 rem=3
+---
+> ==> 1037 3 ts=1036 BLOCK  dur=1
+> T(3:1037): RUNNG -> BLOCK  ib=4 rem=2
+925,926c902,903
 < ==> 1049 3 ts=1047 PREEMPT  dur=2
 < T(3:1049): RUNNG -> READY  cb=1 rem=1
-< 
+---
+> ==> 1041 3 ts=1037 READY  dur=4
+> T(3:1041): BLOCK -> READY
+928,929c905,906
 < ==> 1049 3 ts=1049 RUNNG  dur=0
 < T(3:1049): READY -> RUNNG  cb=1 rem=1
-< 
+---
+> ==> 1041 3 ts=1041 RUNNG  dur=0
+> T(3:1041): READY -> RUNNG  cb=2 rem=2
+931c908
 < ==> 1050 3 ts=1049 BLOCK  dur=1
 ---
-> ==> 1050 3 ts=1047 BLOCK  dur=3
-934,938c926,930
+> ==> 1043 3 ts=1041 PREEMPT  dur=2
+934,938c911,915
 < 0000:    1  100   20   20 |  319  318  164   54
 < 0001:    1  100   30   10 |  218  217   40   77
 < 0002:    1   30   10    5 |   87   86   13   43
 < 0003: 1000   30   10    5 | 1050   50   20    0
 < SUM: 1050 24.76 20.00 167.75 43.50 0.381
 ---
-> 0000:    1  100   20   20 |  319  318  164  132
+> 0000:    1  100   20   20 |  319  318  164  134
 > 0001:    1  100   30   10 |  218  217   40  165
 > 0002:    1   30   10    5 |   87   86   13   67
-> 0003: 1000   30   10    5 | 1050   50   20   16
-> SUM: 1050 5.14 20.00 167.75 95.00 0.381
+> 0003: 1000   30   10    5 | 1043   43   13   22
+> SUM: 1043 4.41 19.46 166.00 97.00 0.384

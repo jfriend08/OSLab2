@@ -24,6 +24,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	SJF done, if the remain is the same then sort by insertindex
 --	trying to do RR, but dont know why it entered donP at line 552
 --	almost there for input3R2, but have some issue for last steps
+--	input3R2 looks good now
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -121,7 +122,7 @@ public:
 	void enterReadyP(int &cputime, int vflag){
 		dur=Ts-Tg;
 		if (vflag==1){
-			cout<<"1==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<endl<<endl;
 		}
@@ -130,7 +131,7 @@ public:
 	void enterRunP(int &cputime, int vflag){
 		dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"2==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 			if(curState=="PREEMPT"){
 				cout<<"T("<<PID<<":"<<Ts<<"): "<<statecode(2)<<" -> "<<nextState<<"  cb="<<Cb<<" rem="<<remain<<endl;;
 			}
@@ -141,7 +142,7 @@ public:
 	void enterBlockP(int &cputime, int vflag){
 		dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"3==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;
 			cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl;
 			// cout<<"T("<<PID<<":"<<cputime<<"): "<<curState<<" -> "<<nextState<<"  ib="<<Ib<<" rem="<<remain<<endl<<endl;
 		}		
@@ -149,7 +150,7 @@ public:
 	void doneP(int &cputime, int vflag, int notfinish){
 		dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"4==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			
 			if(notfinish==1){cout<<"==> T("<<PID<<"): Done"<<endl;			}
 			else if (notfinish==0){cout<<"==> T("<<PID<<"): Done"<<endl;				}			
 		}
@@ -160,7 +161,7 @@ public:
 	void Run2ReadyP(int &cputime, int vflag){
 		dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"5==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< "PREEMPT"<<"  "<<"dur="<<dur<<endl;
+			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< "PREEMPT"<<"  "<<"dur="<<dur<<endl;
 			if(nextState=="PREEMPT"){
 				cout<<"T("<<PID<<":"<<Ts<<"): "<<curState<<" -> "<<statecode(2)<<"  cb="<<Cb<<" rem="<<remain<<endl;	
 			}
@@ -558,7 +559,7 @@ public:
 		
 		///switching logic
 		
-		if((runQ.size()>0)&&(tmpS_val-CPUtime>runQ.top().remain)){			
+		if((runQ.size()>0)&&(tmpS_val-CPUtime>runQ.top().remain)&&(PREEMPT_Flag==0)){			
 		// if((runQ.size()>0)&&(tmpS_val-runQ.top().Ts>runQ.top().remain)){		
 			
 			schedule tmp=runQ.top();
@@ -576,7 +577,7 @@ public:
 			tmp.Run2Ready(tmp.Ts+RRval, tmp.Ts, tmp.Cb-RRval);		//cout<<"==>3"<<endl;	
 			previousCPUtime=CPUtime;
 			if (tmp.remain>0){tmp.Run2ReadyP(CPUtime, vflag);tmp.insertindex=Qlastindex(readyQ);readyQ.push(tmp);runQ.pop();}
-			else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);blockQ.pop();}	
+			else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);runQ.pop();ofs=ofs+1;}	//because in this step ofs keep counting
 		}
 
 		else{
@@ -588,11 +589,11 @@ public:
 				schedule tmp=readyQ.top();
 				if(tmp.Cb>0){tmp.Ready2Run(tmp.Ts, tmp.Ts, tmp.Cb); }
 				else{tmp.Ready2Run(tmp.Ts, tmp.Ts, myrandom(tmp.CPUB,ofs));}
-
+				
 				if (tmp.remain>0){tmp.enterRunP(CPUtime, vflag);tmp.insertindex=Qlastindex(runQ);runQ.push(tmp);readyQ.pop();}
 				else{tmp.doneP(CPUtime, vflag, othertasknotdone());ReportQ.push(tmp);readyQ.pop();}			}
-			if (tmpS=="run"){
-				
+
+			if (tmpS=="run"){				
 				schedule tmp=runQ.top();
 				tmp.Run2Block(tmp.Ts+tmp.Cb, tmp.Ts, myrandom(tmp.IOB,ofs));			
 				if (tmp.remain>0){tmp.enterBlockP(CPUtime, vflag);tmp.insertindex=Qlastindex(blockQ);blockQ.push(tmp);runQ.pop();;}
@@ -744,7 +745,7 @@ int main(int argc, char *argv[]){
 	// while(test<10){
 	
 	while(q.stillRemain()){
-		q.qReport();
+		// q.qReport();
 		q.change();
 		q.IOtimeCalculation();
 
