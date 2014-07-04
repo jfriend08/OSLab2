@@ -27,7 +27,6 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	input3R2 looks good now
 --	tested R2, R5, R20, and all steps look good. the the report for Ib still need to improve
 
-
 Todo:
 --	define child classs, so it can run diff scheduler
 --	IOtime still not correct

@@ -1,0 +1,1487 @@
+
+==> 0 0 ts=0 READY  dur=0
+T(0:0): READY -> READY
+
+==> 0 0 ts=0 RUNNG  dur=0
+T(0:0): READY -> RUNNG  cb=34 rem=400
+
+==> 5 0 ts=0 PREEMPT  dur=5
+T(0:5): RUNNG -> READY  cb=29 rem=395
+
+==> 5 0 ts=5 RUNNG  dur=0
+T(0:5): READY -> RUNNG  cb=29 rem=395
+
+==> 10 0 ts=5 PREEMPT  dur=5
+T(0:10): RUNNG -> READY  cb=24 rem=390
+
+==> 10 0 ts=10 RUNNG  dur=0
+T(0:10): READY -> RUNNG  cb=24 rem=390
+
+==> 15 0 ts=10 PREEMPT  dur=5
+T(0:15): RUNNG -> READY  cb=19 rem=385
+
+==> 15 0 ts=15 RUNNG  dur=0
+T(0:15): READY -> RUNNG  cb=19 rem=385
+
+==> 20 0 ts=15 PREEMPT  dur=5
+T(0:20): RUNNG -> READY  cb=14 rem=380
+
+==> 20 0 ts=20 RUNNG  dur=0
+T(0:20): READY -> RUNNG  cb=14 rem=380
+
+==> 25 0 ts=20 PREEMPT  dur=5
+T(0:25): RUNNG -> READY  cb=9 rem=375
+
+==> 25 0 ts=25 RUNNG  dur=0
+T(0:25): READY -> RUNNG  cb=9 rem=375
+
+==> 30 0 ts=25 PREEMPT  dur=5
+T(0:30): RUNNG -> READY  cb=4 rem=370
+
+==> 30 0 ts=30 RUNNG  dur=0
+T(0:30): READY -> RUNNG  cb=4 rem=370
+
+==> 34 0 ts=30 BLOCK  dur=4
+T(0:34): RUNNG -> BLOCK  ib=37 rem=366
+
+==> 71 0 ts=34 READY  dur=37
+T(0:71): BLOCK -> READY
+
+==> 71 0 ts=71 RUNNG  dur=0
+T(0:71): READY -> RUNNG  cb=28 rem=366
+
+==> 76 0 ts=71 PREEMPT  dur=5
+T(0:76): RUNNG -> READY  cb=23 rem=361
+
+==> 76 0 ts=76 RUNNG  dur=0
+T(0:76): READY -> RUNNG  cb=23 rem=361
+
+==> 81 0 ts=76 PREEMPT  dur=5
+T(0:81): RUNNG -> READY  cb=18 rem=356
+
+==> 81 0 ts=81 RUNNG  dur=0
+T(0:81): READY -> RUNNG  cb=18 rem=356
+
+==> 86 0 ts=81 PREEMPT  dur=5
+T(0:86): RUNNG -> READY  cb=13 rem=351
+
+==> 86 0 ts=86 RUNNG  dur=0
+T(0:86): READY -> RUNNG  cb=13 rem=351
+
+==> 91 0 ts=86 PREEMPT  dur=5
+T(0:91): RUNNG -> READY  cb=8 rem=346
+
+==> 91 0 ts=91 RUNNG  dur=0
+T(0:91): READY -> RUNNG  cb=8 rem=346
+
+==> 96 0 ts=91 PREEMPT  dur=5
+T(0:96): RUNNG -> READY  cb=3 rem=341
+
+==> 96 0 ts=96 RUNNG  dur=0
+T(0:96): READY -> RUNNG  cb=3 rem=341
+
+==> 99 0 ts=96 BLOCK  dur=3
+T(0:99): RUNNG -> BLOCK  ib=16 rem=338
+
+==> 100 1 ts=100 READY  dur=0
+T(1:100): READY -> READY
+
+==> 100 1 ts=100 RUNNG  dur=0
+T(1:100): READY -> RUNNG  cb=34 rem=300
+
+==> 105 1 ts=100 PREEMPT  dur=5
+T(1:105): RUNNG -> READY  cb=29 rem=295
+
+==> 105 1 ts=105 RUNNG  dur=0
+T(1:105): READY -> RUNNG  cb=29 rem=295
+
+==> 110 1 ts=105 PREEMPT  dur=5
+T(1:110): RUNNG -> READY  cb=24 rem=290
+
+==> 110 1 ts=110 RUNNG  dur=0
+T(1:110): READY -> RUNNG  cb=24 rem=290
+
+==> 115 0 ts=99 READY  dur=16
+T(0:115): BLOCK -> READY
+
+==> 115 1 ts=110 PREEMPT  dur=5
+T(1:115): RUNNG -> READY  cb=19 rem=285
+
+==> 115 0 ts=115 RUNNG  dur=0
+T(0:115): READY -> RUNNG  cb=36 rem=338
+
+==> 120 0 ts=115 PREEMPT  dur=5
+T(0:120): RUNNG -> READY  cb=31 rem=333
+
+==> 120 1 ts=115 RUNNG  dur=5
+T(1:120): READY -> RUNNG  cb=19 rem=285
+
+==> 125 1 ts=120 PREEMPT  dur=5
+T(1:125): RUNNG -> READY  cb=14 rem=280
+
+==> 125 0 ts=120 RUNNG  dur=5
+T(0:125): READY -> RUNNG  cb=31 rem=333
+
+==> 130 0 ts=125 PREEMPT  dur=5
+T(0:130): RUNNG -> READY  cb=26 rem=328
+
+==> 130 1 ts=125 RUNNG  dur=5
+T(1:130): READY -> RUNNG  cb=14 rem=280
+
+==> 135 1 ts=130 PREEMPT  dur=5
+T(1:135): RUNNG -> READY  cb=9 rem=275
+
+==> 135 0 ts=130 RUNNG  dur=5
+T(0:135): READY -> RUNNG  cb=26 rem=328
+
+==> 140 0 ts=135 PREEMPT  dur=5
+T(0:140): RUNNG -> READY  cb=21 rem=323
+
+==> 140 1 ts=135 RUNNG  dur=5
+T(1:140): READY -> RUNNG  cb=9 rem=275
+
+==> 145 1 ts=140 PREEMPT  dur=5
+T(1:145): RUNNG -> READY  cb=4 rem=270
+
+==> 145 0 ts=140 RUNNG  dur=5
+T(0:145): READY -> RUNNG  cb=21 rem=323
+
+==> 150 0 ts=145 PREEMPT  dur=5
+T(0:150): RUNNG -> READY  cb=16 rem=318
+
+==> 150 1 ts=145 RUNNG  dur=5
+T(1:150): READY -> RUNNG  cb=4 rem=270
+
+==> 154 1 ts=150 BLOCK  dur=4
+T(1:154): RUNNG -> BLOCK  ib=27 rem=266
+
+==> 154 0 ts=150 RUNNG  dur=4
+T(0:154): READY -> RUNNG  cb=16 rem=318
+
+==> 159 0 ts=154 PREEMPT  dur=5
+T(0:159): RUNNG -> READY  cb=11 rem=313
+
+==> 159 0 ts=159 RUNNG  dur=0
+T(0:159): READY -> RUNNG  cb=11 rem=313
+
+==> 164 0 ts=159 PREEMPT  dur=5
+T(0:164): RUNNG -> READY  cb=6 rem=308
+
+==> 164 0 ts=164 RUNNG  dur=0
+T(0:164): READY -> RUNNG  cb=6 rem=308
+
+==> 169 0 ts=164 PREEMPT  dur=5
+T(0:169): RUNNG -> READY  cb=1 rem=303
+
+==> 169 0 ts=169 RUNNG  dur=0
+T(0:169): READY -> RUNNG  cb=1 rem=303
+
+==> 170 0 ts=169 BLOCK  dur=1
+T(0:170): RUNNG -> BLOCK  ib=43 rem=302
+
+==> 181 1 ts=154 READY  dur=27
+T(1:181): BLOCK -> READY
+
+==> 181 1 ts=181 RUNNG  dur=0
+T(1:181): READY -> RUNNG  cb=10 rem=266
+
+==> 186 1 ts=181 PREEMPT  dur=5
+T(1:186): RUNNG -> READY  cb=5 rem=261
+
+==> 186 1 ts=186 RUNNG  dur=0
+T(1:186): READY -> RUNNG  cb=5 rem=261
+
+==> 191 1 ts=186 BLOCK  dur=5
+T(1:191): RUNNG -> BLOCK  ib=22 rem=256
+
+==> 200 2 ts=200 READY  dur=0
+T(2:200): READY -> READY
+
+==> 200 2 ts=200 RUNNG  dur=0
+T(2:200): READY -> RUNNG  cb=3 rem=200
+
+==> 203 2 ts=200 BLOCK  dur=3
+T(2:203): RUNNG -> BLOCK  ib=28 rem=197
+
+==> 213 0 ts=170 READY  dur=43
+T(0:213): BLOCK -> READY
+   delay scheduler
+
+==> 213 1 ts=191 READY  dur=22
+T(1:213): BLOCK -> READY
+
+==> 213 0 ts=213 RUNNG  dur=0
+T(0:213): READY -> RUNNG  cb=41 rem=302
+
+==> 218 0 ts=213 PREEMPT  dur=5
+T(0:218): RUNNG -> READY  cb=36 rem=297
+
+==> 218 1 ts=213 RUNNG  dur=5
+T(1:218): READY -> RUNNG  cb=20 rem=256
+
+==> 223 1 ts=218 PREEMPT  dur=5
+T(1:223): RUNNG -> READY  cb=15 rem=251
+
+==> 223 0 ts=218 RUNNG  dur=5
+T(0:223): READY -> RUNNG  cb=36 rem=297
+
+==> 228 0 ts=223 PREEMPT  dur=5
+T(0:228): RUNNG -> READY  cb=31 rem=292
+
+==> 228 1 ts=223 RUNNG  dur=5
+T(1:228): READY -> RUNNG  cb=15 rem=251
+
+==> 231 2 ts=203 READY  dur=28
+T(2:231): BLOCK -> READY
+
+==> 233 1 ts=228 PREEMPT  dur=5
+T(1:233): RUNNG -> READY  cb=10 rem=246
+
+==> 233 0 ts=228 RUNNG  dur=5
+T(0:233): READY -> RUNNG  cb=31 rem=292
+
+==> 238 0 ts=233 PREEMPT  dur=5
+T(0:238): RUNNG -> READY  cb=26 rem=287
+
+==> 238 2 ts=231 RUNNG  dur=7
+T(2:238): READY -> RUNNG  cb=24 rem=197
+
+==> 243 2 ts=238 PREEMPT  dur=5
+T(2:243): RUNNG -> READY  cb=19 rem=192
+
+==> 243 1 ts=233 RUNNG  dur=10
+T(1:243): READY -> RUNNG  cb=10 rem=246
+
+==> 248 1 ts=243 PREEMPT  dur=5
+T(1:248): RUNNG -> READY  cb=5 rem=241
+
+==> 248 0 ts=238 RUNNG  dur=10
+T(0:248): READY -> RUNNG  cb=26 rem=287
+
+==> 253 0 ts=248 PREEMPT  dur=5
+T(0:253): RUNNG -> READY  cb=21 rem=282
+
+==> 253 2 ts=243 RUNNG  dur=10
+T(2:253): READY -> RUNNG  cb=19 rem=192
+
+==> 258 2 ts=253 PREEMPT  dur=5
+T(2:258): RUNNG -> READY  cb=14 rem=187
+
+==> 258 1 ts=248 RUNNG  dur=10
+T(1:258): READY -> RUNNG  cb=5 rem=241
+
+==> 263 1 ts=258 BLOCK  dur=5
+T(1:263): RUNNG -> BLOCK  ib=7 rem=236
+
+==> 263 0 ts=253 RUNNG  dur=10
+T(0:263): READY -> RUNNG  cb=21 rem=282
+
+==> 268 0 ts=263 PREEMPT  dur=5
+T(0:268): RUNNG -> READY  cb=16 rem=277
+
+==> 268 2 ts=258 RUNNG  dur=10
+T(2:268): READY -> RUNNG  cb=14 rem=187
+
+==> 270 1 ts=263 READY  dur=7
+T(1:270): BLOCK -> READY
+
+==> 273 2 ts=268 PREEMPT  dur=5
+T(2:273): RUNNG -> READY  cb=9 rem=182
+
+==> 273 0 ts=268 RUNNG  dur=5
+T(0:273): READY -> RUNNG  cb=16 rem=277
+
+==> 278 0 ts=273 PREEMPT  dur=5
+T(0:278): RUNNG -> READY  cb=11 rem=272
+
+==> 278 1 ts=270 RUNNG  dur=8
+T(1:278): READY -> RUNNG  cb=21 rem=236
+
+==> 283 1 ts=278 PREEMPT  dur=5
+T(1:283): RUNNG -> READY  cb=16 rem=231
+
+==> 283 2 ts=273 RUNNG  dur=10
+T(2:283): READY -> RUNNG  cb=9 rem=182
+
+==> 288 2 ts=283 PREEMPT  dur=5
+T(2:288): RUNNG -> READY  cb=4 rem=177
+
+==> 288 0 ts=278 RUNNG  dur=10
+T(0:288): READY -> RUNNG  cb=11 rem=272
+
+==> 293 0 ts=288 PREEMPT  dur=5
+T(0:293): RUNNG -> READY  cb=6 rem=267
+
+==> 293 1 ts=283 RUNNG  dur=10
+T(1:293): READY -> RUNNG  cb=16 rem=231
+
+==> 298 1 ts=293 PREEMPT  dur=5
+T(1:298): RUNNG -> READY  cb=11 rem=226
+
+==> 298 2 ts=288 RUNNG  dur=10
+T(2:298): READY -> RUNNG  cb=4 rem=177
+
+==> 300 3 ts=300 READY  dur=0
+T(3:300): READY -> READY
+
+==> 302 2 ts=298 BLOCK  dur=4
+T(2:302): RUNNG -> BLOCK  ib=27 rem=173
+
+==> 302 0 ts=293 RUNNG  dur=9
+T(0:302): READY -> RUNNG  cb=6 rem=267
+
+==> 307 0 ts=302 PREEMPT  dur=5
+T(0:307): RUNNG -> READY  cb=1 rem=262
+
+==> 307 1 ts=298 RUNNG  dur=9
+T(1:307): READY -> RUNNG  cb=11 rem=226
+
+==> 312 1 ts=307 PREEMPT  dur=5
+T(1:312): RUNNG -> READY  cb=6 rem=221
+
+==> 312 3 ts=300 RUNNG  dur=12
+T(3:312): READY -> RUNNG  cb=13 rem=100
+
+==> 317 3 ts=312 PREEMPT  dur=5
+T(3:317): RUNNG -> READY  cb=8 rem=95
+
+==> 317 0 ts=307 RUNNG  dur=10
+T(0:317): READY -> RUNNG  cb=1 rem=262
+
+==> 318 0 ts=317 BLOCK  dur=1
+T(0:318): RUNNG -> BLOCK  ib=37 rem=261
+
+==> 318 1 ts=312 RUNNG  dur=6
+T(1:318): READY -> RUNNG  cb=6 rem=221
+
+==> 323 1 ts=318 PREEMPT  dur=5
+T(1:323): RUNNG -> READY  cb=1 rem=216
+
+==> 323 3 ts=317 RUNNG  dur=6
+T(3:323): READY -> RUNNG  cb=8 rem=95
+
+==> 328 3 ts=323 PREEMPT  dur=5
+T(3:328): RUNNG -> READY  cb=3 rem=90
+
+==> 328 1 ts=323 RUNNG  dur=5
+T(1:328): READY -> RUNNG  cb=1 rem=216
+
+==> 329 2 ts=302 READY  dur=27
+T(2:329): BLOCK -> READY
+
+==> 329 1 ts=328 BLOCK  dur=1
+T(1:329): RUNNG -> BLOCK  ib=12 rem=215
+
+==> 329 3 ts=328 RUNNG  dur=1
+T(3:329): READY -> RUNNG  cb=3 rem=90
+
+==> 332 3 ts=329 BLOCK  dur=3
+T(3:332): RUNNG -> BLOCK  ib=9 rem=87
+
+==> 332 2 ts=329 RUNNG  dur=3
+T(2:332): READY -> RUNNG  cb=28 rem=173
+
+==> 337 2 ts=332 PREEMPT  dur=5
+T(2:337): RUNNG -> READY  cb=23 rem=168
+
+==> 337 2 ts=337 RUNNG  dur=0
+T(2:337): READY -> RUNNG  cb=23 rem=168
+
+==> 341 1 ts=329 READY  dur=12
+T(1:341): BLOCK -> READY
+
+==> 341 3 ts=332 READY  dur=9
+T(3:341): BLOCK -> READY
+
+==> 342 2 ts=337 PREEMPT  dur=5
+T(2:342): RUNNG -> READY  cb=18 rem=163
+
+==> 342 1 ts=341 RUNNG  dur=1
+T(1:342): READY -> RUNNG  cb=30 rem=215
+
+==> 347 1 ts=342 PREEMPT  dur=5
+T(1:347): RUNNG -> READY  cb=25 rem=210
+
+==> 347 3 ts=341 RUNNG  dur=6
+T(3:347): READY -> RUNNG  cb=3 rem=87
+
+==> 350 3 ts=347 BLOCK  dur=3
+T(3:350): RUNNG -> BLOCK  ib=1 rem=84
+
+==> 350 2 ts=342 RUNNG  dur=8
+T(2:350): READY -> RUNNG  cb=18 rem=163
+
+==> 351 3 ts=350 READY  dur=1
+T(3:351): BLOCK -> READY
+
+==> 355 0 ts=318 READY  dur=37
+T(0:355): BLOCK -> READY
+
+==> 355 2 ts=350 PREEMPT  dur=5
+T(2:355): RUNNG -> READY  cb=13 rem=158
+
+==> 355 1 ts=347 RUNNG  dur=8
+T(1:355): READY -> RUNNG  cb=25 rem=210
+
+==> 360 1 ts=355 PREEMPT  dur=5
+T(1:360): RUNNG -> READY  cb=20 rem=205
+
+==> 360 3 ts=351 RUNNG  dur=9
+T(3:360): READY -> RUNNG  cb=3 rem=84
+
+==> 363 3 ts=360 BLOCK  dur=3
+T(3:363): RUNNG -> BLOCK  ib=4 rem=81
+
+==> 363 0 ts=355 RUNNG  dur=8
+T(0:363): READY -> RUNNG  cb=18 rem=261
+
+==> 367 3 ts=363 READY  dur=4
+T(3:367): BLOCK -> READY
+
+==> 368 0 ts=363 PREEMPT  dur=5
+T(0:368): RUNNG -> READY  cb=13 rem=256
+
+==> 368 2 ts=355 RUNNG  dur=13
+T(2:368): READY -> RUNNG  cb=13 rem=158
+
+==> 373 2 ts=368 PREEMPT  dur=5
+T(2:373): RUNNG -> READY  cb=8 rem=153
+
+==> 373 1 ts=360 RUNNG  dur=13
+T(1:373): READY -> RUNNG  cb=20 rem=205
+
+==> 378 1 ts=373 PREEMPT  dur=5
+T(1:378): RUNNG -> READY  cb=15 rem=200
+
+==> 378 3 ts=367 RUNNG  dur=11
+T(3:378): READY -> RUNNG  cb=16 rem=81
+
+==> 383 3 ts=378 PREEMPT  dur=5
+T(3:383): RUNNG -> READY  cb=11 rem=76
+
+==> 383 0 ts=368 RUNNG  dur=15
+T(0:383): READY -> RUNNG  cb=13 rem=256
+
+==> 388 0 ts=383 PREEMPT  dur=5
+T(0:388): RUNNG -> READY  cb=8 rem=251
+
+==> 388 2 ts=373 RUNNG  dur=15
+T(2:388): READY -> RUNNG  cb=8 rem=153
+
+==> 393 2 ts=388 PREEMPT  dur=5
+T(2:393): RUNNG -> READY  cb=3 rem=148
+
+==> 393 1 ts=378 RUNNG  dur=15
+T(1:393): READY -> RUNNG  cb=15 rem=200
+
+==> 398 1 ts=393 PREEMPT  dur=5
+T(1:398): RUNNG -> READY  cb=10 rem=195
+
+==> 398 3 ts=383 RUNNG  dur=15
+T(3:398): READY -> RUNNG  cb=11 rem=76
+
+==> 403 3 ts=398 PREEMPT  dur=5
+T(3:403): RUNNG -> READY  cb=6 rem=71
+
+==> 403 0 ts=388 RUNNG  dur=15
+T(0:403): READY -> RUNNG  cb=8 rem=251
+
+==> 408 0 ts=403 PREEMPT  dur=5
+T(0:408): RUNNG -> READY  cb=3 rem=246
+
+==> 408 2 ts=393 RUNNG  dur=15
+T(2:408): READY -> RUNNG  cb=3 rem=148
+
+==> 411 2 ts=408 BLOCK  dur=3
+T(2:411): RUNNG -> BLOCK  ib=30 rem=145
+
+==> 411 1 ts=398 RUNNG  dur=13
+T(1:411): READY -> RUNNG  cb=10 rem=195
+
+==> 416 1 ts=411 PREEMPT  dur=5
+T(1:416): RUNNG -> READY  cb=5 rem=190
+
+==> 416 3 ts=403 RUNNG  dur=13
+T(3:416): READY -> RUNNG  cb=6 rem=71
+
+==> 421 3 ts=416 PREEMPT  dur=5
+T(3:421): RUNNG -> READY  cb=1 rem=66
+
+==> 421 0 ts=408 RUNNG  dur=13
+T(0:421): READY -> RUNNG  cb=3 rem=246
+
+==> 424 0 ts=421 BLOCK  dur=3
+T(0:424): RUNNG -> BLOCK  ib=3 rem=243
+
+==> 424 1 ts=416 RUNNG  dur=8
+T(1:424): READY -> RUNNG  cb=5 rem=190
+
+==> 427 0 ts=424 READY  dur=3
+T(0:427): BLOCK -> READY
+
+==> 429 1 ts=424 BLOCK  dur=5
+T(1:429): RUNNG -> BLOCK  ib=23 rem=185
+
+==> 429 3 ts=421 RUNNG  dur=8
+T(3:429): READY -> RUNNG  cb=1 rem=66
+
+==> 430 3 ts=429 BLOCK  dur=1
+T(3:430): RUNNG -> BLOCK  ib=9 rem=65
+
+==> 430 0 ts=427 RUNNG  dur=3
+T(0:430): READY -> RUNNG  cb=20 rem=243
+
+==> 435 0 ts=430 PREEMPT  dur=5
+T(0:435): RUNNG -> READY  cb=15 rem=238
+
+==> 435 0 ts=435 RUNNG  dur=0
+T(0:435): READY -> RUNNG  cb=15 rem=238
+
+==> 439 3 ts=430 READY  dur=9
+T(3:439): BLOCK -> READY
+
+==> 440 0 ts=435 PREEMPT  dur=5
+T(0:440): RUNNG -> READY  cb=10 rem=233
+
+==> 440 3 ts=439 RUNNG  dur=1
+T(3:440): READY -> RUNNG  cb=8 rem=65
+
+==> 441 2 ts=411 READY  dur=30
+T(2:441): BLOCK -> READY
+
+==> 445 3 ts=440 PREEMPT  dur=5
+T(3:445): RUNNG -> READY  cb=3 rem=60
+
+==> 445 0 ts=440 RUNNG  dur=5
+T(0:445): READY -> RUNNG  cb=10 rem=233
+
+==> 450 0 ts=445 PREEMPT  dur=5
+T(0:450): RUNNG -> READY  cb=5 rem=228
+
+==> 450 2 ts=441 RUNNG  dur=9
+T(2:450): READY -> RUNNG  cb=14 rem=145
+
+==> 452 1 ts=429 READY  dur=23
+T(1:452): BLOCK -> READY
+
+==> 455 2 ts=450 PREEMPT  dur=5
+T(2:455): RUNNG -> READY  cb=9 rem=140
+
+==> 455 3 ts=445 RUNNG  dur=10
+T(3:455): READY -> RUNNG  cb=3 rem=60
+
+==> 458 3 ts=455 BLOCK  dur=3
+T(3:458): RUNNG -> BLOCK  ib=7 rem=57
+
+==> 458 0 ts=450 RUNNG  dur=8
+T(0:458): READY -> RUNNG  cb=5 rem=228
+
+==> 463 0 ts=458 BLOCK  dur=5
+T(0:463): RUNNG -> BLOCK  ib=12 rem=223
+
+==> 463 1 ts=452 RUNNG  dur=11
+T(1:463): READY -> RUNNG  cb=3 rem=185
+
+==> 465 3 ts=458 READY  dur=7
+T(3:465): BLOCK -> READY
+
+==> 466 1 ts=463 BLOCK  dur=3
+T(1:466): RUNNG -> BLOCK  ib=30 rem=182
+
+==> 466 2 ts=455 RUNNG  dur=11
+T(2:466): READY -> RUNNG  cb=9 rem=140
+
+==> 471 2 ts=466 PREEMPT  dur=5
+T(2:471): RUNNG -> READY  cb=4 rem=135
+
+==> 471 3 ts=465 RUNNG  dur=6
+T(3:471): READY -> RUNNG  cb=14 rem=57
+
+==> 475 0 ts=463 READY  dur=12
+T(0:475): BLOCK -> READY
+
+==> 476 3 ts=471 PREEMPT  dur=5
+T(3:476): RUNNG -> READY  cb=9 rem=52
+
+==> 476 2 ts=471 RUNNG  dur=5
+T(2:476): READY -> RUNNG  cb=4 rem=135
+
+==> 480 2 ts=476 BLOCK  dur=4
+T(2:480): RUNNG -> BLOCK  ib=22 rem=131
+
+==> 480 0 ts=475 RUNNG  dur=5
+T(0:480): READY -> RUNNG  cb=20 rem=223
+
+==> 485 0 ts=480 PREEMPT  dur=5
+T(0:485): RUNNG -> READY  cb=15 rem=218
+
+==> 485 3 ts=476 RUNNG  dur=9
+T(3:485): READY -> RUNNG  cb=9 rem=52
+
+==> 490 3 ts=485 PREEMPT  dur=5
+T(3:490): RUNNG -> READY  cb=4 rem=47
+
+==> 490 0 ts=485 RUNNG  dur=5
+T(0:490): READY -> RUNNG  cb=15 rem=218
+
+==> 495 0 ts=490 PREEMPT  dur=5
+T(0:495): RUNNG -> READY  cb=10 rem=213
+
+==> 495 3 ts=490 RUNNG  dur=5
+T(3:495): READY -> RUNNG  cb=4 rem=47
+
+==> 496 1 ts=466 READY  dur=30
+T(1:496): BLOCK -> READY
+
+==> 499 3 ts=495 BLOCK  dur=4
+T(3:499): RUNNG -> BLOCK  ib=5 rem=43
+
+==> 499 0 ts=495 RUNNG  dur=4
+T(0:499): READY -> RUNNG  cb=10 rem=213
+
+==> 502 2 ts=480 READY  dur=22
+T(2:502): BLOCK -> READY
+
+==> 504 3 ts=499 READY  dur=5
+T(3:504): BLOCK -> READY
+
+==> 504 0 ts=499 PREEMPT  dur=5
+T(0:504): RUNNG -> READY  cb=5 rem=208
+
+==> 504 1 ts=496 RUNNG  dur=8
+T(1:504): READY -> RUNNG  cb=18 rem=182
+
+==> 509 1 ts=504 PREEMPT  dur=5
+T(1:509): RUNNG -> READY  cb=13 rem=177
+
+==> 509 2 ts=502 RUNNG  dur=7
+T(2:509): READY -> RUNNG  cb=9 rem=131
+
+==> 514 2 ts=509 PREEMPT  dur=5
+T(2:514): RUNNG -> READY  cb=4 rem=126
+
+==> 514 3 ts=504 RUNNG  dur=10
+T(3:514): READY -> RUNNG  cb=5 rem=43
+
+==> 519 3 ts=514 BLOCK  dur=5
+T(3:519): RUNNG -> BLOCK  ib=6 rem=38
+
+==> 519 0 ts=504 RUNNG  dur=15
+T(0:519): READY -> RUNNG  cb=5 rem=208
+
+==> 524 0 ts=519 BLOCK  dur=5
+T(0:524): RUNNG -> BLOCK  ib=21 rem=203
+
+==> 524 1 ts=509 RUNNG  dur=15
+T(1:524): READY -> RUNNG  cb=13 rem=177
+
+==> 525 3 ts=519 READY  dur=6
+T(3:525): BLOCK -> READY
+
+==> 529 1 ts=524 PREEMPT  dur=5
+T(1:529): RUNNG -> READY  cb=8 rem=172
+
+==> 529 2 ts=514 RUNNG  dur=15
+T(2:529): READY -> RUNNG  cb=4 rem=126
+
+==> 533 2 ts=529 BLOCK  dur=4
+T(2:533): RUNNG -> BLOCK  ib=14 rem=122
+
+==> 533 3 ts=525 RUNNG  dur=8
+T(3:533): READY -> RUNNG  cb=7 rem=38
+
+==> 538 3 ts=533 PREEMPT  dur=5
+T(3:538): RUNNG -> READY  cb=2 rem=33
+
+==> 538 1 ts=529 RUNNG  dur=9
+T(1:538): READY -> RUNNG  cb=8 rem=172
+
+==> 543 1 ts=538 PREEMPT  dur=5
+T(1:543): RUNNG -> READY  cb=3 rem=167
+
+==> 543 3 ts=538 RUNNG  dur=5
+T(3:543): READY -> RUNNG  cb=2 rem=33
+
+==> 545 0 ts=524 READY  dur=21
+T(0:545): BLOCK -> READY
+
+==> 545 3 ts=543 BLOCK  dur=2
+T(3:545): RUNNG -> BLOCK  ib=2 rem=31
+
+==> 545 1 ts=543 RUNNG  dur=2
+T(1:545): READY -> RUNNG  cb=3 rem=167
+
+==> 547 2 ts=533 READY  dur=14
+T(2:547): BLOCK -> READY
+
+==> 547 3 ts=545 READY  dur=2
+T(3:547): BLOCK -> READY
+
+==> 548 1 ts=545 BLOCK  dur=3
+T(1:548): RUNNG -> BLOCK  ib=21 rem=164
+
+==> 548 0 ts=545 RUNNG  dur=3
+T(0:548): READY -> RUNNG  cb=7 rem=203
+
+==> 553 0 ts=548 PREEMPT  dur=5
+T(0:553): RUNNG -> READY  cb=2 rem=198
+
+==> 553 2 ts=547 RUNNG  dur=6
+T(2:553): READY -> RUNNG  cb=4 rem=122
+
+==> 557 2 ts=553 BLOCK  dur=4
+T(2:557): RUNNG -> BLOCK  ib=13 rem=118
+
+==> 557 3 ts=547 RUNNG  dur=10
+T(3:557): READY -> RUNNG  cb=11 rem=31
+
+==> 562 3 ts=557 PREEMPT  dur=5
+T(3:562): RUNNG -> READY  cb=6 rem=26
+
+==> 562 0 ts=553 RUNNG  dur=9
+T(0:562): READY -> RUNNG  cb=2 rem=198
+
+==> 564 0 ts=562 BLOCK  dur=2
+T(0:564): RUNNG -> BLOCK  ib=47 rem=196
+
+==> 564 3 ts=562 RUNNG  dur=2
+T(3:564): READY -> RUNNG  cb=6 rem=26
+
+==> 569 1 ts=548 READY  dur=21
+T(1:569): BLOCK -> READY
+
+==> 569 3 ts=564 PREEMPT  dur=5
+T(3:569): RUNNG -> READY  cb=1 rem=21
+
+==> 569 1 ts=569 RUNNG  dur=0
+T(1:569): READY -> RUNNG  cb=2 rem=164
+
+==> 570 2 ts=557 READY  dur=13
+T(2:570): BLOCK -> READY
+
+==> 571 1 ts=569 BLOCK  dur=2
+T(1:571): RUNNG -> BLOCK  ib=26 rem=162
+
+==> 571 3 ts=569 RUNNG  dur=2
+T(3:571): READY -> RUNNG  cb=1 rem=21
+
+==> 572 3 ts=571 BLOCK  dur=1
+T(3:572): RUNNG -> BLOCK  ib=6 rem=20
+
+==> 572 2 ts=570 RUNNG  dur=2
+T(2:572): READY -> RUNNG  cb=15 rem=118
+
+==> 577 2 ts=572 PREEMPT  dur=5
+T(2:577): RUNNG -> READY  cb=10 rem=113
+
+==> 577 2 ts=577 RUNNG  dur=0
+T(2:577): READY -> RUNNG  cb=10 rem=113
+
+==> 578 3 ts=572 READY  dur=6
+T(3:578): BLOCK -> READY
+
+==> 582 2 ts=577 PREEMPT  dur=5
+T(2:582): RUNNG -> READY  cb=5 rem=108
+
+==> 582 3 ts=578 RUNNG  dur=4
+T(3:582): READY -> RUNNG  cb=8 rem=20
+
+==> 587 3 ts=582 PREEMPT  dur=5
+T(3:587): RUNNG -> READY  cb=3 rem=15
+
+==> 587 2 ts=582 RUNNG  dur=5
+T(2:587): READY -> RUNNG  cb=5 rem=108
+
+==> 592 2 ts=587 BLOCK  dur=5
+T(2:592): RUNNG -> BLOCK  ib=37 rem=103
+
+==> 592 3 ts=587 RUNNG  dur=5
+T(3:592): READY -> RUNNG  cb=3 rem=15
+
+==> 595 3 ts=592 BLOCK  dur=3
+T(3:595): RUNNG -> BLOCK  ib=6 rem=12
+
+==> 597 1 ts=571 READY  dur=26
+T(1:597): BLOCK -> READY
+
+==> 597 1 ts=597 RUNNG  dur=0
+T(1:597): READY -> RUNNG  cb=7 rem=162
+
+==> 601 3 ts=595 READY  dur=6
+T(3:601): BLOCK -> READY
+
+==> 602 1 ts=597 PREEMPT  dur=5
+T(1:602): RUNNG -> READY  cb=2 rem=157
+
+==> 602 3 ts=601 RUNNG  dur=1
+T(3:602): READY -> RUNNG  cb=10 rem=12
+
+==> 607 3 ts=602 PREEMPT  dur=5
+T(3:607): RUNNG -> READY  cb=5 rem=7
+
+==> 607 1 ts=602 RUNNG  dur=5
+T(1:607): READY -> RUNNG  cb=2 rem=157
+
+==> 609 1 ts=607 BLOCK  dur=2
+T(1:609): RUNNG -> BLOCK  ib=34 rem=155
+
+==> 609 3 ts=607 RUNNG  dur=2
+T(3:609): READY -> RUNNG  cb=5 rem=7
+
+==> 611 0 ts=564 READY  dur=47
+T(0:611): BLOCK -> READY
+
+==> 614 3 ts=609 BLOCK  dur=5
+T(3:614): RUNNG -> BLOCK  ib=8 rem=2
+
+==> 614 0 ts=611 RUNNG  dur=3
+T(0:614): READY -> RUNNG  cb=25 rem=196
+
+==> 619 0 ts=614 PREEMPT  dur=5
+T(0:619): RUNNG -> READY  cb=20 rem=191
+
+==> 619 0 ts=619 RUNNG  dur=0
+T(0:619): READY -> RUNNG  cb=20 rem=191
+
+==> 622 3 ts=614 READY  dur=8
+T(3:622): BLOCK -> READY
+
+==> 624 0 ts=619 PREEMPT  dur=5
+T(0:624): RUNNG -> READY  cb=15 rem=186
+
+==> 624 3 ts=622 RUNNG  dur=2
+T(3:624): READY -> RUNNG  cb=2 rem=2
+
+==> 626 3 ts=624 BLOCK  dur=2
+==> T(3): Done
+
+==> 626 0 ts=624 RUNNG  dur=2
+T(0:626): READY -> RUNNG  cb=15 rem=186
+
+==> 629 2 ts=592 READY  dur=37
+T(2:629): BLOCK -> READY
+
+==> 631 0 ts=626 PREEMPT  dur=5
+T(0:631): RUNNG -> READY  cb=10 rem=181
+
+==> 631 2 ts=629 RUNNG  dur=2
+T(2:631): READY -> RUNNG  cb=13 rem=103
+
+==> 636 2 ts=631 PREEMPT  dur=5
+T(2:636): RUNNG -> READY  cb=8 rem=98
+
+==> 636 0 ts=631 RUNNG  dur=5
+T(0:636): READY -> RUNNG  cb=10 rem=181
+
+==> 641 0 ts=636 PREEMPT  dur=5
+T(0:641): RUNNG -> READY  cb=5 rem=176
+
+==> 641 2 ts=636 RUNNG  dur=5
+T(2:641): READY -> RUNNG  cb=8 rem=98
+
+==> 643 1 ts=609 READY  dur=34
+T(1:643): BLOCK -> READY
+
+==> 646 2 ts=641 PREEMPT  dur=5
+T(2:646): RUNNG -> READY  cb=3 rem=93
+
+==> 646 0 ts=641 RUNNG  dur=5
+T(0:646): READY -> RUNNG  cb=5 rem=176
+
+==> 651 0 ts=646 BLOCK  dur=5
+T(0:651): RUNNG -> BLOCK  ib=46 rem=171
+
+==> 651 1 ts=643 RUNNG  dur=8
+T(1:651): READY -> RUNNG  cb=15 rem=155
+
+==> 656 1 ts=651 PREEMPT  dur=5
+T(1:656): RUNNG -> READY  cb=10 rem=150
+
+==> 656 2 ts=646 RUNNG  dur=10
+T(2:656): READY -> RUNNG  cb=3 rem=93
+
+==> 659 2 ts=656 BLOCK  dur=3
+T(2:659): RUNNG -> BLOCK  ib=18 rem=90
+
+==> 659 1 ts=656 RUNNG  dur=3
+T(1:659): READY -> RUNNG  cb=10 rem=150
+
+==> 664 1 ts=659 PREEMPT  dur=5
+T(1:664): RUNNG -> READY  cb=5 rem=145
+
+==> 664 1 ts=664 RUNNG  dur=0
+T(1:664): READY -> RUNNG  cb=5 rem=145
+
+==> 669 1 ts=664 BLOCK  dur=5
+T(1:669): RUNNG -> BLOCK  ib=35 rem=140
+
+==> 677 2 ts=659 READY  dur=18
+T(2:677): BLOCK -> READY
+
+==> 677 2 ts=677 RUNNG  dur=0
+T(2:677): READY -> RUNNG  cb=15 rem=90
+
+==> 682 2 ts=677 PREEMPT  dur=5
+T(2:682): RUNNG -> READY  cb=10 rem=85
+
+==> 682 2 ts=682 RUNNG  dur=0
+T(2:682): READY -> RUNNG  cb=10 rem=85
+
+==> 687 2 ts=682 PREEMPT  dur=5
+T(2:687): RUNNG -> READY  cb=5 rem=80
+
+==> 687 2 ts=687 RUNNG  dur=0
+T(2:687): READY -> RUNNG  cb=5 rem=80
+
+==> 692 2 ts=687 BLOCK  dur=5
+T(2:692): RUNNG -> BLOCK  ib=44 rem=75
+
+==> 697 0 ts=651 READY  dur=46
+T(0:697): BLOCK -> READY
+
+==> 697 0 ts=697 RUNNG  dur=0
+T(0:697): READY -> RUNNG  cb=1 rem=171
+
+==> 698 0 ts=697 BLOCK  dur=1
+T(0:698): RUNNG -> BLOCK  ib=38 rem=170
+
+==> 704 1 ts=669 READY  dur=35
+T(1:704): BLOCK -> READY
+
+==> 704 1 ts=704 RUNNG  dur=0
+T(1:704): READY -> RUNNG  cb=9 rem=140
+
+==> 709 1 ts=704 PREEMPT  dur=5
+T(1:709): RUNNG -> READY  cb=4 rem=135
+
+==> 709 1 ts=709 RUNNG  dur=0
+T(1:709): READY -> RUNNG  cb=4 rem=135
+
+==> 713 1 ts=709 BLOCK  dur=4
+T(1:713): RUNNG -> BLOCK  ib=37 rem=131
+
+==> 736 2 ts=692 READY  dur=44
+T(2:736): BLOCK -> READY
+   delay scheduler
+
+==> 736 0 ts=698 READY  dur=38
+T(0:736): BLOCK -> READY
+
+==> 736 2 ts=736 RUNNG  dur=0
+T(2:736): READY -> RUNNG  cb=9 rem=75
+
+==> 741 2 ts=736 PREEMPT  dur=5
+T(2:741): RUNNG -> READY  cb=4 rem=70
+
+==> 741 0 ts=736 RUNNG  dur=5
+T(0:741): READY -> RUNNG  cb=39 rem=170
+
+==> 746 0 ts=741 PREEMPT  dur=5
+T(0:746): RUNNG -> READY  cb=34 rem=165
+
+==> 746 2 ts=741 RUNNG  dur=5
+T(2:746): READY -> RUNNG  cb=4 rem=70
+
+==> 750 1 ts=713 READY  dur=37
+T(1:750): BLOCK -> READY
+
+==> 750 2 ts=746 BLOCK  dur=4
+T(2:750): RUNNG -> BLOCK  ib=35 rem=66
+
+==> 750 0 ts=746 RUNNG  dur=4
+T(0:750): READY -> RUNNG  cb=34 rem=165
+
+==> 755 0 ts=750 PREEMPT  dur=5
+T(0:755): RUNNG -> READY  cb=29 rem=160
+
+==> 755 1 ts=750 RUNNG  dur=5
+T(1:755): READY -> RUNNG  cb=4 rem=131
+
+==> 759 1 ts=755 BLOCK  dur=4
+T(1:759): RUNNG -> BLOCK  ib=12 rem=127
+
+==> 759 0 ts=755 RUNNG  dur=4
+T(0:759): READY -> RUNNG  cb=29 rem=160
+
+==> 764 0 ts=759 PREEMPT  dur=5
+T(0:764): RUNNG -> READY  cb=24 rem=155
+
+==> 764 0 ts=764 RUNNG  dur=0
+T(0:764): READY -> RUNNG  cb=24 rem=155
+
+==> 769 0 ts=764 PREEMPT  dur=5
+T(0:769): RUNNG -> READY  cb=19 rem=150
+
+==> 769 0 ts=769 RUNNG  dur=0
+T(0:769): READY -> RUNNG  cb=19 rem=150
+
+==> 771 1 ts=759 READY  dur=12
+T(1:771): BLOCK -> READY
+
+==> 774 0 ts=769 PREEMPT  dur=5
+T(0:774): RUNNG -> READY  cb=14 rem=145
+
+==> 774 1 ts=771 RUNNG  dur=3
+T(1:774): READY -> RUNNG  cb=35 rem=127
+
+==> 779 1 ts=774 PREEMPT  dur=5
+T(1:779): RUNNG -> READY  cb=30 rem=122
+
+==> 779 0 ts=774 RUNNG  dur=5
+T(0:779): READY -> RUNNG  cb=14 rem=145
+
+==> 784 0 ts=779 PREEMPT  dur=5
+T(0:784): RUNNG -> READY  cb=9 rem=140
+
+==> 784 1 ts=779 RUNNG  dur=5
+T(1:784): READY -> RUNNG  cb=30 rem=122
+
+==> 785 2 ts=750 READY  dur=35
+T(2:785): BLOCK -> READY
+
+==> 789 1 ts=784 PREEMPT  dur=5
+T(1:789): RUNNG -> READY  cb=25 rem=117
+
+==> 789 0 ts=784 RUNNG  dur=5
+T(0:789): READY -> RUNNG  cb=9 rem=140
+
+==> 794 0 ts=789 PREEMPT  dur=5
+T(0:794): RUNNG -> READY  cb=4 rem=135
+
+==> 794 2 ts=785 RUNNG  dur=9
+T(2:794): READY -> RUNNG  cb=20 rem=66
+
+==> 799 2 ts=794 PREEMPT  dur=5
+T(2:799): RUNNG -> READY  cb=15 rem=61
+
+==> 799 1 ts=789 RUNNG  dur=10
+T(1:799): READY -> RUNNG  cb=25 rem=117
+
+==> 804 1 ts=799 PREEMPT  dur=5
+T(1:804): RUNNG -> READY  cb=20 rem=112
+
+==> 804 0 ts=794 RUNNG  dur=10
+T(0:804): READY -> RUNNG  cb=4 rem=135
+
+==> 808 0 ts=804 BLOCK  dur=4
+T(0:808): RUNNG -> BLOCK  ib=33 rem=131
+
+==> 808 2 ts=799 RUNNG  dur=9
+T(2:808): READY -> RUNNG  cb=15 rem=61
+
+==> 813 2 ts=808 PREEMPT  dur=5
+T(2:813): RUNNG -> READY  cb=10 rem=56
+
+==> 813 1 ts=804 RUNNG  dur=9
+T(1:813): READY -> RUNNG  cb=20 rem=112
+
+==> 818 1 ts=813 PREEMPT  dur=5
+T(1:818): RUNNG -> READY  cb=15 rem=107
+
+==> 818 2 ts=813 RUNNG  dur=5
+T(2:818): READY -> RUNNG  cb=10 rem=56
+
+==> 823 2 ts=818 PREEMPT  dur=5
+T(2:823): RUNNG -> READY  cb=5 rem=51
+
+==> 823 1 ts=818 RUNNG  dur=5
+T(1:823): READY -> RUNNG  cb=15 rem=107
+
+==> 828 1 ts=823 PREEMPT  dur=5
+T(1:828): RUNNG -> READY  cb=10 rem=102
+
+==> 828 2 ts=823 RUNNG  dur=5
+T(2:828): READY -> RUNNG  cb=5 rem=51
+
+==> 833 2 ts=828 BLOCK  dur=5
+T(2:833): RUNNG -> BLOCK  ib=11 rem=46
+
+==> 833 1 ts=828 RUNNG  dur=5
+T(1:833): READY -> RUNNG  cb=10 rem=102
+
+==> 838 1 ts=833 PREEMPT  dur=5
+T(1:838): RUNNG -> READY  cb=5 rem=97
+
+==> 838 1 ts=838 RUNNG  dur=0
+T(1:838): READY -> RUNNG  cb=5 rem=97
+
+==> 841 0 ts=808 READY  dur=33
+T(0:841): BLOCK -> READY
+
+==> 843 1 ts=838 BLOCK  dur=5
+T(1:843): RUNNG -> BLOCK  ib=37 rem=92
+
+==> 843 0 ts=841 RUNNG  dur=2
+T(0:843): READY -> RUNNG  cb=19 rem=131
+
+==> 844 2 ts=833 READY  dur=11
+T(2:844): BLOCK -> READY
+
+==> 848 0 ts=843 PREEMPT  dur=5
+T(0:848): RUNNG -> READY  cb=14 rem=126
+
+==> 848 2 ts=844 RUNNG  dur=4
+T(2:848): READY -> RUNNG  cb=20 rem=46
+
+==> 853 2 ts=848 PREEMPT  dur=5
+T(2:853): RUNNG -> READY  cb=15 rem=41
+
+==> 853 0 ts=848 RUNNG  dur=5
+T(0:853): READY -> RUNNG  cb=14 rem=126
+
+==> 858 0 ts=853 PREEMPT  dur=5
+T(0:858): RUNNG -> READY  cb=9 rem=121
+
+==> 858 2 ts=853 RUNNG  dur=5
+T(2:858): READY -> RUNNG  cb=15 rem=41
+
+==> 863 2 ts=858 PREEMPT  dur=5
+T(2:863): RUNNG -> READY  cb=10 rem=36
+
+==> 863 0 ts=858 RUNNG  dur=5
+T(0:863): READY -> RUNNG  cb=9 rem=121
+
+==> 868 0 ts=863 PREEMPT  dur=5
+T(0:868): RUNNG -> READY  cb=4 rem=116
+
+==> 868 2 ts=863 RUNNG  dur=5
+T(2:868): READY -> RUNNG  cb=10 rem=36
+
+==> 873 2 ts=868 PREEMPT  dur=5
+T(2:873): RUNNG -> READY  cb=5 rem=31
+
+==> 873 0 ts=868 RUNNG  dur=5
+T(0:873): READY -> RUNNG  cb=4 rem=116
+
+==> 877 0 ts=873 BLOCK  dur=4
+T(0:877): RUNNG -> BLOCK  ib=13 rem=112
+
+==> 877 2 ts=873 RUNNG  dur=4
+T(2:877): READY -> RUNNG  cb=5 rem=31
+
+==> 880 1 ts=843 READY  dur=37
+T(1:880): BLOCK -> READY
+
+==> 882 2 ts=877 BLOCK  dur=5
+T(2:882): RUNNG -> BLOCK  ib=27 rem=26
+
+==> 882 1 ts=880 RUNNG  dur=2
+T(1:882): READY -> RUNNG  cb=27 rem=92
+
+==> 887 1 ts=882 PREEMPT  dur=5
+T(1:887): RUNNG -> READY  cb=22 rem=87
+
+==> 887 1 ts=887 RUNNG  dur=0
+T(1:887): READY -> RUNNG  cb=22 rem=87
+
+==> 890 0 ts=877 READY  dur=13
+T(0:890): BLOCK -> READY
+
+==> 892 1 ts=887 PREEMPT  dur=5
+T(1:892): RUNNG -> READY  cb=17 rem=82
+
+==> 892 0 ts=890 RUNNG  dur=2
+T(0:892): READY -> RUNNG  cb=45 rem=112
+
+==> 897 0 ts=892 PREEMPT  dur=5
+T(0:897): RUNNG -> READY  cb=40 rem=107
+
+==> 897 1 ts=892 RUNNG  dur=5
+T(1:897): READY -> RUNNG  cb=17 rem=82
+
+==> 902 1 ts=897 PREEMPT  dur=5
+T(1:902): RUNNG -> READY  cb=12 rem=77
+
+==> 902 0 ts=897 RUNNG  dur=5
+T(0:902): READY -> RUNNG  cb=40 rem=107
+
+==> 907 0 ts=902 PREEMPT  dur=5
+T(0:907): RUNNG -> READY  cb=35 rem=102
+
+==> 907 1 ts=902 RUNNG  dur=5
+T(1:907): READY -> RUNNG  cb=12 rem=77
+
+==> 909 2 ts=882 READY  dur=27
+T(2:909): BLOCK -> READY
+
+==> 912 1 ts=907 PREEMPT  dur=5
+T(1:912): RUNNG -> READY  cb=7 rem=72
+
+==> 912 0 ts=907 RUNNG  dur=5
+T(0:912): READY -> RUNNG  cb=35 rem=102
+
+==> 917 0 ts=912 PREEMPT  dur=5
+T(0:917): RUNNG -> READY  cb=30 rem=97
+
+==> 917 2 ts=909 RUNNG  dur=8
+T(2:917): READY -> RUNNG  cb=26 rem=26
+
+==> 922 2 ts=917 PREEMPT  dur=5
+T(2:922): RUNNG -> READY  cb=21 rem=21
+
+==> 922 1 ts=912 RUNNG  dur=10
+T(1:922): READY -> RUNNG  cb=7 rem=72
+
+==> 927 1 ts=922 PREEMPT  dur=5
+T(1:927): RUNNG -> READY  cb=2 rem=67
+
+==> 927 0 ts=917 RUNNG  dur=10
+T(0:927): READY -> RUNNG  cb=30 rem=97
+
+==> 932 0 ts=927 PREEMPT  dur=5
+T(0:932): RUNNG -> READY  cb=25 rem=92
+
+==> 932 2 ts=922 RUNNG  dur=10
+T(2:932): READY -> RUNNG  cb=21 rem=21
+
+==> 937 2 ts=932 PREEMPT  dur=5
+T(2:937): RUNNG -> READY  cb=16 rem=16
+
+==> 937 1 ts=927 RUNNG  dur=10
+T(1:937): READY -> RUNNG  cb=2 rem=67
+
+==> 939 1 ts=937 BLOCK  dur=2
+T(1:939): RUNNG -> BLOCK  ib=36 rem=65
+
+==> 939 0 ts=932 RUNNG  dur=7
+T(0:939): READY -> RUNNG  cb=25 rem=92
+
+==> 944 0 ts=939 PREEMPT  dur=5
+T(0:944): RUNNG -> READY  cb=20 rem=87
+
+==> 944 2 ts=937 RUNNG  dur=7
+T(2:944): READY -> RUNNG  cb=16 rem=16
+
+==> 949 2 ts=944 PREEMPT  dur=5
+T(2:949): RUNNG -> READY  cb=11 rem=11
+
+==> 949 0 ts=944 RUNNG  dur=5
+T(0:949): READY -> RUNNG  cb=20 rem=87
+
+==> 954 0 ts=949 PREEMPT  dur=5
+T(0:954): RUNNG -> READY  cb=15 rem=82
+
+==> 954 2 ts=949 RUNNG  dur=5
+T(2:954): READY -> RUNNG  cb=11 rem=11
+
+==> 959 2 ts=954 PREEMPT  dur=5
+T(2:959): RUNNG -> READY  cb=6 rem=6
+
+==> 959 0 ts=954 RUNNG  dur=5
+T(0:959): READY -> RUNNG  cb=15 rem=82
+
+==> 964 0 ts=959 PREEMPT  dur=5
+T(0:964): RUNNG -> READY  cb=10 rem=77
+
+==> 964 2 ts=959 RUNNG  dur=5
+T(2:964): READY -> RUNNG  cb=6 rem=6
+
+==> 969 2 ts=964 PREEMPT  dur=5
+T(2:969): RUNNG -> READY  cb=1 rem=1
+
+==> 969 0 ts=964 RUNNG  dur=5
+T(0:969): READY -> RUNNG  cb=10 rem=77
+
+==> 974 0 ts=969 PREEMPT  dur=5
+T(0:974): RUNNG -> READY  cb=5 rem=72
+
+==> 974 2 ts=969 RUNNG  dur=5
+T(2:974): READY -> RUNNG  cb=1 rem=1
+
+==> 975 1 ts=939 READY  dur=36
+T(1:975): BLOCK -> READY
+
+==> 975 2 ts=974 BLOCK  dur=1
+==> T(2): Done
+
+==> 975 0 ts=974 RUNNG  dur=1
+T(0:975): READY -> RUNNG  cb=5 rem=72
+
+==> 980 0 ts=975 BLOCK  dur=5
+T(0:980): RUNNG -> BLOCK  ib=21 rem=67
+
+==> 980 1 ts=975 RUNNG  dur=5
+T(1:980): READY -> RUNNG  cb=35 rem=65
+
+==> 985 1 ts=980 PREEMPT  dur=5
+T(1:985): RUNNG -> READY  cb=30 rem=60
+
+==> 985 1 ts=985 RUNNG  dur=0
+T(1:985): READY -> RUNNG  cb=30 rem=60
+
+==> 990 1 ts=985 PREEMPT  dur=5
+T(1:990): RUNNG -> READY  cb=25 rem=55
+
+==> 990 1 ts=990 RUNNG  dur=0
+T(1:990): READY -> RUNNG  cb=25 rem=55
+
+==> 995 1 ts=990 PREEMPT  dur=5
+T(1:995): RUNNG -> READY  cb=20 rem=50
+
+==> 995 1 ts=995 RUNNG  dur=0
+T(1:995): READY -> RUNNG  cb=20 rem=50
+
+==> 1000 1 ts=995 PREEMPT  dur=5
+T(1:1000): RUNNG -> READY  cb=15 rem=45
+
+==> 1000 1 ts=1000 RUNNG  dur=0
+T(1:1000): READY -> RUNNG  cb=15 rem=45
+
+==> 1001 0 ts=980 READY  dur=21
+T(0:1001): BLOCK -> READY
+
+==> 1005 1 ts=1000 PREEMPT  dur=5
+T(1:1005): RUNNG -> READY  cb=10 rem=40
+
+==> 1005 0 ts=1001 RUNNG  dur=4
+T(0:1005): READY -> RUNNG  cb=29 rem=67
+
+==> 1010 0 ts=1005 PREEMPT  dur=5
+T(0:1010): RUNNG -> READY  cb=24 rem=62
+
+==> 1010 1 ts=1005 RUNNG  dur=5
+T(1:1010): READY -> RUNNG  cb=10 rem=40
+
+==> 1015 1 ts=1010 PREEMPT  dur=5
+T(1:1015): RUNNG -> READY  cb=5 rem=35
+
+==> 1015 0 ts=1010 RUNNG  dur=5
+T(0:1015): READY -> RUNNG  cb=24 rem=62
+
+==> 1020 0 ts=1015 PREEMPT  dur=5
+T(0:1020): RUNNG -> READY  cb=19 rem=57
+
+==> 1020 1 ts=1015 RUNNG  dur=5
+T(1:1020): READY -> RUNNG  cb=5 rem=35
+
+==> 1025 1 ts=1020 BLOCK  dur=5
+T(1:1025): RUNNG -> BLOCK  ib=28 rem=30
+
+==> 1025 0 ts=1020 RUNNG  dur=5
+T(0:1025): READY -> RUNNG  cb=19 rem=57
+
+==> 1030 0 ts=1025 PREEMPT  dur=5
+T(0:1030): RUNNG -> READY  cb=14 rem=52
+
+==> 1030 0 ts=1030 RUNNG  dur=0
+T(0:1030): READY -> RUNNG  cb=14 rem=52
+
+==> 1035 0 ts=1030 PREEMPT  dur=5
+T(0:1035): RUNNG -> READY  cb=9 rem=47
+
+==> 1035 0 ts=1035 RUNNG  dur=0
+T(0:1035): READY -> RUNNG  cb=9 rem=47
+
+==> 1040 0 ts=1035 PREEMPT  dur=5
+T(0:1040): RUNNG -> READY  cb=4 rem=42
+
+==> 1040 0 ts=1040 RUNNG  dur=0
+T(0:1040): READY -> RUNNG  cb=4 rem=42
+
+==> 1044 0 ts=1040 BLOCK  dur=4
+T(0:1044): RUNNG -> BLOCK  ib=2 rem=38
+
+==> 1046 0 ts=1044 READY  dur=2
+T(0:1046): BLOCK -> READY
+
+==> 1046 0 ts=1046 RUNNG  dur=0
+T(0:1046): READY -> RUNNG  cb=38 rem=38
+
+==> 1051 0 ts=1046 PREEMPT  dur=5
+T(0:1051): RUNNG -> READY  cb=33 rem=33
+
+==> 1051 0 ts=1051 RUNNG  dur=0
+T(0:1051): READY -> RUNNG  cb=33 rem=33
+
+==> 1053 1 ts=1025 READY  dur=28
+T(1:1053): BLOCK -> READY
+
+==> 1056 0 ts=1051 PREEMPT  dur=5
+T(0:1056): RUNNG -> READY  cb=28 rem=28
+
+==> 1056 1 ts=1053 RUNNG  dur=3
+T(1:1056): READY -> RUNNG  cb=23 rem=30
+
+==> 1061 1 ts=1056 PREEMPT  dur=5
+T(1:1061): RUNNG -> READY  cb=18 rem=25
+
+==> 1061 0 ts=1056 RUNNG  dur=5
+T(0:1061): READY -> RUNNG  cb=28 rem=28
+
+==> 1066 0 ts=1061 PREEMPT  dur=5
+T(0:1066): RUNNG -> READY  cb=23 rem=23
+
+==> 1066 1 ts=1061 RUNNG  dur=5
+T(1:1066): READY -> RUNNG  cb=18 rem=25
+
+==> 1071 1 ts=1066 PREEMPT  dur=5
+T(1:1071): RUNNG -> READY  cb=13 rem=20
+
+==> 1071 0 ts=1066 RUNNG  dur=5
+T(0:1071): READY -> RUNNG  cb=23 rem=23
+
+==> 1076 0 ts=1071 PREEMPT  dur=5
+T(0:1076): RUNNG -> READY  cb=18 rem=18
+
+==> 1076 1 ts=1071 RUNNG  dur=5
+T(1:1076): READY -> RUNNG  cb=13 rem=20
+
+==> 1081 1 ts=1076 PREEMPT  dur=5
+T(1:1081): RUNNG -> READY  cb=8 rem=15
+
+==> 1081 0 ts=1076 RUNNG  dur=5
+T(0:1081): READY -> RUNNG  cb=18 rem=18
+
+==> 1086 0 ts=1081 PREEMPT  dur=5
+T(0:1086): RUNNG -> READY  cb=13 rem=13
+
+==> 1086 1 ts=1081 RUNNG  dur=5
+T(1:1086): READY -> RUNNG  cb=8 rem=15
+
+==> 1091 1 ts=1086 PREEMPT  dur=5
+T(1:1091): RUNNG -> READY  cb=3 rem=10
+
+==> 1091 0 ts=1086 RUNNG  dur=5
+T(0:1091): READY -> RUNNG  cb=13 rem=13
+
+==> 1096 0 ts=1091 PREEMPT  dur=5
+T(0:1096): RUNNG -> READY  cb=8 rem=8
+
+==> 1096 1 ts=1091 RUNNG  dur=5
+T(1:1096): READY -> RUNNG  cb=3 rem=10
+
+==> 1099 1 ts=1096 BLOCK  dur=3
+T(1:1099): RUNNG -> BLOCK  ib=38 rem=7
+
+==> 1099 0 ts=1096 RUNNG  dur=3
+T(0:1099): READY -> RUNNG  cb=8 rem=8
+
+==> 1104 0 ts=1099 PREEMPT  dur=5
+T(0:1104): RUNNG -> READY  cb=3 rem=3
+
+==> 1104 0 ts=1104 RUNNG  dur=0
+T(0:1104): READY -> RUNNG  cb=3 rem=3
+
+==> 1107 0 ts=1104 BLOCK  dur=3
+==> T(0): Done
+
+==> 1137 1 ts=1099 READY  dur=38
+T(1:1137): BLOCK -> READY
+
+==> 1137 1 ts=1137 RUNNG  dur=0
+T(1:1137): READY -> RUNNG  cb=7 rem=7
+
+==> 1142 1 ts=1137 PREEMPT  dur=5
+T(1:1142): RUNNG -> READY  cb=2 rem=2
+
+==> 1142 1 ts=1142 RUNNG  dur=0
+T(1:1142): READY -> RUNNG  cb=2 rem=2
+
+==> 1144 1 ts=1142 BLOCK  dur=2
+==> T(1): Done
+RR 5
+0000:    0  400   50   50 | 1107 1107  369  338
+0001:  100  300   40   40 | 1144 1044  425  319
+0002:  200  200   30   50 |  975  775  306  269
+0003:  300  100   20   10 |  626  326   63  163
+SUM: 1144 87.41 66.61 813.00 272.25 0.350

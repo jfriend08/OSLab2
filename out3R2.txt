@@ -791,7 +791,7 @@ T(0:317): BLOCK -> READY
 ==> 317 0 ts=317 RUNNG  dur=0
 T(0:317): READY -> RUNNG  cb=2 rem=2
 
-==> 319 0 ts=317 PREEMPT  dur=2
+==> 319 0 ts=317 BLOCK  dur=2
 ==> T(0): Done
 
 ==> 1000 3 ts=1000 READY  dur=0
