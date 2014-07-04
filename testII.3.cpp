@@ -25,6 +25,7 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	trying to do RR, but dont know why it entered donP at line 552
 --	almost there for input3R2, but have some issue for last steps
 --	input3R2 looks good now
+--	tested R2, R5, R20, and all steps look good. the the report for Ib still need to improve
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -150,7 +151,8 @@ public:
 	void doneP(int &cputime, int vflag, int notfinish){
 		dur=Ts-Tg; 
 		if (vflag==1){
-			cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			
+			if (nextState=="PREEMPT"){cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< "BLOCK"<<"  "<<"dur="<<dur<<endl;	}
+			else{cout<<"==> "<<Ts<<" "<<PID<<" ts="<<Tg<<" "<< nextState<<"  "<<"dur="<<dur<<endl;			}
 			if(notfinish==1){cout<<"==> T("<<PID<<"): Done"<<endl;			}
 			else if (notfinish==0){cout<<"==> T("<<PID<<"): Done"<<endl;				}			
 		}
@@ -496,7 +498,7 @@ public:
 			IOruntime=findLongIb(blockQ);			
 			tmpIOruntime=findLongEvent(blockQ);			
 		}
-		else if ((tmpIOruntime<CPUtime)&&(blockQ.size()>0)){						
+		else if ((tmpIOruntime<=CPUtime)&&(blockQ.size()>0)){						
 			if(BlockEmptyTag==1){
 				double longest=findLongEvent(blockQ);
 				double longest_Ib=findLongEventIb(blockQ);				
@@ -542,7 +544,8 @@ public:
 		// 	if(tmpS_val-CPUtime>RRval)PREEMPT_Flag=1;
 		// }
 		if (!runQ.empty()){
-			if(tmpS_val-runQ.top().Ts>RRval){PREEMPT_Flag=1;runQ_Flag=0;}
+			if(tmpS_val-runQ.top().Ts>RRval){PREEMPT_Flag=1;}
+			if(runQ.top().remain<RRval){PREEMPT_Flag=0;}
 		}
 		// if((tmpS_val-CPUtime>RRval)&&(!runQ.empty())){
 		// 	PREEMPT_Flag=1;
@@ -765,10 +768,6 @@ int main(int argc, char *argv[]){
 	else if (svalue=="S"){cout<<"SJF"<<endl;}
 	else if (svalue=="R"){cout<<"RR "<<RRval<<endl;}
 	q.printReport();
-
-
-
-
 
 
 
