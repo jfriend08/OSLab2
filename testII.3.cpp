@@ -26,6 +26,8 @@ Usage: ./test [-v] -s<schedspec> inputfile randfile
 --	almost there for input3R2, but have some issue for last steps
 --	input3R2 looks good now
 --	tested R2, R5, R20, and all steps look good. the the report for Ib still need to improve
+--	solved CPU utiliztoin issue, but still have some IO utilization issue for at least out1R20, out1R5
+--	IO utilization issue solved
 
 Todo:
 --	define child classs, so it can run diff scheduler
@@ -498,6 +500,7 @@ public:
 		if ((tmpIOruntime==0)&&(blockQ.size()>0)){
 			IOruntime=findLongIb(blockQ);			
 			tmpIOruntime=findLongEvent(blockQ);			
+			BlockEmptyTag=0;
 		}
 		else if ((tmpIOruntime<=CPUtime)&&(blockQ.size()>0)){						
 			if(BlockEmptyTag==1){
