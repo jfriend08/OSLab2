@@ -104,11 +104,11 @@ T(2:59): RUNNG -> BLOCK  ib=3 rem=15
 ==> 59 1 ts=57 RUNNG  dur=2
 T(1:59): READY -> RUNNG  cb=3 rem=75
 
-==> 62 1 ts=59 BLOCK  dur=3
-T(1:62): RUNNG -> BLOCK  ib=8 rem=72
-
 ==> 62 2 ts=59 READY  dur=3
 T(2:62): BLOCK -> READY
+
+==> 62 1 ts=59 BLOCK  dur=3
+T(1:62): RUNNG -> BLOCK  ib=8 rem=72
 
 ==> 62 2 ts=62 RUNNG  dur=0
 T(2:62): READY -> RUNNG  cb=1 rem=15
