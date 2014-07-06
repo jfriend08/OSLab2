@@ -1,0 +1,1778 @@
+
+CPUtime:0
+Task:PID:0 Cb:-1000 index:0 (Ts,Tg) 1,1 task.remain:100 task.nextEventTime:1 tasksize:4
+readyQ empty
+
+
+==> 1 0 ts=1 READY  dur=0
+T(0:1): READY -> READY
+
+CPUtime:0
+Task:PID:1 Cb:-1000 index:0 (Ts,Tg) 1,1 task.remain:100 task.nextEventTime:1 tasksize:3
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 1,1 ready.remain:100 ready.nextEventTime:1 readysize:1
+readyQ elements:
+Ts:1 PID:0 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:0
+
+
+==> 1 1 ts=1 READY  dur=0
+T(1:1): READY -> READY
+
+CPUtime:0
+Task:PID:2 Cb:-1000 index:0 (Ts,Tg) 1,1 task.remain:30 task.nextEventTime:1 tasksize:2
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 1,1 ready.remain:100 ready.nextEventTime:1 readysize:2
+readyQ elements:
+Ts:1 PID:0 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:0
+Ts:1 PID:1 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:1
+
+
+==> 1 2 ts=1 READY  dur=0
+T(2:1): READY -> READY
+
+CPUtime:0
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 1,1 ready.remain:100 ready.nextEventTime:1 readysize:3
+readyQ elements:
+Ts:1 PID:0 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:0
+Ts:1 PID:1 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:1
+Ts:1 PID:2 Tg:1 Cb:-1000 Remain:30 nextEventTime:1 curState:READY nextState:READY insertindex:2
+
+
+==> 1 0 ts=1 RUNNG  dur=0
+T(0:1): READY -> RUNNG  cb=4 rem=100
+
+CPUtime:1
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:1 (Ts,Tg) 1,1 ready.remain:100 ready.nextEventTime:1 readysize:2
+Run:PID:0 Cb:4 index:0 (Ts,Tg) 1,1 run.remain:100 run.nextEventTime:5 runsize:1
+readyQ elements:
+Ts:1 PID:1 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:1
+Ts:1 PID:2 Tg:1 Cb:-1000 Remain:30 nextEventTime:1 curState:READY nextState:READY insertindex:2
+
+
+==> 5 0 ts=1 BLOCK  dur=4
+T(0:5): RUNNG -> BLOCK  ib=7 rem=96
+
+CPUtime:5
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:1 (Ts,Tg) 1,1 ready.remain:100 ready.nextEventTime:1 readysize:2
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)5,1 block.remain:96 block.nextEventTime:12 blocksize:1
+readyQ elements:
+Ts:1 PID:1 Tg:1 Cb:-1000 Remain:100 nextEventTime:1 curState:READY nextState:READY insertindex:1
+Ts:1 PID:2 Tg:1 Cb:-1000 Remain:30 nextEventTime:1 curState:READY nextState:READY insertindex:2
+
+
+==> 5 1 ts=1 RUNNG  dur=4
+T(1:5): READY -> RUNNG  cb=28 rem=100
+
+CPUtime:5
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:2 (Ts,Tg) 1,1 ready.remain:30 ready.nextEventTime:1 readysize:1
+Run:PID:1 Cb:28 index:0 (Ts,Tg) 5,1 run.remain:100 run.nextEventTime:33 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)5,1 block.remain:96 block.nextEventTime:12 blocksize:1
+readyQ elements:
+Ts:1 PID:2 Tg:1 Cb:-1000 Remain:30 nextEventTime:1 curState:READY nextState:READY insertindex:2
+
+
+==> 10 1 ts=5 PREEMPT  dur=5
+T(1:10): RUNNG -> READY  cb=23 rem=95
+
+CPUtime:10
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:2 (Ts,Tg) 1,1 ready.remain:30 ready.nextEventTime:1 readysize:2
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)5,1 block.remain:96 block.nextEventTime:12 blocksize:1
+readyQ elements:
+Ts:1 PID:2 Tg:1 Cb:-1000 Remain:30 nextEventTime:1 curState:READY nextState:READY insertindex:2
+Ts:10 PID:1 Tg:5 Cb:23 Remain:95 nextEventTime:10 curState:RUNNG nextState:PREEMPT insertindex:3
+
+
+==> 10 2 ts=1 RUNNG  dur=9
+T(2:10): READY -> RUNNG  cb=6 rem=30
+
+CPUtime:10
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:23 index:3 (Ts,Tg) 10,5 ready.remain:95 ready.nextEventTime:10 readysize:1
+Run:PID:2 Cb:6 index:0 (Ts,Tg) 10,1 run.remain:30 run.nextEventTime:16 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)5,1 block.remain:96 block.nextEventTime:12 blocksize:1
+readyQ elements:
+Ts:10 PID:1 Tg:5 Cb:23 Remain:95 nextEventTime:10 curState:RUNNG nextState:PREEMPT insertindex:3
+
+
+==> 12 0 ts=5 READY  dur=7
+T(0:12): BLOCK -> READY
+
+CPUtime:12
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:23 index:3 (Ts,Tg) 10,5 ready.remain:95 ready.nextEventTime:10 readysize:2
+Run:PID:2 Cb:6 index:0 (Ts,Tg) 10,1 run.remain:30 run.nextEventTime:16 runsize:1
+readyQ elements:
+Ts:10 PID:1 Tg:5 Cb:23 Remain:95 nextEventTime:10 curState:RUNNG nextState:PREEMPT insertindex:3
+Ts:12 PID:0 Tg:5 Cb:-1000 Remain:96 nextEventTime:12 curState:BLOCK nextState:READY insertindex:4
+
+
+==> 15 2 ts=10 PREEMPT  dur=5
+T(2:15): RUNNG -> READY  cb=1 rem=25
+
+CPUtime:15
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:23 index:3 (Ts,Tg) 10,5 ready.remain:95 ready.nextEventTime:10 readysize:3
+readyQ elements:
+Ts:10 PID:1 Tg:5 Cb:23 Remain:95 nextEventTime:10 curState:RUNNG nextState:PREEMPT insertindex:3
+Ts:12 PID:0 Tg:5 Cb:-1000 Remain:96 nextEventTime:12 curState:BLOCK nextState:READY insertindex:4
+Ts:15 PID:2 Tg:10 Cb:1 Remain:25 nextEventTime:15 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 15 1 ts=10 RUNNG  dur=5
+T(1:15): READY -> RUNNG  cb=23 rem=95
+
+CPUtime:15
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:4 (Ts,Tg) 12,5 ready.remain:96 ready.nextEventTime:12 readysize:2
+Run:PID:1 Cb:23 index:0 (Ts,Tg) 15,10 run.remain:95 run.nextEventTime:38 runsize:1
+readyQ elements:
+Ts:12 PID:0 Tg:5 Cb:-1000 Remain:96 nextEventTime:12 curState:BLOCK nextState:READY insertindex:4
+Ts:15 PID:2 Tg:10 Cb:1 Remain:25 nextEventTime:15 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 20 1 ts=15 PREEMPT  dur=5
+T(1:20): RUNNG -> READY  cb=18 rem=90
+
+CPUtime:20
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:4 (Ts,Tg) 12,5 ready.remain:96 ready.nextEventTime:12 readysize:3
+readyQ elements:
+Ts:12 PID:0 Tg:5 Cb:-1000 Remain:96 nextEventTime:12 curState:BLOCK nextState:READY insertindex:4
+Ts:15 PID:2 Tg:10 Cb:1 Remain:25 nextEventTime:15 curState:RUNNG nextState:PREEMPT insertindex:5
+Ts:20 PID:1 Tg:15 Cb:18 Remain:90 nextEventTime:20 curState:RUNNG nextState:PREEMPT insertindex:6
+
+
+==> 20 0 ts=12 RUNNG  dur=8
+T(0:20): READY -> RUNNG  cb=14 rem=96
+
+CPUtime:20
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:1 index:5 (Ts,Tg) 15,10 ready.remain:25 ready.nextEventTime:15 readysize:2
+Run:PID:0 Cb:14 index:0 (Ts,Tg) 20,12 run.remain:96 run.nextEventTime:34 runsize:1
+readyQ elements:
+Ts:15 PID:2 Tg:10 Cb:1 Remain:25 nextEventTime:15 curState:RUNNG nextState:PREEMPT insertindex:5
+Ts:20 PID:1 Tg:15 Cb:18 Remain:90 nextEventTime:20 curState:RUNNG nextState:PREEMPT insertindex:6
+
+
+==> 25 0 ts=20 PREEMPT  dur=5
+T(0:25): RUNNG -> READY  cb=9 rem=91
+
+CPUtime:25
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:1 index:5 (Ts,Tg) 15,10 ready.remain:25 ready.nextEventTime:15 readysize:3
+readyQ elements:
+Ts:15 PID:2 Tg:10 Cb:1 Remain:25 nextEventTime:15 curState:RUNNG nextState:PREEMPT insertindex:5
+Ts:20 PID:1 Tg:15 Cb:18 Remain:90 nextEventTime:20 curState:RUNNG nextState:PREEMPT insertindex:6
+Ts:25 PID:0 Tg:20 Cb:9 Remain:91 nextEventTime:25 curState:RUNNG nextState:PREEMPT insertindex:7
+
+
+==> 25 2 ts=15 RUNNG  dur=10
+T(2:25): READY -> RUNNG  cb=1 rem=25
+
+CPUtime:25
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:18 index:6 (Ts,Tg) 20,15 ready.remain:90 ready.nextEventTime:20 readysize:2
+Run:PID:2 Cb:1 index:0 (Ts,Tg) 25,15 run.remain:25 run.nextEventTime:26 runsize:1
+readyQ elements:
+Ts:20 PID:1 Tg:15 Cb:18 Remain:90 nextEventTime:20 curState:RUNNG nextState:PREEMPT insertindex:6
+Ts:25 PID:0 Tg:20 Cb:9 Remain:91 nextEventTime:25 curState:RUNNG nextState:PREEMPT insertindex:7
+
+
+==> 26 2 ts=25 BLOCK  dur=1
+T(2:26): RUNNG -> BLOCK  ib=1 rem=24
+
+CPUtime:26
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:18 index:6 (Ts,Tg) 20,15 ready.remain:90 ready.nextEventTime:20 readysize:2
+Block:PID:2 Cb:-1000 index:0 (Ts,Tg)26,25 block.remain:24 block.nextEventTime:27 blocksize:1
+readyQ elements:
+Ts:20 PID:1 Tg:15 Cb:18 Remain:90 nextEventTime:20 curState:RUNNG nextState:PREEMPT insertindex:6
+Ts:25 PID:0 Tg:20 Cb:9 Remain:91 nextEventTime:25 curState:RUNNG nextState:PREEMPT insertindex:7
+
+
+==> 26 1 ts=20 RUNNG  dur=6
+T(1:26): READY -> RUNNG  cb=18 rem=90
+
+CPUtime:26
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:9 index:7 (Ts,Tg) 25,20 ready.remain:91 ready.nextEventTime:25 readysize:1
+Run:PID:1 Cb:18 index:0 (Ts,Tg) 26,20 run.remain:90 run.nextEventTime:44 runsize:1
+Block:PID:2 Cb:-1000 index:0 (Ts,Tg)26,25 block.remain:24 block.nextEventTime:27 blocksize:1
+readyQ elements:
+Ts:25 PID:0 Tg:20 Cb:9 Remain:91 nextEventTime:25 curState:RUNNG nextState:PREEMPT insertindex:7
+
+
+==> 27 2 ts=26 READY  dur=1
+T(2:27): BLOCK -> READY
+
+CPUtime:27
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:9 index:7 (Ts,Tg) 25,20 ready.remain:91 ready.nextEventTime:25 readysize:2
+Run:PID:1 Cb:18 index:0 (Ts,Tg) 26,20 run.remain:90 run.nextEventTime:44 runsize:1
+readyQ elements:
+Ts:25 PID:0 Tg:20 Cb:9 Remain:91 nextEventTime:25 curState:RUNNG nextState:PREEMPT insertindex:7
+Ts:27 PID:2 Tg:26 Cb:-1000 Remain:24 nextEventTime:27 curState:BLOCK nextState:READY insertindex:8
+
+
+==> 31 1 ts=26 PREEMPT  dur=5
+T(1:31): RUNNG -> READY  cb=13 rem=85
+
+CPUtime:31
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:9 index:7 (Ts,Tg) 25,20 ready.remain:91 ready.nextEventTime:25 readysize:3
+readyQ elements:
+Ts:25 PID:0 Tg:20 Cb:9 Remain:91 nextEventTime:25 curState:RUNNG nextState:PREEMPT insertindex:7
+Ts:27 PID:2 Tg:26 Cb:-1000 Remain:24 nextEventTime:27 curState:BLOCK nextState:READY insertindex:8
+Ts:31 PID:1 Tg:26 Cb:13 Remain:85 nextEventTime:31 curState:RUNNG nextState:PREEMPT insertindex:9
+
+
+==> 31 0 ts=25 RUNNG  dur=6
+T(0:31): READY -> RUNNG  cb=9 rem=91
+
+CPUtime:31
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:8 (Ts,Tg) 27,26 ready.remain:24 ready.nextEventTime:27 readysize:2
+Run:PID:0 Cb:9 index:0 (Ts,Tg) 31,25 run.remain:91 run.nextEventTime:40 runsize:1
+readyQ elements:
+Ts:27 PID:2 Tg:26 Cb:-1000 Remain:24 nextEventTime:27 curState:BLOCK nextState:READY insertindex:8
+Ts:31 PID:1 Tg:26 Cb:13 Remain:85 nextEventTime:31 curState:RUNNG nextState:PREEMPT insertindex:9
+
+
+==> 36 0 ts=31 PREEMPT  dur=5
+T(0:36): RUNNG -> READY  cb=4 rem=86
+
+CPUtime:36
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:8 (Ts,Tg) 27,26 ready.remain:24 ready.nextEventTime:27 readysize:3
+readyQ elements:
+Ts:27 PID:2 Tg:26 Cb:-1000 Remain:24 nextEventTime:27 curState:BLOCK nextState:READY insertindex:8
+Ts:31 PID:1 Tg:26 Cb:13 Remain:85 nextEventTime:31 curState:RUNNG nextState:PREEMPT insertindex:9
+Ts:36 PID:0 Tg:31 Cb:4 Remain:86 nextEventTime:36 curState:RUNNG nextState:PREEMPT insertindex:10
+
+
+==> 36 2 ts=27 RUNNG  dur=9
+T(2:36): READY -> RUNNG  cb=7 rem=24
+
+CPUtime:36
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:13 index:9 (Ts,Tg) 31,26 ready.remain:85 ready.nextEventTime:31 readysize:2
+Run:PID:2 Cb:7 index:0 (Ts,Tg) 36,27 run.remain:24 run.nextEventTime:43 runsize:1
+readyQ elements:
+Ts:31 PID:1 Tg:26 Cb:13 Remain:85 nextEventTime:31 curState:RUNNG nextState:PREEMPT insertindex:9
+Ts:36 PID:0 Tg:31 Cb:4 Remain:86 nextEventTime:36 curState:RUNNG nextState:PREEMPT insertindex:10
+
+
+==> 41 2 ts=36 PREEMPT  dur=5
+T(2:41): RUNNG -> READY  cb=2 rem=19
+
+CPUtime:41
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:13 index:9 (Ts,Tg) 31,26 ready.remain:85 ready.nextEventTime:31 readysize:3
+readyQ elements:
+Ts:31 PID:1 Tg:26 Cb:13 Remain:85 nextEventTime:31 curState:RUNNG nextState:PREEMPT insertindex:9
+Ts:36 PID:0 Tg:31 Cb:4 Remain:86 nextEventTime:36 curState:RUNNG nextState:PREEMPT insertindex:10
+Ts:41 PID:2 Tg:36 Cb:2 Remain:19 nextEventTime:41 curState:RUNNG nextState:PREEMPT insertindex:11
+
+
+==> 41 1 ts=31 RUNNG  dur=10
+T(1:41): READY -> RUNNG  cb=13 rem=85
+
+CPUtime:41
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:4 index:10 (Ts,Tg) 36,31 ready.remain:86 ready.nextEventTime:36 readysize:2
+Run:PID:1 Cb:13 index:0 (Ts,Tg) 41,31 run.remain:85 run.nextEventTime:54 runsize:1
+readyQ elements:
+Ts:36 PID:0 Tg:31 Cb:4 Remain:86 nextEventTime:36 curState:RUNNG nextState:PREEMPT insertindex:10
+Ts:41 PID:2 Tg:36 Cb:2 Remain:19 nextEventTime:41 curState:RUNNG nextState:PREEMPT insertindex:11
+
+
+==> 46 1 ts=41 PREEMPT  dur=5
+T(1:46): RUNNG -> READY  cb=8 rem=80
+
+CPUtime:46
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:4 index:10 (Ts,Tg) 36,31 ready.remain:86 ready.nextEventTime:36 readysize:3
+readyQ elements:
+Ts:36 PID:0 Tg:31 Cb:4 Remain:86 nextEventTime:36 curState:RUNNG nextState:PREEMPT insertindex:10
+Ts:41 PID:2 Tg:36 Cb:2 Remain:19 nextEventTime:41 curState:RUNNG nextState:PREEMPT insertindex:11
+Ts:46 PID:1 Tg:41 Cb:8 Remain:80 nextEventTime:46 curState:RUNNG nextState:PREEMPT insertindex:12
+
+
+==> 46 0 ts=36 RUNNG  dur=10
+T(0:46): READY -> RUNNG  cb=4 rem=86
+
+CPUtime:46
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:2 index:11 (Ts,Tg) 41,36 ready.remain:19 ready.nextEventTime:41 readysize:2
+Run:PID:0 Cb:4 index:0 (Ts,Tg) 46,36 run.remain:86 run.nextEventTime:50 runsize:1
+readyQ elements:
+Ts:41 PID:2 Tg:36 Cb:2 Remain:19 nextEventTime:41 curState:RUNNG nextState:PREEMPT insertindex:11
+Ts:46 PID:1 Tg:41 Cb:8 Remain:80 nextEventTime:46 curState:RUNNG nextState:PREEMPT insertindex:12
+
+
+==> 50 0 ts=46 BLOCK  dur=4
+T(0:50): RUNNG -> BLOCK  ib=13 rem=82
+
+CPUtime:50
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:2 index:11 (Ts,Tg) 41,36 ready.remain:19 ready.nextEventTime:41 readysize:2
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:1
+readyQ elements:
+Ts:41 PID:2 Tg:36 Cb:2 Remain:19 nextEventTime:41 curState:RUNNG nextState:PREEMPT insertindex:11
+Ts:46 PID:1 Tg:41 Cb:8 Remain:80 nextEventTime:46 curState:RUNNG nextState:PREEMPT insertindex:12
+
+
+==> 50 2 ts=41 RUNNG  dur=9
+T(2:50): READY -> RUNNG  cb=2 rem=19
+
+CPUtime:50
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:8 index:12 (Ts,Tg) 46,41 ready.remain:80 ready.nextEventTime:46 readysize:1
+Run:PID:2 Cb:2 index:0 (Ts,Tg) 50,41 run.remain:19 run.nextEventTime:52 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:1
+readyQ elements:
+Ts:46 PID:1 Tg:41 Cb:8 Remain:80 nextEventTime:46 curState:RUNNG nextState:PREEMPT insertindex:12
+
+
+==> 52 2 ts=50 BLOCK  dur=2
+T(2:52): RUNNG -> BLOCK  ib=5 rem=17
+
+CPUtime:52
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:8 index:12 (Ts,Tg) 46,41 ready.remain:80 ready.nextEventTime:46 readysize:1
+Block:PID:2 Cb:-1000 index:1 (Ts,Tg)52,50 block.remain:17 block.nextEventTime:57 blocksize:2
+readyQ elements:
+Ts:46 PID:1 Tg:41 Cb:8 Remain:80 nextEventTime:46 curState:RUNNG nextState:PREEMPT insertindex:12
+
+
+==> 52 1 ts=46 RUNNG  dur=6
+T(1:52): READY -> RUNNG  cb=8 rem=80
+
+CPUtime:52
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:8 index:0 (Ts,Tg) 52,46 run.remain:80 run.nextEventTime:60 runsize:1
+Block:PID:2 Cb:-1000 index:1 (Ts,Tg)52,50 block.remain:17 block.nextEventTime:57 blocksize:2
+readyQ empty
+
+
+==> 57 2 ts=52 READY  dur=5
+T(2:57): BLOCK -> READY
+
+CPUtime:57
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 57,52 ready.remain:17 ready.nextEventTime:57 readysize:1
+Run:PID:1 Cb:8 index:0 (Ts,Tg) 52,46 run.remain:80 run.nextEventTime:60 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:1
+readyQ elements:
+Ts:57 PID:2 Tg:52 Cb:-1000 Remain:17 nextEventTime:57 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 57 1 ts=52 PREEMPT  dur=5
+T(1:57): RUNNG -> READY  cb=3 rem=75
+
+CPUtime:57
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 57,52 ready.remain:17 ready.nextEventTime:57 readysize:2
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:1
+readyQ elements:
+Ts:57 PID:2 Tg:52 Cb:-1000 Remain:17 nextEventTime:57 curState:BLOCK nextState:READY insertindex:0
+Ts:57 PID:1 Tg:52 Cb:3 Remain:75 nextEventTime:57 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 57 2 ts=57 RUNNG  dur=0
+T(2:57): READY -> RUNNG  cb=2 rem=17
+
+CPUtime:57
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:1 (Ts,Tg) 57,52 ready.remain:75 ready.nextEventTime:57 readysize:1
+Run:PID:2 Cb:2 index:0 (Ts,Tg) 57,57 run.remain:17 run.nextEventTime:59 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:1
+readyQ elements:
+Ts:57 PID:1 Tg:52 Cb:3 Remain:75 nextEventTime:57 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 59 2 ts=57 BLOCK  dur=2
+T(2:59): RUNNG -> BLOCK  ib=3 rem=15
+
+CPUtime:59
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:1 (Ts,Tg) 57,52 ready.remain:75 ready.nextEventTime:57 readysize:1
+Block:PID:2 Cb:-1000 index:1 (Ts,Tg)59,57 block.remain:15 block.nextEventTime:62 blocksize:2
+readyQ elements:
+Ts:57 PID:1 Tg:52 Cb:3 Remain:75 nextEventTime:57 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 59 1 ts=57 RUNNG  dur=2
+T(1:59): READY -> RUNNG  cb=3 rem=75
+
+CPUtime:59
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:3 index:0 (Ts,Tg) 59,57 run.remain:75 run.nextEventTime:62 runsize:1
+Block:PID:2 Cb:-1000 index:1 (Ts,Tg)59,57 block.remain:15 block.nextEventTime:62 blocksize:2
+readyQ empty
+
+
+==> 62 1 ts=59 BLOCK  dur=3
+T(1:62): RUNNG -> BLOCK  ib=8 rem=72
+
+CPUtime:62
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:2 Cb:-1000 index:1 (Ts,Tg)59,57 block.remain:15 block.nextEventTime:62 blocksize:3
+readyQ empty
+
+
+==> 62 2 ts=59 READY  dur=3
+T(2:62): BLOCK -> READY
+
+CPUtime:62
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 62,59 ready.remain:15 ready.nextEventTime:62 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:2
+readyQ elements:
+Ts:62 PID:2 Tg:59 Cb:-1000 Remain:15 nextEventTime:62 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 62 2 ts=62 RUNNG  dur=0
+T(2:62): READY -> RUNNG  cb=1 rem=15
+
+CPUtime:62
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:2 Cb:1 index:0 (Ts,Tg) 62,62 run.remain:15 run.nextEventTime:63 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)50,46 block.remain:82 block.nextEventTime:63 blocksize:2
+readyQ empty
+
+
+==> 63 0 ts=50 READY  dur=13
+T(0:63): BLOCK -> READY
+
+CPUtime:63
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 63,50 ready.remain:82 ready.nextEventTime:63 readysize:1
+Run:PID:2 Cb:1 index:0 (Ts,Tg) 62,62 run.remain:15 run.nextEventTime:63 runsize:1
+Block:PID:1 Cb:-1000 index:2 (Ts,Tg)62,59 block.remain:72 block.nextEventTime:70 blocksize:1
+readyQ elements:
+Ts:63 PID:0 Tg:50 Cb:-1000 Remain:82 nextEventTime:63 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 63 2 ts=62 BLOCK  dur=1
+T(2:63): RUNNG -> BLOCK  ib=5 rem=14
+
+CPUtime:63
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 63,50 ready.remain:82 ready.nextEventTime:63 readysize:1
+Block:PID:2 Cb:-1000 index:3 (Ts,Tg)63,62 block.remain:14 block.nextEventTime:68 blocksize:2
+readyQ elements:
+Ts:63 PID:0 Tg:50 Cb:-1000 Remain:82 nextEventTime:63 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 63 0 ts=63 RUNNG  dur=0
+T(0:63): READY -> RUNNG  cb=4 rem=82
+
+CPUtime:63
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:4 index:0 (Ts,Tg) 63,63 run.remain:82 run.nextEventTime:67 runsize:1
+Block:PID:2 Cb:-1000 index:3 (Ts,Tg)63,62 block.remain:14 block.nextEventTime:68 blocksize:2
+readyQ empty
+
+
+==> 67 0 ts=63 BLOCK  dur=4
+T(0:67): RUNNG -> BLOCK  ib=7 rem=78
+
+CPUtime:67
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:2 Cb:-1000 index:3 (Ts,Tg)63,62 block.remain:14 block.nextEventTime:68 blocksize:3
+readyQ empty
+
+
+==> 68 2 ts=63 READY  dur=5
+T(2:68): BLOCK -> READY
+
+CPUtime:68
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 68,63 ready.remain:14 ready.nextEventTime:68 readysize:1
+Block:PID:1 Cb:-1000 index:2 (Ts,Tg)62,59 block.remain:72 block.nextEventTime:70 blocksize:2
+readyQ elements:
+Ts:68 PID:2 Tg:63 Cb:-1000 Remain:14 nextEventTime:68 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 68 2 ts=68 RUNNG  dur=0
+T(2:68): READY -> RUNNG  cb=1 rem=14
+
+CPUtime:68
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:2 Cb:1 index:0 (Ts,Tg) 68,68 run.remain:14 run.nextEventTime:69 runsize:1
+Block:PID:1 Cb:-1000 index:2 (Ts,Tg)62,59 block.remain:72 block.nextEventTime:70 blocksize:2
+readyQ empty
+
+
+==> 69 2 ts=68 BLOCK  dur=1
+T(2:69): RUNNG -> BLOCK  ib=2 rem=13
+
+CPUtime:69
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:1 Cb:-1000 index:2 (Ts,Tg)62,59 block.remain:72 block.nextEventTime:70 blocksize:3
+readyQ empty
+
+
+==> 70 1 ts=62 READY  dur=8
+T(1:70): BLOCK -> READY
+
+CPUtime:70
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 70,62 ready.remain:72 ready.nextEventTime:70 readysize:1
+Block:PID:2 Cb:-1000 index:5 (Ts,Tg)69,68 block.remain:13 block.nextEventTime:71 blocksize:2
+readyQ elements:
+Ts:70 PID:1 Tg:62 Cb:-1000 Remain:72 nextEventTime:70 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 70 1 ts=70 RUNNG  dur=0
+T(1:70): READY -> RUNNG  cb=23 rem=72
+
+CPUtime:70
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:23 index:0 (Ts,Tg) 70,70 run.remain:72 run.nextEventTime:93 runsize:1
+Block:PID:2 Cb:-1000 index:5 (Ts,Tg)69,68 block.remain:13 block.nextEventTime:71 blocksize:2
+readyQ empty
+
+
+==> 71 2 ts=69 READY  dur=2
+T(2:71): BLOCK -> READY
+
+CPUtime:71
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 71,69 ready.remain:13 ready.nextEventTime:71 readysize:1
+Run:PID:1 Cb:23 index:0 (Ts,Tg) 70,70 run.remain:72 run.nextEventTime:93 runsize:1
+Block:PID:0 Cb:-1000 index:4 (Ts,Tg)67,63 block.remain:78 block.nextEventTime:74 blocksize:1
+readyQ elements:
+Ts:71 PID:2 Tg:69 Cb:-1000 Remain:13 nextEventTime:71 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 74 0 ts=67 READY  dur=7
+T(0:74): BLOCK -> READY
+
+CPUtime:74
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 71,69 ready.remain:13 ready.nextEventTime:71 readysize:2
+Run:PID:1 Cb:23 index:0 (Ts,Tg) 70,70 run.remain:72 run.nextEventTime:93 runsize:1
+readyQ elements:
+Ts:71 PID:2 Tg:69 Cb:-1000 Remain:13 nextEventTime:71 curState:BLOCK nextState:READY insertindex:0
+Ts:74 PID:0 Tg:67 Cb:-1000 Remain:78 nextEventTime:74 curState:BLOCK nextState:READY insertindex:1
+
+
+==> 75 1 ts=70 PREEMPT  dur=5
+T(1:75): RUNNG -> READY  cb=18 rem=67
+
+CPUtime:75
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:0 (Ts,Tg) 71,69 ready.remain:13 ready.nextEventTime:71 readysize:3
+readyQ elements:
+Ts:71 PID:2 Tg:69 Cb:-1000 Remain:13 nextEventTime:71 curState:BLOCK nextState:READY insertindex:0
+Ts:74 PID:0 Tg:67 Cb:-1000 Remain:78 nextEventTime:74 curState:BLOCK nextState:READY insertindex:1
+Ts:75 PID:1 Tg:70 Cb:18 Remain:67 nextEventTime:75 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 75 2 ts=71 RUNNG  dur=4
+T(2:75): READY -> RUNNG  cb=7 rem=13
+
+CPUtime:75
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:1 (Ts,Tg) 74,67 ready.remain:78 ready.nextEventTime:74 readysize:2
+Run:PID:2 Cb:7 index:0 (Ts,Tg) 75,71 run.remain:13 run.nextEventTime:82 runsize:1
+readyQ elements:
+Ts:74 PID:0 Tg:67 Cb:-1000 Remain:78 nextEventTime:74 curState:BLOCK nextState:READY insertindex:1
+Ts:75 PID:1 Tg:70 Cb:18 Remain:67 nextEventTime:75 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 80 2 ts=75 PREEMPT  dur=5
+T(2:80): RUNNG -> READY  cb=2 rem=8
+
+CPUtime:80
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:1 (Ts,Tg) 74,67 ready.remain:78 ready.nextEventTime:74 readysize:3
+readyQ elements:
+Ts:74 PID:0 Tg:67 Cb:-1000 Remain:78 nextEventTime:74 curState:BLOCK nextState:READY insertindex:1
+Ts:75 PID:1 Tg:70 Cb:18 Remain:67 nextEventTime:75 curState:RUNNG nextState:PREEMPT insertindex:2
+Ts:80 PID:2 Tg:75 Cb:2 Remain:8 nextEventTime:80 curState:RUNNG nextState:PREEMPT insertindex:3
+
+
+==> 80 0 ts=74 RUNNG  dur=6
+T(0:80): READY -> RUNNG  cb=12 rem=78
+
+CPUtime:80
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:18 index:2 (Ts,Tg) 75,70 ready.remain:67 ready.nextEventTime:75 readysize:2
+Run:PID:0 Cb:12 index:0 (Ts,Tg) 80,74 run.remain:78 run.nextEventTime:92 runsize:1
+readyQ elements:
+Ts:75 PID:1 Tg:70 Cb:18 Remain:67 nextEventTime:75 curState:RUNNG nextState:PREEMPT insertindex:2
+Ts:80 PID:2 Tg:75 Cb:2 Remain:8 nextEventTime:80 curState:RUNNG nextState:PREEMPT insertindex:3
+
+
+==> 85 0 ts=80 PREEMPT  dur=5
+T(0:85): RUNNG -> READY  cb=7 rem=73
+
+CPUtime:85
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:18 index:2 (Ts,Tg) 75,70 ready.remain:67 ready.nextEventTime:75 readysize:3
+readyQ elements:
+Ts:75 PID:1 Tg:70 Cb:18 Remain:67 nextEventTime:75 curState:RUNNG nextState:PREEMPT insertindex:2
+Ts:80 PID:2 Tg:75 Cb:2 Remain:8 nextEventTime:80 curState:RUNNG nextState:PREEMPT insertindex:3
+Ts:85 PID:0 Tg:80 Cb:7 Remain:73 nextEventTime:85 curState:RUNNG nextState:PREEMPT insertindex:4
+
+
+==> 85 1 ts=75 RUNNG  dur=10
+T(1:85): READY -> RUNNG  cb=18 rem=67
+
+CPUtime:85
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:2 index:3 (Ts,Tg) 80,75 ready.remain:8 ready.nextEventTime:80 readysize:2
+Run:PID:1 Cb:18 index:0 (Ts,Tg) 85,75 run.remain:67 run.nextEventTime:103 runsize:1
+readyQ elements:
+Ts:80 PID:2 Tg:75 Cb:2 Remain:8 nextEventTime:80 curState:RUNNG nextState:PREEMPT insertindex:3
+Ts:85 PID:0 Tg:80 Cb:7 Remain:73 nextEventTime:85 curState:RUNNG nextState:PREEMPT insertindex:4
+
+
+==> 90 1 ts=85 PREEMPT  dur=5
+T(1:90): RUNNG -> READY  cb=13 rem=62
+
+CPUtime:90
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:2 index:3 (Ts,Tg) 80,75 ready.remain:8 ready.nextEventTime:80 readysize:3
+readyQ elements:
+Ts:80 PID:2 Tg:75 Cb:2 Remain:8 nextEventTime:80 curState:RUNNG nextState:PREEMPT insertindex:3
+Ts:85 PID:0 Tg:80 Cb:7 Remain:73 nextEventTime:85 curState:RUNNG nextState:PREEMPT insertindex:4
+Ts:90 PID:1 Tg:85 Cb:13 Remain:62 nextEventTime:90 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 90 2 ts=80 RUNNG  dur=10
+T(2:90): READY -> RUNNG  cb=2 rem=8
+
+CPUtime:90
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:7 index:4 (Ts,Tg) 85,80 ready.remain:73 ready.nextEventTime:85 readysize:2
+Run:PID:2 Cb:2 index:0 (Ts,Tg) 90,80 run.remain:8 run.nextEventTime:92 runsize:1
+readyQ elements:
+Ts:85 PID:0 Tg:80 Cb:7 Remain:73 nextEventTime:85 curState:RUNNG nextState:PREEMPT insertindex:4
+Ts:90 PID:1 Tg:85 Cb:13 Remain:62 nextEventTime:90 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 92 2 ts=90 BLOCK  dur=2
+T(2:92): RUNNG -> BLOCK  ib=4 rem=6
+
+CPUtime:92
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:7 index:4 (Ts,Tg) 85,80 ready.remain:73 ready.nextEventTime:85 readysize:2
+Block:PID:2 Cb:-1000 index:0 (Ts,Tg)92,90 block.remain:6 block.nextEventTime:96 blocksize:1
+readyQ elements:
+Ts:85 PID:0 Tg:80 Cb:7 Remain:73 nextEventTime:85 curState:RUNNG nextState:PREEMPT insertindex:4
+Ts:90 PID:1 Tg:85 Cb:13 Remain:62 nextEventTime:90 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 92 0 ts=85 RUNNG  dur=7
+T(0:92): READY -> RUNNG  cb=7 rem=73
+
+CPUtime:92
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:13 index:5 (Ts,Tg) 90,85 ready.remain:62 ready.nextEventTime:90 readysize:1
+Run:PID:0 Cb:7 index:0 (Ts,Tg) 92,85 run.remain:73 run.nextEventTime:99 runsize:1
+Block:PID:2 Cb:-1000 index:0 (Ts,Tg)92,90 block.remain:6 block.nextEventTime:96 blocksize:1
+readyQ elements:
+Ts:90 PID:1 Tg:85 Cb:13 Remain:62 nextEventTime:90 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 96 2 ts=92 READY  dur=4
+T(2:96): BLOCK -> READY
+
+CPUtime:96
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:13 index:5 (Ts,Tg) 90,85 ready.remain:62 ready.nextEventTime:90 readysize:2
+Run:PID:0 Cb:7 index:0 (Ts,Tg) 92,85 run.remain:73 run.nextEventTime:99 runsize:1
+readyQ elements:
+Ts:90 PID:1 Tg:85 Cb:13 Remain:62 nextEventTime:90 curState:RUNNG nextState:PREEMPT insertindex:5
+Ts:96 PID:2 Tg:92 Cb:-1000 Remain:6 nextEventTime:96 curState:BLOCK nextState:READY insertindex:6
+
+
+==> 97 0 ts=92 PREEMPT  dur=5
+T(0:97): RUNNG -> READY  cb=2 rem=68
+
+CPUtime:97
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:13 index:5 (Ts,Tg) 90,85 ready.remain:62 ready.nextEventTime:90 readysize:3
+readyQ elements:
+Ts:90 PID:1 Tg:85 Cb:13 Remain:62 nextEventTime:90 curState:RUNNG nextState:PREEMPT insertindex:5
+Ts:96 PID:2 Tg:92 Cb:-1000 Remain:6 nextEventTime:96 curState:BLOCK nextState:READY insertindex:6
+Ts:97 PID:0 Tg:92 Cb:2 Remain:68 nextEventTime:97 curState:RUNNG nextState:PREEMPT insertindex:7
+
+
+==> 97 1 ts=90 RUNNG  dur=7
+T(1:97): READY -> RUNNG  cb=13 rem=62
+
+CPUtime:97
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:6 (Ts,Tg) 96,92 ready.remain:6 ready.nextEventTime:96 readysize:2
+Run:PID:1 Cb:13 index:0 (Ts,Tg) 97,90 run.remain:62 run.nextEventTime:110 runsize:1
+readyQ elements:
+Ts:96 PID:2 Tg:92 Cb:-1000 Remain:6 nextEventTime:96 curState:BLOCK nextState:READY insertindex:6
+Ts:97 PID:0 Tg:92 Cb:2 Remain:68 nextEventTime:97 curState:RUNNG nextState:PREEMPT insertindex:7
+
+
+==> 102 1 ts=97 PREEMPT  dur=5
+T(1:102): RUNNG -> READY  cb=8 rem=57
+
+CPUtime:102
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:-1000 index:6 (Ts,Tg) 96,92 ready.remain:6 ready.nextEventTime:96 readysize:3
+readyQ elements:
+Ts:96 PID:2 Tg:92 Cb:-1000 Remain:6 nextEventTime:96 curState:BLOCK nextState:READY insertindex:6
+Ts:97 PID:0 Tg:92 Cb:2 Remain:68 nextEventTime:97 curState:RUNNG nextState:PREEMPT insertindex:7
+Ts:102 PID:1 Tg:97 Cb:8 Remain:57 nextEventTime:102 curState:RUNNG nextState:PREEMPT insertindex:8
+
+
+==> 102 2 ts=96 RUNNG  dur=6
+T(2:102): READY -> RUNNG  cb=6 rem=6
+
+CPUtime:102
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:2 index:7 (Ts,Tg) 97,92 ready.remain:68 ready.nextEventTime:97 readysize:2
+Run:PID:2 Cb:6 index:0 (Ts,Tg) 102,96 run.remain:6 run.nextEventTime:110 runsize:1
+readyQ elements:
+Ts:97 PID:0 Tg:92 Cb:2 Remain:68 nextEventTime:97 curState:RUNNG nextState:PREEMPT insertindex:7
+Ts:102 PID:1 Tg:97 Cb:8 Remain:57 nextEventTime:102 curState:RUNNG nextState:PREEMPT insertindex:8
+
+
+==> 107 2 ts=102 PREEMPT  dur=5
+T(2:107): RUNNG -> READY  cb=1 rem=1
+
+CPUtime:107
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:2 index:7 (Ts,Tg) 97,92 ready.remain:68 ready.nextEventTime:97 readysize:3
+readyQ elements:
+Ts:97 PID:0 Tg:92 Cb:2 Remain:68 nextEventTime:97 curState:RUNNG nextState:PREEMPT insertindex:7
+Ts:102 PID:1 Tg:97 Cb:8 Remain:57 nextEventTime:102 curState:RUNNG nextState:PREEMPT insertindex:8
+Ts:107 PID:2 Tg:102 Cb:1 Remain:1 nextEventTime:107 curState:RUNNG nextState:PREEMPT insertindex:9
+
+
+==> 107 0 ts=97 RUNNG  dur=10
+T(0:107): READY -> RUNNG  cb=2 rem=68
+
+CPUtime:107
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:8 index:8 (Ts,Tg) 102,97 ready.remain:57 ready.nextEventTime:102 readysize:2
+Run:PID:0 Cb:2 index:0 (Ts,Tg) 107,97 run.remain:68 run.nextEventTime:109 runsize:1
+readyQ elements:
+Ts:102 PID:1 Tg:97 Cb:8 Remain:57 nextEventTime:102 curState:RUNNG nextState:PREEMPT insertindex:8
+Ts:107 PID:2 Tg:102 Cb:1 Remain:1 nextEventTime:107 curState:RUNNG nextState:PREEMPT insertindex:9
+
+
+==> 109 0 ts=107 BLOCK  dur=2
+T(0:109): RUNNG -> BLOCK  ib=10 rem=66
+
+CPUtime:109
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:8 index:8 (Ts,Tg) 102,97 ready.remain:57 ready.nextEventTime:102 readysize:2
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:1
+readyQ elements:
+Ts:102 PID:1 Tg:97 Cb:8 Remain:57 nextEventTime:102 curState:RUNNG nextState:PREEMPT insertindex:8
+Ts:107 PID:2 Tg:102 Cb:1 Remain:1 nextEventTime:107 curState:RUNNG nextState:PREEMPT insertindex:9
+
+
+==> 109 1 ts=102 RUNNG  dur=7
+T(1:109): READY -> RUNNG  cb=8 rem=57
+
+CPUtime:109
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:1 index:9 (Ts,Tg) 107,102 ready.remain:1 ready.nextEventTime:107 readysize:1
+Run:PID:1 Cb:8 index:0 (Ts,Tg) 109,102 run.remain:57 run.nextEventTime:117 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:1
+readyQ elements:
+Ts:107 PID:2 Tg:102 Cb:1 Remain:1 nextEventTime:107 curState:RUNNG nextState:PREEMPT insertindex:9
+
+
+==> 114 1 ts=109 PREEMPT  dur=5
+T(1:114): RUNNG -> READY  cb=3 rem=52
+
+CPUtime:114
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:2 Cb:1 index:9 (Ts,Tg) 107,102 ready.remain:1 ready.nextEventTime:107 readysize:2
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:1
+readyQ elements:
+Ts:107 PID:2 Tg:102 Cb:1 Remain:1 nextEventTime:107 curState:RUNNG nextState:PREEMPT insertindex:9
+Ts:114 PID:1 Tg:109 Cb:3 Remain:52 nextEventTime:114 curState:RUNNG nextState:PREEMPT insertindex:10
+
+
+==> 114 2 ts=107 RUNNG  dur=7
+T(2:114): READY -> RUNNG  cb=1 rem=1
+
+CPUtime:114
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:10 (Ts,Tg) 114,109 ready.remain:52 ready.nextEventTime:114 readysize:1
+Run:PID:2 Cb:1 index:0 (Ts,Tg) 114,107 run.remain:1 run.nextEventTime:115 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:1
+readyQ elements:
+Ts:114 PID:1 Tg:109 Cb:3 Remain:52 nextEventTime:114 curState:RUNNG nextState:PREEMPT insertindex:10
+
+
+==> 115 2 ts=114 BLOCK  dur=1
+==> T(2): Done
+
+CPUtime:115
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:10 (Ts,Tg) 114,109 ready.remain:52 ready.nextEventTime:114 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:1
+readyQ elements:
+Ts:114 PID:1 Tg:109 Cb:3 Remain:52 nextEventTime:114 curState:RUNNG nextState:PREEMPT insertindex:10
+
+
+==> 115 1 ts=114 RUNNG  dur=1
+T(1:115): READY -> RUNNG  cb=3 rem=52
+
+CPUtime:115
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:3 index:0 (Ts,Tg) 115,114 run.remain:52 run.nextEventTime:118 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:1
+readyQ empty
+
+
+==> 118 1 ts=115 BLOCK  dur=3
+T(1:118): RUNNG -> BLOCK  ib=3 rem=49
+
+CPUtime:118
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)109,107 block.remain:66 block.nextEventTime:119 blocksize:2
+readyQ empty
+
+
+==> 119 0 ts=109 READY  dur=10
+T(0:119): BLOCK -> READY
+
+CPUtime:119
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 119,109 ready.remain:66 ready.nextEventTime:119 readysize:1
+Block:PID:1 Cb:-1000 index:1 (Ts,Tg)118,115 block.remain:49 block.nextEventTime:121 blocksize:1
+readyQ elements:
+Ts:119 PID:0 Tg:109 Cb:-1000 Remain:66 nextEventTime:119 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 119 0 ts=119 RUNNG  dur=0
+T(0:119): READY -> RUNNG  cb=11 rem=66
+
+CPUtime:119
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:11 index:0 (Ts,Tg) 119,119 run.remain:66 run.nextEventTime:130 runsize:1
+Block:PID:1 Cb:-1000 index:1 (Ts,Tg)118,115 block.remain:49 block.nextEventTime:121 blocksize:1
+readyQ empty
+
+
+==> 121 1 ts=118 READY  dur=3
+T(1:121): BLOCK -> READY
+
+CPUtime:121
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 121,118 ready.remain:49 ready.nextEventTime:121 readysize:1
+Run:PID:0 Cb:11 index:0 (Ts,Tg) 119,119 run.remain:66 run.nextEventTime:130 runsize:1
+readyQ elements:
+Ts:121 PID:1 Tg:118 Cb:-1000 Remain:49 nextEventTime:121 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 124 0 ts=119 PREEMPT  dur=5
+T(0:124): RUNNG -> READY  cb=6 rem=61
+
+CPUtime:124
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 121,118 ready.remain:49 ready.nextEventTime:121 readysize:2
+readyQ elements:
+Ts:121 PID:1 Tg:118 Cb:-1000 Remain:49 nextEventTime:121 curState:BLOCK nextState:READY insertindex:0
+Ts:124 PID:0 Tg:119 Cb:6 Remain:61 nextEventTime:124 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 124 1 ts=121 RUNNG  dur=3
+T(1:124): READY -> RUNNG  cb=3 rem=49
+
+CPUtime:124
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:6 index:1 (Ts,Tg) 124,119 ready.remain:61 ready.nextEventTime:124 readysize:1
+Run:PID:1 Cb:3 index:0 (Ts,Tg) 124,121 run.remain:49 run.nextEventTime:127 runsize:1
+readyQ elements:
+Ts:124 PID:0 Tg:119 Cb:6 Remain:61 nextEventTime:124 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 127 1 ts=124 BLOCK  dur=3
+T(1:127): RUNNG -> BLOCK  ib=4 rem=46
+
+CPUtime:127
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:6 index:1 (Ts,Tg) 124,119 ready.remain:61 ready.nextEventTime:124 readysize:1
+Block:PID:1 Cb:-1000 index:0 (Ts,Tg)127,124 block.remain:46 block.nextEventTime:131 blocksize:1
+readyQ elements:
+Ts:124 PID:0 Tg:119 Cb:6 Remain:61 nextEventTime:124 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 127 0 ts=124 RUNNG  dur=3
+T(0:127): READY -> RUNNG  cb=6 rem=61
+
+CPUtime:127
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:6 index:0 (Ts,Tg) 127,124 run.remain:61 run.nextEventTime:133 runsize:1
+Block:PID:1 Cb:-1000 index:0 (Ts,Tg)127,124 block.remain:46 block.nextEventTime:131 blocksize:1
+readyQ empty
+
+
+==> 131 1 ts=127 READY  dur=4
+T(1:131): BLOCK -> READY
+
+CPUtime:131
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 131,127 ready.remain:46 ready.nextEventTime:131 readysize:1
+Run:PID:0 Cb:6 index:0 (Ts,Tg) 127,124 run.remain:61 run.nextEventTime:133 runsize:1
+readyQ elements:
+Ts:131 PID:1 Tg:127 Cb:-1000 Remain:46 nextEventTime:131 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 132 0 ts=127 PREEMPT  dur=5
+T(0:132): RUNNG -> READY  cb=1 rem=56
+
+CPUtime:132
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 131,127 ready.remain:46 ready.nextEventTime:131 readysize:2
+readyQ elements:
+Ts:131 PID:1 Tg:127 Cb:-1000 Remain:46 nextEventTime:131 curState:BLOCK nextState:READY insertindex:0
+Ts:132 PID:0 Tg:127 Cb:1 Remain:56 nextEventTime:132 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 132 1 ts=131 RUNNG  dur=1
+T(1:132): READY -> RUNNG  cb=8 rem=46
+
+CPUtime:132
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:1 index:1 (Ts,Tg) 132,127 ready.remain:56 ready.nextEventTime:132 readysize:1
+Run:PID:1 Cb:8 index:0 (Ts,Tg) 132,131 run.remain:46 run.nextEventTime:140 runsize:1
+readyQ elements:
+Ts:132 PID:0 Tg:127 Cb:1 Remain:56 nextEventTime:132 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 137 1 ts=132 PREEMPT  dur=5
+T(1:137): RUNNG -> READY  cb=3 rem=41
+
+CPUtime:137
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:1 index:1 (Ts,Tg) 132,127 ready.remain:56 ready.nextEventTime:132 readysize:2
+readyQ elements:
+Ts:132 PID:0 Tg:127 Cb:1 Remain:56 nextEventTime:132 curState:RUNNG nextState:PREEMPT insertindex:1
+Ts:137 PID:1 Tg:132 Cb:3 Remain:41 nextEventTime:137 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 137 0 ts=132 RUNNG  dur=5
+T(0:137): READY -> RUNNG  cb=1 rem=56
+
+CPUtime:137
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:2 (Ts,Tg) 137,132 ready.remain:41 ready.nextEventTime:137 readysize:1
+Run:PID:0 Cb:1 index:0 (Ts,Tg) 137,132 run.remain:56 run.nextEventTime:138 runsize:1
+readyQ elements:
+Ts:137 PID:1 Tg:132 Cb:3 Remain:41 nextEventTime:137 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 138 0 ts=137 BLOCK  dur=1
+T(0:138): RUNNG -> BLOCK  ib=16 rem=55
+
+CPUtime:138
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:2 (Ts,Tg) 137,132 ready.remain:41 ready.nextEventTime:137 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)138,137 block.remain:55 block.nextEventTime:154 blocksize:1
+readyQ elements:
+Ts:137 PID:1 Tg:132 Cb:3 Remain:41 nextEventTime:137 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 138 1 ts=137 RUNNG  dur=1
+T(1:138): READY -> RUNNG  cb=3 rem=41
+
+CPUtime:138
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:3 index:0 (Ts,Tg) 138,137 run.remain:41 run.nextEventTime:141 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)138,137 block.remain:55 block.nextEventTime:154 blocksize:1
+readyQ empty
+
+
+==> 141 1 ts=138 BLOCK  dur=3
+T(1:141): RUNNG -> BLOCK  ib=10 rem=38
+
+CPUtime:141
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:1 Cb:-1000 index:1 (Ts,Tg)141,138 block.remain:38 block.nextEventTime:151 blocksize:2
+readyQ empty
+
+
+==> 151 1 ts=141 READY  dur=10
+T(1:151): BLOCK -> READY
+
+CPUtime:151
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 151,141 ready.remain:38 ready.nextEventTime:151 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)138,137 block.remain:55 block.nextEventTime:154 blocksize:1
+readyQ elements:
+Ts:151 PID:1 Tg:141 Cb:-1000 Remain:38 nextEventTime:151 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 151 1 ts=151 RUNNG  dur=0
+T(1:151): READY -> RUNNG  cb=13 rem=38
+
+CPUtime:151
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:13 index:0 (Ts,Tg) 151,151 run.remain:38 run.nextEventTime:164 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)138,137 block.remain:55 block.nextEventTime:154 blocksize:1
+readyQ empty
+
+
+==> 154 0 ts=138 READY  dur=16
+T(0:154): BLOCK -> READY
+
+CPUtime:154
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 154,138 ready.remain:55 ready.nextEventTime:154 readysize:1
+Run:PID:1 Cb:13 index:0 (Ts,Tg) 151,151 run.remain:38 run.nextEventTime:164 runsize:1
+readyQ elements:
+Ts:154 PID:0 Tg:138 Cb:-1000 Remain:55 nextEventTime:154 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 156 1 ts=151 PREEMPT  dur=5
+T(1:156): RUNNG -> READY  cb=8 rem=33
+
+CPUtime:156
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 154,138 ready.remain:55 ready.nextEventTime:154 readysize:2
+readyQ elements:
+Ts:154 PID:0 Tg:138 Cb:-1000 Remain:55 nextEventTime:154 curState:BLOCK nextState:READY insertindex:0
+Ts:156 PID:1 Tg:151 Cb:8 Remain:33 nextEventTime:156 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 156 0 ts=154 RUNNG  dur=2
+T(0:156): READY -> RUNNG  cb=3 rem=55
+
+CPUtime:156
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:8 index:1 (Ts,Tg) 156,151 ready.remain:33 ready.nextEventTime:156 readysize:1
+Run:PID:0 Cb:3 index:0 (Ts,Tg) 156,154 run.remain:55 run.nextEventTime:159 runsize:1
+readyQ elements:
+Ts:156 PID:1 Tg:151 Cb:8 Remain:33 nextEventTime:156 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 159 0 ts=156 BLOCK  dur=3
+T(0:159): RUNNG -> BLOCK  ib=19 rem=52
+
+CPUtime:159
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:8 index:1 (Ts,Tg) 156,151 ready.remain:33 ready.nextEventTime:156 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)159,156 block.remain:52 block.nextEventTime:178 blocksize:1
+readyQ elements:
+Ts:156 PID:1 Tg:151 Cb:8 Remain:33 nextEventTime:156 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 159 1 ts=156 RUNNG  dur=3
+T(1:159): READY -> RUNNG  cb=8 rem=33
+
+CPUtime:159
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:8 index:0 (Ts,Tg) 159,156 run.remain:33 run.nextEventTime:167 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)159,156 block.remain:52 block.nextEventTime:178 blocksize:1
+readyQ empty
+
+
+==> 164 1 ts=159 PREEMPT  dur=5
+T(1:164): RUNNG -> READY  cb=3 rem=28
+
+CPUtime:164
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:3 index:0 (Ts,Tg) 164,159 ready.remain:28 ready.nextEventTime:164 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)159,156 block.remain:52 block.nextEventTime:178 blocksize:1
+readyQ elements:
+Ts:164 PID:1 Tg:159 Cb:3 Remain:28 nextEventTime:164 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 164 1 ts=164 RUNNG  dur=0
+T(1:164): READY -> RUNNG  cb=3 rem=28
+
+CPUtime:164
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:3 index:0 (Ts,Tg) 164,164 run.remain:28 run.nextEventTime:167 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)159,156 block.remain:52 block.nextEventTime:178 blocksize:1
+readyQ empty
+
+
+==> 167 1 ts=164 BLOCK  dur=3
+T(1:167): RUNNG -> BLOCK  ib=10 rem=25
+
+CPUtime:167
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:1 Cb:-1000 index:1 (Ts,Tg)167,164 block.remain:25 block.nextEventTime:177 blocksize:2
+readyQ empty
+
+
+==> 177 1 ts=167 READY  dur=10
+T(1:177): BLOCK -> READY
+
+CPUtime:177
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:-1000 index:0 (Ts,Tg) 177,167 ready.remain:25 ready.nextEventTime:177 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)159,156 block.remain:52 block.nextEventTime:178 blocksize:1
+readyQ elements:
+Ts:177 PID:1 Tg:167 Cb:-1000 Remain:25 nextEventTime:177 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 177 1 ts=177 RUNNG  dur=0
+T(1:177): READY -> RUNNG  cb=25 rem=25
+
+CPUtime:177
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:25 index:0 (Ts,Tg) 177,177 run.remain:25 run.nextEventTime:205 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)159,156 block.remain:52 block.nextEventTime:178 blocksize:1
+readyQ empty
+
+
+==> 178 0 ts=159 READY  dur=19
+T(0:178): BLOCK -> READY
+
+CPUtime:178
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 178,159 ready.remain:52 ready.nextEventTime:178 readysize:1
+Run:PID:1 Cb:25 index:0 (Ts,Tg) 177,177 run.remain:25 run.nextEventTime:205 runsize:1
+readyQ elements:
+Ts:178 PID:0 Tg:159 Cb:-1000 Remain:52 nextEventTime:178 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 182 1 ts=177 PREEMPT  dur=5
+T(1:182): RUNNG -> READY  cb=20 rem=20
+
+CPUtime:182
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 178,159 ready.remain:52 ready.nextEventTime:178 readysize:2
+readyQ elements:
+Ts:178 PID:0 Tg:159 Cb:-1000 Remain:52 nextEventTime:178 curState:BLOCK nextState:READY insertindex:0
+Ts:182 PID:1 Tg:177 Cb:20 Remain:20 nextEventTime:182 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 182 0 ts=178 RUNNG  dur=4
+T(0:182): READY -> RUNNG  cb=14 rem=52
+
+CPUtime:182
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:20 index:1 (Ts,Tg) 182,177 ready.remain:20 ready.nextEventTime:182 readysize:1
+Run:PID:0 Cb:14 index:0 (Ts,Tg) 182,178 run.remain:52 run.nextEventTime:196 runsize:1
+readyQ elements:
+Ts:182 PID:1 Tg:177 Cb:20 Remain:20 nextEventTime:182 curState:RUNNG nextState:PREEMPT insertindex:1
+
+
+==> 187 0 ts=182 PREEMPT  dur=5
+T(0:187): RUNNG -> READY  cb=9 rem=47
+
+CPUtime:187
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:20 index:1 (Ts,Tg) 182,177 ready.remain:20 ready.nextEventTime:182 readysize:2
+readyQ elements:
+Ts:182 PID:1 Tg:177 Cb:20 Remain:20 nextEventTime:182 curState:RUNNG nextState:PREEMPT insertindex:1
+Ts:187 PID:0 Tg:182 Cb:9 Remain:47 nextEventTime:187 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 187 1 ts=182 RUNNG  dur=5
+T(1:187): READY -> RUNNG  cb=20 rem=20
+
+CPUtime:187
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:9 index:2 (Ts,Tg) 187,182 ready.remain:47 ready.nextEventTime:187 readysize:1
+Run:PID:1 Cb:20 index:0 (Ts,Tg) 187,182 run.remain:20 run.nextEventTime:207 runsize:1
+readyQ elements:
+Ts:187 PID:0 Tg:182 Cb:9 Remain:47 nextEventTime:187 curState:RUNNG nextState:PREEMPT insertindex:2
+
+
+==> 192 1 ts=187 PREEMPT  dur=5
+T(1:192): RUNNG -> READY  cb=15 rem=15
+
+CPUtime:192
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:9 index:2 (Ts,Tg) 187,182 ready.remain:47 ready.nextEventTime:187 readysize:2
+readyQ elements:
+Ts:187 PID:0 Tg:182 Cb:9 Remain:47 nextEventTime:187 curState:RUNNG nextState:PREEMPT insertindex:2
+Ts:192 PID:1 Tg:187 Cb:15 Remain:15 nextEventTime:192 curState:RUNNG nextState:PREEMPT insertindex:3
+
+
+==> 192 0 ts=187 RUNNG  dur=5
+T(0:192): READY -> RUNNG  cb=9 rem=47
+
+CPUtime:192
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:15 index:3 (Ts,Tg) 192,187 ready.remain:15 ready.nextEventTime:192 readysize:1
+Run:PID:0 Cb:9 index:0 (Ts,Tg) 192,187 run.remain:47 run.nextEventTime:201 runsize:1
+readyQ elements:
+Ts:192 PID:1 Tg:187 Cb:15 Remain:15 nextEventTime:192 curState:RUNNG nextState:PREEMPT insertindex:3
+
+
+==> 197 0 ts=192 PREEMPT  dur=5
+T(0:197): RUNNG -> READY  cb=4 rem=42
+
+CPUtime:197
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:15 index:3 (Ts,Tg) 192,187 ready.remain:15 ready.nextEventTime:192 readysize:2
+readyQ elements:
+Ts:192 PID:1 Tg:187 Cb:15 Remain:15 nextEventTime:192 curState:RUNNG nextState:PREEMPT insertindex:3
+Ts:197 PID:0 Tg:192 Cb:4 Remain:42 nextEventTime:197 curState:RUNNG nextState:PREEMPT insertindex:4
+
+
+==> 197 1 ts=192 RUNNG  dur=5
+T(1:197): READY -> RUNNG  cb=15 rem=15
+
+CPUtime:197
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:4 index:4 (Ts,Tg) 197,192 ready.remain:42 ready.nextEventTime:197 readysize:1
+Run:PID:1 Cb:15 index:0 (Ts,Tg) 197,192 run.remain:15 run.nextEventTime:212 runsize:1
+readyQ elements:
+Ts:197 PID:0 Tg:192 Cb:4 Remain:42 nextEventTime:197 curState:RUNNG nextState:PREEMPT insertindex:4
+
+
+==> 202 1 ts=197 PREEMPT  dur=5
+T(1:202): RUNNG -> READY  cb=10 rem=10
+
+CPUtime:202
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:4 index:4 (Ts,Tg) 197,192 ready.remain:42 ready.nextEventTime:197 readysize:2
+readyQ elements:
+Ts:197 PID:0 Tg:192 Cb:4 Remain:42 nextEventTime:197 curState:RUNNG nextState:PREEMPT insertindex:4
+Ts:202 PID:1 Tg:197 Cb:10 Remain:10 nextEventTime:202 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 202 0 ts=197 RUNNG  dur=5
+T(0:202): READY -> RUNNG  cb=4 rem=42
+
+CPUtime:202
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:10 index:5 (Ts,Tg) 202,197 ready.remain:10 ready.nextEventTime:202 readysize:1
+Run:PID:0 Cb:4 index:0 (Ts,Tg) 202,197 run.remain:42 run.nextEventTime:206 runsize:1
+readyQ elements:
+Ts:202 PID:1 Tg:197 Cb:10 Remain:10 nextEventTime:202 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 206 0 ts=202 BLOCK  dur=4
+T(0:206): RUNNG -> BLOCK  ib=17 rem=38
+
+CPUtime:206
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:10 index:5 (Ts,Tg) 202,197 ready.remain:10 ready.nextEventTime:202 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)206,202 block.remain:38 block.nextEventTime:223 blocksize:1
+readyQ elements:
+Ts:202 PID:1 Tg:197 Cb:10 Remain:10 nextEventTime:202 curState:RUNNG nextState:PREEMPT insertindex:5
+
+
+==> 206 1 ts=202 RUNNG  dur=4
+T(1:206): READY -> RUNNG  cb=10 rem=10
+
+CPUtime:206
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:10 index:0 (Ts,Tg) 206,202 run.remain:10 run.nextEventTime:216 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)206,202 block.remain:38 block.nextEventTime:223 blocksize:1
+readyQ empty
+
+
+==> 211 1 ts=206 PREEMPT  dur=5
+T(1:211): RUNNG -> READY  cb=5 rem=5
+
+CPUtime:211
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:1 Cb:5 index:0 (Ts,Tg) 211,206 ready.remain:5 ready.nextEventTime:211 readysize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)206,202 block.remain:38 block.nextEventTime:223 blocksize:1
+readyQ elements:
+Ts:211 PID:1 Tg:206 Cb:5 Remain:5 nextEventTime:211 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 211 1 ts=211 RUNNG  dur=0
+T(1:211): READY -> RUNNG  cb=5 rem=5
+
+CPUtime:211
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:1 Cb:5 index:0 (Ts,Tg) 211,211 run.remain:5 run.nextEventTime:216 runsize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)206,202 block.remain:38 block.nextEventTime:223 blocksize:1
+readyQ empty
+
+
+==> 216 1 ts=211 BLOCK  dur=5
+==> T(1): Done
+
+CPUtime:216
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)206,202 block.remain:38 block.nextEventTime:223 blocksize:1
+readyQ empty
+
+
+==> 223 0 ts=206 READY  dur=17
+T(0:223): BLOCK -> READY
+
+CPUtime:223
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 223,206 ready.remain:38 ready.nextEventTime:223 readysize:1
+readyQ elements:
+Ts:223 PID:0 Tg:206 Cb:-1000 Remain:38 nextEventTime:223 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 223 0 ts=223 RUNNG  dur=0
+T(0:223): READY -> RUNNG  cb=12 rem=38
+
+CPUtime:223
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:12 index:0 (Ts,Tg) 223,223 run.remain:38 run.nextEventTime:235 runsize:1
+readyQ empty
+
+
+==> 228 0 ts=223 PREEMPT  dur=5
+T(0:228): RUNNG -> READY  cb=7 rem=33
+
+CPUtime:228
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:7 index:0 (Ts,Tg) 228,223 ready.remain:33 ready.nextEventTime:228 readysize:1
+readyQ elements:
+Ts:228 PID:0 Tg:223 Cb:7 Remain:33 nextEventTime:228 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 228 0 ts=228 RUNNG  dur=0
+T(0:228): READY -> RUNNG  cb=7 rem=33
+
+CPUtime:228
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:7 index:0 (Ts,Tg) 228,228 run.remain:33 run.nextEventTime:235 runsize:1
+readyQ empty
+
+
+==> 233 0 ts=228 PREEMPT  dur=5
+T(0:233): RUNNG -> READY  cb=2 rem=28
+
+CPUtime:233
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:2 index:0 (Ts,Tg) 233,228 ready.remain:28 ready.nextEventTime:233 readysize:1
+readyQ elements:
+Ts:233 PID:0 Tg:228 Cb:2 Remain:28 nextEventTime:233 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 233 0 ts=233 RUNNG  dur=0
+T(0:233): READY -> RUNNG  cb=2 rem=28
+
+CPUtime:233
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:2 index:0 (Ts,Tg) 233,233 run.remain:28 run.nextEventTime:235 runsize:1
+readyQ empty
+
+
+==> 235 0 ts=233 BLOCK  dur=2
+T(0:235): RUNNG -> BLOCK  ib=3 rem=26
+
+CPUtime:235
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)235,233 block.remain:26 block.nextEventTime:238 blocksize:1
+readyQ empty
+
+
+==> 238 0 ts=235 READY  dur=3
+T(0:238): BLOCK -> READY
+
+CPUtime:238
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 238,235 ready.remain:26 ready.nextEventTime:238 readysize:1
+readyQ elements:
+Ts:238 PID:0 Tg:235 Cb:-1000 Remain:26 nextEventTime:238 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 238 0 ts=238 RUNNG  dur=0
+T(0:238): READY -> RUNNG  cb=10 rem=26
+
+CPUtime:238
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:10 index:0 (Ts,Tg) 238,238 run.remain:26 run.nextEventTime:248 runsize:1
+readyQ empty
+
+
+==> 243 0 ts=238 PREEMPT  dur=5
+T(0:243): RUNNG -> READY  cb=5 rem=21
+
+CPUtime:243
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:5 index:0 (Ts,Tg) 243,238 ready.remain:21 ready.nextEventTime:243 readysize:1
+readyQ elements:
+Ts:243 PID:0 Tg:238 Cb:5 Remain:21 nextEventTime:243 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 243 0 ts=243 RUNNG  dur=0
+T(0:243): READY -> RUNNG  cb=5 rem=21
+
+CPUtime:243
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:5 index:0 (Ts,Tg) 243,243 run.remain:21 run.nextEventTime:248 runsize:1
+readyQ empty
+
+
+==> 248 0 ts=243 BLOCK  dur=5
+T(0:248): RUNNG -> BLOCK  ib=14 rem=16
+
+CPUtime:248
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)248,243 block.remain:16 block.nextEventTime:262 blocksize:1
+readyQ empty
+
+
+==> 262 0 ts=248 READY  dur=14
+T(0:262): BLOCK -> READY
+
+CPUtime:262
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 262,248 ready.remain:16 ready.nextEventTime:262 readysize:1
+readyQ elements:
+Ts:262 PID:0 Tg:248 Cb:-1000 Remain:16 nextEventTime:262 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 262 0 ts=262 RUNNG  dur=0
+T(0:262): READY -> RUNNG  cb=2 rem=16
+
+CPUtime:262
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:2 index:0 (Ts,Tg) 262,262 run.remain:16 run.nextEventTime:264 runsize:1
+readyQ empty
+
+
+==> 264 0 ts=262 BLOCK  dur=2
+T(0:264): RUNNG -> BLOCK  ib=20 rem=14
+
+CPUtime:264
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)264,262 block.remain:14 block.nextEventTime:284 blocksize:1
+readyQ empty
+
+
+==> 284 0 ts=264 READY  dur=20
+T(0:284): BLOCK -> READY
+
+CPUtime:284
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 284,264 ready.remain:14 ready.nextEventTime:284 readysize:1
+readyQ elements:
+Ts:284 PID:0 Tg:264 Cb:-1000 Remain:14 nextEventTime:284 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 284 0 ts=284 RUNNG  dur=0
+T(0:284): READY -> RUNNG  cb=5 rem=14
+
+CPUtime:284
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:5 index:0 (Ts,Tg) 284,284 run.remain:14 run.nextEventTime:289 runsize:1
+readyQ empty
+
+
+==> 289 0 ts=284 BLOCK  dur=5
+T(0:289): RUNNG -> BLOCK  ib=18 rem=9
+
+CPUtime:289
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Block:PID:0 Cb:-1000 index:0 (Ts,Tg)289,284 block.remain:9 block.nextEventTime:307 blocksize:1
+readyQ empty
+
+
+==> 307 0 ts=289 READY  dur=18
+T(0:307): BLOCK -> READY
+
+CPUtime:307
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:-1000 index:0 (Ts,Tg) 307,289 ready.remain:9 ready.nextEventTime:307 readysize:1
+readyQ elements:
+Ts:307 PID:0 Tg:289 Cb:-1000 Remain:9 nextEventTime:307 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 307 0 ts=307 RUNNG  dur=0
+T(0:307): READY -> RUNNG  cb=9 rem=9
+
+CPUtime:307
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:9 index:0 (Ts,Tg) 307,307 run.remain:9 run.nextEventTime:326 runsize:1
+readyQ empty
+
+
+==> 312 0 ts=307 PREEMPT  dur=5
+T(0:312): RUNNG -> READY  cb=4 rem=4
+
+CPUtime:312
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Ready:PID:0 Cb:4 index:0 (Ts,Tg) 312,307 ready.remain:4 ready.nextEventTime:312 readysize:1
+readyQ elements:
+Ts:312 PID:0 Tg:307 Cb:4 Remain:4 nextEventTime:312 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 312 0 ts=312 RUNNG  dur=0
+T(0:312): READY -> RUNNG  cb=4 rem=4
+
+CPUtime:312
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+Run:PID:0 Cb:4 index:0 (Ts,Tg) 312,312 run.remain:4 run.nextEventTime:316 runsize:1
+readyQ empty
+
+
+==> 316 0 ts=312 BLOCK  dur=4
+==> T(0): Done
+
+CPUtime:316
+Task:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 task.remain:30 task.nextEventTime:1000 tasksize:1
+readyQ empty
+
+
+==> 1000 3 ts=1000 READY  dur=0
+T(3:1000): READY -> READY
+
+CPUtime:316
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1000,1000 ready.remain:30 ready.nextEventTime:1000 readysize:1
+readyQ elements:
+Ts:1000 PID:3 Tg:1000 Cb:-1000 Remain:30 nextEventTime:1000 curState:READY nextState:READY insertindex:0
+
+
+==> 1000 3 ts=1000 RUNNG  dur=0
+T(3:1000): READY -> RUNNG  cb=5 rem=30
+
+CPUtime:1000
+Run:PID:3 Cb:5 index:0 (Ts,Tg) 1000,1000 run.remain:30 run.nextEventTime:1005 runsize:1
+readyQ empty
+
+
+==> 1005 3 ts=1000 BLOCK  dur=5
+T(3:1005): RUNNG -> BLOCK  ib=1 rem=25
+
+CPUtime:1005
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1005,1000 block.remain:25 block.nextEventTime:1006 blocksize:1
+readyQ empty
+
+
+==> 1006 3 ts=1005 READY  dur=1
+T(3:1006): BLOCK -> READY
+
+CPUtime:1006
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1006,1005 ready.remain:25 ready.nextEventTime:1006 readysize:1
+readyQ elements:
+Ts:1006 PID:3 Tg:1005 Cb:-1000 Remain:25 nextEventTime:1006 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1006 3 ts=1006 RUNNG  dur=0
+T(3:1006): READY -> RUNNG  cb=1 rem=25
+
+CPUtime:1006
+Run:PID:3 Cb:1 index:0 (Ts,Tg) 1006,1006 run.remain:25 run.nextEventTime:1007 runsize:1
+readyQ empty
+
+
+==> 1007 3 ts=1006 BLOCK  dur=1
+T(3:1007): RUNNG -> BLOCK  ib=4 rem=24
+
+CPUtime:1007
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1007,1006 block.remain:24 block.nextEventTime:1011 blocksize:1
+readyQ empty
+
+
+==> 1011 3 ts=1007 READY  dur=4
+T(3:1011): BLOCK -> READY
+
+CPUtime:1011
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1011,1007 ready.remain:24 ready.nextEventTime:1011 readysize:1
+readyQ elements:
+Ts:1011 PID:3 Tg:1007 Cb:-1000 Remain:24 nextEventTime:1011 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1011 3 ts=1011 RUNNG  dur=0
+T(3:1011): READY -> RUNNG  cb=7 rem=24
+
+CPUtime:1011
+Run:PID:3 Cb:7 index:0 (Ts,Tg) 1011,1011 run.remain:24 run.nextEventTime:1018 runsize:1
+readyQ empty
+
+
+==> 1016 3 ts=1011 PREEMPT  dur=5
+T(3:1016): RUNNG -> READY  cb=2 rem=19
+
+CPUtime:1016
+Ready:PID:3 Cb:2 index:0 (Ts,Tg) 1016,1011 ready.remain:19 ready.nextEventTime:1016 readysize:1
+readyQ elements:
+Ts:1016 PID:3 Tg:1011 Cb:2 Remain:19 nextEventTime:1016 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 1016 3 ts=1016 RUNNG  dur=0
+T(3:1016): READY -> RUNNG  cb=2 rem=19
+
+CPUtime:1016
+Run:PID:3 Cb:2 index:0 (Ts,Tg) 1016,1016 run.remain:19 run.nextEventTime:1018 runsize:1
+readyQ empty
+
+
+==> 1018 3 ts=1016 BLOCK  dur=2
+T(3:1018): RUNNG -> BLOCK  ib=2 rem=17
+
+CPUtime:1018
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1018,1016 block.remain:17 block.nextEventTime:1020 blocksize:1
+readyQ empty
+
+
+==> 1020 3 ts=1018 READY  dur=2
+T(3:1020): BLOCK -> READY
+
+CPUtime:1020
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1020,1018 ready.remain:17 ready.nextEventTime:1020 readysize:1
+readyQ elements:
+Ts:1020 PID:3 Tg:1018 Cb:-1000 Remain:17 nextEventTime:1020 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1020 3 ts=1020 RUNNG  dur=0
+T(3:1020): READY -> RUNNG  cb=1 rem=17
+
+CPUtime:1020
+Run:PID:3 Cb:1 index:0 (Ts,Tg) 1020,1020 run.remain:17 run.nextEventTime:1021 runsize:1
+readyQ empty
+
+
+==> 1021 3 ts=1020 BLOCK  dur=1
+T(3:1021): RUNNG -> BLOCK  ib=2 rem=16
+
+CPUtime:1021
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1021,1020 block.remain:16 block.nextEventTime:1023 blocksize:1
+readyQ empty
+
+
+==> 1023 3 ts=1021 READY  dur=2
+T(3:1023): BLOCK -> READY
+
+CPUtime:1023
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1023,1021 ready.remain:16 ready.nextEventTime:1023 readysize:1
+readyQ elements:
+Ts:1023 PID:3 Tg:1021 Cb:-1000 Remain:16 nextEventTime:1023 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1023 3 ts=1023 RUNNG  dur=0
+T(3:1023): READY -> RUNNG  cb=4 rem=16
+
+CPUtime:1023
+Run:PID:3 Cb:4 index:0 (Ts,Tg) 1023,1023 run.remain:16 run.nextEventTime:1027 runsize:1
+readyQ empty
+
+
+==> 1027 3 ts=1023 BLOCK  dur=4
+T(3:1027): RUNNG -> BLOCK  ib=3 rem=12
+
+CPUtime:1027
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1027,1023 block.remain:12 block.nextEventTime:1030 blocksize:1
+readyQ empty
+
+
+==> 1030 3 ts=1027 READY  dur=3
+T(3:1030): BLOCK -> READY
+
+CPUtime:1030
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1030,1027 ready.remain:12 ready.nextEventTime:1030 readysize:1
+readyQ elements:
+Ts:1030 PID:3 Tg:1027 Cb:-1000 Remain:12 nextEventTime:1030 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1030 3 ts=1030 RUNNG  dur=0
+T(3:1030): READY -> RUNNG  cb=1 rem=12
+
+CPUtime:1030
+Run:PID:3 Cb:1 index:0 (Ts,Tg) 1030,1030 run.remain:12 run.nextEventTime:1031 runsize:1
+readyQ empty
+
+
+==> 1031 3 ts=1030 BLOCK  dur=1
+T(3:1031): RUNNG -> BLOCK  ib=2 rem=11
+
+CPUtime:1031
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1031,1030 block.remain:11 block.nextEventTime:1033 blocksize:1
+readyQ empty
+
+
+==> 1033 3 ts=1031 READY  dur=2
+T(3:1033): BLOCK -> READY
+
+CPUtime:1033
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1033,1031 ready.remain:11 ready.nextEventTime:1033 readysize:1
+readyQ elements:
+Ts:1033 PID:3 Tg:1031 Cb:-1000 Remain:11 nextEventTime:1033 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1033 3 ts=1033 RUNNG  dur=0
+T(3:1033): READY -> RUNNG  cb=2 rem=11
+
+CPUtime:1033
+Run:PID:3 Cb:2 index:0 (Ts,Tg) 1033,1033 run.remain:11 run.nextEventTime:1035 runsize:1
+readyQ empty
+
+
+==> 1035 3 ts=1033 BLOCK  dur=2
+T(3:1035): RUNNG -> BLOCK  ib=1 rem=9
+
+CPUtime:1035
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1035,1033 block.remain:9 block.nextEventTime:1036 blocksize:1
+readyQ empty
+
+
+==> 1036 3 ts=1035 READY  dur=1
+T(3:1036): BLOCK -> READY
+
+CPUtime:1036
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1036,1035 ready.remain:9 ready.nextEventTime:1036 readysize:1
+readyQ elements:
+Ts:1036 PID:3 Tg:1035 Cb:-1000 Remain:9 nextEventTime:1036 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1036 3 ts=1036 RUNNG  dur=0
+T(3:1036): READY -> RUNNG  cb=6 rem=9
+
+CPUtime:1036
+Run:PID:3 Cb:6 index:0 (Ts,Tg) 1036,1036 run.remain:9 run.nextEventTime:1042 runsize:1
+readyQ empty
+
+
+==> 1041 3 ts=1036 PREEMPT  dur=5
+T(3:1041): RUNNG -> READY  cb=1 rem=4
+
+CPUtime:1041
+Ready:PID:3 Cb:1 index:0 (Ts,Tg) 1041,1036 ready.remain:4 ready.nextEventTime:1041 readysize:1
+readyQ elements:
+Ts:1041 PID:3 Tg:1036 Cb:1 Remain:4 nextEventTime:1041 curState:RUNNG nextState:PREEMPT insertindex:0
+
+
+==> 1041 3 ts=1041 RUNNG  dur=0
+T(3:1041): READY -> RUNNG  cb=1 rem=4
+
+CPUtime:1041
+Run:PID:3 Cb:1 index:0 (Ts,Tg) 1041,1041 run.remain:4 run.nextEventTime:1042 runsize:1
+readyQ empty
+
+
+==> 1042 3 ts=1041 BLOCK  dur=1
+T(3:1042): RUNNG -> BLOCK  ib=5 rem=3
+
+CPUtime:1042
+Block:PID:3 Cb:-1000 index:0 (Ts,Tg)1042,1041 block.remain:3 block.nextEventTime:1047 blocksize:1
+readyQ empty
+
+
+==> 1047 3 ts=1042 READY  dur=5
+T(3:1047): BLOCK -> READY
+
+CPUtime:1047
+Ready:PID:3 Cb:-1000 index:0 (Ts,Tg) 1047,1042 ready.remain:3 ready.nextEventTime:1047 readysize:1
+readyQ elements:
+Ts:1047 PID:3 Tg:1042 Cb:-1000 Remain:3 nextEventTime:1047 curState:BLOCK nextState:READY insertindex:0
+
+
+==> 1047 3 ts=1047 RUNNG  dur=0
+T(3:1047): READY -> RUNNG  cb=3 rem=3
+
+CPUtime:1047
+Run:PID:3 Cb:3 index:0 (Ts,Tg) 1047,1047 run.remain:3 run.nextEventTime:1055 runsize:1
+readyQ empty
+
+
+==> 1050 3 ts=1047 BLOCK  dur=3
+==> T(3): Done
+RR 5
+0000:    1  100   20   20 |  316  315  144  131
+0001:    1  100   30   10 |  216  215   35  160
+0002:    1   30   10    5 |  115  114   20   84
+0003: 1000   30   10    5 | 1050   50   20   10
+SUM: 1050 8.57 16.86 173.50 96.25 0.381
