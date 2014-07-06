@@ -208,7 +208,8 @@ void schedule::Run2Ready(int ts, int tg, int cb){
 	remain=remain-(ts-tg);
 	if(CPUtime<ts){CPUtime=ts;}else {ts=CPUtime; }
 	Ts=ts; Tg=tg; Cb=cb;Ib=-1000;curState=statecode(0); nextState=statecode(3); nextEventTime=Ts; //CPUtime=Ts;		//in output5_R5_t the nextState is called PREEMPT
-	Reporter[PID].Cw=Reporter[PID].Cw+(Ts-Tg);
+	// Reporter[PID].Cw=Reporter[PID].Cw+(Ts-Tg);
+	Reporter[PID].cpuRun=Reporter[PID].cpuRun+(Ts-tg);
 }
 
 ////Class////
@@ -502,18 +503,14 @@ public:
 			if(BlockEmptyTag==1){
 				double longest=findLongEvent(blockQ);
 				double longest_Ib=findLongEventIb(blockQ);				
-				// cout<<">>>>>>>>1 longest:"<<longest<<" longest_Ib:"<<longest_Ib<<endl;
 				IOruntime=IOruntime+longest_Ib;
 				tmpIOruntime=longest;
-				// cout<<">>>>>>>>1 IOruntime:"<<IOruntime<<" tmpIOruntime:"<<tmpIOruntime<<endl;
 				BlockEmptyTag=0;
 			}
 			else if(BlockEmptyTag==0){
 				double longest=findLongEvent(blockQ);
-				// cout<<">>>>>>>>2 longest:"<<longest<<" tmpIOruntime:"<<tmpIOruntime<<endl;
 				IOruntime=IOruntime+(longest-tmpIOruntime);
 				tmpIOruntime=longest;
-				// cout<<">>>>>>>>2 IOruntime:"<<IOruntime<<" tmpIOruntime:"<<tmpIOruntime<<endl;
 				BlockEmptyTag=0;
 			}
 		}		
